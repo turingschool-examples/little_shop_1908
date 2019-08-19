@@ -21,11 +21,13 @@
 </center>
 
 <div>
-  <p>Reviews: <%= @item.reviews.each do |review| %> </p>
+
+  <div> <%= link_to "add new review", "/items/#{@item.id}/review/new" %></div>
+  <p>Reviews: <% @item.reviews.each do |review| %> </p>
     <section id= 'review-<%=review.id%>'>
       <p><%= review.title %></p>
       <p><%= review.content %></p>
-      <p><%= review.rating %></p>
+      <p>Rating: <%= review.rating %></p>
     </section>
   <% end %>
 </div>
