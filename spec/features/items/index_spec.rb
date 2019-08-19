@@ -10,6 +10,8 @@ RSpec.describe "Items Index Page" do
 
       @pull_toy = @brian.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
       @dog_bone = @brian.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
+      @active_items = [@tire, @pull_toy]
+      @inactive_items = [@dog_bone]
     end
 
     it "all items or merchant names are links" do
@@ -27,25 +29,28 @@ RSpec.describe "Items Index Page" do
 
       visit '/items'
 
-      within "#item-#{@tire.id}" do
-        expect(page).to have_content(@tire.name)
-        expect(page).to have_content(@tire.description)
-        expect(page).to have_content("Price: $#{@tire.price}")
-        expect(page).to have_content("Active")
-        expect(page).to have_content("Inventory: #{@tire.inventory}")
-        expect(page).to have_content("Sold by: #{@meg.name}")
-        expect(page).to have_css("img[src*='#{@tire.image}']")
-      end
+      @active_items.each do |item|
 
-      within "#item-#{@pull_toy.id}" do
-        expect(page).to have_content(@pull_toy.name)
-        expect(page).to have_content(@pull_toy.description)
-        expect(page).to have_content("Price: $#{@pull_toy.price}")
+        within "#item-#{item.id}" do
+          expect(page).to have_content(item.name)
+          expect(page).to have_content(item.description)
+          expect(page).to have_content("Price: $#{item.price}")
+          expect(page).to have_content("Active")
+          expect(page).to have_content("Inventory: #{item.inventory}")
+          expect(page).to have_content("Sold by: #{item.merchant.name}")
+          expect(page).to have_css("img[src*='#{item.image}']")
+        end
+
+      within "#item-#{item.id}" do
+        expect(page).to have_content(item.name)
+        expect(page).to have_content(item.description)
+        expect(page).to have_content("Price: $#{item.price}")
         expect(page).to have_content("Active")
-        expect(page).to have_content("Inventory: #{@pull_toy.inventory}")
-        expect(page).to have_content("Sold by: #{@brian.name}")
-        expect(page).to have_css("img[src*='#{@pull_toy.image}']")
+        expect(page).to have_content("Inventory: #{item.inventory}")
+        expect(page).to have_content("Sold by: #{item.merchant.name}")
+        expect(page).to have_css("img[src*='#{item.image}']")
       end
+    end
 
       within "#item-#{@dog_bone.id}" do
         expect(page).to have_content(@dog_bone.name)
