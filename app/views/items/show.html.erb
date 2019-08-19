@@ -23,8 +23,9 @@
       <% @item.reviews.each do |review| %>
           <h3> <%= review.title %></h3>
           <h3> <%= review.rating %>/5 &#x1F31F;'s</h3>
-          <p> <%= review.content %></p><br><br>
+          <p> <%= review.content %></p>
+          <p> <%= link_to "Edit this Review", "/items/#{review.item_id}/reviews/#{review.id}/edit-review" %></p><br><br>
         <% end %>
     </section>
-    <%= link_to "Add Review", "/items/#{@item.id}/new-review" %>
+    <%= link_to "Add Review", "/items/#{@item.id}/reviews/new-review" %>
 </center>

@@ -1,0 +1,9 @@
+<%= form_tag update_review_path(@review), method: :patch do %>
+<%= label_tag :title %>
+<%= text_field_tag :title, @review.title %>
+<%= label_tag :rating %>
+<%= select_tag :rating, options_for_select([1, 2, 3, 4, 5], @review.rating) %>
+<%= label_tag :content %><br>
+<%= text_area_tag :content, @review.content, size: "130x15"%>
+<%= submit_tag "Submit Updated Review" %>
+<% end %>
