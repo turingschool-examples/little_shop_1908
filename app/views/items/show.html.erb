@@ -18,4 +18,12 @@
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
     </section>
   </section>
+    <section class= "item-review">
+      <h2><%= @item.name %> Reviews</h2>
+      <% @item.reviews.each do |review| %>
+          <h3> <%= review.title %></h3>
+          <h3> <%= review.rating %>/5 &#x1F31F;'s</h3>
+          <p> <%= review.content %></p><br><br>
+        <% end %>
+    </section>
 </center>
