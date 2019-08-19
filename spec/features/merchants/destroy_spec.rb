@@ -11,6 +11,8 @@ RSpec.describe "As a visitor" do
 
       expect(current_path).to eq('/merchants')
       expect(page).to_not have_content("Brian's Bike Shop")
+
+      expect(page).to_not have_css("#merchant-#{bike_shop.id}")
     end
 
     it "I can delete a merchant that has items" do
