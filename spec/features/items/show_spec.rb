@@ -42,7 +42,7 @@ RSpec.describe 'item show page', type: :feature do
   end
 
   it 'shows link to add a new review for item' do
-    visit "items/#{@chain.id}"
+    visit "/items/#{@chain.id}"
     click_link "add new review"
 
     expect(current_path).to eq("/items/#{@chain.id}/review/new")
@@ -57,7 +57,7 @@ RSpec.describe 'item show page', type: :feature do
 
     click_button "Post Review"
 
-    expect(current_path).to eq("items/#{@chain.id}")
+    expect(current_path).to eq("/items/#{@chain.id}")
 
     within "#review-#{Review.last.id}" do
       expect(page).to have_content(title)
