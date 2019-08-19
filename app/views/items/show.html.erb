@@ -17,5 +17,14 @@
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
     </section>
+    <section class="reviews-section">
+      <% @item.reviews.each do |review| %>
+        <section id="review-<%= review.id %>">
+          <h5><%= review.title %></h5>
+          <p><%= review.content %></p>
+          <p>Rating: <%= review.rating %></p>
+        </section>
+      <% end %>
+    </section>
   </section>
 </center>
