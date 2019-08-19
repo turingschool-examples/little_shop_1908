@@ -8,6 +8,7 @@
 
 Merchant.destroy_all
 Item.destroy_all
+Review.destroy_all
 
 #merchants
 bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
@@ -19,3 +20,7 @@ tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never po
 #dog_shop items
 pull_toy = dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
 dog_bone = dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
+
+review_1 = tire.reviews.create(title: "Solid bike, excellent bang for buck", content: "Solid bike. I'm 39 and just getting into BMX, had many bikes over the years. This is a well made bike, all chromo, decent functional welding but not amazing.", rating: 5)
+
+review_2 = tire.reviews.create(title: "HEADS UP TO ALL BUYERS!", content: "Whenever you purchase a "Big Box" store BMK bike or any other bike...just know that the design on these bikes is not very good", rating: 1)
