@@ -40,4 +40,29 @@ RSpec.describe 'item show page', type: :feature do
       expect(page).to have_content(@good_review.rating)
     end
   end
+
+  it 'shows link to add a new review for item' do
+    visit "/items/#{@chain.id}"
+    click_link "add new review"
+
+    expect(current_path).to eq("/items/#{@chain.id}/review/new")
+
+    title = "So-so product"
+    content = "This product was very, very average"
+    rating = 3
+
+    fill_in :title, with: title
+    fill_in :content, with: content
+    fill_in :rating, with: rating
+
+    click_button "Post Review"
+
+    expect(current_path).to eq("/items/#{@chain.id}")
+
+    within "#review-#{Review.last.id}" do
+      expect(page).to have_content(title)
+      expect(page).to have_content(content)
+      expect(page).to have_content("Rating: #{rating}")
+    end
+  end
 end
