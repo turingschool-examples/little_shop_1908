@@ -5,12 +5,16 @@ RSpec.describe "As a visitor" do
     it "I can delete a merchant" do
       bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 80203)
 
+      visit '/merchants'
+      expect(page).to have_css("#merchant-#{bike_shop.id}")
+
       visit "merchants/#{bike_shop.id}"
 
       click_on "Delete Merchant"
 
       expect(current_path).to eq('/merchants')
       expect(page).to_not have_content("Brian's Bike Shop")
+      expect(page).to_not have_css("#merchant-#{bike_shop.id}")
     end
 
     it "I can delete a merchant that has items" do
