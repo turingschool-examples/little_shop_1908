@@ -1,0 +1,9 @@
+<%= form_tag new_review_path, method: :post do %>
+<%= label_tag :title %>
+<%= text_field_tag :title %>
+<%= label_tag :rating %>
+<%= select_tag :rating, options_for_select([1, 2, 3, 4, 5]) %>
+<%= label_tag :content %><br>
+<%= text_area_tag :content, "Write your review here", size: "130x15"%>
+<%= submit_tag "Submit Review" %>
+<% end %>
