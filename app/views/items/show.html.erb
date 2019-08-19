@@ -18,14 +18,31 @@
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
     </section>
   </section>
-    <section class= "item-review">
-      <h2><%= @item.name %> Reviews</h2>
-      <% @item.reviews.each do |review| %>
-          <h3> <%= review.title %></h3>
-          <h3> <%= review.rating %>/5 &#x1F31F;'s</h3>
-          <p> <%= review.content %></p>
-          <p> <%= link_to "Edit this Review", "/items/#{review.item_id}/reviews/#{review.id}/edit-review" %> | <%= link_to "Delete this Review", "/items/#{review.item_id}/reviews/#{review.id}/delete" %></p><br><br>
-        <% end %>
-    </section>
+    <div class="row">
+      <h1><%= @item.name %> Stats</h1>
+        <h2>&#x1F31F; Average Rating: <%= @item.avg_rating %> &#x1F31F; </h2>
+      <div class="column">
+        <h2>&#x1F31F; Best Reviews &#x1F31F;</h2>
+      <% @item.best_reviews.each do |review| %>
+      <h3><%= review.title %> | <%= review.rating %>/5 &#x1F31F;'s</h3>
+      <% end %></div>
+      <div class="column">
+        <h2>&#x1F31F; Worst Reviews &#x1F31F;</h2>
+      <% @item.worst_reviews.each do |review| %>
+      <h3><%= review.title %> | <%= review.rating %>/5 &#x1F31F;'s</h3>
+      <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <section class= "item-review">
+        <h1><%= @item.name %> Reviews</h1>
+          <% @item.reviews.each do |review| %>
+              <h3> <%= review.title %></h3>
+              <h3> <%= review.rating %>/5 &#x1F31F;'s</h3>
+              <p> <%= review.content %></p>
+              <p> <%= link_to "Edit this Review", "/items/#{review.item_id}/reviews/#{review.id}/edit-review" %> | <%= link_to "Delete this Review", "/items/#{review.item_id}/reviews/#{review.id}/delete" %></p><br><br>
+          <% end %>
+        </section>
+      </div>
     <%= link_to "Add Review", "/items/#{@item.id}/reviews/new-review" %>
 </center>
