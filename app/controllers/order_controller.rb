@@ -4,8 +4,13 @@ class OrderController <ApplicationController
   end
 
   def create
-    @order = Order.create(order_params)
-    redirect_to "/orders/#{@order.id}"
+    order = Order.create(order_params)
+    if order.save
+      redirect_to "/orders/#{order.id}"
+    else
+      flash[:incomplete_order] = "The shipping information form is incomplete. Please fill in all five fields in order to submit order."
+      redirect_to "/orders/new"
+    end
   end
 
   def show
