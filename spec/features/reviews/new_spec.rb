@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "Reviews Index" do
-  describe "When I visit the items show page" do
+RSpec.describe "As a visitor" do
+  describe "when I visit the items show page" do
     before(:each) do
       @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       @chain = @bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
@@ -11,7 +11,7 @@ RSpec.describe "Reviews Index" do
       @terrible_review = @chain.reviews.create(title: "I hate it", content: "Never buy it again.", rating: 1)
     end
 
-    it 'shows link to add a new review for item and shows flash messages' do
+    it 'it shows link to add a new review for item, allows me to add a review, and shows flash message when review is successfully posted' do
       visit "/items/#{@chain.id}"
       click_link "add new review"
 
@@ -37,7 +37,7 @@ RSpec.describe "Reviews Index" do
       end
     end
 
-    it 'shows alert flash messages when form is not completely filled' do
+    it 'shows alert flash messages when I am on the new review form and it is not completely filled' do
       visit "/items/#{@chain.id}"
       click_link "add new review"
 

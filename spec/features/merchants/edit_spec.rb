@@ -5,7 +5,7 @@ RSpec.describe "As a Visitor" do
     before :each do
       @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 11234)
     end
-    it 'I can see prepopulated info on that user in the edit form' do
+    it 'I can see prepopulated info on that merchant in the edit form' do
       visit "/merchants/#{@bike_shop.id}"
       click_on "Update Merchant"
 
@@ -17,7 +17,7 @@ RSpec.describe "As a Visitor" do
       expect(find_field('Zip').value).to eq "11234"
     end
 
-    it 'I can edit merchant info by filling in the form and clicking submit' do
+    it 'I can edit merchant info by filling in the form and clicking update merchant' do
       visit "/merchants/#{@bike_shop.id}"
       click_on "Update Merchant"
 

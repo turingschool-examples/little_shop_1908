@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'merchant index page', type: :feature do
-  describe 'As a user' do
+RSpec.describe 'As a user', type: :feature do
+  describe 'when I visit the merchant index page' do
     before :each do
       @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 80203)
       @dog_shop = Merchant.create(name: "Meg's Dog Shop", address: '123 Dog Rd.', city: 'Hershey', state: 'PA', zip: 80203)
@@ -11,8 +11,8 @@ RSpec.describe 'merchant index page', type: :feature do
       img_merchant = "https://image.flaticon.com/icons/svg/679/679946.svg"
       visit '/merchants'
 
-      expect(page).to have_link("Brian's Bike Shop")
-      expect(page).to have_link("Meg's Dog Shop")
+      expect(page).to have_link("#{@bike_shop.name}")
+      expect(page).to have_link("#{@dog_shop.name}")
       expect(page).to have_css("img[src*='#{img_merchant}']")
     end
 

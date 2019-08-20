@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'merchant new page', type: :feature do
-  describe 'As a user' do
+RSpec.describe 'As a user', type: :feature do
+  describe 'on the create new merchant page' do
     it 'I can create a new merchant' do
       visit '/merchants/new'
 
@@ -30,7 +30,7 @@ RSpec.describe 'merchant new page', type: :feature do
       expect(new_merchant.zip).to eq(zip)
     end
 
-    it 'shows alert flash messages when form is filled with only name and address' do
+    it 'I see alert flash messages when form is filled with only name and address' do
       visit '/merchants/new'
 
       fill_in :name, with: "Merchant"
@@ -43,7 +43,7 @@ RSpec.describe 'merchant new page', type: :feature do
       expect(page).to have_content("City can't be blank, State can't be blank, and Zip can't be blank")
     end
 
-    it 'shows alert flash messages when form is only filled with city, state, and zip' do
+    it 'I see alert flash messages when form is only filled with city, state, and zip' do
       visit '/merchants/new'
 
       fill_in :city, with: "Merchant"

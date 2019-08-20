@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'merchant show page', type: :feature do
-  describe 'As a user' do
+RSpec.describe 'As a user', type: :feature do
+  describe 'when I go to the merchant show page' do
     before :each do
       @bike_shop = Merchant.create!(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
       @tire = @bike_shop.items.create!(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 3)
@@ -38,7 +38,7 @@ RSpec.describe 'merchant show page', type: :feature do
       expect(page).to have_content("Denver")
     end
 
-    it 'shows flash message when I attempt to visit merchant page that does not exist' do
+    it 'I see flash message when I attempt to visit merchant page that does not exist and am redirected to the merchants index page' do
 
       visit "merchants/bad_id"
 

@@ -31,7 +31,7 @@ RSpec.describe Cart do
     expect(subject.quantity_of(5)).to eq(1)
   end
 
-  it "can calculate total_count" do
+  it "can calculate total_count of its items" do
     subject_2 = Cart.new({"4" => 3, "9" => 100})
     expect(subject_2.total_count).to eq(103)
   end

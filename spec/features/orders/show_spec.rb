@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "New Order Page" do
-  describe "When I visit order show page" do
+RSpec.describe "As a visitor" do
+  describe "when I visit order show page" do
     before(:each) do
       @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 2)
@@ -10,7 +10,7 @@ RSpec.describe "New Order Page" do
       @cart = Cart.new({})
     end
 
-    it "shows new order that has been created" do
+    it "it shows new order that has been created" do
       visit "/items/#{@tire.id}"
 
       within "#item-info" do
@@ -59,7 +59,7 @@ RSpec.describe "New Order Page" do
       expect(page).to have_content("The following order that was placed on #{new_order.created_at.strftime("%Y-%m-%d")} will be shipped to #{new_order.address}")
     end
 
-    it 'shows flash message when I attempt to visit order page that does not exist' do
+    it 'it shows flash message when I attempt to visit order page that does not exist' do
 
       visit "orders/bad_id"
 
