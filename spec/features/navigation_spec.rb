@@ -6,6 +6,10 @@ RSpec.describe 'Site Navigation' do
     it "I see a nav bar with links to all pages" do
       visit '/merchants'
 
+      #within 'nav' do
+      #  click_link "Cart. Item Count: #{Cart.count}"
+    #  end
+
       within 'nav' do
         click_link 'All Items'
       end
