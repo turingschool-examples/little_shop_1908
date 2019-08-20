@@ -14,9 +14,9 @@ describe 'User visits the item show page' do
         click_link 'Edit'
       end
 
-      expect(current_path).to eq('/reviews/edit')
+      expect(current_path).to eq("/reviews/#{review.id}/edit")
       expect(page).to have_link('Chain') # In title 'Edit Review for item_path'
-      expect(find_field('Title').value).to eq('Its Great!')
+      expect(find_field('Title').value).to eq("It's Great!")
       expect(find_field('Content').value).to eq('Best chain ever!')
       expect(find_field('Rating').value).to eq('3')
 
@@ -27,7 +27,7 @@ describe 'User visits the item show page' do
       expect(current_path).to eq("/items/#{chain.id}")
 
       within "#review-#{review.id}" do
-        expect(page).to have_content('Its Great!')
+        expect(page).to have_content("It's Great!")
         expect(page).to have_content('Best chain ever!')
         expect(page).to have_content("Rating: 5")
       end
