@@ -41,7 +41,7 @@ RSpec.describe 'item show page', type: :feature do
     end
   end
 
-  it 'shows link to add a new review for item' do
+  it 'shows link to add a new review for item and shows flash messages' do
     visit "/items/#{@chain.id}"
     click_link "add new review"
 
@@ -58,11 +58,31 @@ RSpec.describe 'item show page', type: :feature do
     click_button "Post Review"
 
     expect(current_path).to eq("/items/#{@chain.id}")
+    expect(page).to have_content("You have successfully posted a review")
+    save_and_open_page
+
 
     within "#review-#{Review.last.id}" do
       expect(page).to have_content(title)
       expect(page).to have_content(content)
       expect(page).to have_content("Rating: #{rating}")
     end
+  end
+
+  it 'shows alert flash messages when form is not completely filled' do
+    visit "/items/#{@chain.id}"
+    click_link "add new review"
+
+    expect(current_path).to eq("/items/#{@chain.id}/review/new")
+
+    title = "So-so product"
+
+    fill_in :title, with: title
+
+    click_button "Post Review"
+
+    expect(current_path).to eq("/items/#{@chain.id}/review/new")
+    expect(page).to have_content("You have not completed the form. Please complete all three sections to post a review.")
+    save_and_open_page
   end
 end
