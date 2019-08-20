@@ -15,6 +15,10 @@ module ApplicationHelper
         "alert-warning"
       when "notice"
         "alert-info"
+      when "delete_item_warning"
+        "alert-danger"
+      when "delete_warning"
+        "alert-danger"
       else
         flash_type.to_s
     end
