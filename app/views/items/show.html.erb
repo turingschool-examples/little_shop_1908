@@ -24,6 +24,16 @@
   <section id='item-<%= @item.id %>-review-stats'>
     <p>Average Rating: <%= @item.reviews.average_review_rating %> </p>
   </section>
+
+  <section id='item-<%= @item.id %>-top-3-reviews'>
+    <p>Top 3</p>
+    <% @item.reviews.top_three_reviews.each do |title, rating| %>
+      <div>
+        <span><%= title %></span>
+        <span><%= rating %></span>
+      </div>
+    <% end %>
+  </section>
 </div>
 
 <div>
