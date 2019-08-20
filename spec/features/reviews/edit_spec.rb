@@ -33,14 +33,3 @@ describe 'User visits the item show page' do
     end
   end
 end
-# As a visitor,
-# When I visit an item's show page
-# I see a link to edit the review next to each review.
-# When I click on this link, I am taken to an edit review path
-# On this new page, I see a form that includes:
-# - title
-# - numeric rating
-# - text of the review itself
-# I can update any of these fields and submit the form.
-# When the form is submitted, I should return to that item's
-# show page and I should see my updated review
