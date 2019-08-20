@@ -11,8 +11,6 @@ module ApplicationHelper
         "alert-danger"
       when "incomplete_merchant"
         "alert-danger"
-      when "alert"
-        "alert-warning"
       when "notice"
         "alert-info"
       when "delete_item_warning"
@@ -21,8 +19,6 @@ module ApplicationHelper
         "alert-danger"
       when "inactive_item"
         "alert-danger"
-      else
-        flash_type.to_s
     end
   end
 end
