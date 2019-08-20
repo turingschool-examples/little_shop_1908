@@ -11,5 +11,6 @@ describe Merchant, type: :model do
 
   describe "relationships" do
     it {should have_many :items}
+    it {should have_many(:items_orders).through(:items)}
   end
 end
