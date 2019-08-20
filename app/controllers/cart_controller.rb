@@ -27,4 +27,15 @@ class CartController<ApplicationController
     reset_session
     redirect_to "/cart"
   end
+
+  def increase_quantity
+    item = Item.find(params[:item_id])
+    @cart = Cart.new(session[:cart])
+    if item.inventory > @cart.contents[item.id.to_s]
+      @cart.contents[item.id.to_s] += 1
+    else
+      flash[:limit] = "There is no more inventory for #{item.name}"
+    end
+    redirect_to "/cart"
+  end
 end
