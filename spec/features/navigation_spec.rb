@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 describe 'Site Navigation Bar' do
-  xit "appears on all pages with links to all items" do
+  it "appears on all pages with links to all items" do
     visit '/merchants'
 
     within 'nav' do
@@ -12,7 +12,7 @@ describe 'Site Navigation Bar' do
     expect(current_path).to eq('/items')
   end
 
-  xit "appears on all pages with links to all merchants" do
+  it "appears on all pages with links to all merchants" do
     visit '/items'
 
     within 'nav' do

@@ -5,7 +5,7 @@ describe "Item New Page" do
     @dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
   end
 
-  xit 'has a form to create a new item' do
+  it 'has a form to create a new item' do
     visit "/merchants/#{@dog_shop.id}/items/new"
 
     name = "Chamois Buttr"

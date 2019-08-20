@@ -6,14 +6,14 @@ describe "Item Edit Page" do
     @tire = @bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
   end
 
-  xit 'has a form to update an item with prepopulated info' do
+  it 'has a form to update an item with prepopulated info' do
     visit "/items/#{@tire.id}/edit"
 
     expect(find_field('Name').value).to eq(@tire.name)
-    expect(find_field('Price').value).to eq(@tire.price)
+    expect(find_field('Price').value).to eq(@tire.price.to_s)
     expect(find_field('Description').value).to eq(@tire.description)
     expect(find_field('Image').value).to eq(@tire.image)
-    expect(find_field('Inventory').value).to eq(@tire.inventory)
+    expect(find_field('Inventory').value).to eq(@tire.inventory.to_s)
 
     fill_in 'Name', with: "GatorSkins"
     fill_in 'Price', with: 110

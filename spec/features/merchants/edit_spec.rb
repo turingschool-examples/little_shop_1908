@@ -5,14 +5,14 @@ describe "Merchant Edit Page" do
     @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 11234)
   end
 
-  xit 'has a form to update a merchant with prepopulated info' do
+  it 'has a form to update a merchant with prepopulated info' do
     visit "/merchants/#{@bike_shop.id}/edit"
 
     expect(find_field('Name').value).to eq(@bike_shop.name)
     expect(find_field('Address').value).to eq(@bike_shop.address)
     expect(find_field('City').value).to eq(@bike_shop.city)
     expect(find_field('State').value).to eq(@bike_shop.state)
-    expect(find_field('Zip').value).to eq(@bike_shop.zip)
+    expect(find_field('Zip').value.to_i).to eq(@bike_shop.zip)
 
     fill_in 'Name', with: "Brian's Super Cool Bike Shop"
     fill_in 'Address', with: "1234 New Bike Rd."
