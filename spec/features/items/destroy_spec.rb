@@ -10,7 +10,7 @@ RSpec.describe 'item delete', type: :feature do
 
       expect(page).to have_link("Delete Item")
 
-      click_on "Delete Item"
+      click_link "Delete Item"
 
       expect(current_path).to eq("/items")
       expect(page).to_not have_css("#item-#{chain.id}")
