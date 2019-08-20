@@ -1,0 +1,13 @@
+<h1>Write A New Review For <%=link_to @item.name, "/items/#{@item.id}" %></h1>
+
+<center>
+  <%= form_tag "/items/#{@item.id}", method: :post do %>
+    <%= text_field_tag :title, "Title"%>
+
+    <%= text_field_tag :content, "Review" %>
+
+    <%= text_field_tag :rating, "Rating (Out of 5 Stars)" %>
+
+    <%= submit_tag 'Save Review' %>
+  <% end %>
+</center>
