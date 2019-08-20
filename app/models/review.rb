@@ -12,4 +12,8 @@ class Review < ApplicationRecord
   def self.top_three_reviews
     order(:rating).reverse[0..2].pluck(:title, :rating)
   end
+
+  def self.bottom_three_reviews
+    order(:rating)[0..2].pluck(:title, :rating)
+  end
 end
