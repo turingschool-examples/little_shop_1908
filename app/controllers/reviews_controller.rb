@@ -11,8 +11,13 @@ class ReviewsController<ApplicationController
 
   def create
     item = Item.find(params[:item_id])
-    item.reviews.create(review_params)
-    redirect_to "/items/#{item.id}"
+    if review_params.values.none? { |val| val == "" }
+      item.reviews.create(review_params)
+      redirect_to "/items/#{item.id}"
+    else
+      flash[:error] = "Please fill in all the fields."
+      redirect_to "/items/#{item.id}/reviews/new"
+    end
   end
 
   def edit
