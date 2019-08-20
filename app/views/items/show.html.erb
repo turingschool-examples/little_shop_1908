@@ -34,6 +34,16 @@
       </div>
     <% end %>
   </section>
+
+  <section id='item-<%= @item.id %>-bottom-3-reviews'>
+    <p>Top 3</p>
+    <% @item.reviews.bottom_three_reviews.each do |title, rating| %>
+      <div>
+        <span><%= title %></span>
+        <span><%= rating %></span>
+      </div>
+    <% end %>
+  </section>
 </div>
 
 <div>
