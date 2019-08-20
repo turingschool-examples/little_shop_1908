@@ -20,7 +20,7 @@ RSpec.describe 'From Item Show Page', type: :feature do
       visit "/items/#{@tire.id}"
 
       within '#reviews-section' do
-        @reviews.each do |review|
+        @tire.reviews.each do |review|
           within "#review-#{review.id}" do
             expect(page).to have_content(review.title)
             expect(page).to have_content(review.content)
