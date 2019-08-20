@@ -8,17 +8,22 @@
     <h1>Cart</h1>
     <% cart = Cart.new(session[:cart]) %>
     <% grand_total = 0 %>
+    <% if cart.contents.empty? %>
+      <p>Your cart is empty</p>
+    <% else %>
+    <p> <%=link_to "Empty Cart", "/items" %> </p>
     <% cart.contents.each do |key, value| %>
-      <% item = Item.find_by(id: key) %>
-      <h3><%= item.name %></h3>
-      <img src=<%= item.image %> alt="...">
-      <p>Sold by: <%= item.merchant.name %></p>
-      <p>Price: <%= number_to_currency(item.price) %></p>
-      <p>Quantity: <%= value %></p>
-      <p>Subtotal: <%= number_to_currency(item.price * value) %></p>
-      <% grand_total += (item.price * value) %>
+        <% item = Item.find_by(id: key) %>
+        <h3><%= item.name %></h3>
+        <img src=<%= item.image %> alt="...">
+        <p>Sold by: <%= item.merchant.name %></p>
+        <p>Price: <%= number_to_currency(item.price) %></p>
+        <p>Quantity: <%= value %></p>
+        <p>Subtotal: <%= number_to_currency(item.price * value) %></p>
+        <% grand_total += (item.price * value) %>
+        <h4>Grand Total: <%= number_to_currency(grand_total) %></h4>
+      <% end %>
     <% end %>
-
-    <h4>Grand Total: <%= number_to_currency(grand_total) %></h4>
+​
   </body>
 </html>
