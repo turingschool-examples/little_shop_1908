@@ -21,7 +21,32 @@
 </center>
 
 <div>
+  <section id='item-<%= @item.id %>-review-stats'>
+    <p>Average Rating: <%= @item.reviews.average_review_rating %> </p>
+  </section>
 
+  <section id='item-<%= @item.id %>-top-3-reviews'>
+    <p>Top 3</p>
+    <% @item.reviews.top_three_reviews.each do |title, rating| %>
+      <div>
+        <span><%= title %></span>
+        <span><%= rating %></span>
+      </div>
+    <% end %>
+  </section>
+
+  <section id='item-<%= @item.id %>-bottom-3-reviews'>
+    <p>Top 3</p>
+    <% @item.reviews.bottom_three_reviews.each do |title, rating| %>
+      <div>
+        <span><%= title %></span>
+        <span><%= rating %></span>
+      </div>
+    <% end %>
+  </section>
+</div>
+
+<div>
   <div> <%= link_to "add new review", "/items/#{@item.id}/review/new" %></div>
   <p>Reviews: <% @item.reviews.each do |review| %> </p>
     <section id= 'review-<%=review.id%>'>
