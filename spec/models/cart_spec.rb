@@ -36,6 +36,11 @@ RSpec.describe Cart do
     expect(subject_2.total_count).to eq(103)
   end
 
+  it "can calculate total_count of empty cart" do
+    cart = Cart.new(nil)
+    expect(cart.total_count).to eq(0)
+  end
+
   it "can calculate subtotal of an item" do
     @cart.add_item(@tire.id)
     @cart.add_item(@tire.id)
