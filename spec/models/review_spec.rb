@@ -28,5 +28,9 @@ describe Review, type: :model do
     it "shows top three ratings" do
       expect(Review.top_three_reviews.length).to eq(3)
     end
+
+    it "shows bottom three ratings" do
+      expect(Review.bottom_three_reviews.length).to eq(3)
+    end
   end
 end
