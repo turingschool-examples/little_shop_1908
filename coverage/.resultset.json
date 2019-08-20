@@ -1,14 +1,14 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/config/environment.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/config/application.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/config/application.rb": [
         1,
         null,
         1,
@@ -41,12 +41,12 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/config/boot.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/config/boot.rb": [
         1,
         null,
         1
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/config/environments/test.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/config/environments/test.rb": [
         1,
         null,
         null,
@@ -90,7 +90,7 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/config/initializers/application_controller_renderer.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/config/initializers/application_controller_renderer.rb": [
         null,
         null,
         null,
@@ -100,7 +100,7 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/config/initializers/assets.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/config/initializers/assets.rb": [
         null,
         null,
         null,
@@ -116,7 +116,7 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/config/initializers/backtrace_silencers.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -125,20 +125,20 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/config/initializers/cookies_serializer.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/config/initializers/cookies_serializer.rb": [
         null,
-        null,
-        null,
-        null,
-        1
-      ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/config/initializers/filter_parameter_logging.rb": [
         null,
         null,
         null,
         1
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/config/initializers/inflections.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/config/initializers/filter_parameter_logging.rb": [
+        null,
+        null,
+        null,
+        1
+      ],
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/config/initializers/inflections.rb": [
         null,
         null,
         null,
@@ -156,13 +156,13 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/config/initializers/mime_types.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/config/initializers/mime_types.rb": [
         null,
         null,
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/config/initializers/wrap_parameters.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -178,7 +178,7 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/config/routes.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/config/routes.rb": [
         1,
         null,
         null,
@@ -203,11 +203,11 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/app/helpers/application_helper.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/spec/features/items/edit_spec.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/spec/features/items/edit_spec.rb": [
         1,
         null,
         1,
@@ -262,7 +262,7 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/spec/features/items/index_spec.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/spec/features/items/index_spec.rb": [
         1,
         null,
         1,
@@ -326,7 +326,7 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/spec/features/items/merchant_items_index_spec.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/spec/features/items/merchant_items_index_spec.rb": [
         1,
         null,
         1,
@@ -371,7 +371,7 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/spec/features/items/new_spec.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/spec/features/items/new_spec.rb": [
         1,
         null,
         1,
@@ -427,7 +427,7 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/spec/features/items/show_spec.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/spec/features/items/show_spec.rb": [
         1,
         null,
         1,
@@ -463,43 +463,83 @@
         null,
         1,
         1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/spec/features/merchants/destroy_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
         1,
         1,
         null,
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/spec/features/merchants/destroy_spec.rb": [
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        1,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        1,
-        null,
-        1,
-        1,
-        null,
-        null,
-        null
-      ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/spec/features/merchants/edit_spec.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/spec/features/merchants/edit_spec.rb": [
         1,
         null,
         1,
@@ -538,77 +578,13 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/spec/features/merchants/index_spec.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/spec/features/merchants/index_spec.rb": [
         1,
         null,
         1,
         1,
         1,
         2,
-        2,
-        null,
-        null,
-        1,
-        1,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        null,
-        1,
-        null,
-        1,
-        null,
-        1,
-        null,
-        null,
-        null
-      ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/spec/features/merchants/new_spec.rb": [
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/spec/features/merchants/show_spec.rb": [
-        1,
-        null,
-        1,
-        1,
-        1,
         2,
         null,
         null,
@@ -629,10 +605,74 @@
         1,
         null,
         null,
+        null
+      ],
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/spec/features/merchants/new_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/spec/features/navigation_spec.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/spec/features/merchants/show_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        2,
+        null,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/spec/features/navigation_spec.rb": [
         null,
         1,
         null,
@@ -656,7 +696,7 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/spec/features/review/new_spec.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/spec/features/review/new_spec.rb": [
         1,
         null,
         1,
@@ -701,7 +741,6 @@
         1,
         1,
         1,
-        1,
         null,
         1,
         1,
@@ -710,7 +749,7 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/spec/models/item_spec.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/spec/models/item_spec.rb": [
         1,
         null,
         1,
@@ -729,7 +768,7 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/app/models/item.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/app/models/item.rb": [
         1,
         1,
         1,
@@ -741,43 +780,55 @@
         null,
         1,
         null,
-        null
-      ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/app/models/application_record.rb": [
         1,
-        1,
-        null
-      ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/spec/models/merchant_spec.rb": [
-        1,
-        null,
-        1,
-        1,
-        2,
-        2,
-        2,
-        2,
-        2,
+        11,
         null,
         null,
         1,
-        2,
+        11,
         null,
-        null
-      ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/app/models/merchant.rb": [
-        1,
-        1,
         null,
         1,
-        null,
-        null,
-        null,
+        11,
         null,
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/app/controllers/items_controller.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/app/models/application_record.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/spec/models/merchant_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null
+      ],
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/app/models/merchant.rb": [
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/app/controllers/items_controller.rb": [
         1,
         null,
         1,
@@ -790,7 +841,7 @@
         null,
         null,
         1,
-        10,
+        11,
         null,
         null,
         1,
@@ -827,12 +878,12 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/app/controllers/application_controller.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/app/controllers/application_controller.rb": [
         1,
         1,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/app/models/review.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/app/models/review.rb": [
         1,
         1,
         null,
@@ -841,7 +892,7 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/app/controllers/merchants_controller.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/app/controllers/merchants_controller.rb": [
         1,
         null,
         1,
@@ -883,7 +934,7 @@
         null,
         null
       ],
-      "/Users/lkenney/turing/2module/projects/little_shop_1906/app/controllers/reviews_controller.rb": [
+      "/Users/kellysandeson/turing/module_2/projects/little_shop_1906/app/controllers/reviews_controller.rb": [
         1,
         null,
         1,
@@ -909,6 +960,6 @@
         null
       ]
     },
-    "timestamp": 1566339304
+    "timestamp": 1566341517
   }
 }
