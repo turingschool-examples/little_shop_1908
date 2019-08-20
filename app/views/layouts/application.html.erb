@@ -12,6 +12,7 @@
     <nav class = "topnav">
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
+      <div style="float:right"><%= link_to "Cart: count", "/cart" %><%= image_tag 'pug_cart.png', id: 'cart-icon' %></div>
     </nav>
     <%= yield %>
   </body>
