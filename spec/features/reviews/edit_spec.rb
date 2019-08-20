@@ -13,15 +13,15 @@ describe "Review Edit Page" do
     visit "/items/#{@pull_toy.id}/reviews/#{@review_1.id}/edit-review"
 
     expect(find_field('Title').value).to eq(@review_1.title)
-    expect(find_field('Description').value).to eq(@review_1.description)
+    expect(find_field('Content').value).to eq(@review_1.content)
     expect(find_field('Rating').value).to eq(@review_1.rating)
 
     title = "It broke! :("
-    description = "My dog loved this until it broke."
+    content = "My dog loved this until it broke."
     rating = 3
 
     fill_in 'Title', with: title
-    fill_in 'Description', with: description
+    fill_in 'Content', with: content
     fill_in 'Rating', with: rating
 
     click_button "Submit Updated Review"
@@ -29,7 +29,7 @@ describe "Review Edit Page" do
     expect(current_path).to eq("/items/#{@pull_toy.id}")
     expect(page).to have_content(title)
     expect(page).to_not have_content("This toy rules")
-    expect(page).to have_content(description)
+    expect(page).to have_content(content)
     expect(page).to_not have_content("I bought this for my dog and it rules")
     expect(page).to have_content("3")
   end
