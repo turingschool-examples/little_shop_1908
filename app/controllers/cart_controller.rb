@@ -47,7 +47,12 @@ class CartController<ApplicationController
   def decrease_quantity
     item_id = Item.find(params[:item_id]).id
     @cart = Cart.new(session[:cart])
-    @cart.contents[item_id.to_s] -= 1
+
+    if @cart.quantity_of(item_id) == 1
+      @cart.contents.delete(item_id.to_s)
+    else
+      @cart.contents[item_id.to_s] -= 1
+    end
     redirect_to "/cart"
   end
 end
