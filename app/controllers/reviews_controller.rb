@@ -16,7 +16,10 @@ class ReviewsController <ApplicationController
 
   def update
     review = Review.find(params[:review_id])
-    review.update(review_params)
+    if review.update(review_params)
+      flash[:success] = "Your review has been updated!"
+    else flash[:error] = "Retry updating your review again with better info."
+    end
     redirect_to "/items/#{review.item_id}"
   end
 

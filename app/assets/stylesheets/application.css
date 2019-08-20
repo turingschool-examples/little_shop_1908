@@ -135,3 +135,12 @@ form {
 #cart-icon{
   width: 120px;
 }
+
+.flash-message{
+  color: #00529B;
+  margin:10px 22px;
+  font-size:28;
+  vertical-align:middle;
+  text-align:center;
+  padding:12px;
+}
