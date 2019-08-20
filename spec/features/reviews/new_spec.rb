@@ -21,8 +21,22 @@ RSpec.describe 'Create New Review' do
 
     within '#reviews-section' do
       click_link 'New Review'
-
-      expect(current_path).to eq("/items/#{@tire.id}/reviews/new")
     end
+
+    expect(current_path).to eq("/items/#{@tire.id}/reviews/new")
+
+    fill_in :title, with: 'Love it!'
+    fill_in :content, with: 'Best ride ever!'
+    fill_in :rating, with: 5
+
+    click_button 'Save Review'
+
+    new_review = Review.last
+
+    expect(current_path).to eq("/items/#{@tire.id}")
+    expect(page).to have_content(new_review.title)
+    expect(page).to have_content(new_review.content)
+    expect(page).to have_content(new_review.rating)
+    expect(page).to have_css("#review-#{new_review.id}")
   end
 end
