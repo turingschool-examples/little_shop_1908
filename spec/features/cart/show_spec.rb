@@ -222,7 +222,7 @@ RSpec.describe "As a Visitor" do
     expect(page).to have_content("There is no more inventory for #{@tire.name}")
   end
 
-  it "quantity of item cannot be increased in cart beyond item inventory size" do
+  it "has checkout link when item is in cart" do
     visit "/items/#{@tire.id}"
 
     within "#item-info" do
@@ -233,5 +233,11 @@ RSpec.describe "As a Visitor" do
     visit "/cart"
 
     expect(page).to have_link("Checkout")
+  end
+
+  it "does not have checkout link when there are no items in cart" do
+    visit "/cart"
+
+    expect(page).to_not have_link("Checkout")
   end
 end
