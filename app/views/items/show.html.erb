@@ -19,6 +19,21 @@
     </section>
     <section class="reviews-section">
       <p><%= link_to "New Review", "/items/#{@item.id}/reviews/new" %></p>
+      <section class="reviews-stats">
+        <section id="avg-rating">
+
+        </section>
+        <section id="top-three">
+          <% @top.each do |review| %>
+            <p><%= "Title: #{review.title} Rating: #{review.rating}" %></p>
+          <% end %>
+        </section>
+        <section id="bottom-three">
+          <% @bottom.each do |review| %>
+          <p><%= "Title: #{review.title} Rating: #{review.rating}" %></p>
+          <% end %>
+        </section>
+      </section>
       <% @item.reviews.each do |review| %>
         <section id="review-<%= review.id %>">
           <h5><%= review.title %></h5>
