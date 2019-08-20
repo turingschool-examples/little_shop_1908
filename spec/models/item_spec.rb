@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Item, type: :model do
+describe Item do
   describe "validations" do
     it { should validate_presence_of :name }
     it { should validate_presence_of :description }
@@ -11,6 +11,7 @@ describe Item, type: :model do
   end
 
   describe "relationships" do
-    it {should belong_to :merchant}
+    it { should belong_to :merchant }
+    it { should have_many :reviews}
   end
 end
