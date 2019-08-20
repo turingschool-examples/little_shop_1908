@@ -3,6 +3,7 @@
       <p>Your cart is empty</p>
     <% else %>
     <p> <%=link_to "Empty Cart", "/cart", method: :delete %> </p>
+    <p> <%=link_to "Checkout", "/order", method: :post %> </p>
     <% @cart.contents.each do |key, value| %>
       <section id="cart-item-<%= key %>">
         <% item = Item.find(key) %>
