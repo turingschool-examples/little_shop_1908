@@ -8,4 +8,8 @@ class Review < ApplicationRecord
   def self.average_review_rating
     average(:rating)
   end
+
+  def self.top_three_reviews
+    order(:rating).reverse[0..2].pluck(:title, :rating)
+  end
 end
