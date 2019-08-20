@@ -117,7 +117,7 @@ describe 'Item Show Page' do
     expect(current_path).to eq("/items/#{@pull_toy.id}/reviews/#{@review_2.id}/edit-review")
   end
 
-  xit 'has a link to delete each review' do
+  it 'has a link to delete each review' do
     visit "/items/#{@pull_toy.id}"
 
     within "#review-#{@review_1.id}" do
