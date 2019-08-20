@@ -12,5 +12,7 @@ describe Item, type: :model do
 
   describe "relationships" do
     it {should belong_to :merchant}
+    it {should have_many :items_orders}
+    it {should have_many(:orders).through(:items_orders)}
   end
 end
