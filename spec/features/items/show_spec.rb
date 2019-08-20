@@ -22,7 +22,6 @@ RSpec.describe 'item show page', type: :feature do
     within '.reviews-section' do
       reviews.each do |review|
         within "#review-#{review.id}" do
-
           expect(page).to have_content(review.title)
           expect(page).to have_content(review.content)
           expect(page).to have_content("Rating: #{review.rating}")
