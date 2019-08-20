@@ -10,7 +10,6 @@ describe 'User visits the item show page' do
       visit "/items/#{chain.id}"
 
       expect(page).to have_link("New Review")
-      # binding.pry
       click_link "New Review"
 
       expect(current_path).to eq("/items/#{chain.id}/reviews/new")
