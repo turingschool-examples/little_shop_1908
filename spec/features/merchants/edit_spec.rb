@@ -33,5 +33,20 @@ RSpec.describe "As a Visitor" do
       expect(page).to have_content("Brian's Super Cool Bike Shop")
       expect(page).to have_content("1234 New Bike Rd.\nDenver, CO 80204")
     end
+
+    it 'I see a flash message when I leave fields blank when updating a merchant' do
+      visit "/merchants/#{@bike_shop.id}/edit"
+
+      fill_in 'Name', with: "Brian's Super Cool Bike Shop"
+      fill_in 'Address', with: "1234 New Bike Rd."
+      fill_in 'City', with: ""
+      fill_in 'State', with: ""
+      fill_in 'Zip', with: 80204
+
+      click_button "Update Merchant"
+
+      expect(current_path).to eq("/merchants/#{@bike_shop.id}/edit")
+      expect(page).to have_content("City can't be blank and State can't be blank")
+    end
   end
 end
