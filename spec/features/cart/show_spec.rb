@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "As a Visitor" do
   before(:each) do
     @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
-    @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+    @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 2)
     @brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
     @pull_toy = @brian.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
     @cart = Cart.new({})
@@ -130,6 +130,47 @@ RSpec.describe "As a Visitor" do
 
     within "#item-info" do
       click_on "Add to Cart"
+    end
+
+    visit "/items/#{@pull_toy.id}"
+
+    within "#item-info" do
+      click_on "Add to Cart"
+    end
+
+    visit "/items/#{@pull_toy.id}"
+
+    within "#item-info" do
+      click_on "Add to Cart"
+    end
+
+    quantity_tire = @cart.quantity_of(@tire.id)
+    quantity_pulltoy = @cart.quantity_of(@pull_toy.id)
+
+    subtotal_tire = @tire.price * quantity_tire
+    subtotal_pulltoy = @pull_toy.price * quantity_pulltoy
+    grand_total = subtotal_tire + subtotal_pulltoy
+
+    visit "/cart"
+
+    within "#cart-item-#{@tire.id}" do
+      expect(page).to have_link("Remove Item")
+      click_link "Remove Item"
+    end
+
+    expect(page).to_not have_content(@tire.name)
+    expect(page).to_not have_css("img[src*='#{@tire.image}']")
+    expect(page).to_not have_content("Sold by: #{@tire.merchant.name}")
+    expect(page).to_not have_content("Price: $#{@tire.price}")
+    expect(page).to_not have_content("Quantity: #{quantity_tire}")
+    expect(page).to_not have_content("Subtotal: $#{subtotal_tire}")
+  end
+
+  it "quantity of item is increased in cart" do
+    visit "/items/#{@tire.id}"
+
+    within "#item-info" do
+      click_on "Add to Cart"
       @cart.add_item(@tire.id)
     end
 
@@ -147,26 +188,37 @@ RSpec.describe "As a Visitor" do
       @cart.add_item(@pull_toy.id)
     end
 
-    quantity_tire = @cart.quantity_of(@tire.id)
-    quantity_pulltoy = @cart.quantity_of(@pull_toy.id)
-
-    subtotal_tire = @tire.price * quantity_tire
-    subtotal_pulltoy = @pull_toy.price * quantity_pulltoy
-    grand_total = subtotal_tire + subtotal_pulltoy
-
     visit "/cart"
-  
+
+    quantity_tire = @cart.quantity_of(@tire.id)
+
     within "#cart-item-#{@tire.id}" do
-      expect(page).to have_link("Remove Item")
-      click_link "Remove Item"
-      @cart.remove_item(@tire.id)
+      expect(page).to have_button("+")
+      expect(page).to have_content("Quantity: 1")
+
+      click_button "+"
+      #@cart.increase_quantity(@tire.id.to_s)
+
+      expect(page).to have_content("Quantity: 2")
+    end
+  end
+
+  it "quantity of item cannot be increased in cart beyond item inventory size" do
+    visit "/items/#{@tire.id}"
+
+    within "#item-info" do
+      click_on "Add to Cart"
+      @cart.add_item(@tire.id)
     end
 
-    expect(page).to_not have_content(@tire.name)
-    expect(page).to_not have_css("img[src*='#{@tire.image}']")
-    expect(page).to_not have_content("Sold by: #{@tire.merchant.name}")
-    expect(page).to_not have_content("Price: $#{@tire.price}")
-    expect(page).to_not have_content("Quantity: #{quantity_tire}")
-    expect(page).to_not have_content("Subtotal: $#{subtotal_tire}")
+    visit "/cart"
+
+    within "#cart-item-#{@tire.id}" do
+      click_button "+"
+      click_button "+"
+      expect(page).to have_content("Quantity: 2")
+    end
+
+    expect(page).to have_content("There is no more inventory for #{@tire.name}")
   end
 end
