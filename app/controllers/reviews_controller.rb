@@ -5,7 +5,7 @@ class ReviewsController <ApplicationController
 
   def create
     item = Item.find(params[:id])
-    review = item.reviews.create(review_params)
+    item.reviews.create(review_params)
     redirect_to "/items/#{item.id}"
   end
 
