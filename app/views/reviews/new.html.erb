@@ -1,4 +1,4 @@
-<h1>Write a New Item For <%=link_to @item.name, "/merchants/#{@item.id}" %></h1>
+<h1>Write A New Review For <%=link_to @item.name, "/items/#{@item.id}" %></h1>
 
 <center>
   <%= form_tag "/items/#{@item.id}", method: :post do %>
@@ -6,7 +6,7 @@
 
     <%= text_field_tag :content, "Review" %>
 
-    <%= text_field_tag :rating, "Rating (Out of 5 Star)" %>
+    <%= text_field_tag :rating, "Rating (Out of 5 Stars)" %>
 
     <%= submit_tag 'Save Review' %>
   <% end %>
