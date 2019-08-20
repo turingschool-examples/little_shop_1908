@@ -44,7 +44,7 @@ RSpec.describe "As a visitor" do
 
       expect(current_path).to eq("/orders/#{new_order.id}")
 
-      quantity_tire = @cart.quantity_of(@tire.id)
+      quantity_tire = 1
 
       subtotal_tire = @tire.price * quantity_tire
       grand_total = subtotal_tire
