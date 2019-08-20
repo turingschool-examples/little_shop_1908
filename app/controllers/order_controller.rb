@@ -14,7 +14,7 @@ class OrderController <ApplicationController
       end
       redirect_to "/orders/#{order.id}"
     else
-      flash[:incomplete_order] = "The shipping information form is incomplete. Please fill in all five fields in order to submit order."
+      flash[:incomplete_order] = order.errors.full_messages.to_sentence
       redirect_to "/orders/new"
     end
   end
