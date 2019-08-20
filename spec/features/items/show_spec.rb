@@ -60,7 +60,7 @@ describe 'Item Show Page' do
   end
 
   describe 'has a link to delete the item' do
-    xit 'if the item has reviews' do
+    it 'if the item has reviews' do
       visit "/items/#{@pull_toy.id}"
 
       expect(page).to have_link("Delete Item")
@@ -71,7 +71,7 @@ describe 'Item Show Page' do
       expect(page).to_not have_css("#item-#{@pull_toy.id}")
     end
 
-    xit 'if the item has no reviews' do
+    it 'if the item has no reviews' do
       dog_bone = @dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
 
       visit "/items/#{dog_bone.id}"
