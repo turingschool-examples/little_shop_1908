@@ -23,9 +23,11 @@
           <h5><%= review.title %></h5>
           <p><%= review.content %></p>
           <p>Rating: <%= review.rating %></p>
+          <p><%= link_to "New Review", "/items/#{@item.id}/reviews/new" %></p>
+          <p><%= link_to "Edit", "/reviews/#{review.id}/edit" %></p>
+          <p><%= link_to "Delete", "/reviews/#{review.id}", method: :delete%></p>
         </section>
       <% end %>
     </section>
   </section>
-  <p><%= link_to "New Review", "/items/#{@item.id}/reviews/new" %></p>
 </center>
