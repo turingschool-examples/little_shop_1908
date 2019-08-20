@@ -7,16 +7,16 @@ describe 'Review New Page' do
     @pull_toy = @dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
   end
 
-  xit 'has a form to create a new review' do
+  it 'has a form to create a new review' do
     visit "/items/#{@pull_toy.id}/reviews/new-review"
 
     title = "Don't Waste Your Money"
-    description = "This piece of junk was half the size I thought it should be and it smelled bad."
-    rating = 1
+    content = "This piece of junk was half the size I thought it should be and it smelled bad."
+    rating = 2
 
     fill_in :title, with: title
-    fill_in :description, with: description
-    fill_in :rating, with: rating
+    fill_in :content, with: content
+    select '2', from: :rating
 
     click_button "Submit Review"
 
@@ -26,8 +26,8 @@ describe 'Review New Page' do
 
     within "#review-#{new_review.id}" do
       expect(page).to have_content(title)
-      expect(page).to have_content(description)
-      expect(page).to have_content(rating)
+      expect(page).to have_content(content)
+      expect(page).to have_content("2/5")
     end
   end
 end

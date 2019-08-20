@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Merchant New Page' do
-  xit 'has a form to create a new merchant' do
+  it 'has a form to create a new merchant' do
     visit '/merchants/new'
 
     name = "Sal's Calz(ones)"

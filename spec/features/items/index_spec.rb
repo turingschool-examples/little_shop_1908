@@ -10,7 +10,7 @@ describe "Item Index Page" do
     @dog_bone = @dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
   end
 
-  xit 'has links to all item and merchant names' do
+  it 'has links to all item and merchant names' do
     visit '/items'
 
     expect(page).to have_link(@tire.name)
@@ -21,7 +21,7 @@ describe "Item Index Page" do
     expect(page).to have_link(@dog_bone.merchant.name)
   end
 
-  xit "has a list of the items and their info" do
+  it "has a list of the items and their info" do
     visit '/items'
 
     within "#item-#{@tire.id}" do

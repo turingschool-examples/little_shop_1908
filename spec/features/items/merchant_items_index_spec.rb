@@ -9,7 +9,7 @@ describe "Merchant Items Index Page" do
     @shifter = @bike_shop.items.create(name: "Shimano Shifters", description: "It'll always shift!", active?: false, price: 180, image: "https://images-na.ssl-images-amazon.com/images/I/4142WWbN64L._SX466_.jpg", inventory: 2)
   end
 
-  xit "has a list of the merchant's items and their info" do
+  it "has a list of the merchant's items and their info" do
     visit "/merchants/#{@bike_shop.id}/items"
 
     within "#item-#{@tire.id}" do
@@ -40,7 +40,7 @@ describe "Merchant Items Index Page" do
     end
   end
 
-  xit 'has links to all item and merchant names' do
+  it 'has links to all item and merchant names' do
     visit "/merchants/#{@bike_shop.id}/items"
 
     expect(page).to have_link(@tire.name)
@@ -51,7 +51,7 @@ describe "Merchant Items Index Page" do
     expect(page).to have_link(@shifter.merchant.name)
   end
 
-  xit 'has a link to add a new item' do
+  it 'has a link to add a new item' do
     visit "/merchants/#{@bike_shop.id}/items"
 
     expect(page).to have_link("Add New Item")
