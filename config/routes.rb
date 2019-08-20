@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get "/items", to: "items#index", as: :items
   get "/items/:id", to: "items#show", as: :item
+  get "/items/:id/reviews/new", to: "reviews#new", as: :new_review
+  post "/items/:id", to: "reviews#create"
   get "/items/:id/edit", to: "items#edit"
   patch "/items/:id", to: "items#update"
   get "/merchants/:merchant_id/items", to: "items#index"
@@ -18,5 +20,4 @@ Rails.application.routes.draw do
   post "/merchants/:merchant_id/items", to: "items#create"
   delete "/items/:id", to: "items#destroy"
 
-  get "/items/:id/reviews/new", to: "reviews#new", as: :new_review
 end

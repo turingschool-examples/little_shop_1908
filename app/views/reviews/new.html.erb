@@ -5,7 +5,7 @@
     <title>Create A Review</title>
   </head>
   <body>
-    <%= form_tag "item_path(#{@item})", method: :post do |f|%>
+    <%= form_tag item_path do %>
     <%= label_tag :title, "Headline:" %>
     <%= text_field_tag :title %>
 
