@@ -59,4 +59,12 @@ RSpec.describe "As a Visitor" do
     expect(page).to have_content("Grand Total: $#{grand_total}")
   end
 
+  it "see all items that I have added to my cart with item info" do
+    visit "/cart"
+    save_and_open_page
+
+    expect(page).to have_content("Your cart is empty")
+    expect(page).to_not have_link("Empty Cart")
+  end
+
 end
