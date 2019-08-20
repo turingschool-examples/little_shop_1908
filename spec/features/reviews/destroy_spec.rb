@@ -10,27 +10,13 @@ describe 'User visits the item show page' do
       visit "/items/#{chain.id}"
 
       within "#review-#{review.id}" do
-        expect(page).to have_link('Edit')
-        click_link 'Edit'
+        expect(page).to have_link('Delete')
+        click_link 'Delete'
       end
-
-      expect(current_path).to eq('/reviews/edit')
-      expect(page).to have_link('Chain') # In title 'Edit Review for item_path'
-      expect(find_field('Title').value).to eq('Its Great!')
-      expect(find_field('Content').value).to eq('Best chain ever!')
-      expect(find_field('Rating').value).to eq('3')
-
-      fill_in 'Rating', with: 5
-
-      click_on 'Submit'
 
       expect(current_path).to eq("/items/#{chain.id}")
 
-      within "#review-#{review.id}" do
-        expect(page).to have_content('Its Great!')
-        expect(page).to have_content('Best chain ever!')
-        expect(page).to have_content("Rating: 5")
-      end
+      expect(page).to_not have_css("#item-#{chain.id}")
     end
   end
 end
