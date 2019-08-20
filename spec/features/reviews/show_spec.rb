@@ -12,22 +12,6 @@ RSpec.describe "Reviews Index" do
       @terrible_review = @chain.reviews.create(title: "I hate it", content: "Never buy it again.", rating: 1)
     end
 
-    it 'shows alert flash messages when form is not completely filled' do
-      visit "/items/#{@chain.id}"
-      click_link "add new review"
-
-      expect(current_path).to eq("/items/#{@chain.id}/reviews/new")
-
-      title = "So-so product"
-
-      fill_in :title, with: title
-
-      click_button "Post Review"
-
-      expect(current_path).to eq("/items/#{@chain.id}/reviews/new")
-      expect(page).to have_content("You have not completed the form. Please complete all three sections to post a review.")
-    end
-
     it 'shows review stats' do
       visit "/items/#{@chain.id}"
 
