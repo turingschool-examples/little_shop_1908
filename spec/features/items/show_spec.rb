@@ -103,9 +103,14 @@ RSpec.describe 'item show page', type: :feature do
       expect(page).to have_content("#{top_three_title_rating[1][1]}")
     end
 
-    # within "#item-#{@chain.id}-bottom-3-reviews" do
-    #   bottom_three = @chain.reviews.order(:rating)[0..2]
-    #
-    # end
+    within "#item-#{@chain.id}-bottom-3-reviews" do
+      bottom_three_title_rating = @chain.reviews.order(:rating)[0..2].pluck(:title, :rating)
+
+      expect(page).to have_content("#{bottom_three_title_rating[0][0]}")
+      expect(page).to have_content("#{bottom_three_title_rating[0][1]}")
+      expect(page).to have_content("#{bottom_three_title_rating[1][0]}")
+      expect(page).to have_content("#{bottom_three_title_rating[1][1]}")
+    end
+
   end
 end
