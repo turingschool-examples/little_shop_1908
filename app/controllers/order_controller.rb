@@ -6,6 +6,11 @@ class OrderController <ApplicationController
   def create
     order = Order.create(order_params)
     if order.save
+      @cart = Cart.new(session[:cart])
+      @cart.contents.keys.each do |id|
+        item = Item.find(id)
+        item.orders << order
+      end
       redirect_to "/orders/#{order.id}"
     else
       flash[:incomplete_order] = "The shipping information form is incomplete. Please fill in all five fields in order to submit order."
