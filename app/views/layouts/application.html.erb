@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Little Shop</title>
+    <title>&#x1F436;E S Pug N &#x1F436;</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -12,7 +12,12 @@
     <nav class = "topnav">
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
+      <div style="float:right"><%= link_to "Cart: this has to be cart.total somehow", "/cart" %><%= image_tag 'pug_cart.png', id: 'cart-icon' %></div>
     </nav>
+    <div class="flash-message"><% flash.each do |type, message| %>
+      <p><%= message %></p>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>

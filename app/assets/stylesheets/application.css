@@ -70,9 +70,9 @@ img{
    float: left;
    color: #f2f2f2;
    text-align: center;
-   padding: 14px 16px;
+   padding: 36px 36px;
    text-decoration: none;
-   font-size: 17px;
+   font-size: 24px;
  }
 
  .topnav a:hover {
@@ -113,4 +113,34 @@ form {
   background-color: #f2f2f2;
   padding: 20px;
   width: 60%;
+}
+
+.highlight-column {
+  float: left;
+  width: 50%;
+}
+
+.review-column {
+  float: left;
+  width: 33.33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#cart-icon{
+  width: 120px;
+}
+
+.flash-message{
+  color: #00529B;
+  margin:10px 22px;
+  font-size:28;
+  vertical-align:middle;
+  text-align:center;
+  padding:12px;
 }
