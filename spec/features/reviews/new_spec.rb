@@ -11,12 +11,12 @@ describe 'Review New Page' do
     visit "/items/#{@pull_toy.id}/reviews/new-review"
 
     title = "Don't Waste Your Money"
-    description = "This piece of junk was half the size I thought it should be and it smelled bad."
-    rating = 1
+    content = "This piece of junk was half the size I thought it should be and it smelled bad."
 
     fill_in :title, with: title
-    fill_in :description, with: description
-    fill_in :rating, with: rating
+    fill_in :content, with: content
+    find("#rating").click
+    find("#rating option", :text => '3').click
 
     click_button "Submit Review"
 
@@ -26,8 +26,8 @@ describe 'Review New Page' do
 
     within "#review-#{new_review.id}" do
       expect(page).to have_content(title)
-      expect(page).to have_content(description)
-      expect(page).to have_content(rating)
+      expect(page).to have_content(content)
+      expect(page).to have_content(3)
     end
   end
 end

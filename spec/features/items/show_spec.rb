@@ -10,7 +10,7 @@ describe 'Item Show Page' do
     @review_2 = @pull_toy.reviews.create(title: "This toy sucks", content: "My dog hates this toy", rating: 1)
   end
 
-  xit "displays an item's name, description, price, image, status, inventory, and merchant" do
+  it "displays an item's name, description, price, image, status, inventory, and merchant" do
     visit "/items/#{@pull_toy.id}"
 
     expect(page).to have_link(@pull_toy.merchant.name)
@@ -23,7 +23,7 @@ describe 'Item Show Page' do
     expect(page).to have_css("img[src*='#{@pull_toy.image}']")
   end
 
-  xit 'displays reviews for that item' do
+  it 'displays reviews for that item' do
     visit "/items/#{@pull_toy.id}"
 
     within "#review-#{@review_1.id}" do
@@ -39,7 +39,7 @@ describe 'Item Show Page' do
     end
   end
 
-  xit 'has a link to the merchant that sells the item' do
+  it 'has a link to the merchant that sells the item' do
     visit "/items/#{@pull_toy.id}"
 
     expect(page).to have_link(@dog_shop.name)
@@ -49,7 +49,7 @@ describe 'Item Show Page' do
     expect(current_path).to eq("/merchants/#{@dog_shop.id}")
   end
 
-  xit 'has a link to update the item' do
+  it 'has a link to update the item' do
     visit "/items/#{@pull_toy.id}"
 
     expect(page).to have_link("Edit Item")
@@ -85,7 +85,7 @@ describe 'Item Show Page' do
     end
   end
 
-  xit 'has a link to add a review' do
+  it 'has a link to add a review' do
     visit "/items/#{@pull_toy.id}"
 
     expect(page).to have_link("Add Review")
@@ -95,7 +95,7 @@ describe 'Item Show Page' do
     expect(current_path).to eq("/items/#{@pull_toy.id}/reviews/new-review")
   end
 
-  xit 'has a link to edit each review' do
+  it 'has a link to edit each review' do
     visit "/items/#{@pull_toy.id}"
 
     within "#review-#{@review_1.id}" do
@@ -128,7 +128,7 @@ describe 'Item Show Page' do
 
     expect(current_path).to eq("/items/#{@pull_toy.id}")
     expect(page).to_not have_content(@review_1.title)
-    expect(page).to_not have_content(@review_1.description)
+    expect(page).to_not have_content(@review_1.content)
 
     visit "/items/#{@pull_toy.id}"
 
@@ -140,6 +140,6 @@ describe 'Item Show Page' do
 
     expect(current_path).to eq("/items/#{@pull_toy.id}")
     expect(page).to_not have_content(@review_2.title)
-    expect(page).to_not have_content(@review_2.description)
+    expect(page).to_not have_content(@review_2.content)
   end
 end

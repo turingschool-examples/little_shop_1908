@@ -18,11 +18,11 @@ describe "Review Edit Page" do
 
     title = "It broke! :("
     content = "My dog loved this until it broke."
-    rating = 3
 
     fill_in 'Title', with: title
     fill_in 'Content', with: content
-    fill_in 'Rating', with: rating
+    find("#rating").click
+    find("#rating option", :text => '3').click
 
     click_button "Submit Updated Review"
 
