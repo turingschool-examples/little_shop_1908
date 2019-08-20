@@ -16,6 +16,7 @@
       <% end %>
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
+      <%= button_to "Add Item To yo Cart", carts_path(item_id: @item.id) %>
     </section>
   </section>
 

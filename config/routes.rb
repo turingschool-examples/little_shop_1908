@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  resources :carts, only: [:create]
   get "/merchants", to: "merchants#index"
   get "/merchants/new", to: "merchants#new"
   get "/merchants/:id", to: "merchants#show"
@@ -22,4 +23,8 @@ Rails.application.routes.draw do
   get "/merchants/:merchant_id/items/new", to: "items#new"
   post "/merchants/:merchant_id/items", to: "items#create"
   delete "/items/:id", to: "items#destroy"
+  patch '/items/:id/buy', to: 'items#buy_item', as: :update_purchased_item
+
+  #cart
+  get '/cart', to: "cart#index"
 end

@@ -30,6 +30,7 @@ class ItemsController<ApplicationController
   def update
     item = Item.find(params[:id])
     item.update(item_params)
+    item.restock
     redirect_to "/items/#{item.id}"
   end
 
@@ -38,6 +39,18 @@ class ItemsController<ApplicationController
     item.reviews.destroy_all
     item.destroy
     redirect_to "/items"
+  end
+
+  def buy_item
+    item = Item.find(params[:id])
+    if item.inventory <= 0
+      flash[:fail] = "There is not enough in stock. sry."
+    end
+    if item.inventory > 0
+      item.buy
+    end
+    # binding.pry
+    redirect_to carts_path
   end
 
   private
