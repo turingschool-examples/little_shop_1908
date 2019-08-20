@@ -11,10 +11,12 @@ class OrderController <ApplicationController
       @cart.contents.keys.each do |id|
         item = Item.find(id)
         item.orders << order
-        #reverse this session[:cart][item_id_str] = session[:cart][item_id_str] + 1
-        #session[:cart][item_id_str] = session[:cart][item_id_str] - cart.contents.count 
+        temp = item.items_orders.first.quantity
+        temp = @cart.contents[id]
+        ItemsOrder.where(item_id: id).where(order_id: order.id).update({quantity: temp})
       end
       redirect_to "/orders/#{order.id}"
+      reset_session
     else
       flash[:incomplete_order] = order.errors.full_messages.to_sentence
       redirect_to "/orders/new"
