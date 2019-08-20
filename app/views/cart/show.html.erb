@@ -1,11 +1,10 @@
   <h1>Cart</h1>
-    <% grand_total = 0 %>
     <% if @cart.contents.empty? %>
       <p>Your cart is empty</p>
     <% else %>
     <p> <%=link_to "Empty Cart", "/cart", method: :delete %> </p>
     <% @cart.contents.each do |key, value| %>
-        <% item = Item.find_by(id: key) %>
+        <% item = Item.find(key) %>
         <h3><%= item.name %></h3>
         <img src=<%= item.image %> alt="...">
         <p>Sold by: <%= item.merchant.name %></p>
