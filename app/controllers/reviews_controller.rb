@@ -6,15 +6,14 @@ class ReviewsController <ApplicationController
   end
 
   def create
-    item = Item.find(params[:id])
-    review = item.reviews.create(review_params)
+    @item = Item.find(params[:id])
+    review = @item.reviews.create(review_params)
     if review.save
       flash[:success] = "You have successfully posted a review"
-      #binding.pry
-      redirect_to "/items/#{item.id}"
+      redirect_to "/items/#{@item.id}"
     else
       flash[:alert] = "You have not completed the form. Please complete all three sections to post a review."
-      render :new
+      redirect_to "/items/#{@item.id}/review/new"
     end
   end
 
