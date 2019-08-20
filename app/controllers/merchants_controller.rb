@@ -17,7 +17,7 @@ class MerchantsController <ApplicationController
     if merchant.save
       redirect_to "/merchants"
     else
-      flash[:error] = merchant.errors.full_messages.to_sentence
+      flash[:incomplete_merchant] = merchant.errors.full_messages.to_sentence
       redirect_to "/merchants/new"
     end
   end
@@ -32,7 +32,7 @@ class MerchantsController <ApplicationController
     if merchant.save
       redirect_to "/merchants/#{merchant.id}"
     else
-      flash[:error] = merchant.errors.full_messages.to_sentence
+      flash[:incomplete_merchant] = merchant.errors.full_messages.to_sentence
       redirect_to "/merchants/#{merchant.id}/edit"
     end
   end
