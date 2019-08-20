@@ -1,2 +1,3 @@
 class ReveiwsController < ApplicationController
-end 
+  
+end
