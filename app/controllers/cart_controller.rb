@@ -13,5 +13,6 @@ class CartController<ApplicationController
   end
 
   def show
+    @cart = Cart.new(session[:cart])
   end
 end
