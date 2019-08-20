@@ -1,4 +1,5 @@
 class OrderController <ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   def new
     @cart = Cart.new(session[:cart])
   end
@@ -21,6 +22,11 @@ class OrderController <ApplicationController
   def show
     @order = Order.find(params[:id])
     @cart = Cart.new(session[:cart])
+  end
+
+  private def record_not_found
+    redirect_to controller: 'home', action: 'index'
+    flash[:error] = "The page you have selected does not exist"
   end
 
   private

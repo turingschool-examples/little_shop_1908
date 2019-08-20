@@ -1,4 +1,5 @@
 class MerchantsController <ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def index
     @merchants = Merchant.all
@@ -45,7 +46,11 @@ class MerchantsController <ApplicationController
       flash[:delete_warning] = "This merchant has items that have been ordered. This merchant cannot be deleted at this time."
       redirect_to "/merchants/#{merchant.id}"
     end
+  end
 
+  private def record_not_found
+    redirect_to controller: 'merchants', action: 'index'
+    flash[:error] = "The page you have selected does not exist"
   end
 
   private

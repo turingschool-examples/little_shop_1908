@@ -1,4 +1,5 @@
 class ItemsController<ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def index
     if params[:merchant_id]
@@ -52,6 +53,11 @@ class ItemsController<ApplicationController
       flash[:delete_item_warning] = "This item has been ordered and cannot be deleted at this time."
       redirect_to "/items/#{item.id}"
     end
+  end
+
+  private def record_not_found
+    redirect_to controller: 'items', action: 'index'
+    flash[:error] = "The page you have selected does not exist"
   end
 
   private
