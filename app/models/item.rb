@@ -21,4 +21,20 @@ class Item <ApplicationRecord
     self.reviews.order(:rating).limit(3)
   end
 
+  def buy
+    if self.inventory > 0
+      self.inventory -= 1
+    end
+    if self.inventory <= 0
+      self.update(active?: false)
+    end
+    self.save
+  end
+
+  def restock
+  if self.inventory > 0
+    self.update(active?: true)
+  end
+end
+
 end

@@ -110,7 +110,7 @@ input[type=submit]:hover {
 }
 form {
   align-content: center;
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   padding: 20px;
   width: 60%;
 }
@@ -143,4 +143,25 @@ form {
   vertical-align:middle;
   text-align:center;
   padding:12px;
+}
+
+#buy_button {
+  border-radius: 25px;
+  background-color: #002244;
+  border: 2px solid black;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 24px;
+  margin: 4px 2px;
+  cursor: pointer;
+  text-shadow: 2px 2px #0f0f0f;
+}
+
+#buy_button:hover {
+  background-color: pink;
+  color: white;
+  border: 2px solid white;
 }
