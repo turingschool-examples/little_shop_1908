@@ -14,6 +14,7 @@ RSpec.describe 'item show page', type: :feature do
     @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
     @chain = @bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
     @good_review = @chain.reviews.create(title: "I like this product", content: "This is a great product. I will buy it again soon.", rating: 5)
+    @negative_review = @chain.reviews.create(title: "I don't like this product", content: "This is not a great product. I will not buy it again soon.", rating: 2)
   end
 
   it 'shows item info' do
@@ -84,5 +85,13 @@ RSpec.describe 'item show page', type: :feature do
     expect(current_path).to eq("/items/#{@chain.id}/review/new")
     expect(page).to have_content("You have not completed the form. Please complete all three sections to post a review.")
     save_and_open_page
+  end
+
+  it 'shows review stats' do
+    visit "/items/#{@chain.id}"
+
+    within "#item-#{@chain.id}-review-stats" do
+      expect(page).to have_content("Average Rating: #{@chain.reviews.average(:rating)}")
+    end
   end
 end
