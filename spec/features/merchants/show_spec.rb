@@ -7,15 +7,29 @@ describe 'Merchant Show Page' do
 
   xit "displays a merchant's name, address, city, state, zip" do
     visit "/merchants/#{@bike_shop.id}"
+
     expect(page).to have_content(@bike_shop.name)
     expect(page).to have_content("#{@bike_shop.address}\n#{@bike_shop.city}, #{@bike_shop.state} #{@bike_shop.zip}")
   end
 
   xit 'has a link to visit the merchant items' do
     visit "/merchants/#{@bike_shop.id}"
+
     expect(page).to have_link("All #{@bike_shop.name} Items")
+
     click_link "All #{@bike_shop.name} Items"
+
     expect(current_path).to eq("/merchants/#{@bike_shop.id}/items")
+  end
+
+  xit 'has a link to update the merchant info' do
+    visit "/merchants/#{@bike_shop.id}"
+
+    expect(page).to have_link("Update Merchant")
+
+    click_link "Update Merchant"
+
+    expect(current_path).to eq("/merchants/#{@bike_shop.id}/edit")
   end
 
   describe 'has a link to delete the merchant' do
@@ -38,7 +52,7 @@ describe 'Merchant Show Page' do
       expect(page).to have_link("Delete Merchant")
 
       click_link "Delete Merchant"
-      
+
       expect(current_path).to eq('/merchants')
       expect(page).to_not have_content(@bike_shop.name)
     end
