@@ -44,8 +44,6 @@ RSpec.describe "New Order Page" do
 
       expect(current_path).to eq("/orders/#{new_order.id}")
 
-      save_and_open_page
-
       quantity_tire = @cart.quantity_of(@tire.id)
 
       subtotal_tire = @tire.price * quantity_tire
