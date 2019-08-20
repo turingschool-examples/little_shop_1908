@@ -13,6 +13,9 @@
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
     </nav>
+    <% flash.each do |type, message| %>
+      <%= content_tag :div, message, class: type %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
