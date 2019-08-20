@@ -1,0 +1,19 @@
+<hr>
+  <% @cart.contents.each do |key, value| %>
+    <section id="order-for-item<%= key %>">
+      <div class="row">
+        <div class="col-2">
+          <% item = Item.find(key) %>
+          <%= item.name %>
+        </div>
+        <div class="col-10">
+          Sold by: <%= item.merchant.name %> |
+          Price: <%= number_to_currency(item.price) %> |
+          Quantity: <%= value %> |
+          Subtotal: <%=  number_to_currency(@cart.subtotal_item(key)) %>
+        </div>
+      </div>
+      <hr>
+    </section>
+    <% end %>
+<h4>Grand Total: <%=  number_to_currency(@cart.grand_total)%></h4>
