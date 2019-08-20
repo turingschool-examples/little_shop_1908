@@ -6,6 +6,8 @@ RSpec.describe 'item show page', type: :feature do
     chain = bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
     review_1 = chain.reviews.create(title: 'Its Great!', content: 'Best chain ever!', rating: 5)
     review_2 = chain.reviews.create(title: 'Its awful!', content: 'I hate it!', rating: 1)
+    review_3 = chain.reviews.create(title: 'Its not good!', content: 'I would not buy again!', rating: 2)
+    review_4 = chain.reviews.create(title: 'Its meh!', content: 'decent!', rating: 3)
     reviews = chain.reviews.to_a
 
     visit "items/#{chain.id}"
@@ -27,6 +29,39 @@ RSpec.describe 'item show page', type: :feature do
           expect(page).to have_content("Rating: #{review.rating}")
         end
       end
+      within '.reviews-stats' do
+        within '#top-three' do
+          expect(page).to have_content(review_1.title)
+          expect(page).to have_content(review_3.title)
+          expect(page).to have_content(review_4.title)
+          expect(page).to_not have_content(review_2.title)
+          expect(page).to have_content("(#{review_1.rating}/5)")
+          expect(page).to have_content("(#{review_3.rating}/5)")
+          expect(page).to have_content("(#{review_4.rating}/5)")
+          expect(page).to_not have_content("(#{review_2.rating}/5)")
+        end
+        within '#bottom-three' do
+          expect(page).to have_content(review_2.title)
+          expect(page).to have_content(review_3.title)
+          expect(page).to have_content(review_4.title)
+          expect(page).to_not have_content(review_1.title)
+          expect(page).to have_content("(#{review_2.rating}/5)")
+          expect(page).to have_content("(#{review_3.rating}/5)")
+          expect(page).to have_content("(#{review_4.rating}/5)")
+          expect(page).to_not have_content("(#{review_1.rating}/5)")
+        end
+        within '#avg-rating' do
+          expect(page).to have_content("Average Rating: 2.75")
+        end
+
+      end
     end
+
+#     As a visitor
+# When I visit an item's show page,
+# I see an area on the page for statistics about reviews:
+# - the top three reviews for this item (title and rating only)
+# - the bottom three reviews for this item  (title and rating only)
+# - the average rating of all reviews for this item
   end
 end
