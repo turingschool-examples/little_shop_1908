@@ -36,5 +36,21 @@ RSpec.describe "Reviews Index" do
         expect(page).to have_content("Rating: #{rating}")
       end
     end
+
+    it 'shows alert flash messages when form is not completely filled' do
+      visit "/items/#{@chain.id}"
+      click_link "add new review"
+
+      expect(current_path).to eq("/items/#{@chain.id}/reviews/new")
+
+      title = "So-so product"
+
+      fill_in :title, with: title
+
+      click_button "Post Review"
+
+      expect(current_path).to eq("/items/#{@chain.id}/reviews/new")
+      expect(page).to have_content("Content can't be blank and Rating can't be blank")
+    end
   end
 end
