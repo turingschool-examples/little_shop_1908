@@ -8,7 +8,7 @@
 <div class="card-group">
   <% @items.each do |item| %>
   <div class="card" id='item-<%=item.id%>'>
-    <img class="card-img-top" src=<%= item.image %> alt="Card image cap">
+    <img><%= image_tag("#{item.image}", class: "card-img-top", alt: "Card image cap")%></img>
     <div class="card-body" align='center'>
       <h5 class="card-title display-4"><%=link_to item.name, "/items/#{item.id}" %></h5>
       <p class="card-text"> Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
