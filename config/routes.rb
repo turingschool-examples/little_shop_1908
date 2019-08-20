@@ -37,4 +37,6 @@ Rails.application.routes.draw do
   get "/orders/new", to: "order#new"
   post "/orders", to: "order#create"
   get "/orders/:id", to: "order#show"
+
+  match "*path", to: "application#catch_404", via: :all
 end
