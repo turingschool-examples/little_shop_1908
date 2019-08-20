@@ -13,6 +13,7 @@ class ItemsController<ApplicationController
     @item = Item.find(params[:id])
     @top = Review.top_or_bottom_three(@item.id)
     @bottom = Review.top_or_bottom_three(@item.id, :asc)
+    @average = Review.average_rating(@item.id)
   end
 
   def new
