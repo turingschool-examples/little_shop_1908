@@ -28,5 +28,6 @@ RSpec.describe 'item show page', type: :feature do
         end
       end
     end
+    
   end
 end
