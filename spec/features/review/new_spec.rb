@@ -21,11 +21,11 @@ RSpec.describe "Review Creation" do
     end
     it "On this new page, I see a form where I must enter my review's attributes" do
       visit new_review_path(@chain)
-      save_and_open_page
+      # save_and_open_page
       expect(page).to have_content("Create A Review")
-      expect(page).to have_content("Title")
-      expect(page).to have_content("Content")
-      expect(page).to have_content("Rating")
+      expect(page).to have_content("Headline")
+      expect(page).to have_content("Write Your Review")
+      expect(page).to have_content("Rating (1-5)")
     end
 
     it "When the form is submitted, I should return to that item's show page and I should see my review text" do
