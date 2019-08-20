@@ -3,7 +3,7 @@
 <center>
   <section class = "item-show-grid">
     <section class = "item-show-item">
-      <img src= <%= @item.image %>>
+      <%= image_tag("#{@item.image}")%>
     </section>
     <section style="text-align:left" id = "item-info">
       <p><%= @item.description %></p>
