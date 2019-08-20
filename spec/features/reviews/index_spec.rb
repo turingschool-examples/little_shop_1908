@@ -17,11 +17,11 @@ RSpec.describe 'From Item Show Page', type: :feature do
 
     it "can see review for each item" do
 
-      visit "/merchants/#{@bike_shop.id}/items"
+      visit "/items/#{@tire.id}"
 
-      within '.reviews_section' do
-        reviews.each do |review|
-          withing "#review-#{review.id}" do
+      within '#reviews-section' do
+        @reviews.each do |review|
+          within "#review-#{review.id}" do
             expect(page).to have_content(review.title)
             expect(page).to have_content(review.content)
             expect(page).to have_content("Rating: #{review.rating} stars")
