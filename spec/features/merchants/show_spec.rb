@@ -21,8 +21,11 @@ describe 'Merchant Show Page' do
   describe 'has a link to delete the merchant' do
     xit 'if the merchant has no items' do
       visit "/merchants/#{@bike_shop.id}"
+
       expect(page).to have_link("Delete Merchant")
-      click_on "Delete Merchant"
+
+      click_link "Delete Merchant"
+
       expect(current_path).to eq('/merchants')
       expect(page).to_not have_content(@bike_shop.name)
     end
@@ -31,10 +34,13 @@ describe 'Merchant Show Page' do
       chain = @bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
 
       visit "/merchants/#{@bike_shop.id}"
+
       expect(page).to have_link("Delete Merchant")
-      click_on "Delete Merchant"
+
+      click_link "Delete Merchant"
+      
       expect(current_path).to eq('/merchants')
       expect(page).to_not have_content(@bike_shop.name)
     end
-  end 
+  end
 end
