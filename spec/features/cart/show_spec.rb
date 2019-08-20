@@ -264,7 +264,7 @@ RSpec.describe "As a Visitor" do
     expect(page).to_not have_content("Quantity: #{quantity_pulltoy}")
     expect(page).to_not have_content("Subtotal: $#{subtotal_pulltoy}")
   end
-  
+
   it "has checkout link when item is in cart" do
     visit "/items/#{@tire.id}"
 
@@ -272,6 +272,8 @@ RSpec.describe "As a Visitor" do
       click_on "Add to Cart"
       @cart.add_item(@tire.id)
     end
+
+    visit "/cart"
 
     expect(page).to have_link("Checkout")
   end
