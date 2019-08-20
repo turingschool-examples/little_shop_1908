@@ -59,5 +59,14 @@ RSpec.describe "New Order Page" do
       expect(page).to have_content("Grand Total: $#{grand_total}")
       expect(page).to have_content("Order Created At: #{new_order.created_at.strftime("%Y-%m-%d")}")
     end
+
+    it 'shows flash message when I attempt to visit order page that does not exist' do
+
+      visit "orders/bad_id"
+
+      expect(current_path).to eq("/")
+
+      expect(page).to have_content("The page you have selected does not exist")
+    end
   end
 end

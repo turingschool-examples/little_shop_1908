@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'item show page', type: :feature do
+RSpec.describe 'Item show page', type: :feature do
   before(:each) do
     @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
     @brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
@@ -29,5 +29,14 @@ RSpec.describe 'item show page', type: :feature do
     expect(page).to have_content("Inventory: #{@chain.inventory}")
     expect(page).to have_content("Sold by: #{@bike_shop.name}")
     expect(page).to have_css("img[src*='#{@chain.image}']")
+  end
+
+  it 'shows flash message when I attempt to visit item page that does not exist' do
+
+    visit "items/bad_id"
+
+    expect(current_path).to eq("/items")
+
+    expect(page).to have_content("The page you have selected does not exist")
   end
 end
