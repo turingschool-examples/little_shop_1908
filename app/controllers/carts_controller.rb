@@ -62,5 +62,4 @@ class CartsController < ApplicationController
     @items_hash = cart.find_items_from_session
     @total_cost = cart.total_cost
   end
-
 end
