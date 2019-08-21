@@ -34,8 +34,9 @@
         <p><%= review.title %></p>
         <p><%= review.content %></p>
         <p>Rating: <%= review.rating %></p>
+        <p> <%= link_to "edit review", "/items/#{@item.id}/#{review.id}/edit" %></p>
+        <p id="delete-review-<%= review.id %>"><%= link_to "Delete Review", "/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %></p>
       </section>
-      <p id="delete-review-<%= review.id %>"><%= link_to "Delete Review", "/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %></p>
     <% end %>
   </div>
 </div>
