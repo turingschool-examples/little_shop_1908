@@ -85,12 +85,12 @@ describe 'Item Show Page' do
     end
   end
 
-  it 'has a link to add a review' do
+  it 'has a button to add a review' do
     visit "/items/#{@pull_toy.id}"
 
-    expect(page).to have_link("Add Review")
+    expect(page).to have_button("Add Review")
 
-    click_link "Add Review"
+    click_button "Add Review"
 
     expect(current_path).to eq("/items/#{@pull_toy.id}/reviews/new-review")
   end
