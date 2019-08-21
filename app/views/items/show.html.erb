@@ -20,8 +20,6 @@
         </div>
       </span>
     </section>
-
-
     <section class="reviews-section">
       <p><%= link_to "New Review", "/items/#{@item.id}/reviews/new" %></p>
       <% unless @item.reviews.count <= 3 %>
