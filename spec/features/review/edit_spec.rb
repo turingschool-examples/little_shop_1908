@@ -38,10 +38,10 @@ RSpec.describe "Edit A Review" do
       expect(page).to have_button("Update Your Review")
     end
 
-    # it "When the form is submitted, I should return to that item's show page and I should see my updated review." do
-    #   visit item_path(@chain)
-    #
-    #   expect(current_path).to eq(item_path(@chain))
-    # end
+    it "When the form is submitted, I should return to that item's show page and I should see my updated review." do
+      visit item_path(@chain)
+
+      expect(current_path).to eq(item_path(@chain))
+    end
   end
 end
