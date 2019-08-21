@@ -60,5 +60,4 @@ class CartsController < ApplicationController
     item.save
     redirect_to '/cart'
   end
-
 end
