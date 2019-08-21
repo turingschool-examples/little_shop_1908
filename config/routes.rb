@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   delete "/items/:id", to: "items#destroy"
 
   get "/items/:item_id/reviews", to: "reviews#index"
-  get "/reviews", to: "reviews#index"
   get "/reviews/:id", to: "reviews#show"
   get "/items/:item_id/reviews/new", to: "reviews#new"
   post "/items/:item_id/reviews", to: "reviews#create"
