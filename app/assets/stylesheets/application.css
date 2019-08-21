@@ -16,10 +16,10 @@
 
  /*
  yellow: #EDAE49
- red:    #D1495B
+ red:    #D1495B, red(link-hover): #8c003d
  teal:   #00798C
- blue:   #30638E
- d-blue: #003D5B*/
+ blue:   #30638E, lighter (background): #d9e7f2
+ d-blue: #003D5B, darker: #002233 */
 
 
  body {
@@ -29,7 +29,7 @@
  h1 {
   text-align: center;
  	font-size: 40px;
- 	color: #002244;
+ 	color: #002233;
  	font-family: "Marker Felt", fantasy;
  }
 
@@ -41,6 +41,44 @@ img{
   width: 50%;
 }
 
+input[type=text], select {
+ width: 100%;
+ padding: 12px 20px;
+ margin: 8px 0;
+ display: inline-block;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+ box-sizing: border-box;
+}
+
+input[type=submit] {
+ width: 25%;
+ background-color: #00798C;
+ color: white;
+ padding: 14px 20px;
+ margin: 8px 0;
+ border: none;
+ border-radius: 4px;
+ cursor: pointer;
+}
+
+input[type=submit]:hover {
+ background-color: #45a049;
+}
+form {
+ align-content: center;
+ background-color: #f2f2f2;
+ padding: 20px;
+ width: 60%;
+}
+
+a:link, a:visited {
+ color: #30638E;
+}
+
+a:hover {
+  color: #8c003d;
+}
  .grid-container{
  	display: grid;
  	grid-template-columns: repeat(4,1fr);
@@ -53,7 +91,7 @@ img{
  	padding: 20px;
   border: solid;
  	border-radius: 12px;
-  border-color: #002244;
+  border-color: #002233;
  	text-align: center
  }
  .item-show-grid{
@@ -91,34 +129,3 @@ img{
  .address{
    text-align: center;
  }
-
- input[type=text], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-input[type=submit] {
-  width: 25%;
-  background-color: #00798C;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-form {
-  align-content: center;
-  background-color: #f2f2f2;
-  padding: 20px;
-  width: 60%;
-}
