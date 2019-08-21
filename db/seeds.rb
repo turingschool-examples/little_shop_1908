@@ -26,3 +26,16 @@ dog_bone = dog_shop.items.create(name: "Dog Bone", description: "They'll love it
 dog_bone_review = dog_bone.reviews.create(title: 'What a dog bone!', content: "Taste great!", rating: 5)
 dog_bone_review_2 = dog_bone.reviews.create(title: 'Title Example', content: "Taste great!", rating: 5)
 # puts dog_bone_review_2.id
+
+review_1 = tire.reviews.create(title: 'Review Title 1', content: "Content 1", rating: 1)
+review_2 = tire.reviews.create(title: 'Review Title 2', content: "Content 2", rating: 2)
+review_3 = tire.reviews.create(title: 'Review Title 3', content: "Content 3", rating: 3)
+review_4 = tire.reviews.create(title: 'Review Title 4', content: "Content 4", rating: 4)
+review_5 = tire.reviews.create(title: 'Review Title 5', content: "Content 5", rating: 5)
+review_6 = tire.reviews.create(title: 'Review Title 6', content: "Content 6", rating: 1)
+review_7 = tire.reviews.create(title: 'Review Title 7', content: "Content 7", rating: 2)
+review_8 = tire.reviews.create(title: 'Review Title 8', content: "Content 8", rating: 3)
+review_9 = tire.reviews.create(title: 'Review Title 9', content: "Content 9", rating: 4)
+review_10 = tire.reviews.create(title: 'Review Title 10', content: "Content 10", rating: 5)
+review_11 = tire.reviews.create(title: 'Review Title 11', content: "Content 11", rating: 1)
+review_12 = tire.reviews.create(title: 'Review Title 12', content: "Content 12", rating: 1)
