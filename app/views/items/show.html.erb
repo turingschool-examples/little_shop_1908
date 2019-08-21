@@ -23,9 +23,10 @@
     <p><%= link_to 'New Review', "/items/#{@item.id}/reviews/new" %></p>
     <% @item.reviews.each do |review| %>
       <section id= "review-<%=review.id%>"
-      <p><%= review.title %></p>
-      <p><%= review.content %></p>
-      <p>Rating: <%= review.rating %> stars</p>
+        <%= review.title %>
+        <p><%= link_to 'Edit Review', "/reviews/#{review.id}/edit" %></p>
+        <p><%= review.content %></p>
+        <p>Rating: <%= review.rating %> stars</p>
       </section>
       <% end %>
   </section>
