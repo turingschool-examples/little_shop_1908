@@ -32,6 +32,7 @@ class ReviewsController<ApplicationController
   end
 
   def destroy
+    @review.destroy
     redirect_to "/items/#{@review.item_id}"
   end
 
