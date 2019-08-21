@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "/items", to: "items#index", as: :items
   get "/items/:id", to: "items#show", as: :item
   get "/items/:id/reviews/new", to: "reviews#new", as: :new_review
+  delete "/items/:id", to: "reviews#destroy", as: :delete_review
   post "/items/:id", to: "reviews#create"
   get "/items/:id/edit", to: "items#edit"
   patch "/items/:id", to: "items#update"
