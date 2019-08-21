@@ -7,7 +7,7 @@ RSpec.describe "As a Visitor" do
         @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
         @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
 
-        visit "/items/#{@tire.id}"
+        visit item_path(@tire)
 
         expect(page).to have_link("Edit Item")
 
@@ -26,10 +26,11 @@ RSpec.describe "As a Visitor" do
         @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
         @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
 
-        visit "/items/#{@tire.id}"
+        visit item_path(@tire)
 
         click_on "Edit Item"
 
+        
         fill_in 'Name', with: "GatorSkins"
         fill_in 'Price', with: 110
         fill_in 'Description', with: "They're a bit more expensive, and they kinda do pop sometimes, but whatevs.. this is retail."
@@ -38,7 +39,7 @@ RSpec.describe "As a Visitor" do
 
         click_button "Update Item"
 
-        expect(current_path).to eq("/items/#{@tire.id}")
+        expect(current_path).to eq(item_path(@tire))
         expect(page).to have_content("GatorSkins")
         expect(page).to_not have_content("Gatorskins")
         expect(page).to have_content("Price: $110")
