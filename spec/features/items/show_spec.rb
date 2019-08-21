@@ -88,9 +88,9 @@ describe 'Item Show Page' do
   it 'has a link to add a review' do
     visit "/items/#{@pull_toy.id}"
 
-    expect(page).to have_link("Add Review")
+    expect(page).to have_button("Add Review")
 
-    click_link "Add Review"
+    click_button "Add Review"
 
     expect(current_path).to eq("/items/#{@pull_toy.id}/reviews/new-review")
   end
@@ -170,5 +170,16 @@ describe 'Item Show Page' do
     end
 
     expect(page).to have_content(3.3)
+  end
+
+  it "has a button to add the item to the cart" do
+    visit "/items/#{@pull_toy.id}"
+
+    expect(page).to have_button("Add Item To yo Cart")
+
+    click_button "Add Item To yo Cart"
+
+    expect(current_path).to eq('/items')
+    expect(page).to have_content("Items in Cart: 1")
   end
 end
