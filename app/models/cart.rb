@@ -1,30 +1,35 @@
-class Cart < ApplicationController
+class Cart
+  attr_reader :contents
 
-  def self.find_items_from_session(session)
-    if session.nil?
+  def initialize(contents)
+    @contents = contents
+  end
+
+  def find_items_from_session
+    if @contents.nil?
       items = Hash.new
     else
       items = Hash.new
-      session.each do |item_id, qty|
+      @contents.each do |item_id, qty|
       items[Item.find(item_id.to_i)] = qty
     end
     items
     end
   end
 
-  def self.total_cost(session)
-    find_items_from_session(session).sum {|item, qty| item.price * qty}
+  def total_cost
+    find_items_from_session.sum {|item, qty| item.price * qty}
   end
 
-  def self.total_items(session)
-    if session.nil?
+  def total_items
+    if @contents.nil?
       return 0
-    else session.values.sum
+    else @contents.values.sum
     end
   end
 
-  def self.restock_all_items_from_session(session)
-    find_items_from_session(session).each do |item, qty|
+  def restock_all_items_from_session
+    find_items_from_session.each do |item, qty|
       item.inventory += qty
       if item.active? == false
         item.update(active?: true)
@@ -33,4 +38,25 @@ class Cart < ApplicationController
     end
   end
 
+  def add_item(item)
+    @contents[item.id.to_s] += 1
+    item.buy
+  end
+
+  def remove_one_item(item)
+    item.inventory += 1
+    @contents[item.id.to_s] -= 1
+    if @contents[item.id.to_s] == 0
+      @contents.delete(item.id.to_s)
+    end
+    item.update(active?: true)
+    item.save
+  end
+
+  def remove_all_items(item)
+    item.restock_qty(@contents[item.id.to_s])
+    item.update(active?: true)
+    @contents.delete(item.id.to_s)
+    item.save
+  end
 end
