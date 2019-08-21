@@ -44,6 +44,7 @@ class ReviewsController <ApplicationController
       flash[:alert] = "You have not completed the form. Please complete all three sections to post a review."
       redirect_to "/items/#{item.id}/#{review.id}/edit"
     end
+  end
 
   def destroy
     @review = Review.find(params[:id])
