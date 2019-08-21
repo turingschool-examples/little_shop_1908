@@ -19,6 +19,7 @@
           <p><%= review.title %></p>
           <p><%= review.content %></p>
           <p>Rating: <%= review.rating %></p>
+          <%= link_to 'Delete Review', delete_review_path(@item, review), method: :delete %>
         </section>
         <% end %>
         <h2>Item Statistics</h2>
