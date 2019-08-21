@@ -52,5 +52,9 @@ describe 'Site Navigation Bar' do
     within '.topnav' do
       expect(page).to have_link("Items in Cart: 2")
     end
+
+    click_link "Items in Cart: 2"
+
+    expect(current_path).to eq('/cart')
   end
 end
