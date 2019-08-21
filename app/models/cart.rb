@@ -23,7 +23,7 @@ class Cart < ApplicationController
     end
   end
 
-  def self.restock_items_from_session(session)
+  def self.restock_all_items_from_session(session)
     find_items_from_session(session).each do |item, qty|
       item.inventory += qty
       if item.active? == false

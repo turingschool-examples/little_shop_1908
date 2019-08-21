@@ -6,7 +6,10 @@
       <span class="item-show-item"><%= image_tag("#{item.image}") %></span>
       <h1><%= item.name %></h1> <h3>from</h3> <h2><%= item.merchant.name %></h2>
       <h2>Purchase <%= qty %> at <%= number_to_currency(item.price) %> each</h2>
-      <h2>Subtotal: <%= number_to_currency(item.price * qty) %></h2><br><br><br><br><br><br>
+      <h2>Subtotal: <%= number_to_currency(item.price * qty) %></h2>
+      <h3><%= link_to("Add an Additional #{item.name}", "/cart/items/#{item.id}/add-to-cart") %> | <%= link_to("Remove a #{item.name}", "/cart/items/#{item.id}/remove-from-cart") %></h3>
+      <h3> <%= link_to("Remove all #{item.name}s", "/cart/items/#{item.id}/remove-all") %></h3>
+      <br><br><br><br><br><br>
     <% end %>
     <h1>Total Cost: <%= number_to_currency(@total_cost) %></h1>
     <h2><%= link_to("Empty Cart", '/cart/empty') %></h2>
