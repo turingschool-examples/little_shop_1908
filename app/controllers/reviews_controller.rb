@@ -1,5 +1,6 @@
 class ReviewsController <ApplicationController
   def index
+    binding.pry
     if params[:item_id]
       @item = Item.find(params[:item_id])
       @reviews = @item.reviews
@@ -29,9 +30,9 @@ class ReviewsController <ApplicationController
   end
 
   def destroy
-    review = Review.find(params[:id])
-    review.destroy
-    redirect_to "/reviews"
+    @review = Review.find(params[:id])
+    @review.destroy
+    redirect_to "/items/#{@review.item.id}"
   end
 
   private

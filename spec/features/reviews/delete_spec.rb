@@ -14,7 +14,7 @@ RSpec.describe "Reviews Index" do
       expect(page).to have_link("Delete Review")
       click_on "Delete Review"
 
-      expect(current_path).to eq("/reviews")
+      expect(current_path).to eq("/items/#{@chain.id}")
       expect(page).to_not have_css("#review-#{@good_review.id}")
     end
 
