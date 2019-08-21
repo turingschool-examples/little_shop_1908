@@ -20,9 +20,9 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:item_id])
-    item.reviews.update(review_params)
-    redirect_to "/items/#{item.id}"
+    review = Review.find(params[:review_id])
+    review.update(review_params)
+    redirect_to "/items/#{review.item.id}"
   end
 
   private
