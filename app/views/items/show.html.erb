@@ -30,14 +30,15 @@
       <% end %>
   </section>
 
-  <h2> Customer Reviews </h2>
-  <p><%= link_to 'New Review', "/items/#{@item.id}/reviews/new" %></p>
+  <section id ="reviews-stat-section">
 
-  <% @item.reviews.each do |review| %>
-    <section id= "review-<%=review.id%>"
-    <p><%= review.title %></p>
-    <p><%= review.content %></p>
-    <p>Rating: <%= review.rating %> stars</p>
-    </section>
-    <% end %>
+    <h3> Average Product Rating </h3>
+    <h4><%= @item.reviews.avg_rating.round(2)%></h4>
+    <br>
+    <!-- <h3> Top Three Reviews </h3>
+    <h4><%= @item.reviews %></h4>
+    <br>
+    <h3> Top Three Reviews </h3>
+    <h4><%= @item.reviews %></h4> -->
+  </section>
 </center>
