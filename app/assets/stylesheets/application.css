@@ -75,6 +75,11 @@ a:hover {
   color: #8c003d;
 }
 
+section[id^='review-'] {
+  border-top: 2px solid #003D5B;
+  padding: 0 0 1.5em 2em;
+}
+
 .edit-delete {
   display: flex;
   justify-content: space-around;
@@ -201,12 +206,15 @@ a:hover {
  }
 
  .reviews-section {
-
+   padding-left: 3em ;
+   padding-right: 3em ;
  }
 
  .top-bottom-reviews {
+   border-top: 2px solid #003D5B;
    display: flex;
    justify-content: space-around;
+   padding-bottom: 1em;
  }
 
  .top-three {
@@ -218,4 +226,8 @@ a:hover {
  }
  .address{
    text-align: center;
+ }
+
+ #avg-rating {
+   padding-bottom: 0.5em;
  }
