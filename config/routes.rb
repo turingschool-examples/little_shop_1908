@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post "/items/:id", to: "reviews#create"
   get "/items/:id/edit", to: "items#edit"
   patch "/items/:id", to: "items#update"
+  delete "/items/:id/reviews", to: "reviews#destroy", as: :delete_review
   get "/items/:id/reviews/format/edit", to: "reviews#edit", as: :edit_review
   patch "/items/:id", to: "reviews#update"
   get "/merchants/:merchant_id/items", to: "items#index"

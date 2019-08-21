@@ -19,9 +19,25 @@
           <p><%= review.title %></p>
           <p><%= review.content %></p>
           <p>Rating: <%= review.rating %></p>
+          <%= link_to 'Delete Review', delete_review_path(@item, review), method: :delete %>
           <p><%= link_to "Edit Review", edit_review_path(@item, review) %></p>
         </section>
         <% end %>
+        <h2>Item Statistics</h2>
+        <section id="top-reviews">
+          <p>Top Three Reviews</p>
+          <% @item.top_reviews.each do |top_review| %>
+          <p><%= top_review %></p>
+          <% end %>
+        </section>
+        <section id="bottom-reviews">
+          <p>Bottom Three Reviews</p>
+          <% @item.bottom_reviews.each do |bottom_review| %>
+          <p><%= bottom_review %></p>
+          <% end %>
+        </section>
+          <p>Average Rating: <%= @item.average_rating %></p>
+
         <p><%= link_to "Add Review", new_review_path %></p>
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>

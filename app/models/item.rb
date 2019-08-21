@@ -9,4 +9,16 @@ class Item <ApplicationRecord
                         :inventory
   validates_inclusion_of :active?, :in => [true, false]
 
+  def top_reviews
+    reviews.order(:rating).reverse_order.limit(3).pluck(:title, :rating)
+  end
+
+  def bottom_reviews
+    reviews.order(:rating).limit(3).pluck(:title, :rating)
+  end
+
+  def average_rating
+    reviews.average(:rating)
+  end
+
 end
