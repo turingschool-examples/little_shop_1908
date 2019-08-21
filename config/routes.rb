@@ -18,8 +18,11 @@ Rails.application.routes.draw do
   post "/merchants/:merchant_id/items", to: "items#create"
   delete "/items/:id", to: "items#destroy"
 
-  get "/items/:id/review/new", to: "reviews#new"
-  post "/items/:id", to: "reviews#create"
+  get "/items/:item_id/reviews", to: "reviews#index"
+  get "/reviews/:id", to: "reviews#show"
+  get "/items/:item_id/reviews/new", to: "reviews#new"
+  post "/items/:item_id/reviews", to: "reviews#create"
   get "/items/:id/:review_id/edit", to: "reviews#edit"
   patch "/items/:id/:review_id", to: "reviews#update"
+  delete "/reviews/:id", to: "reviews#destroy"
 end
