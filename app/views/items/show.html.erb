@@ -30,7 +30,7 @@
         </section>
         <section class="top-bottom-reviews">
           <section id="top-three">
-            <h5>Top Three Reviews</h5>
+            <h4>Top Three Reviews</h4>
             <% @top.each do |review| %>
               <ul>
                 <li><%= "#{review.title} (#{review.rating}/5)" %></li>
@@ -38,7 +38,7 @@
             <% end %>
           </section>
           <section id="bottom-three">
-            <h5>Bottom Three Reviews</h5>
+            <h4>Bottom Three Reviews</h4>
             <% @bottom.each do |review| %>
               <ul>
                 <li><%= "#{review.title} (#{review.rating}/5)" %></li>
@@ -50,7 +50,7 @@
     <% end %>
     <% @item.reviews.each do |review| %>
       <section id="review-<%= review.id %>">
-        <h5><%= review.title %></h5>
+        <h4><%= review.title %></h4>
         <p><%= review.content %></p>
         <p>Rating: <%= review.rating %></p>
         <div>
