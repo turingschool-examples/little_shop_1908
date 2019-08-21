@@ -14,12 +14,13 @@ class ReviewsController < ApplicationController
       render :new
     end
   end
-  
+
   def destroy
     item = Item.find(params[:id])
     review = Review.find(params[:format])
     review.destroy
     redirect_to item_path(item)
+  end 
 
   def edit
     @review = Review.find(params[:format])
@@ -33,5 +34,4 @@ class ReviewsController < ApplicationController
   def review_params
     params.permit(:title, :rating, :content)
   end
-
 end
