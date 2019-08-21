@@ -14,6 +14,14 @@
  *= require_self
  */
 
+ /*
+ yellow: #EDAE49
+ red:    #D1495B
+ teal:   #00798C
+ blue:   #30638E
+ d-blue: #003D5B*/
+
+
  body {
  background-color: white;
  }
@@ -35,13 +43,13 @@ img{
 
  .grid-container{
  	display: grid;
- 	grid-template-columns: repeat(5,1fr);
+ 	grid-template-columns: repeat(4,1fr);
  	grid-template-rows: auto;
  	grid-gap: 30px;
  }
 
  .grid-item{
- 	background-color: #17BEBB;
+ 	background-color: #d9e7f2;
  	padding: 20px;
   border: solid;
  	border-radius: 12px;
@@ -63,7 +71,7 @@ img{
 
  .topnav {
    overflow: hidden;
-   background-color: #002244;
+   background-color: #003D5B;
  }
 
  .topnav a {
@@ -76,7 +84,7 @@ img{
  }
 
  .topnav a:hover {
-   background-color: #17BEBB;
+   background-color: #00798C;
    color: black;
  }
 
@@ -95,8 +103,8 @@ img{
 }
 
 input[type=submit] {
-  width: 100%;
-  background-color: #17BEBB;
+  width: 25%;
+  background-color: #00798C;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
