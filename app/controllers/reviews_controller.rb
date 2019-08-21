@@ -14,9 +14,9 @@ class ReviewsController < ApplicationController
     redirect_to "/items/#{item.id}"
   end
 
-  def avg_rating
-    self.avg_rating
-  end
+  # def avg_rating
+  #   self.avg_rating
+  # end
 
   private
   def review_params

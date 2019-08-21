@@ -31,10 +31,8 @@
   </section>
 
   <section id ="reviews-stat-section">
-
     <h3> Average Product Rating </h3>
     <h4><%= @item.reviews.avg_rating.round(2)%></h4>
-    <br>
 
    <h3> Top Three Reviews </h3>
     <% @item.reviews.top_three_reviews.each do |review| %>
@@ -53,6 +51,5 @@
        </section>
        <% end %>
      <br>
-
   </section>
 </center>
