@@ -21,9 +21,9 @@ describe "User visits items show page and clicks Add to Cart" do
 
     visit "/items/#{pull_toy.id}"
     click_link 'Add to Cart'
-
-    within
-    expect()
+    within "#cart-indicator" do
+      expect(page).to have_content("(1)")
+    end
   end
 end
 # As a visitor

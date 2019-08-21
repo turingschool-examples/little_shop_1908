@@ -18,4 +18,16 @@ describe Cart do
     cart = Cart.new({"4"=>"2", "7"=>"1"})
     expect(cart.total_items).to eq(3)
   end
+
+  it "can report quantity of an item" do
+    cart = Cart.new({"4"=>"2", "7"=>"1"})
+    expect(cart.quantity_of(4)).to eq(2)
+    expect(cart.quantity_of(7)).to eq(1)
+  end
+
+  it "can add items to contents" do
+    cart = Cart.new(nil)
+    cart.add_item(7)
+    expect(cart.contents).to eq({"7"=>1})
+  end
 end
