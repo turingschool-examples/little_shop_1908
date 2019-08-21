@@ -17,4 +17,12 @@ class Cart
     @contents[item_id.to_s] = quantity_of(item_id) + 1
   end
 
+  def total_count
+    if @contents.empty?
+      return 0
+    else
+      @contents.values.sum
+    end
+  end
+
 end
