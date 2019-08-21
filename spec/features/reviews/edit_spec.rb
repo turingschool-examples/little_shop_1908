@@ -48,12 +48,15 @@ RSpec.describe 'Edit an Existing Review' do
             click_button 'Update Review'
 
             expect(current_path).to eq("/items/#{@tire.id}")
-            expect(page).to have_content('Never Ever Again')
-            expect(page).to have_content('Both popped a week after purchase, these suck!')
-            expect(page).to have_content(2)
-            expect(page).to_not have_content("Never Buy This Tire")
-            expect(page).to_not have_content('I bought two of these and they blew within a week of each other, a month after purchase')
-            expect(page).to_not have_content(1)
+
+            within "#review-#{@corina.id}" do
+              expect(page).to have_content('Never Ever Again')
+              expect(page).to have_content('Both popped a week after purchase, these suck!')
+              expect(page).to have_content(2)
+              expect(page).to_not have_content("Never Buy This Tire")
+              expect(page).to_not have_content('I bought two of these and they blew within a week of each other, a month after purchase')
+              expect(page).to_not have_content(1)
+            end 
           end
         end
       end
