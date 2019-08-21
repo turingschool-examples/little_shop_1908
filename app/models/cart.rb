@@ -9,7 +9,7 @@ class Cart < ApplicationController
       items[Item.find(item_id.to_i)] = qty
     end
     items
-  end
+    end
   end
 
   def self.total_cost(session)
