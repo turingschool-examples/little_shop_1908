@@ -41,7 +41,6 @@ RSpec.describe "Review Creation" do
       fill_in :title, with: title
       fill_in :rating, with: rating
       fill_in :content, with: content
-      save_and_open_page
       click_on 'Submit Your Review'
 
       new_review = Review.last
