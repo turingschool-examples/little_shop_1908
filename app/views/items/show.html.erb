@@ -5,7 +5,7 @@
     <section class = "item-show-item">
       <img src= <%= @item.image %>>
     </section>
-    <section style="text-align:left" class = "item-show-item">
+    <section style="text-align:left" id = "item-<%=@item.id%>">
       <p><%= @item.description %></p>
       <p>Price: $<%= @item.price %> </p>
       <p>Inventory: <%= @item.inventory %> </p>
@@ -16,9 +16,9 @@
       <% end %>
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
+      <p><%= button_to "Add to Cart", "/cart/#{@item.id}", method: :patch%></p>
     </section>
   </section>
 </center>
 
 <%= render "reviews/index" %>
-
