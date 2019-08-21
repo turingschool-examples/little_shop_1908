@@ -34,4 +34,7 @@ Rails.application.routes.draw do
   post '/cart/checkout', to: "carts#checkout"
 
   #order
+  post "/orders", to: 'orders#create'
+  get "/orders/:order_id", to: 'orders#show'
+
 end

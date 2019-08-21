@@ -6,7 +6,8 @@
       <h1><%= item.name %></h1> <h3>from</h3> <h2><%= item.merchant.name %></h2>
       <h2>Purchase <%= qty %> at <%= number_to_currency(item.price) %> each</h2>
       <h2>Subtotal: <%= number_to_currency(item.price * qty) %></h2>
-      <% end %>
+      <% end %><br><br><br>
+      <h1>Total Items: <%= @items_hash.values.sum %></h1>
       <h1>Total Cost: <%= number_to_currency(@total_cost) %></h1>
     </center>
   </div>
