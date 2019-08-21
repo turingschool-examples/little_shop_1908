@@ -1,0 +1,29 @@
+<h1>New Order</h1>
+  <div class="cart-container">
+    <center class="cart-item">
+    <% @items_hash.each do |item, qty| %>
+      <span class="item-show-item"><%= image_tag("#{item.image}") %></span>
+      <h1><%= item.name %></h1> <h3>from</h3> <h2><%= item.merchant.name %></h2>
+      <h2>Purchase <%= qty %> at <%= number_to_currency(item.price) %> each</h2>
+      <h2>Subtotal: <%= number_to_currency(item.price * qty) %></h2>
+      <% end %>
+      <h1>Total Cost: <%= number_to_currency(@total_cost) %></h1>
+    </center>
+  </div>
+
+  <center><br><br><br><br>
+    <h1>Enter your shipping information:</h1>
+    <%= form_tag "/orders", method: :post do %>
+      <%= text_field_tag :name, "Name"%>
+
+      <%= text_field_tag :address, "Address" %>
+
+      <%= text_field_tag :city, "City" %>
+
+      <%= text_field_tag :state, "State" %>
+
+      <%= text_field_tag :zip, "Zip" %>
+
+      <%= submit_tag 'Create Order' %>
+    <% end %>
+  </center>

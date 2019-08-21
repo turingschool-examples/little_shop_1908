@@ -57,4 +57,10 @@ class CartsController < ApplicationController
     redirect_to '/cart'
   end
 
+  def checkout
+    cart = Cart.new(session[:cart])
+    @items_hash = cart.find_items_from_session
+    @total_cost = cart.total_cost
+  end
+
 end

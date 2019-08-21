@@ -12,7 +12,7 @@
       <br><br><br><br><br><br>
     <% end %>
     <h1>Total Cost: <%= number_to_currency(@total_cost) %></h1>
-    <center><%= button_to("Checkout", '/cart/order/new') %></center>
+    <center><%= button_to("Checkout", '/cart/checkout') %></center>
   </center>
 </div>
 <center><h3><%= link_to("Empty Cart", '/cart/empty') %></h3></center>
