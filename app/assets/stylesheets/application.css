@@ -22,7 +22,7 @@
  d-blue: #003D5B, darker: #002233 */
  *{
    box-sizing: border-box;
-   /* border: 1px solid red; */
+   border: 1px solid red;
  }
 
  a:link, a:visited {
@@ -80,6 +80,11 @@ input[type=submit]:hover {
 section[id^='review-'] {
   border-top: 2px solid #003D5B;
   padding: 0 0 1.5em 2em;
+}
+
+section[id^='cart-item-'] {
+  display: flex;
+  justify-content: space-between;
 }
 
 .address {
