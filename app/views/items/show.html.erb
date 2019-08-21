@@ -19,6 +19,7 @@
       <% else %>
       <p style= "color:red">Inactive</p>
       <% end %>
+      <%= link_to 'Add to Cart', "/cart/#{@item.id}", method: :patch %>
     </div>
   </section>
   <section class="reviews-section">
