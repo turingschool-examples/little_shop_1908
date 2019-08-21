@@ -14,9 +14,16 @@ class ReviewsController < ApplicationController
     redirect_to "/items/#{item.id}"
   end
 
-  # def avg_rating
-  #   self.avg_rating
-  # end
+  def edit
+    @review = Review.find(params[:review_id])
+    @item = Item.find(@review.item_id)
+  end
+
+  def update
+    review = Review.find(params[:review_id])
+    review.update(review_params)
+    redirect_to "/items/#{review.item.id}"
+  end
 
   private
   def review_params

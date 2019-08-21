@@ -2,6 +2,7 @@
 
 <center>
   <%= form_tag "/items/#{@item.id}", method: :post do %>
+  
     <%= text_field_tag :title, "Title"%>
 
     <%= text_field_tag :content, "Review" %>
