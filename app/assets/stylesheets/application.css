@@ -160,6 +160,7 @@ a:hover {
   border: solid;
   border-radius: 12px;
   background-color: #d9e7f2;
+  margin-left: 20%
  }
 
  .item-show-item{
@@ -209,7 +210,7 @@ a:hover {
  }
 
  .top-three {
-   width: 45%;
+
  }
 
  .bottom-three {

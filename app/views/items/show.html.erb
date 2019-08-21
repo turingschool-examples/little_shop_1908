@@ -1,63 +1,61 @@
 <h1><%= @item.name %></h1>
 <p align="center">Sold by: <%=link_to @item.merchant.name, "/merchants/#{@item.merchant.id}" %> </p>
-<center>
-  <section class = "item-show-box">
-    <section class = "item-show-item">
-      <img src= <%= @item.image %> class="item-show-img">
-      <span class = "item-show-details">
-        <p style="font-weight:bold">Item Details</p>
-        <p><%= @item.description %></p>
-        <p>Price: $<%= @item.price %> </p>
-        <p>Inventory: <%= @item.inventory %> </p>
-        <% if @item.active? %>
-        <p style= "color:green">Active</p>
-        <% else %>
-        <p style= "color:red">Inactive</p>
-        <% end %>
-        <div class="edit-delete">
-          <%= link_to "Edit Item", "/items/#{@item.id}/edit", class: "edit-btn" %>
-          <%= link_to "Delete Item", "/items/#{@item.id}", method: :delete, class: "delete-btn" %>
-        </div>
-      </span>
-    </section>
-    <section class="reviews-section">
-      <p><%= link_to "New Review", "/items/#{@item.id}/reviews/new" %></p>
-      <% unless @item.reviews.count <= 3 %>
-        <section class="reviews-stats">
-          <section id="avg-rating">
-            <%= "Average Rating: #{@average.round(2)}" %>
-          </section>
-          <section class="top-bottom-reviews">
-            <section id="top-three">
-              <h5>Top Three Reviews</h5>
-              <% @top.each do |review| %>
-                <ul>
-                  <li><%= "#{review.title} (#{review.rating}/5)" %></li>
-                </ul>
-              <% end %>
-            </section>
-            <section id="bottom-three">
-              <h5>Bottom Three Reviews</h5>
-              <% @bottom.each do |review| %>
-                <ul>
-                  <li><%= "#{review.title} (#{review.rating}/5)" %></li>
-                </ul>
-              <% end %>
-            </section>
-          </section>
-        </section>
+<section class = "item-show-box">
+  <section class = "item-show-item">
+    <img src= <%= @item.image %> class="item-show-img">
+    <div class = "item-show-details">
+      <p style="font-weight:bold">Item Details</p>
+      <p><%= @item.description %></p>
+      <p>Price: $<%= @item.price %> </p>
+      <p>Inventory: <%= @item.inventory %> </p>
+      <% if @item.active? %>
+      <p style= "color:green">Active</p>
+      <% else %>
+      <p style= "color:red">Inactive</p>
       <% end %>
-      <% @item.reviews.each do |review| %>
-        <section id="review-<%= review.id %>">
-          <h5><%= review.title %></h5>
-          <p><%= review.content %></p>
-          <p>Rating: <%= review.rating %></p>
-          <div>
-            <%= link_to "Edit", "/reviews/#{review.id}/edit", class: "edit-btn"%>
-            <%= link_to "Delete", "/reviews/#{review.id}", method: :delete, class: 'delete-btn'%>
-          </div>
-        </section>
-      <% end %>
-    </section>
+      <div class="edit-delete">
+        <%= link_to "Edit Item", "/items/#{@item.id}/edit", class: "edit-btn" %>
+        <%= link_to "Delete Item", "/items/#{@item.id}", method: :delete, class: "delete-btn" %>
+      </div>
+    </div>
   </section>
-</center>
+  <section class="reviews-section">
+    <p><%= link_to "New Review", "/items/#{@item.id}/reviews/new" %></p>
+    <% unless @item.reviews.count <= 3 %>
+      <section class="reviews-stats">
+        <section id="avg-rating">
+          <%= "Average Rating: #{@average.round(2)}" %>
+        </section>
+        <section class="top-bottom-reviews">
+          <section id="top-three">
+            <h5>Top Three Reviews</h5>
+            <% @top.each do |review| %>
+              <ul>
+                <li><%= "#{review.title} (#{review.rating}/5)" %></li>
+              </ul>
+            <% end %>
+          </section>
+          <section id="bottom-three">
+            <h5>Bottom Three Reviews</h5>
+            <% @bottom.each do |review| %>
+              <ul>
+                <li><%= "#{review.title} (#{review.rating}/5)" %></li>
+              </ul>
+            <% end %>
+          </section>
+        </section>
+      </section>
+    <% end %>
+    <% @item.reviews.each do |review| %>
+      <section id="review-<%= review.id %>">
+        <h5><%= review.title %></h5>
+        <p><%= review.content %></p>
+        <p>Rating: <%= review.rating %></p>
+        <div>
+          <%= link_to "Edit", "/reviews/#{review.id}/edit", class: "edit-btn"%>
+          <%= link_to "Delete", "/reviews/#{review.id}", method: :delete, class: 'delete-btn'%>
+        </div>
+      </section>
+    <% end %>
+  </section>
+</section>
