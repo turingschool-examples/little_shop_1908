@@ -1,7 +1,7 @@
 <h1> Add New Review </h1>
 
 <center>
-  <%= form_tag "/items/#{@item.id}", method: :post do %>
+  <%= form_tag "/items/#{@item.id}/reviews", method: :post do %>
     <%= text_field_tag :title %>
 
     <%= text_field_tag :content %>
