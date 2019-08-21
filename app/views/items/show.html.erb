@@ -29,21 +29,23 @@
           <section id="avg-rating">
             <%= "Average Rating: #{@average.round(2)}" %>
           </section>
-          <section id="top-three">
-            <h5>Top Three Reviews</h5>
-            <% @top.each do |review| %>
-              <ul>
-                <li><%= "#{review.title} (#{review.rating}/5)" %></li>
-              </ul>
-            <% end %>
-          </section>
-          <section id="bottom-three">
-            <h5>Bottom Three Reviews</h5>
-            <% @bottom.each do |review| %>
-              <ul>
-                <li><%= "#{review.title} (#{review.rating}/5)" %></li>
-              </ul>
-            <% end %>
+          <section class="top-bottom-reviews">
+            <section id="top-three">
+              <h5>Top Three Reviews</h5>
+              <% @top.each do |review| %>
+                <ul>
+                  <li><%= "#{review.title} (#{review.rating}/5)" %></li>
+                </ul>
+              <% end %>
+            </section>
+            <section id="bottom-three">
+              <h5>Bottom Three Reviews</h5>
+              <% @bottom.each do |review| %>
+                <ul>
+                  <li><%= "#{review.title} (#{review.rating}/5)" %></li>
+                </ul>
+              <% end %>
+            </section>
           </section>
         </section>
       <% end %>
@@ -52,8 +54,10 @@
           <h5><%= review.title %></h5>
           <p><%= review.content %></p>
           <p>Rating: <%= review.rating %></p>
-          <p><%= link_to "Edit", "/reviews/#{review.id}/edit" %></p>
-          <p><%= link_to "Delete", "/reviews/#{review.id}", method: :delete%></p>
+          <div>
+            <%= link_to "Edit", "/reviews/#{review.id}/edit", class: "edit-btn"%>
+            <%= link_to "Delete", "/reviews/#{review.id}", method: :delete, class: 'delete-btn'%>
+          </div>
         </section>
       <% end %>
     </section>

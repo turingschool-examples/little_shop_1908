@@ -199,6 +199,22 @@ a:hover {
    color: black;
  }
 
+ .reviews-section {
+
+ }
+
+ .top-bottom-reviews {
+   display: flex;
+   justify-content: space-around;
+ }
+
+ .top-three {
+   width: 45%;
+ }
+
+ .bottom-three {
+
+ }
  .address{
    text-align: center;
  }
