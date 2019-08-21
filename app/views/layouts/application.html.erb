@@ -12,8 +12,8 @@
     <nav class = "topnav">
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
-      <%= link_to "/cart", id: :"cart-indicator" do  %>
-        <%= image_tag  "https://cdn0.iconfinder.com/data/icons/shopping-cart-26/1000/Shopping-Basket-03-512.png"%>
+      <%= link_to "/cart", id: "cart-indicator" do  %>
+        <%= image_tag  "https://cdn0.iconfinder.com/data/icons/shopping-cart-26/1000/Shopping-Basket-03-512.png", id: "cart-pic"%>
       <% end %>
     </nav>
     <% flash.each do |type, message| %>

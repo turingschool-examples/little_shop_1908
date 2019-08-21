@@ -280,3 +280,11 @@ section[id^='review-'] {
  #avg-rating {
    padding-left: 2em;
  }
+
+ #cart-indicator {
+   float: right;
+ }
+
+ #cart-pic {
+   width: 2em;
+ }
