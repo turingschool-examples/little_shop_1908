@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Your Review</title>
+  </head>
+  <body>
+    <%= form_tag edit_review_path do %>
+    <%= label_tag :title, "Headline:" %>
+    <%= text_field_tag :title, "#{@review.title}" %>
+
+    <%= label_tag :rating, "Rating (1-5):" %>
+    <%= text_field_tag :rating, "#{@review.rating}" %>
+
+    <%= label_tag :content, "Write Your Review:" %>
+    <%= text_field_tag :content, "#{@review.content}"%>
+
+    <%= submit_tag 'Update Your Review' %>
+    <% end %>
+  </body>
+</html>
