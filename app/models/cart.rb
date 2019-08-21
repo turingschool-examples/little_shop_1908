@@ -18,4 +18,13 @@ class Cart
       @contents[item_id.to_s] = quantity_of(item_id) + 1
   end
 
+  def subtotal(item_id)
+    item = Item.find(item_id)
+    @contents[item_id.to_s] * item.price
+  end
+
+  def order_total
+    @contents.map { |id, num| subtotal(id) }.sum
+  end
+
 end

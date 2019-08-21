@@ -52,7 +52,7 @@ describe 'When I visit my cart' do
       end
     end
 
-    within ".order_total" do
+    within ".order-total" do
       expect(page).to have_content("Order total: $52.00")
     end
   end

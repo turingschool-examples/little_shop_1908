@@ -9,6 +9,7 @@ class CartController < ApplicationController
   end
 
   def show
-    
+    @cart = Cart.new(session[:cart])
+    @items = Item.where(id: [@cart.contents.keys])
   end
 end
