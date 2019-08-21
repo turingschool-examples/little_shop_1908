@@ -21,7 +21,7 @@
  h1 {
   text-align: center;
  	font-size: 40px;
- 	color: #002244;
+ 	color: #000000;
  	font-family: "Marker Felt", fantasy;
  }
 
@@ -41,11 +41,11 @@ img{
  }
 
  .grid-item{
- 	background-color: #17BEBB;
+ 	background-color: #42f5c8;
  	padding: 20px;
   border: solid;
  	border-radius: 12px;
-  border-color: #002244;
+  border-color: #000000;
  	text-align: center
  }
  .item-show-grid{
@@ -63,7 +63,8 @@ img{
 
  .topnav {
    overflow: hidden;
-   background-color: #002244;
+   background-color: #000000;
+   padding: 14px 16px;
  }
 
  .topnav a {
@@ -76,9 +77,16 @@ img{
  }
 
  .topnav a:hover {
-   background-color: #17BEBB;
+   background-color: #42f5c8;
    color: black;
  }
+
+#cart-indicator {
+  font-size: 30px;
+  text-align: right;
+  color: white;
+  padding-right: 15px;
+}
 
  .address{
    text-align: center;
@@ -96,7 +104,7 @@ img{
 
 input[type=submit] {
   width: 100%;
-  background-color: #17BEBB;
+  background-color: #42f5c8;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
