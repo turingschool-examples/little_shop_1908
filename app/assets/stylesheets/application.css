@@ -20,7 +20,10 @@
  teal:   #00798C
  blue:   #30638E, lighter (background): #d9e7f2
  d-blue: #003D5B, darker: #002233 */
-
+ *{
+   box-sizing: border-box;
+   /* border: 1px solid red; */
+ }
 
  body {
  background-color: white;
@@ -32,14 +35,6 @@
  	color: #002233;
  	font-family: "Marker Felt", fantasy;
  }
-
-ul{
-  padding: 0px;
-  text-align: center;
-}
-/* img{
-  width: 80%;
-} */
 
 input[type=text], select {
  width: 100%;
@@ -79,14 +74,60 @@ a:link, a:visited {
 a:hover {
   color: #8c003d;
 }
- .grid-container{
+
+.edit-delete {
+  display: flex;
+  justify-content: space-around;
+}
+
+.edit-btn {
+  display: inline-block;
+  background-color: #EDAE49;
+  border-radius: 7px;
+  padding: 6px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.9em;
+  box-shadow: 2px 2px 4px #808080;
+}
+
+.delete-btn {
+  display: inline-block;
+  background-color: #D1495B;
+  border-radius: 7px;
+  padding: 6px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.9em;
+  box-shadow: 2px 2px 4px #808080;
+}
+
+.edit-btn:link, .edit-btn:visited {
+  color: #404040  ;
+}
+
+.edit-btn:hover {
+  background-color: #d18915;
+  color:#f2f2f2;
+}
+
+.delete-btn:link, .delete-btn:visited {
+  color: #404040  ;
+}
+
+.delete-btn:hover {
+  background-color: #8f2432;
+  color:#f2f2f2;
+}
+
+ .grid-container {
  	display: grid;
  	grid-template-columns: repeat(4,1fr);
  	grid-template-rows: auto;
  	grid-gap: 30px;
  }
 
- .grid-item{
+ .grid-item {
  	background-color: #d9e7f2;
  	padding: 20px;
   border: solid;
@@ -114,17 +155,29 @@ a:hover {
 
  }
 
- .item-show-grid{
+ .item-show-box{
   width: 60%;
- 	display: grid;
   border: solid;
   border-radius: 12px;
- 	grid-template-columns: repeat(2,1fr);
+  background-color: #d9e7f2;
  }
 
  .item-show-item{
+  display: flex;
+  justify-content: space-between;
  	padding: 20px;
- 	text-align: right;
+  text-align: left;
+ }
+
+ .item-show-img {
+   width: 50%;
+   object-fit: contain;
+   max-height: 14em;
+ }
+
+ .item-show-details {
+   padding-left: 10%;
+   width: 50%;
  }
 
  .topnav {

@@ -1,22 +1,27 @@
 <h1><%= @item.name %></h1>
 <p align="center">Sold by: <%=link_to @item.merchant.name, "/merchants/#{@item.merchant.id}" %> </p>
 <center>
-  <section class = "item-show-grid">
+  <section class = "item-show-box">
     <section class = "item-show-item">
-      <img src= <%= @item.image %>>
-    </section>
-    <section style="text-align:left" class = "item-show-item">
-      <p><%= @item.description %></p>
-      <p>Price: $<%= @item.price %> </p>
-      <p>Inventory: <%= @item.inventory %> </p>
-      <% if @item.active? %>
+      <img src= <%= @item.image %> class="item-show-img">
+      <span class = "item-show-details">
+        <p style="font-weight:bold">Item Details</p>
+        <p><%= @item.description %></p>
+        <p>Price: $<%= @item.price %> </p>
+        <p>Inventory: <%= @item.inventory %> </p>
+        <% if @item.active? %>
         <p style= "color:green">Active</p>
-      <% else %>
+        <% else %>
         <p style= "color:red">Inactive</p>
-      <% end %>
-      <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
-      <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
+        <% end %>
+        <div class="edit-delete">
+          <%= link_to "Edit Item", "/items/#{@item.id}/edit", class: "edit-btn" %>
+          <%= link_to "Delete Item", "/items/#{@item.id}", method: :delete, class: "delete-btn" %>
+        </div>
+      </span>
     </section>
+
+
     <section class="reviews-section">
       <p><%= link_to "New Review", "/items/#{@item.id}/reviews/new" %></p>
       <% unless @item.reviews.count <= 3 %>
