@@ -40,16 +40,7 @@ RSpec.describe "Items Index Page" do
           expect(page).to have_css("img[src*='#{item.image}']")
         end
       end
-      # delete the below section due to the iteration over the active arrays above
-      # within "#item-#{@pull_toy.id}" do
-      #   expect(page).to have_content(@pull_toy.name)
-      #   expect(page).to have_content(@pull_toy.description)
-      #   expect(page).to have_content("Price: $#{@pull_toy.price}")
-      #   expect(page).to have_content("Active")
-      #   expect(page).to have_content("Inventory: #{@pull_toy.inventory}")
-      #   expect(page).to have_content("Sold by: #{@brian.name}")
-      #   expect(page).to have_css("img[src*='#{@pull_toy.image}']")
-      # end
+    
 
       within "#item-#{@dog_bone.id}" do
         expect(page).to have_content(@dog_bone.name)
@@ -60,7 +51,6 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_content("Sold by: #{@brian.name}")
         expect(page).to have_css("img[src*='#{@dog_bone.image}']")
       end
-
     end
   end
 end

@@ -9,4 +9,5 @@ class Item <ApplicationRecord
                         :inventory
   validates_inclusion_of :active?, :in => [true, false]
 
+
 end
