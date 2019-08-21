@@ -25,7 +25,7 @@ RSpec.describe 'Edit an Existing Review' do
 
         visit "/items/#{@tire.id}"
 
-        within "#review-#{review.id}" do
+        within "#review-#{@corina.id}" do
           expect(page).to have_link("Edit Review")
         end
 
@@ -33,24 +33,24 @@ RSpec.describe 'Edit an Existing Review' do
             click_on 'Edit Review'
 
             expect(current_path).to eq("/reviews/#{@corina.id}/edit")
-            expect(find_field('Title').value).to eq "Never Buy This Tire"
-            expect(find_field('Review').value).to eq 'I bought two of these and they blew within a week of each other, a month after purchase'
-            expect(find_field('Rating').value).to eq 1
+            expect(find_field(:title).value).to eq "Never Buy This Tire"
+            expect(find_field(:content).value).to eq 'I bought two of these and they blew within a week of each other, a month after purchase'
+            expect(find_field(:rating).value).to eq '1'
           end
 
           it 'I can change and update the review within the form' do
             visit "/reviews/#{@corina.id}/edit"
 
-            fill_in 'Title', with: 'Never Ever Again'
-            fill_in 'Review', with: 'Both popped a week after purchase, these suck!'
-            fill_in 'Rating', with: 0
+            fill_in :title, with: 'Never Ever Again'
+            fill_in :content, with: 'Both popped a week after purchase, these suck!'
+            fill_in :rating, with: 2
 
             click_button 'Update Review'
 
             expect(current_path).to eq("/items/#{@tire.id}")
             expect(page).to have_content('Never Ever Again')
             expect(page).to have_content('Both popped a week after purchase, these suck!')
-            expect(page).to have_content(0)
+            expect(page).to have_content(2)
             expect(page).to_not have_content("Never Buy This Tire")
             expect(page).to_not have_content('I bought two of these and they blew within a week of each other, a month after purchase')
             expect(page).to_not have_content(1)
