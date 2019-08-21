@@ -3,6 +3,7 @@ class CartsController < ApplicationController
   end
 
   def add_item
+    flash[:notice] = "Item successfully added to your cart."
     redirect_to "/items"
   end
 end
