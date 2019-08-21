@@ -27,13 +27,13 @@
       <% else %>
         <h2>&#x1F31F; Average Rating: <%= @item.avg_rating.round(2) %> &#x1F31F; </h2>
       <% end %>
-      <div class="highlight-column">
+      <div class="highlight-column", id="best-reviews">
         <h2>&#x1F31F; Best Reviews &#x1F31F;</h2>
         <% @item.best_reviews.each do |review| %>
         <h3><%= review.title %> | <%= review.rating %>/5 &#x1F31F;'s</h3>
         <% end %>
       </div>
-      <div class="highlight-column">
+      <div class="highlight-column", id="worst-reviews">
         <h2>&#x1F31F; Worst Reviews &#x1F31F;</h2>
         <% @item.worst_reviews.each do |review| %>
         <h3><%= review.title %> | <%= review.rating %>/5 &#x1F31F;'s</h3>

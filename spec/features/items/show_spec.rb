@@ -142,4 +142,33 @@ describe 'Item Show Page' do
     expect(page).to_not have_content(@review_2.title)
     expect(page).to_not have_content(@review_2.content)
   end
+
+  it "displays review statistics" do
+    review_3 = @pull_toy.reviews.create(title: "It's ok", content: "My dog got bored with this", rating: 3)
+    review_4 = @pull_toy.reviews.create(title: "Nice; A Little Expensive", content: "Good quality.", rating: 4)
+    review_5 = @pull_toy.reviews.create(title: "Buy 7!", content: "Fido loves these!", rating: 5)
+    review_6 = @pull_toy.reviews.create(title: "Mehhh", content: "There are better options", rating: 2)
+
+    visit "/items/#{@pull_toy.id}"
+
+    within "#best-reviews" do
+      expect(page).to have_content(@review_1.title)
+      expect(page).to have_content(@review_1.rating)
+      expect(page).to have_content(review_4.title)
+      expect(page).to have_content(review_4.rating)
+      expect(page).to have_content(review_5.title)
+      expect(page).to have_content(review_5.rating)
+    end
+
+    within "#worst-reviews" do
+      expect(page).to have_content(@review_2.title)
+      expect(page).to have_content(@review_2.rating)
+      expect(page).to have_content(review_3.title)
+      expect(page).to have_content(review_3.rating)
+      expect(page).to have_content(review_6.title)
+      expect(page).to have_content(review_6.rating)
+    end
+
+    expect(page).to have_content(3.3)
+  end
 end
