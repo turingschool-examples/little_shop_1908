@@ -7,4 +7,8 @@ class CartController < ApplicationController
     flash[:notice] = "#{item.name} added to cart."
     redirect_to '/items'
   end
+
+  def show
+    
+  end
 end
