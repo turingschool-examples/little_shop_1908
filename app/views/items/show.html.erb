@@ -19,6 +19,7 @@
           <p><%= review.title %></p>
           <p><%= review.content %></p>
           <p>Rating: <%= review.rating %></p>
+          <p><%= link_to "Edit Review", edit_review_path(@item, review) %></p>
         </section>
         <% end %>
         <p><%= link_to "Add Review", new_review_path %></p>
