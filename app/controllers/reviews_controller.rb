@@ -15,6 +15,14 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def edit
+    @review = Review.find(params[:format])
+  end
+
+  def update
+    # binding.pry
+  end
+
   private
   def review_params
     params.permit(:title, :rating, :content)
