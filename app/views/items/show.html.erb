@@ -21,10 +21,10 @@
   </section>
 
     <div class="row">
-      <h1><%= @item.name %> Stats</h1>
       <% if @item.reviews.empty? %>
-        <h2>&#x1F31F; Average Rating: No reviews yet! &#x1F31F; </h2>
+        <h2>&#x1F31F; No reviews yet! &#x1F31F; </h2>
       <% else %>
+      <h1><%= @item.name %> Stats</h1>
         <h2>&#x1F31F; Average Rating: <%= @item.avg_rating.round(2) %> &#x1F31F; </h2>
       <% end %>
       <div class="highlight-column", id="best-reviews">
@@ -53,5 +53,6 @@
           <% end %>
         </section>
       </div>
-    <%= link_to "Add Review", "/items/#{@item.id}/reviews/new-review" %>
+      <% end %>
+    <%= button_to "Add Review", "/items/#{@item.id}/reviews/new-review", method: :get %>
 </center>
