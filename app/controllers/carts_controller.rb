@@ -47,6 +47,7 @@ class CartsController < ApplicationController
     if session[:cart][item.id.to_s] == 0
       session[:cart].delete(item.id.to_s)
     end
+    item.update(active?: true)
     item.save
     redirect_to '/cart'
   end
