@@ -37,9 +37,9 @@ ul{
   padding: 0px;
   text-align: center;
 }
-img{
-  width: 50%;
-}
+/* img{
+  width: 80%;
+} */
 
 input[type=text], select {
  width: 100%;
@@ -94,6 +94,26 @@ a:hover {
   border-color: #002233;
  	text-align: center
  }
+
+ .grid-item-header {
+   height: 5em;
+ }
+
+ .grid-item-img-container {
+   height: 8em;
+   margin: 1em;
+ }
+
+ .grid-item-img {
+   object-fit: contain;
+   width: 100%;
+   max-height: 8em;
+ }
+
+ .grid-item-details {
+
+ }
+
  .item-show-grid{
   width: 60%;
  	display: grid;
