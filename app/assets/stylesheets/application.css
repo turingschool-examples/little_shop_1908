@@ -17,7 +17,7 @@
  /*
  yellow: #EDAE49
  red:    #D1495B, red(link-hover): #8c003d
- teal:   #00798C
+ teal:   #00798C, lighter: #00c7e6
  blue:   #30638E, lighter (background): #d9e7f2
  d-blue: #003D5B, darker: #002233 */
  *{
@@ -35,6 +35,7 @@
 
  body {
  background-color: white;
+ font-size: 1.1em;
  }
 
  form {
@@ -81,7 +82,7 @@ section[id^='review-'] {
   padding: 0 0 1.5em 2em;
 }
 
-.address{
+.address {
   text-align: center;
 }
 
@@ -94,9 +95,9 @@ section[id^='review-'] {
   justify-content: space-around;
 }
 .delete-btn {
-  background-color: #D1495B;
+  background-color: #e699a3;
   border-radius: 7px;
-  box-shadow: 2px 2px 4px #808080;
+  box-shadow: 2px 2px 4px #202020;
   display: inline-block;
   font-size: 0.9em;
   padding: 6px 10px;
@@ -109,14 +110,14 @@ section[id^='review-'] {
 }
 
 .delete-btn:hover {
-  background-color: #8f2432;
+  background-color: #D1495B;
   color:#f2f2f2;
 }
 
 .edit-btn {
-  background-color: #EDAE49;
+  background-color: #f6d6a2;
   border-radius: 7px;
-  box-shadow: 2px 2px 4px #808080;
+  box-shadow: 2px 2px 4px #202020;
   display: inline-block;
   font-size: 0.9em;
   padding: 6px 10px;
@@ -125,11 +126,11 @@ section[id^='review-'] {
 }
 
 .edit-btn:link, .edit-btn:visited {
-  color: #404040  ;
+  color: #404040;
 }
 
 .edit-btn:hover {
-  background-color: #d18915;
+  background-color: #EDAE49;
   color:#f2f2f2;
 }
  .grid-container {
@@ -173,7 +174,7 @@ section[id^='review-'] {
 
  .item-show-box{
   background-color: #d9e7f2;
-  border-radius: 12px;
+  border-radius: 1em;
   border: solid;
   margin-left: 20%;
   width: 60%;
@@ -204,6 +205,7 @@ section[id^='review-'] {
    display: flex;
    justify-content: space-between;
    padding: 0.8em 3em 0.8em 3em;
+   border-radius: 0.8em 0.8em 0 0;
  }
 
  .topnav {
@@ -230,6 +232,40 @@ section[id^='review-'] {
    padding-right: 3em ;
  }
 
+ .reviews-section-header {
+   background-color: #30638E;
+   border-bottom: 2px solid #003D5B;
+   display: flex;
+   justify-content: space-between;
+   margin-top: 2em;
+   padding: 0.5em 1em;
+   border-radius: 10px 10px 0px 0px;
+ }
+ .reviews-header-btn {
+   background-color:  #b3f5ff;
+   border-radius: 7px;
+   box-shadow: 2px 2px 4px #202020;
+   display: inline-block;
+   font-size: 0.9em;
+   padding: 4px 8px;
+   text-align: center;
+   text-decoration: none;
+ }
+
+ .reviews-header-btn:link, .reviews-header-btn:visited{
+   color: #404040;
+ }
+
+ .reviews-header-btn:hover {
+   background-color: #00ddff;
+   color: #f2f2f2;
+ }
+
+ .reviews-title {
+   color: #f2f2f2;
+   font-size: 1.4em;
+ }
+
  .top-bottom-reviews {
    border-top: 2px solid #003D5B;
    display: flex;
@@ -242,5 +278,5 @@ section[id^='review-'] {
  }
 
  #avg-rating {
-   /* padding-bottom: 0.5em; */
+   padding-left: 2em;
  }

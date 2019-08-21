@@ -22,7 +22,10 @@
     </div>
   </section>
   <section class="reviews-section">
-    <p><%= link_to "New Review", "/items/#{@item.id}/reviews/new" %></p>
+    <div class="reviews-section-header">
+      <span class="reviews-title">Customer Reviews</span>
+      <%= link_to "New Review", "/items/#{@item.id}/reviews/new", class: "reviews-header-btn" %>
+    </div>
     <% unless @item.reviews.count <= 3 %>
       <section class="reviews-stats">
         <h3 id="avg-rating">
