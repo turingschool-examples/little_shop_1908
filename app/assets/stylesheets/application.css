@@ -165,3 +165,22 @@ form {
   color: white;
   border: 2px solid white;
 }
+
+.cart-container{
+ display: grid;
+ width:500px;
+ margin:0 auto;
+ position:relative;
+ grid-gap: 30px;
+ justify-items: center;
+ position: relative;
+}
+
+.cart-item{
+ background-color: #ffffff;
+ padding: 20px;
+ border: solid;
+ border-radius: 12px;
+ border-color: #002244;
+ text-align: center
+}

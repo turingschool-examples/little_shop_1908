@@ -26,5 +26,6 @@ Rails.application.routes.draw do
   patch '/items/:id/buy', to: 'items#buy_item', as: :update_purchased_item
 
   #cart
-  get '/cart', to: "cart#index"
+  get '/cart', to: "carts#index"
+  get '/cart/empty', to: 'carts#empty'
 end

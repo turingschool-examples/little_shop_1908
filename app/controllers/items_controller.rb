@@ -49,8 +49,6 @@ class ItemsController<ApplicationController
     if item.inventory > 0
       item.buy
     end
-    # binding.pry
-    redirect_to carts_path
   end
 
   private
