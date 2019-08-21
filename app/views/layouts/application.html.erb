@@ -12,7 +12,7 @@
     <nav class = "topnav">
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
-      <div style="float:right"><%= link_to "Items in Cart: #{session[:cart].values.sum}", "/cart" %><%= image_tag 'pug_cart.png', id: 'cart-icon' %></div>
+      <div style="float:right"><%= link_to "Items in Cart: #{Cart.total_items(session[:cart])}", "/cart" %><%= image_tag 'pug_cart.png', id: 'cart-icon' %></div>
     </nav>
     <div class="flash-message"><% flash.each do |type, message| %>
       <p><%= message %></p>
