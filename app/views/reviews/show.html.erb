@@ -1,0 +1,9 @@
+  <div>
+    <h2>Review</h2>
+      <section id= 'review-<%= @review.id %>'>
+        <p><%= @review.title %></p>
+        <p><%= @review.content %></p>
+        <p>Rating: <%= @review.rating %></p>
+      </section>
+      <p id="delete-review-<%= @review.id %>"><%= link_to "Delete Review", "/reviews/#{@review.id}", method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  </div>
