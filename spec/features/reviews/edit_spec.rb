@@ -16,17 +16,20 @@ RSpec.describe 'Edit an Existing Review' do
     describe 'When I see a review on an Item Show Page' do
       describe 'I can click on a link to Edit the review' do
         before :each do
-          @bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
-          @tire = @bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
-          @corina = @tire.reviews.create(title: 'Never Buy This Tire', content: "I bought two of these and they blew within a week of each other, a month after purchase", rating: 1)
+          @bike_shop = Merchant.create!(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+          @tire = @bike_shop.items.create!(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+          @corina = @tire.reviews.create!(title: 'Never Buy This Tire', content: "I bought two of these and they blew within a week of each other, a month after purchase", rating: 1)
+        end
 
-          visit "/items/#{@tire.id}"
+        it 'I then see a prepopulated form with the current review details' do
 
-          within "#review-#{review.id}" do
-            expect(page).to have_link("Edit Review")
-          end
+        visit "/items/#{@tire.id}"
 
-          it 'I then see a prepopulated form with the current review details to edit' do
+        within "#review-#{review.id}" do
+          expect(page).to have_link("Edit Review")
+        end
+
+
             click_on 'Edit Review'
 
             expect(current_path).to eq("/reviews/#{@corina.id}/edit")
@@ -34,8 +37,25 @@ RSpec.describe 'Edit an Existing Review' do
             expect(find_field('Review').value).to eq 'I bought two of these and they blew within a week of each other, a month after purchase'
             expect(find_field('Rating').value).to eq 1
           end
+
+          it 'I can change and update the review within the form' do
+            visit "/reviews/#{@corina.id}/edit"
+
+            fill_in 'Title', with: 'Never Ever Again'
+            fill_in 'Review', with: 'Both popped a week after purchase, these suck!'
+            fill_in 'Rating', with: 0
+
+            click_button 'Update Review'
+
+            expect(current_path).to eq("/items/#{@tire.id}")
+            expect(page).to have_content('Never Ever Again')
+            expect(page).to have_content('Both popped a week after purchase, these suck!')
+            expect(page).to have_content(0)
+            expect(page).to_not have_content("Never Buy This Tire")
+            expect(page).to_not have_content('I bought two of these and they blew within a week of each other, a month after purchase')
+            expect(page).to_not have_content(1)
+          end
         end
       end
     end
   end
-end
