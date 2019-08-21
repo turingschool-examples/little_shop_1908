@@ -25,8 +25,23 @@
    /* border: 1px solid red; */
  }
 
+ a:link, a:visited {
+  color: #30638E;
+ }
+
+ a:hover {
+   color: #8c003d;
+ }
+
  body {
  background-color: white;
+ }
+
+ form {
+  align-content: center;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 60%;
  }
 
  h1 {
@@ -60,34 +75,27 @@ input[type=submit] {
 input[type=submit]:hover {
  background-color: #45a049;
 }
-form {
- align-content: center;
- background-color: #f2f2f2;
- padding: 20px;
- width: 60%;
-}
-
-a:link, a:visited {
- color: #30638E;
-}
-
-a:hover {
-  color: #8c003d;
-}
 
 section[id^='review-'] {
   border-top: 2px solid #003D5B;
   padding: 0 0 1.5em 2em;
 }
 
+.address{
+  text-align: center;
+}
+
+.bottom-three {
+
+}
+
 .edit-delete {
   display: flex;
   justify-content: space-around;
 }
-
-.edit-btn {
+.delete-btn {
   display: inline-block;
-  background-color: #EDAE49;
+  background-color: #D1495B;
   border-radius: 7px;
   padding: 6px 10px;
   text-align: center;
@@ -96,9 +104,18 @@ section[id^='review-'] {
   box-shadow: 2px 2px 4px #808080;
 }
 
-.delete-btn {
+.delete-btn:link, .delete-btn:visited {
+  color: #404040  ;
+}
+
+.delete-btn:hover {
+  background-color: #8f2432;
+  color:#f2f2f2;
+}
+
+.edit-btn {
   display: inline-block;
-  background-color: #D1495B;
+  background-color: #EDAE49;
   border-radius: 7px;
   padding: 6px 10px;
   text-align: center;
@@ -115,16 +132,6 @@ section[id^='review-'] {
   background-color: #d18915;
   color:#f2f2f2;
 }
-
-.delete-btn:link, .delete-btn:visited {
-  color: #404040  ;
-}
-
-.delete-btn:hover {
-  background-color: #8f2432;
-  color:#f2f2f2;
-}
-
  .grid-container {
  	display: grid;
  	grid-template-columns: repeat(4,1fr);
@@ -234,13 +241,6 @@ section[id^='review-'] {
 
  }
 
- .bottom-three {
-
- }
- .address{
-   text-align: center;
- }
-
  #avg-rating {
-   padding-bottom: 0.5em;
+   /* padding-bottom: 0.5em; */
  }

@@ -25,9 +25,9 @@
     <p><%= link_to "New Review", "/items/#{@item.id}/reviews/new" %></p>
     <% unless @item.reviews.count <= 3 %>
       <section class="reviews-stats">
-        <section id="avg-rating">
+        <h3 id="avg-rating">
           <%= "Average Rating: #{@average.round(2)}" %>
-        </section>
+        </h3>
         <section class="top-bottom-reviews">
           <section id="top-three">
             <h4>Top Three Reviews</h4>
