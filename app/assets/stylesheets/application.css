@@ -160,6 +160,10 @@ section[id^='review-'] {
 
  }
 
+ .item-details-header {
+   font-size: 1.8em;
+ }
+
  .item-show-box{
   width: 60%;
   border: solid;
@@ -184,6 +188,15 @@ section[id^='review-'] {
  .item-show-details {
    padding-left: 10%;
    width: 50%;
+ }
+
+ .show-box-header {
+   background-color: #30638E;
+   color: #f2f2f2;
+   display: flex;
+   justify-content: space-between;
+   padding: 0.8em 3em 0.8em 3em;
+   border-bottom: 2px solid #003D5B;
  }
 
  .topnav {
