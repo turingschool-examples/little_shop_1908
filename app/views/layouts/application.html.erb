@@ -12,11 +12,14 @@
     <nav class = "topnav">
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
-      <%# <%= link_to "Cart. Item Count: #{Cart.count}", "/cart"%> %>
+      <% cart = Cart.new(session[:cart]) %>
+      <%= link_to "Cart: #{cart.total_count}", "/cart" %>
     </nav>
-    <% flash.each do |key, value| %>
-    <%= value %>
+
+    <% flash.each do |type, message| %>
+        <%= content_tag :div, message, class: type %>
     <% end %>
+
     <%= yield %>
   </body>
 </html>
