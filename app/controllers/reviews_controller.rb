@@ -15,6 +15,12 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def destroy
+
+    review.destroy
+    redirect_to item_path(@item)
+  end
+
   private
   def review_params
     params.permit(:title, :rating, :content)
