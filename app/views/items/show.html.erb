@@ -35,10 +35,13 @@
     <h3> Average Product Rating </h3>
     <h4><%= @item.reviews.avg_rating.round(2)%></h4>
     <br>
-    <!-- <h3> Top Three Reviews </h3>
-    <h4><%= @item.reviews %></h4>
+
+
+    <!-- place holder for top/bottom reviews -->
+    <%= <h3> Top Three Reviews </h3>
+    <h4><%= @item.reviews.top_three_review %></h4>
     <br>
     <h3> Top Three Reviews </h3>
-    <h4><%= @item.reviews %></h4> -->
+    <h4><%= @item.reviews.bottom_three_review %></h4> --> %>
   </section>
 </center>
