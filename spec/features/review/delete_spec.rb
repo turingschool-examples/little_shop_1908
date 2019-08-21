@@ -15,12 +15,19 @@ RSpec.describe "Delete a review" do
       @review_6 = @chain.reviews.create!(title: "Womp Womp", content: "I hate it", rating: 1)
     end
     it "When I visit an item's show page, I see a link next to each review to delete the review." do
-      visit "items/#{@chain.id}"
+      visit item_path(@chain)
 
-      expect(page).to have_link("Delete Review")
+      within "#review-#{@review_1.id}" do
+        expect(page).to have_link("Delete Review")
+      end
     end
     it "When I delete a review I am returned to the item's show page, and no longer see that review." do
+      visit item_path(@chain)
 
+      within "#review-#{@review_1.id}" do
+        click_link "Delete Review"
+      end
+      expect(page).to_not have_content(@review_1)
     end
   end
 end
