@@ -11,10 +11,10 @@ RSpec.describe "As a Visitor" do
 
     expect(page).to have_button("Add to Cart")
 
-    within "#item-#{@tire.id}" do
+    within "#item-info" do
       click_button "Add to Cart"
     end
 
-    expect(page).to have_content("You now have added #{@tire.name} in your cart.")
+    expect(page).to have_content("You now have 1 copy of #{@tire.name} in your cart.")
   end
 end

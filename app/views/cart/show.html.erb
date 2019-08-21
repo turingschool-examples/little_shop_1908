@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Cart</h1>
+    <% cart = Cart.new(session[:cart]) %>
+    <% grand_total = 0 %>
+    <% cart.contents.each do |key, value| %>
+      <% item = Item.find_by(id: key) %>
+      <h3><%= item.name %></h3>
+      <img src=<%= item.image %> alt="...">
+      <p>Sold by: <%= item.merchant.name %></p>
+      <p>Price: <%= number_to_currency(item.price) %></p>
+      <p>Quantity: <%= value %></p>
+      <p>Subtotal: <%= number_to_currency(item.price * value) %></p>
+      <% grand_total += (item.price * value) %>
+    <% end %>
+
+    <h4>Grand Total: <%= number_to_currency(grand_total) %></h4>
+  </body>
+</html>
