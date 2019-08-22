@@ -22,7 +22,7 @@
  d-blue: #003D5B, darker: #002233 */
  *{
    box-sizing: border-box;
-   border: 1px solid red;
+   /* border: 1px solid red; */
  }
 
  a:link, a:visited {
@@ -85,6 +85,11 @@ section[id^='review-'] {
 section[id^='cart-item-'] {
   display: flex;
   justify-content: space-between;
+  height: 12em;
+  border-radius: 1em;
+  border: 0.1em solid;
+  margin-top: 2px;
+  background-color: #d9e7f2;
 }
 
 .address {
@@ -93,6 +98,26 @@ section[id^='cart-item-'] {
 
 .bottom-three {
 
+}
+
+.cart-item-image {
+  max-height: 90%;
+  object-fit: contain;
+  max-width: 8em;
+  margin-left: 1.3em;
+  margin-top: 0.5em;
+}
+
+.cart-section-titles {
+  font-size: 1.4em;
+}
+
+.cart-title {
+  text-align: center;
+  font-family: "Marker Felt", fantasy;
+ 	font-size: 40px;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
 }
 
 .edit-delete {
@@ -118,6 +143,11 @@ section[id^='cart-item-'] {
   background-color: #D1495B;
   color:#f2f2f2;
 }
+
+.details-subtotal {
+  margin-right: 1.7em;
+}
+
 
 .edit-btn {
   background-color: #f6d6a2;
@@ -177,6 +207,10 @@ section[id^='cart-item-'] {
    font-size: 1.8em;
  }
 
+ .item-sect-link {
+   text-decoration: none;
+ }
+
  .item-show-box{
   background-color: #d9e7f2;
   border-radius: 1em;
@@ -201,6 +235,13 @@ section[id^='cart-item-'] {
  .item-show-details {
    padding-left: 10%;
    width: 50%;
+ }
+
+ .order-total {
+   font-size: 2em;
+   padding-left: 2em;
+   margin-top: 1em;
+   margin-bottom: 1em;
  }
 
  .show-box-header {
