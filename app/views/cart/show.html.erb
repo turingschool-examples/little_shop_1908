@@ -10,3 +10,5 @@
   <% end %>
 
   <p>Grand Total: <%= @cart.grand_total %></p>
+
+  <%= link_to 'Empty Cart', "/cart", method: :patch%>
