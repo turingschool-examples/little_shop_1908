@@ -29,4 +29,5 @@ Rails.application.routes.draw do
   get '/cart', to: 'cart#show'
 
   get '/orders/new', to: 'orders#new'
+  post '/orders', to: 'orders#create'
 end
