@@ -25,5 +25,6 @@ Rails.application.routes.draw do
 
   get "/cart", to: "cart#show"
   post "/cart/:id", to: "cart#add_item"
+  patch "/cart", to: "cart#empty"
 
 end
