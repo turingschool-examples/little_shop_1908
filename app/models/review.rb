@@ -4,6 +4,8 @@ class Review < ApplicationRecord
   validates_presence_of :title
   validates_presence_of :content
   validates_presence_of :rating
+  # VALIDATIONS THAT RATING IS NUMERIC AND BETWEEN 1-5
+  # VIEW SHOULDA MATCHERS DOC - ACTIVEMODEL MATCHERS
 
   def self.avg_rating
       average(:rating)
