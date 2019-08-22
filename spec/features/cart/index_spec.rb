@@ -238,12 +238,6 @@ describe 'Cart Show Page' do
     expect(page).to have_content("Inventory: 12")
   end
 
-#   When I have items in my cart
-# And I visit my cart ("/cart")
-# And I click the link to empty my cart
-# Then I am returned to my cart
-# All items have been completely removed from my cart
-# The navigation bar shows 0 items in my cart
   it "has a link to empty the cart" do
     visit "/items/#{@tire.id}"
 
@@ -277,5 +271,31 @@ describe 'Cart Show Page' do
     visit "/items/#{@dog_bone.id}"
 
     expect(page).to have_content("Inventory: 2")
+  end
+
+  it "has a button to check out" do
+    visit '/cart'
+
+    expect(page).to_not have_button("Checkout")
+
+    visit "/items/#{@tire.id}"
+
+    click_button "Add Item To yo Cart"
+
+    visit "/items/#{@dog_bone.id}"
+
+    click_button "Add Item To yo Cart"
+
+    visit "/items/#{@dog_bone.id}"
+
+    click_button "Add Item To yo Cart"
+
+    visit "/cart"
+
+    expect(page).to have_button("Checkout")
+
+    click_button "Checkout"
+
+    expect(current_path).to eq('/cart/checkout')
   end
 end
