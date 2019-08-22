@@ -10,6 +10,6 @@ describe Order do
   end
 
   describe 'relationships' do
-
+    it { should have_many :item_orders }
   end
 end
