@@ -24,3 +24,6 @@
 <section class="order-total">
   Order total: <%=number_to_currency @cart.order_total %>
 </section>
+<div class="checkout-btn">
+  <%= link_to "Checkout", '/orders/new' %>
+</div>

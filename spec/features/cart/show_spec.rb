@@ -55,18 +55,10 @@ describe 'When I visit my cart' do
     within ".order-total" do
       expect(page).to have_content("Order total: $52.00")
     end
+
+    within ".checkout-btn" do
+      click_link("Checkout")
+    end
+    expect(current_path).to eq('/orders/new')
   end
 end
-
-
-
-# And I visit my cart ("/cart")
-# I see all items I've added to my cart
-# Each item in my cart shows the following information:
-# - the name of the item
-# - the item image
-# - the merchant I'm buying this item from
-# - the price of the item
-# - my desired quantity of the item
-# - a subtotal (price multiplied by quantity)
-# I also see a grand total of what everything in my cart will cost
