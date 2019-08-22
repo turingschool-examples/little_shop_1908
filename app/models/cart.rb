@@ -1,4 +1,5 @@
-class Cart < ApplicationRecord
+# does NOT inherit from ApplicationRecord because it's a PORO!
+class Cart
   attr_reader :contents
 
   def initialize(initial_contents)
