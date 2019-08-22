@@ -20,8 +20,36 @@ RSpec.describe 'Cart Show Page', type: :feature do
   end
 
   it "Each item in my cart shows the name, image, merchant, price, my desired quantity, a subtotal (price * quantity)" do
+    visit item_path(@chain.id)
+    click_on "Add To Cart"
+    visit item_path(@tire.id)
+    click_on "Add To Cart"
+
+    visit "/cart"
+
+      expect(page).to have_content(@chain.name)
+      expect(page).to have_css("img[src*='#{@chain.image}']")
+      expect(page).to have_content(@chain.merchant.name)
+      expect(page).to have_content(@chain.price)
+      expect(page).to have_content("Total Quantity: 1")
+      expect(page).to have_content("Subtotal: 50")
+
+      expect(page).to have_content(@tire.name)
+      expect(page).to have_css("img[src*='#{@tire.image}']")
+      expect(page).to have_content(@tire.merchant.name)
+      expect(page).to have_content(@tire.price)
+      expect(page).to have_content("Total Quantity: 1")
+      expect(page).to have_content("Subtotal: 100")
   end
 
-  it "I also see a grand totla of what everything in my cart will cost" do
+  it "I also see a grand total of what everything in my cart will cost" do
+    visit item_path(@chain.id)
+    click_on "Add To Cart"
+    visit item_path(@tire.id)
+    click_on "Add To Cart"
+
+    visit "/cart"
+
+    expect(page).to have_content("Grand Total: 150")
   end
 end
