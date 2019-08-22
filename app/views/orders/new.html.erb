@@ -1,0 +1,26 @@
+<p class="page-title">New Order</p>
+
+<% @items.each do |item|  %>
+  <section id="order-item-<%=item.id%>">
+    <section class="details-description">
+      <p><%=link_to item.name, "/items/#{item.id}" %></p>
+      <p><%=link_to item.merchant.name, "merchants/#{item.merchant.id}" %></p>
+    </section>
+    <section class="details-price">
+      <p class="cart-section-titles">Price:</p>
+      <p><%=number_to_currency item.price %></p>
+    </section>
+    <section class="details-quantity">
+      <p class="cart-section-titles">Quantity:</p>
+      <p><%= @cart.contents[item.id.to_s] %></p>
+    </section>
+    <section class="details-subtotal">
+      <p class="cart-section-titles">Subtotal:</p>
+      <p><%= number_to_currency @cart.subtotal(item.id) %></p>
+    </section>
+  </section>
+  <% end %>
+  <section class="order-total">
+  Order total: <%=number_to_currency @cart.order_total %>
+  </section>
+<% end %>
