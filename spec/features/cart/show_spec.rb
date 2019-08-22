@@ -221,4 +221,47 @@ RSpec.describe "As a Visitor" do
 
     expect(page).to have_content("There is no more inventory for #{@tire.name}")
   end
+
+  it "quantity of item is decreased in cart" do
+    visit "/items/#{@pull_toy.id}"
+
+    within "#item-info" do
+      click_on "Add to Cart"
+    end
+
+    visit "/items/#{@pull_toy.id}"
+
+    within "#item-info" do
+      click_on "Add to Cart"
+    end
+
+    visit "/cart"
+
+    within "#cart-item-#{@pull_toy.id}" do
+      expect(page).to have_button("-")
+      expect(page).to have_content("Quantity: 2")
+
+      click_button "-"
+    end
+
+    visit "/cart"
+
+    expect(page).to have_content("Quantity: 1")
+
+    within "#cart-item-#{@pull_toy.id}" do
+      click_button "-"
+    end
+
+    visit "/cart"
+
+    quantity_pulltoy = @cart.quantity_of(@pull_toy.id)
+    subtotal_pulltoy = @pull_toy.price * quantity_pulltoy
+
+    expect(page).to_not have_content(@pull_toy.name)
+    expect(page).to_not have_css("img[src*='#{@pull_toy.image}']")
+    expect(page).to_not have_content("Sold by: #{@pull_toy.merchant.name}")
+    expect(page).to_not have_content("Price: $#{@pull_toy.price}")
+    expect(page).to_not have_content("Quantity: #{quantity_pulltoy}")
+    expect(page).to_not have_content("Subtotal: $#{subtotal_pulltoy}")
+  end
 end
