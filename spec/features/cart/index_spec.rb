@@ -49,7 +49,7 @@ describe 'Cart Show Page' do
   end
 
   describe "has a link to add additional items of each item already in the cart" do
-    it "that displays a flash message and update the info and total if successful" do
+    it "that displays a flash message and updates the info and total if successful" do
       visit "/items/#{@tire.id}"
 
       click_button "Add Item To yo Cart"
@@ -78,6 +78,10 @@ describe 'Cart Show Page' do
 
       expect(page).to have_content("1 #{@tire.name} has been added. You now have 2 #{@tire.name} in your cart.")
       expect(page).to have_content("Total Cost: $242.00")
+
+      visit "/items/#{@tire.id}"
+
+      expect(page).to have_content("Inventory: 10")
     end
 
     it "that displays a flash message if unsuccessful" do
@@ -110,5 +114,98 @@ describe 'Cart Show Page' do
       expect(page).to have_content("Eek! No more #{@dog_bone.name}s left.")
       expect(page).to have_content("Total Cost: $142.00")
     end
+  end
+
+  it "has a link to remove a single item from the cart" do
+    visit "/items/#{@tire.id}"
+
+    click_button "Add Item To yo Cart"
+
+    visit "/items/#{@dog_bone.id}"
+
+    click_button "Add Item To yo Cart"
+
+    visit "/items/#{@dog_bone.id}"
+
+    click_button "Add Item To yo Cart"
+
+    visit "/cart"
+
+    within "#cart-item-#{@tire.id}" do
+      expect(page).to have_link("Remove a #{@tire.name}")
+
+      click_link "Remove a #{@tire.name}"
+    end
+
+    expect(page).to_not have_css("#cart-item-#{@tire.id}")
+    expect(page).to have_content("Total Cost: $42.00")
+
+    visit "/items/#{@tire.id}"
+
+    expect(page).to have_content("Inventory: 12")
+
+    visit "/cart"
+
+    within "#cart-item-#{@dog_bone.id}" do
+      expect(page).to have_link("Remove a #{@dog_bone.name}")
+
+      click_link "Remove a #{@dog_bone.name}"
+
+      expect(page).to have_content(@dog_bone.name)
+      expect(page).to have_css("img[src*='#{@dog_bone.image}']")
+      expect(page).to have_content(@dog_bone.merchant.name)
+      expect(page).to have_content("Purchase 1 at $21.00 each")
+      expect(page).to have_content("Subtotal: $21.00")
+    end
+
+    expect(page).to have_content("Total Cost: $21.00")
+
+    visit "/items/#{@dog_bone.id}"
+
+    expect(page).to have_content("Inventory: 1")
+  end
+
+  it "has a link to remove all the items of a given type from the cart" do
+    visit "/items/#{@tire.id}"
+
+    click_button "Add Item To yo Cart"
+
+    visit "/items/#{@dog_bone.id}"
+
+    click_button "Add Item To yo Cart"
+
+    visit "/items/#{@dog_bone.id}"
+
+    click_button "Add Item To yo Cart"
+
+    visit "/cart"
+
+    within "#cart-item-#{@dog_bone.id}" do
+      expect(page).to have_link("Remove all #{@dog_bone.name}s")
+
+      click_link "Remove all #{@dog_bone.name}s"
+    end
+
+    expect(page).to_not have_css("#cart-item-#{@dog_bone.id}")
+    expect(page).to have_content("Total Cost: $100.00")
+
+    visit "/items/#{@dog_bone.id}"
+
+    expect(page).to have_content("Inventory: 2")
+
+    visit "/cart"
+
+    within "#cart-item-#{@tire.id}" do
+      expect(page).to have_link("Remove all #{@tire.name}s")
+
+      click_link "Remove all #{@tire.name}s"
+    end
+
+    expect(page).to_not have_css("#cart-item-#{@tire.id}")
+    expect(page).to have_content("Your cart is empty, yo.")
+
+    visit "/items/#{@tire.id}"
+
+    expect(page).to have_content("Inventory: 12")
   end
 end
