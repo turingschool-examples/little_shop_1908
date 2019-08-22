@@ -44,6 +44,24 @@ RSpec.describe "When a user adds items to their cart" do
 
     expect(page).to have_content("You now have 3 items in your cart.")
   end
+
+  it "displays the total number of items in the cart" do
+
+    visit "/items"
+    expect(page).to have_content("Cart: 0")
+
+    visit "/items/#{@tire.id}"
+    click_button "Add Item"
+    expect(page).to have_content("Cart: 1")
+
+    visit "/items/#{@pull_toy.id}"
+    click_button "Add Item"
+    expect(page).to have_content("Cart: 2")
+
+    visit "/items/#{@brush.id}"
+    click_button "Add Item"
+    expect(page).to have_content("Cart: 3")
+  end
 end
 
     # within "#cart-indicator" do
