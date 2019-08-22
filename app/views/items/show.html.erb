@@ -28,7 +28,7 @@
       <section id= "review-<%=review.id%>"
         <p><%= review.title %></p>
         <p><%= link_to 'Edit Review', "/reviews/#{review.id}/edit" %></p>
-        <p><%= button_to 'Delete Review', "/reviews/#{review.id}", method: :delete%></p>
+        <p><%= link_to 'Delete Review', "/reviews/#{review.id}", method: :delete%></p>
         <p><%= review.content %></p>
         <p>Rating: <%= review.rating %> stars</p>
       </section>

@@ -25,19 +25,19 @@ RSpec.describe "As a visitor" do
       visit "items/#{@tire.id}"
 
       within "#review-#{@review_1.id}" do
-        expect(page).to have_button("Delete Review")
+        expect(page).to have_link("Delete Review")
       end
 
       within "#review-#{@review_2.id}" do
-        expect(page).to have_button("Delete Review")
+        expect(page).to have_link("Delete Review")
       end
 
       within "#review-#{@review_5.id}" do
-        expect(page).to have_button("Delete Review")
+        expect(page).to have_link("Delete Review")
       end
 
       within "#review-#{@review_12.id}" do
-        expect(page).to have_button("Delete Review")
+        expect(page).to have_link("Delete Review")
       end
     end
 
@@ -45,12 +45,13 @@ RSpec.describe "As a visitor" do
       # skip
       visit "items/#{@tire.id}"
 
-      within "#review-#{@review_1.id}" do
-        click_button "Delete Review"
+      within "#review-#{@review_12.id}" do
+        click_link "Delete Review"
       end
+      save_and_open_page
 
-      expect(page).to_not have_content("Review Title 1")
-      expect(page).to_not have_css("#review-#{@review_1.id}")
+      expect(page).to_not have_content("Review Title 12")
+      expect(page).to_not have_css("#review-#{@review_12.id}")
     end
   end
 end
