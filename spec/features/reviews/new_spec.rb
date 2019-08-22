@@ -39,4 +39,16 @@ RSpec.describe 'Create New Review' do
     expect(page).to have_content(new_review.rating)
     expect(page).to have_css("#review-#{new_review.id}")
   end
+
+# As a visitor,
+# When I fail to fully complete the new review form, but still try to submit the form
+# I see a flash message indicating that I need to complete the form in order to submit a review
+  it 'can display flash message for incomplete form' do
+    visit "/items/#{@tire.id}/reviews/new"
+
+    click_on 'Save Review'
+
+    expect(page).to have_content('You must complete all fields to create a new review. Please try again.')
+    expect(page).to have_link('Save Review')
+  end
 end
