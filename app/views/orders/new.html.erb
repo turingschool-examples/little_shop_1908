@@ -19,8 +19,19 @@
       <p><%= number_to_currency @cart.subtotal(item.id) %></p>
     </section>
   </section>
-  <% end %>
-  <section class="order-total">
-  Order total: <%=number_to_currency @cart.order_total %>
-  </section>
 <% end %>
+<section class="order-total">
+  Order total: <%=number_to_currency @cart.order_total %>
+</section>
+
+<div class="shipping-form">
+  <%= form_tag '/orders', method: :post do %>
+    <%= text_field_tag :name, nil, placeholder: "Name" %>
+    <%= text_field_tag :address, nil, placeholder: "Address" %>
+    <%= text_field_tag :city, nil, placeholder: "City" %>
+    <%= text_field_tag :state, nil, placeholder:  "State" %>
+    <%= text_field_tag :zip, nil, placeholder: "Zip" %>
+
+    <%= submit_tag 'Place Order' %>
+  <% end %>
+</div>
