@@ -27,7 +27,6 @@ class MerchantsController <ApplicationController
   end
 
   def destroy
-    binding.pry
     Item.delete(Item.where(merchant_id: params[:id]))
     Merchant.destroy(params[:id])
     redirect_to '/merchants'

@@ -5,11 +5,7 @@ class ReviewsController <ApplicationController
 
   def create
     item = Item.find(params[:id])
-    if params[:title] == ""
-      flash[:error] = "Do it right, yo."
-    elsif params[:content] == ""
-      flash[:error] = "Do it right, yo."
-    elsif params[:content] == "Write your review here"
+    if review_params.values.any? {|input| input == "" || input == "Write your review here"}
       flash[:error] = "Do it right, yo."
     else flash[:success] = "Your review has been posted"
       review = item.reviews.create(review_params)
