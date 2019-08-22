@@ -5,4 +5,5 @@ class Review <ApplicationRecord
                         :content,
                         :rating
 
+
 end
