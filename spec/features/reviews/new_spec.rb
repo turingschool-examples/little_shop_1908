@@ -49,6 +49,6 @@ RSpec.describe 'Create New Review' do
     click_on 'Save Review'
 
     expect(page).to have_content('You must complete all fields to create a new review. Please try again.')
-    expect(page).to have_link('Save Review')
+    expect(page).to have_button('Save Review')
   end
 end
