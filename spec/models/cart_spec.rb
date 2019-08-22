@@ -2,10 +2,13 @@ require 'rails_helper'
 
 RSpec.describe Cart do
 
-  # it "can initialize with no contents" do
-  #   cart = Cart.new(nil)
-  #
-  #   expect(cart.contents).to eq({0})
-  # end
-
+  describe "#total_count" do
+    it "can calculate the total number of items it holds" do
+      cart = Cart.new({
+        1 => 2,  
+        2 => 3
+      })
+      expect(cart.total_count).to eq(5)
+    end
+  end
 end

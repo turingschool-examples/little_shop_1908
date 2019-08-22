@@ -19,11 +19,8 @@ RSpec.describe 'Site Navigation' do
       expect(current_path).to eq('/merchants')
 
       within 'nav' do
-        expect(page).to have_link('Cart:')
-        click_link 'Cart:'
+        expect(page).to have_content('Cart: 0')
       end
-
-      expect(current_path).to eq('/cart')
     end
 
   end
