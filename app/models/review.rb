@@ -6,7 +6,6 @@ class Review < ApplicationRecord
   validates_presence_of :rating
 
   def self.avg_rating
-    #binding.pry
       average(:rating)
   end
 
