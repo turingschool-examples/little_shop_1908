@@ -14,6 +14,7 @@ describe 'Cart Show Page' do
     visit "/cart"
 
     expect(page).to have_content("Your cart is empty, yo.")
+    expect(page).to_not have_link("Empty Cart")
 
     visit "/items/#{@tire.id}"
 
@@ -64,6 +65,10 @@ describe 'Cart Show Page' do
 
       visit "/cart"
 
+      within '.topnav' do
+        expect(page).to have_link("Items in Cart: 3")
+      end
+
       within "#cart-item-#{@tire.id}" do
         expect(page).to have_link("Add an Additional #{@tire.name}")
 
@@ -74,6 +79,10 @@ describe 'Cart Show Page' do
         expect(page).to have_content(@tire.merchant.name)
         expect(page).to have_content("Purchase 2 at $100.00 each")
         expect(page).to have_content("Subtotal: $200.00")
+      end
+
+      within '.topnav' do
+        expect(page).to have_link("Items in Cart: 4")
       end
 
       expect(page).to have_content("1 #{@tire.name} has been added. You now have 2 #{@tire.name} in your cart.")
@@ -111,6 +120,10 @@ describe 'Cart Show Page' do
         expect(page).to have_content("Subtotal: $42.00")
       end
 
+      within '.topnav' do
+        expect(page).to have_link("Items in Cart: 3")
+      end
+
       expect(page).to have_content("Eek! No more #{@dog_bone.name}s left.")
       expect(page).to have_content("Total Cost: $142.00")
     end
@@ -137,6 +150,10 @@ describe 'Cart Show Page' do
       click_link "Remove a #{@tire.name}"
     end
 
+    within '.topnav' do
+      expect(page).to have_link("Items in Cart: 2")
+    end
+
     expect(page).to_not have_css("#cart-item-#{@tire.id}")
     expect(page).to have_content("Total Cost: $42.00")
 
@@ -156,6 +173,10 @@ describe 'Cart Show Page' do
       expect(page).to have_content(@dog_bone.merchant.name)
       expect(page).to have_content("Purchase 1 at $21.00 each")
       expect(page).to have_content("Subtotal: $21.00")
+    end
+
+    within '.topnav' do
+      expect(page).to have_link("Items in Cart: 1")
     end
 
     expect(page).to have_content("Total Cost: $21.00")
@@ -186,6 +207,10 @@ describe 'Cart Show Page' do
       click_link "Remove all #{@dog_bone.name}s"
     end
 
+    within '.topnav' do
+      expect(page).to have_link("Items in Cart: 1")
+    end
+
     expect(page).to_not have_css("#cart-item-#{@dog_bone.id}")
     expect(page).to have_content("Total Cost: $100.00")
 
@@ -199,6 +224,10 @@ describe 'Cart Show Page' do
       expect(page).to have_link("Remove all #{@tire.name}s")
 
       click_link "Remove all #{@tire.name}s"
+    end
+
+    within '.topnav' do
+      expect(page).to have_link("Items in Cart: 0")
     end
 
     expect(page).to_not have_css("#cart-item-#{@tire.id}")
