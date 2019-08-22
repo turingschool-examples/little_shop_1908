@@ -10,7 +10,12 @@ class ItemsController<ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    if Item.where(id: params[:id]).empty?
+      flash[:no_item] = "This item doesn't exist"
+      redirect_to "/items"
+    else
+      @item = Item.find(params[:id])
+    end
   end
 
   def new
