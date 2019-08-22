@@ -10,6 +10,6 @@ class CartController < ApplicationController
 
   def show
     @cart = Cart.new(session[:cart])
-    @items = Item.cart_items
+    @items = Item.cart_items(@cart)
   end
 end
