@@ -6,12 +6,10 @@ class Review < ApplicationRecord
   validates_presence_of :rating
 
   def self.avg_rating
-    #binding.pry
       average(:rating)
   end
 
   def self.top_three_reviews
-
     order(rating: :asc).last(3)
   end
 

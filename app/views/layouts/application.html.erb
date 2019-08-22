@@ -16,8 +16,8 @@
       <img src ="http://i.imgur.com/DrC6cXz.png" alt ="shopping cart graphic" style="width:45px;height:45px;" align="right"/>
     </nav>
     <% flash.each do |type, message| %>
-    <%= content_tag :div, message, class: type %>
-    <% end %>
+      <p><%= message %></p>
+    <% end  %>
     <%= yield %>
   </body>
 </html>
