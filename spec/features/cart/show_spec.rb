@@ -124,4 +124,49 @@ RSpec.describe "As a Visitor" do
 
   end
 
+
+  it "can remove an item from cart" do
+    visit "/items/#{@tire.id}"
+
+    within "#item-info" do
+      click_on "Add to Cart"
+      @cart.add_item(@tire.id)
+    end
+
+    visit "/items/#{@pull_toy.id}"
+
+    within "#item-info" do
+      click_on "Add to Cart"
+      @cart.add_item(@pull_toy.id)
+    end
+
+    visit "/items/#{@pull_toy.id}"
+
+    within "#item-info" do
+      click_on "Add to Cart"
+      @cart.add_item(@pull_toy.id)
+    end
+
+    quantity_tire = @cart.quantity_of(@tire.id)
+    quantity_pulltoy = @cart.quantity_of(@pull_toy.id)
+
+    subtotal_tire = @tire.price * quantity_tire
+    subtotal_pulltoy = @pull_toy.price * quantity_pulltoy
+    grand_total = subtotal_tire + subtotal_pulltoy
+
+    visit "/cart"
+  
+    within "#cart-item-#{@tire.id}" do
+      expect(page).to have_link("Remove Item")
+      click_link "Remove Item"
+      @cart.remove_item(@tire.id)
+    end
+
+    expect(page).to_not have_content(@tire.name)
+    expect(page).to_not have_css("img[src*='#{@tire.image}']")
+    expect(page).to_not have_content("Sold by: #{@tire.merchant.name}")
+    expect(page).to_not have_content("Price: $#{@tire.price}")
+    expect(page).to_not have_content("Quantity: #{quantity_tire}")
+    expect(page).to_not have_content("Subtotal: $#{subtotal_tire}")
+  end
 end
