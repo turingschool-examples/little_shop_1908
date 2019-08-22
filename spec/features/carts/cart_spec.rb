@@ -27,10 +27,25 @@ RSpec.describe "When a user adds items to their cart" do
     click_button "Add Item"
 
     expect(current_path).to eq("/items")
-    expect(page).to have_content("Item successfully added to your cart")
+    expect(page).to have_content("You now have 1 item in your cart.")
+  end
 
-    within "#cart-indicator" do
-      expect(page).to have_content(1)
-    end
+  it "the message correctly increments for multiple items" do
+      skip
+    visit "/items/#{@tire.id}"
+
+    click_button "Add Item"
+
+    visit "/items/#{@pull_toy.id}"
+
+    click_button "Add Item"
+
+    visit "/items/#{@brush.id}"
+
+    expect(page).to have_content("You now have 3 items in your cart.")
   end
 end
+
+    # within "#cart-indicator" do
+    #   expect(page).to have_content(1)
+    # end
