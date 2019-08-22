@@ -11,7 +11,9 @@ describe Item, type: :model do
   end
 
   describe "relationships" do
-    it {should belong_to :merchant}
+    it { should belong_to :merchant }
+    it { should have_many :item_orders }
+    it { should have_many :orders }
   end
 
   describe "class methods" do
