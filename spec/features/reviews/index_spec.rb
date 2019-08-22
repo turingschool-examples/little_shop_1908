@@ -95,8 +95,8 @@ RSpec.describe 'From Item Show Page', type: :feature do
       visit "/items/#{@tire.id}"
 
       within '#reviews-stat-section' do
-        save_and_open_page
       
+
         expect(page).to have_content(2.67)
       end
     end
