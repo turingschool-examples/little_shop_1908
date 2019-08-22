@@ -19,17 +19,25 @@ describe 'User clicks link to go to new order page' do
       expect(page).to have_content(pull_toy.name)
       expect(page).to have_content(pull_toy.merchant.name)
       expect(page).to have_content(pull_toy.price)
-      expect(page).to have_content("Quantity: 1")
-      expect(page).to have_content("Subtotal: $10.00")
+      within ".details-quantity" do
+        expect(page).to have_content("1")
+      end
+      within  ".details-subtotal" do
+        expect(page).to have_content("$10.00")
+      end
     end
     within "#order-item-#{dog_bone.id}" do
       expect(page).to have_content(dog_bone.name)
       expect(page).to have_content(dog_bone.merchant.name)
       expect(page).to have_content(dog_bone.price)
-      expect(page).to have_content("Quantity: 2")
-      expect(page).to have_content("Subtotal: $42.00")
+      within ".details-quantity" do
+        expect(page).to have_content("2")
+      end
+      within  ".details-subtotal" do
+        expect(page).to have_content("$42.00")
+      end
     end
-    within "#order-total" do
+    within ".order-total" do
       expect(page).to have_content("Order total: $52.00")
     end
   end
@@ -48,7 +56,7 @@ describe 'User clicks link to go to new order page' do
       fill_in :city, with: city
       fill_in :state, with: state
       fill_in :zip, with: zip
-      
+
       click_button "Place Order"
     end
   end
