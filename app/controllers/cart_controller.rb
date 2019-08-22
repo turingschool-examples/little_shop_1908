@@ -1,7 +1,8 @@
 class CartController < ApplicationController
 
   def show
-    @contents = cart.contents
+    @cart = cart
+    # @contents = cart.contents
   end
 
   def add_item
