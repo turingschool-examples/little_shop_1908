@@ -12,7 +12,5 @@ describe Order, type: :model do
     it { should validate_presence_of :city }
     it { should validate_presence_of :state }
     it { should validate_presence_of :zip }
-    it { should validate_presence_of :total_items }
-    it { should validate_presence_of :total_cost }
   end
 end

@@ -12,17 +12,22 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = Order.create(order_params)
-    session[:cart].each do |item_id, qty|
-      item = Item.find(item_id.to_i)
-      qty.times do
-        order.items << item
+    if order_params.values.any? {|input| input == "" || input == "Name" || input == "Address" || input == "City" || input == "State" || input == "Zip"}
+      flash[:error] = "Enter your shipping info again"
+      redirect_to "/cart"
+    else
+      order = Order.create(order_params)
+      session[:cart].each do |item_id, qty|
+        item = Item.find(item_id.to_i)
+        qty.times do
+          order.items << item
+        end
       end
+      session[:cart] = nil
+      flash[:success] = 'Your order has been placed.'
+      redirect_to "/orders/#{order.id}"
     end
-    session[:cart] = nil
-    redirect_to "/orders/#{order.id}"
   end
-
 
 
   private
