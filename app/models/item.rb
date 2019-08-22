@@ -9,4 +9,7 @@ class Item <ApplicationRecord
                         :inventory
   validates_inclusion_of :active?, :in => [true, false]
 
+  def self.cart_items(cart)
+    Item.where(id: [cart.contents.keys])
+  end
 end
