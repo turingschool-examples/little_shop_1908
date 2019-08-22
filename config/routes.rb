@@ -24,5 +24,4 @@ Rails.application.routes.draw do
   patch '/reviews/:review_id', to: 'reviews#update'
 
   patch "/cart/:item_id", to: "carts#add_item"
-
 end
