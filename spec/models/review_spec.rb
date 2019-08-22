@@ -35,7 +35,7 @@ describe Review, type: :model do
   end
 
   it 'can find top three reviews' do
-    expected =[ @review_1, @review_3, @review_2]
+    expected =[ @review_2, @review_3, @review_1]
 
     expect(@tire.reviews.top_three_reviews).to eq(expected)
   end
