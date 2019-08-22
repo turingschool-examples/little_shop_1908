@@ -13,5 +13,11 @@ class CartController<ApplicationController
   end
 
   def show
+    @cart = Cart.new(session[:cart])
+  end
+
+  def empty
+    reset_session
+    redirect_to "/cart"
   end
 end

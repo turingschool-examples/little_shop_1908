@@ -9,7 +9,7 @@ RSpec.describe "Reviews Index" do
     end
 
     it "shows a link next to each review to delete the review" do
-      visit "/reviews/#{@good_review.id}"
+      visit "items/#{@chain.id}"
 
       expect(page).to have_link("Delete Review")
       click_on "Delete Review"

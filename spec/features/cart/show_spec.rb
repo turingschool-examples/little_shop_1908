@@ -59,4 +59,69 @@ RSpec.describe "As a Visitor" do
     expect(page).to have_content("Grand Total: $#{grand_total}")
   end
 
+  it "see all items that I have added to my cart with item info" do
+    visit "/cart"
+
+
+    expect(page).to have_content("Your cart is empty")
+    expect(page).to_not have_link("Empty Cart")
+  end
+
+  it "can empty cart" do
+    visit "/items/#{@tire.id}"
+
+    within "#item-info" do
+      click_on "Add to Cart"
+      @cart.add_item(@tire.id)
+    end
+
+    visit "/items/#{@pull_toy.id}"
+
+    within "#item-info" do
+      click_on "Add to Cart"
+      @cart.add_item(@pull_toy.id)
+    end
+
+    visit "/items/#{@pull_toy.id}"
+
+    within "#item-info" do
+      click_on "Add to Cart"
+      @cart.add_item(@pull_toy.id)
+    end
+
+    visit "/cart"
+
+    click_on "Empty Cart"
+
+    quantity_tire = @cart.quantity_of(@tire.id)
+    quantity_pulltoy = @cart.quantity_of(@pull_toy.id)
+
+    subtotal_tire = @tire.price * quantity_tire
+    subtotal_pulltoy = @pull_toy.price * quantity_pulltoy
+    grand_total = subtotal_tire + subtotal_pulltoy
+
+
+    expect(page).to_not have_content(@tire.name)
+    expect(page).to_not have_css("img[src*='#{@tire.image}']")
+    expect(page).to_not have_content("Sold by: #{@tire.merchant.name}")
+    expect(page).to_not have_content("Price: $#{@tire.price}")
+    expect(page).to_not have_content("Quantity: #{quantity_tire}")
+    expect(page).to_not have_content("Subtotal: $#{subtotal_tire}")
+
+    expect(page).to_not have_content(@pull_toy.name)
+    expect(page).to_not have_css("img[src*='#{@pull_toy.image}']")
+    expect(page).to_not have_content("Sold by: #{@pull_toy.merchant.name}")
+    expect(page).to_not have_content("Price: $#{@pull_toy.price}")
+    expect(page).to_not have_content("Quantity: #{quantity_pulltoy}")
+    expect(page).to_not have_content("Subtotal: $#{subtotal_pulltoy}")
+
+    expect(page).to_not have_content("Grand Total: $#{grand_total}")
+
+    expect(page).to have_content("Your cart is empty")
+    expect(page).to_not have_link("Empty Cart")
+
+    expect(page).to have_content("Cart: 0")
+
+  end
+
 end

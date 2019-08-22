@@ -25,4 +25,14 @@ class Cart
     end
   end
 
+  def subtotal_item(item_id)
+    @contents[item_id] * (Item.find(item_id).price)
+  end
+
+  def grand_total
+    @contents.sum do |id, quantity|
+      (Item.find(id).price) * quantity
+    end
+  end
+
 end

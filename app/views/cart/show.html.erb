@@ -1,24 +1,17 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <h1>Cart</h1>
-    <% cart = Cart.new(session[:cart]) %>
+  <h1>Cart</h1>
     <% grand_total = 0 %>
-    <% cart.contents.each do |key, value| %>
-      <% item = Item.find_by(id: key) %>
-      <h3><%= item.name %></h3>
-      <img src=<%= item.image %> alt="...">
-      <p>Sold by: <%= item.merchant.name %></p>
-      <p>Price: <%= number_to_currency(item.price) %></p>
-      <p>Quantity: <%= value %></p>
-      <p>Subtotal: <%= number_to_currency(item.price * value) %></p>
-      <% grand_total += (item.price * value) %>
+    <% if @cart.contents.empty? %>
+      <p>Your cart is empty</p>
+    <% else %>
+    <p> <%=link_to "Empty Cart", "/cart", method: :delete %> </p>
+    <% @cart.contents.each do |key, value| %>
+        <% item = Item.find_by(id: key) %>
+        <h3><%= item.name %></h3>
+        <img src=<%= item.image %> alt="...">
+        <p>Sold by: <%= item.merchant.name %></p>
+        <p>Price: <%= number_to_currency(item.price) %></p>
+        <p>Quantity: <%= value %></p>
+        <p>Subtotal: $<%=  @cart.subtotal_item(key) %></p>
+      <% end %>
+      <h4>Grand Total: $<%=  @cart.grand_total %></h4>
     <% end %>
-
-    <h4>Grand Total: <%= number_to_currency(grand_total) %></h4>
-  </body>
-</html>
