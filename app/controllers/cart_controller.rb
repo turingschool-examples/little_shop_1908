@@ -12,6 +12,13 @@ class CartController<ApplicationController
     redirect_to "/items"
   end
 
+  def remove_item
+    item = Item.find(params[:item_id])
+    @cart = Cart.new(session[:cart])
+    @cart.contents.delete(item.id.to_s)
+    redirect_to "/cart"
+  end
+
   def show
     @cart = Cart.new(session[:cart])
   end

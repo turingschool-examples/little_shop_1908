@@ -17,6 +17,10 @@ class Cart
     @contents[item_id.to_s] = quantity_of(item_id) + 1
   end
 
+  def remove_item(item_id)
+    @contents.delete(item_id)
+  end
+
   def total_count
     if @contents.empty?
       return 0

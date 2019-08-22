@@ -4,6 +4,7 @@
     <% else %>
     <p> <%=link_to "Empty Cart", "/cart", method: :delete %> </p>
     <% @cart.contents.each do |key, value| %>
+      <section id="cart-item-<%= key %>">
         <% item = Item.find(key) %>
         <h3><%= item.name %></h3>
         <img src=<%= item.image %> alt="...">
@@ -11,6 +12,8 @@
         <p>Price: <%= number_to_currency(item.price) %></p>
         <p>Quantity: <%= value %></p>
         <p>Subtotal: $<%=  @cart.subtotal_item(key) %></p>
+        <p><%= link_to "Remove Item", "/cart/#{item.id}", method: :patch %></p>
+      </section>
       <% end %>
       <h4>Grand Total: $<%=  @cart.grand_total %></h4>
     <% end %>
