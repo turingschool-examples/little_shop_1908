@@ -23,7 +23,7 @@
           <p><%= link_to "Edit Review", edit_review_path(@item, review) %></p>
         </section>
         <% end %>
-        <p> <%= link_to "Add To Cart", "/cart/#{@item.id}", method: :patch %> </p>
+        <p> <%= link_to "Add To Cart", "/cart/#{@item.id}", method: :post %> </p>
         <h2>Item Statistics</h2>
         <section id="top-reviews">
           <p>Top Three Reviews</p>

@@ -30,12 +30,14 @@ RSpec.describe 'Cart Creation' do
 
   it "The cart indicator in the navigation bar increments my cart count" do
     visit item_path(@chain.id)
-
     expect(page).to have_content("Cart: 0")
 
     click_on "Add To Cart"
-
     expect(page).to have_content("Cart: 1")
+
+    visit item_path(@chain.id)
+    click_on "Add To Cart"
+    expect(page).to have_content("Cart: 2")
   end
 
 end

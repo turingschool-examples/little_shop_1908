@@ -1,0 +1,12 @@
+<h1>Welcome To Cart!</h1>
+
+  <% @cart.items.each do |item| %>
+    <p>Name: </p><%= item.name %><br>
+    <p>Price: </p><%= item.price %><br>
+    <img src="<%=item.image%>"><br>
+    <p>Sold By: </p><%= item.merchant.name %><br>
+    <p>Total Quantity: <%= @cart.quantity_of(item) %></p>
+    <p>Subtotal: <%= @cart.subtotal(item) %></p>
+  <% end %>
+
+  <p>Grand Total: <%= @cart.grand_total %></p>

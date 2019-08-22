@@ -1,4 +1,5 @@
 module ApplicationHelper
-  def cart 
+  def cart
+    
   end
 end
