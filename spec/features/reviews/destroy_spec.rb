@@ -48,10 +48,16 @@ RSpec.describe "As a visitor" do
       within "#review-#{@review_12.id}" do
         click_link "Delete Review"
       end
-      save_and_open_page
 
       expect(page).to_not have_content("Review Title 12")
       expect(page).to_not have_css("#review-#{@review_12.id}")
+
+      within "#review-#{@review_8.id}" do
+        click_link "Delete Review"
+      end
+
+      expect(page).to_not have_content("Review Title 8")
+      expect(page).to_not have_css("#review-#{@review_8.id}")
     end
   end
 end
