@@ -10,10 +10,15 @@ class ItemsController<ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
-    @top = Review.top_or_bottom_three(@item.id)
-    @bottom = Review.top_or_bottom_three(@item.id, :asc)
-    @average = Review.average_rating(@item.id)
+    if Item.where(id: params[:id]).empty?
+      flash[:error] = "Sorry, that item does not exist"
+      redirect_to "/items"
+    else
+      @item = Item.find(params[:id])
+      @top = Review.top_or_bottom_three(@item.id)
+      @bottom = Review.top_or_bottom_three(@item.id, :asc)
+      @average = Review.average_rating(@item.id)
+    end
   end
 
   def new
