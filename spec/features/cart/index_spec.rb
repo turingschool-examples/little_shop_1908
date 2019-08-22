@@ -237,4 +237,45 @@ describe 'Cart Show Page' do
 
     expect(page).to have_content("Inventory: 12")
   end
+
+#   When I have items in my cart
+# And I visit my cart ("/cart")
+# And I click the link to empty my cart
+# Then I am returned to my cart
+# All items have been completely removed from my cart
+# The navigation bar shows 0 items in my cart
+  it "has a link to empty the cart" do
+    visit "/items/#{@tire.id}"
+
+    click_button "Add Item To yo Cart"
+
+    visit "/items/#{@dog_bone.id}"
+
+    click_button "Add Item To yo Cart"
+
+    visit "/items/#{@dog_bone.id}"
+
+    click_button "Add Item To yo Cart"
+
+    visit "/cart"
+
+    expect(page).to have_link("Empty Cart")
+
+    click_link "Empty Cart"
+
+    within '.topnav' do
+      expect(page).to have_link("Items in Cart: 0")
+    end
+
+    expect(page).to have_content("Your cart is empty, yo.")
+    expect(page).to_not have_link("Empty Cart")
+
+    visit "/items/#{@tire.id}"
+
+    expect(page).to have_content("Inventory: 12")
+
+    visit "/items/#{@dog_bone.id}"
+
+    expect(page).to have_content("Inventory: 2")
+  end
 end
