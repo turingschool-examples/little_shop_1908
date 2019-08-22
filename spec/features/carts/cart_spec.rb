@@ -43,7 +43,7 @@ RSpec.describe "When a user adds items to their cart" do
   end
 
   it "displays the total number of items in the cart" do
-    skip
+    #skip
     visit "/items"
     expect(page).to have_content("Cart: 0")
 

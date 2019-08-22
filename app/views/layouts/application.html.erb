@@ -12,7 +12,7 @@
     <nav class = "topnav">
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
-      <div id='cart-indicator'>0</div>
+      <div id='cart-indicator'> Cart: <%=cart.total_count%></div>
       <img src ="http://i.imgur.com/DrC6cXz.png" alt ="shopping cart graphic" style="width:45px;height:45px;" align="right"/>
     </nav>
     <% flash.each do |type, message| %>
