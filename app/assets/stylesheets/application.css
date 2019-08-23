@@ -82,14 +82,22 @@ section[id^='review-'] {
   padding: 0 0 1.5em 2em;
 }
 
-section[id^='cart-item-'] {
+section[id^='cart-item-'],
+section[id^='order-item-'] {
   display: flex;
   justify-content: space-between;
   height: 12em;
   border-radius: 1em;
   border: 0.1em solid;
-  margin-top: 2px;
+  margin: 0.5em 5% 0 5%;
+  padding: 0.5em 4em 0 4em;
   background-color: #d9e7f2;
+}
+
+section[id^='order-item-'] {
+  margin: 0 10% 0.2em 10%;
+  text-align: center;
+  height: 10em;
 }
 
 .address {
@@ -129,7 +137,7 @@ section[id^='cart-item-'] {
   padding: 0.5em 2em;
   text-align: center;
   text-decoration: none;
-  margin-left: 2em;
+  margin-left: 5em;
 }
 
 .checkout-button:link, .checkout-button:visited {
@@ -138,6 +146,10 @@ section[id^='cart-item-'] {
 
 .checkout-button:hover {
   background-color: #45a049;
+}
+
+.customer-info {
+  padding-left: 5em;
 }
 
 .edit-delete {
@@ -270,14 +282,14 @@ section[id^='cart-item-'] {
    width: 50%;
  }
 
- .item-show-details {
+   .item-show-details {
    padding-left: 10%;
    width: 50%;
  }
 
  .order-total {
    font-size: 1.5em;
-   padding: 1em 2em;
+   padding: 1em 5em;
  }
 
  .show-box-header {
