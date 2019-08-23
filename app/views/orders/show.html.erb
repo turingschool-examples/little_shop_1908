@@ -1,7 +1,10 @@
 <p class="page-title">Order Details</p>
 
 <section class="customer-info">
-  
+  <h3>Shipping Details</h3>
+  <p><%= @order.name %></p>
+  <p><%= @order.address %></p>
+  <p><%= @order.city %>, <%= @order.state %> <%= @order.zip %></p>
 </section>
 <% @items.each do |item|  %>
   <section id="order-item-<%=item.id%>">
@@ -25,4 +28,7 @@
 <% end %>
 <section class="order-total">
   Order total: <%=number_to_currency @cart.order_total %>
+</section>
+<section class="order-date">
+  Order placed on: <%= @order.created_at %>
 </section>

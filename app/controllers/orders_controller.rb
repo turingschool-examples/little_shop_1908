@@ -5,12 +5,15 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = Order.create!(order_params)
+    order = Order.create(order_params)
     redirect_to "/orders/#{order.id}"
   end
 
   def show
-    
+    @cart = Cart.new(session[:cart])
+    @items = Item.cart_items(@cart)
+    @order = Order.find(params[:id])
+    session[:cart] = {}
   end
 
   private
