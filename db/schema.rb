@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20190821202704) do
   create_table "item_orders", force: :cascade do |t|
     t.bigint "item_id"
     t.bigint "order_id"
+    t.integer "quantity"
+    t.float "total_cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_item_orders_on_item_id"

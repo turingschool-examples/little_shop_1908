@@ -7,7 +7,9 @@ class ReviewsController <ApplicationController
     item = Item.find(params[:id])
     if review_params.values.any? {|input| input == "" || input == "Write your review here"}
       flash[:error] = "Do it right, yo."
-    else flash[:success] = "Your review has been posted"
+    else
+
+      flash[:success] = "Your review has been posted"
       review = item.reviews.create(review_params)
     end
     redirect_to "/items/#{item.id}"
@@ -22,7 +24,8 @@ class ReviewsController <ApplicationController
     review = Review.find(params[:review_id])
     if review.update(review_params)
       flash[:success] = "Your review has been updated!"
-    else flash[:error] = "Retry updating your review again with better info."
+    else
+      flash[:error] = "Retry updating your review again with better info."
     end
     redirect_to "/items/#{review.item_id}"
   end
