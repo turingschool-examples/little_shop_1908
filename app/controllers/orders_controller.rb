@@ -5,7 +5,26 @@ class OrdersController < ApplicationController
   end
 
   def create
-    
+    order = Order.new(order_params)
+    if order.save
+      redirect_to "/orders/#{order.id}"
+    else
+      flash[:error] = "Please fill in all the fields"
+      redirect_to '/orders/new'
+    end
+  end
+
+  def show
+    @cart = Cart.new(session[:cart])
+    @items = Item.cart_items(@cart)
+    @order = Order.find(params[:id])
+    session[:cart] = {}
+  end
+
+  private
+
+  def order_params
+    params.permit(:name, :address, :city, :state, :zip)
   end
 
 end
