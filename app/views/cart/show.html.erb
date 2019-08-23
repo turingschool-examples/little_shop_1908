@@ -1,5 +1,8 @@
 <h1>Welcome To Cart!</h1>
 
+  <% if @cart.contents.empty? %>
+    <p>Oops! You have no items in your cart!</p>
+  <% else %>
     <% @cart.items.each do |item| %>
       <section id="item-<%=item.id%>">
         <p>Name: <%= item.name %></p>
@@ -11,7 +14,7 @@
         <%= button_to "Remove From Cart", update_cart_path(item), method: :patch%>
       </section>
     <% end %>
+    <p>Grand Total: <%= @cart.grand_total %></p>
 
-  <p>Grand Total: <%= @cart.grand_total %></p>
-
-  <%= link_to 'Empty Cart', empty_cart_path, method: :patch%>
+    <%= link_to 'Empty Cart', empty_cart_path, method: :patch%>
+  <% end %>
