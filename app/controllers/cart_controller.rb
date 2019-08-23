@@ -2,7 +2,6 @@ class CartController < ApplicationController
 
   def show
     @cart = cart
-    # @contents = cart.contents
   end
 
   def add_item
@@ -11,6 +10,17 @@ class CartController < ApplicationController
     session[:cart] = cart.contents
     flash[:success] = "#{item.name} has been added to your cart!"
     redirect_to items_path
+  end
+
+  def empty
+    session[:cart] = {}
+    redirect_to "/cart"
+  end
+
+  def update
+    cart.contents.delete(params[:id])
+    session[:cart] = cart.contents
+    redirect_to "/cart"
   end
 
 end

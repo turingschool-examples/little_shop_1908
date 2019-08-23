@@ -1,12 +1,17 @@
 <h1>Welcome To Cart!</h1>
 
-  <% @cart.items.each do |item| %>
-    <p>Name: </p><%= item.name %><br>
-    <p>Price: </p><%= item.price %><br>
-    <img src="<%=item.image%>"><br>
-    <p>Sold By: </p><%= item.merchant.name %><br>
-    <p>Total Quantity: <%= @cart.quantity_of(item) %></p>
-    <p>Subtotal: <%= @cart.subtotal(item) %></p>
-  <% end %>
+    <% @cart.items.each do |item| %>
+      <section id="item-<%=item.id%>">
+        <p>Name: <%= item.name %></p>
+        <p>Price: <%= item.price %></p>
+        <img src="<%=item.image%>"><br>
+        <p>Sold By: <%= item.merchant.name %></p>
+        <p>Total Quantity: <%= @cart.quantity_of(item) %></p>
+        <p>Subtotal: <%= @cart.subtotal(item) %></p><br><br>
+        <%= button_to "Remove From Cart", update_cart_path(item), method: :patch%>
+      </section>
+    <% end %>
 
   <p>Grand Total: <%= @cart.grand_total %></p>
+
+  <%= link_to 'Empty Cart', empty_cart_path, method: :patch%>
