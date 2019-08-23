@@ -13,7 +13,7 @@
   <section id="order-item-<%=item.id%>">
     <section class="details-description">
       <p><%=link_to item.name, "/items/#{item.id}" %></p>
-      <p><%=link_to item.merchant.name, "merchants/#{item.merchant.id}" %></p>
+      <p><%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
     </section>
     <section class="details-price">
       <p class="cart-section-titles">Price:</p>
