@@ -13,6 +13,7 @@
         <p>Quantity: <%= value %></p>
         <p>Subtotal: $<%=  @cart.subtotal_item(key) %></p>
         <p><%= link_to "Remove Item", "/cart/#{item.id}", method: :patch %></p>
+        <p><%= button_to "+", "/cart/#{item.id}/add", method: :post %></p>
       </section>
       <% end %>
       <h4>Grand Total: $<%=  @cart.grand_total %></h4>
