@@ -120,6 +120,26 @@ section[id^='cart-item-'] {
   margin-bottom: 1.5%;
 }
 
+.checkout-button {
+  background-color: #00798C;
+  border-radius: 7px;
+  box-shadow: 2px 2px 4px #202020;
+  display: inline-block;
+  font-size: 1.3em;
+  padding: 0.5em 2em;
+  text-align: center;
+  text-decoration: none;
+  margin-left: 2em;
+}
+
+.checkout-button:link, .checkout-button:visited {
+  color: #f2f2f2;
+}
+
+.checkout-button:hover {
+  background-color: #45a049;
+}
+
 .edit-delete {
   display: flex;
   justify-content: space-around;
@@ -148,7 +168,6 @@ section[id^='cart-item-'] {
   margin-right: 1.7em;
 }
 
-
 .edit-btn {
   background-color: #f6d6a2;
   border-radius: 7px;
@@ -162,6 +181,26 @@ section[id^='cart-item-'] {
 
 .edit-btn:link, .edit-btn:visited {
   color: #404040;
+}
+
+.error {
+  background-color: red;
+  border-radius: 0em 0em 1em 1em;
+  border: 2px solid #003D5B;
+  color: #404040;
+  margin: 0 40%;
+  padding: 1.5em;
+  text-align: center;
+}
+
+.notice {
+  background-color: green;
+  border-radius: 0em 0em 1em 1em;
+  border: 2px solid #003D5B;
+  color: #404040;
+  margin: 0 40%;
+  padding: 1.5em;
+  text-align: center;
 }
 
 .edit-btn:hover {
@@ -213,7 +252,6 @@ section[id^='cart-item-'] {
 
  .item-show-box{
   background-color: #d9e7f2;
-  border-radius: 1em;
   border: solid;
   margin-left: 20%;
   width: 60%;
@@ -238,10 +276,8 @@ section[id^='cart-item-'] {
  }
 
  .order-total {
-   font-size: 2em;
-   padding-left: 2em;
-   margin-top: 1em;
-   margin-bottom: 1em;
+   font-size: 1.5em;
+   padding: 1em 2em;
  }
 
  .show-box-header {
