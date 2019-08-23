@@ -25,8 +25,9 @@ describe 'User does not complete the order form fully' do
     fill_in :address, with: address
     fill_in :city, with: city
 
-    click_link 'Place Order'
+    click_button 'Place Order'
+    
     expect(page).to have_content('Please fill in all the fields')
-    expect(page).to have_link('Place Order')
+    expect(page).to have_button('Place Order')
   end
 end

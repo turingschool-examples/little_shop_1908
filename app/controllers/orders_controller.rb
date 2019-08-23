@@ -5,8 +5,13 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = Order.create(order_params)
-    redirect_to "/orders/#{order.id}"
+    order = Order.new(order_params)
+    if order.save
+      redirect_to "/orders/#{order.id}"
+    else
+      flash[:error] = "Please fill in all the fields"
+      redirect_to '/orders/new'
+    end
   end
 
   def show
