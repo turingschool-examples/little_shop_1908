@@ -42,7 +42,6 @@ RSpec.describe "As a visitor" do
     end
 
     it "I can delete a merchant" do
-      # skip
       visit "items/#{@tire.id}"
 
       within "#review-#{@review_12.id}" do

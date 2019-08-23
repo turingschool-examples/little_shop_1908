@@ -31,7 +31,6 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    #binding.pry
    review = Review.find(params[:review_id])
    review.destroy
    redirect_to "/items/#{review.item.id}"
