@@ -1,11 +1,5 @@
 require 'rails_helper'
 
-# As a visitor,
-# When I visit an item's show page,
-# I see a link next to each review to delete the review.
-# When I delete a review I am returned to the item's show page
-# Then I should no longer see that review.
-
 RSpec.describe "As a visitor" do
   describe "When I visit an item's show page" do
     before :each do
@@ -26,21 +20,43 @@ RSpec.describe "As a visitor" do
       @review_12 = @tire.reviews.create(title: 'Review Title 12', content: "Content 12", rating: 1)
     end
 
-    it "I can see a delete button for each review" do
+    it "can see a delete button next to each review" do
+
+      visit "items/#{@tire.id}"
+
+      within "#review-#{@review_1.id}" do
+        expect(page).to have_link("Delete Review")
+      end
+
+      within "#review-#{@review_2.id}" do
+        expect(page).to have_link("Delete Review")
+      end
+
+      within "#review-#{@review_5.id}" do
+        expect(page).to have_link("Delete Review")
+      end
+
+      within "#review-#{@review_12.id}" do
+        expect(page).to have_link("Delete Review")
+      end
     end
 
-    it "I can delete a review" do
-      skip
-      visit '/item/#{@}'
-      expect(page).to have_css("#merchant-#{bike_shop.id}")
+    it "I can delete a merchant" do
+      visit "items/#{@tire.id}"
 
-      visit "merchants/#{bike_shop.id}"
+      within "#review-#{@review_12.id}" do
+        click_link "Delete Review"
+      end
 
-      click_on "Delete Merchant"
+      expect(page).to_not have_content("Review Title 12")
+      expect(page).to_not have_css("#review-#{@review_12.id}")
 
-      expect(current_path).to eq('/merchants')
-      expect(page).to_not have_content("Brian's Bike Shop")
-      expect(page).to_not have_css("#merchant-#{bike_shop.id}")
+      within "#review-#{@review_8.id}" do
+        click_link "Delete Review"
+      end
+
+      expect(page).to_not have_content("Review Title 8")
+      expect(page).to_not have_css("#review-#{@review_8.id}")
     end
   end
 end

@@ -10,10 +10,11 @@ class Review < ApplicationRecord
   end
 
   def self.top_three_reviews
-    order(rating: :asc).last(3)
+
+    order(rating: :desc).limit(3)
   end
 
   def self.bottom_three_reviews
-    order(rating: :asc).first(3)
+    order(rating: :asc).limit(3)
   end
 end

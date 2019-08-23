@@ -65,7 +65,6 @@ RSpec.describe 'From Item Show Page', type: :feature do
       visit "/items/#{@tire.id}"
 
       within '#reviews-stat-section' do
-        #binding.pry
         expect(page).to have_content(@review_5.title)
         expect(page).to have_content(@review_10.title)
         expect(page).to have_content(@review_4.title)
@@ -94,6 +93,7 @@ RSpec.describe 'From Item Show Page', type: :feature do
       visit "/items/#{@tire.id}"
 
       within '#reviews-stat-section' do
+
 
         expect(page).to have_content(2.67)
       end
