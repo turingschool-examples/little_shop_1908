@@ -17,4 +17,10 @@ class CartController < ApplicationController
     redirect_to "/cart"
   end
 
+  def update
+    cart.contents.delete(params[:id])
+    session[:cart] = cart.contents
+    redirect_to "/cart"
+  end
+
 end
