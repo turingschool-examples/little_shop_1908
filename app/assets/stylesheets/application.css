@@ -95,7 +95,8 @@ section[id^='order-item-'],
   background-color: #d9e7f2;
 }
 
-section[id^='order-item-'] {
+section[id^='order-item-'],
+.customer-info {
   margin: 0 10% 0.2em 10%;
   text-align: center;
   height: 10em;
@@ -149,8 +150,17 @@ section[id^='order-item-'] {
   background-color: #45a049;
 }
 
+.checkout-btn {
+  text-align: right;
+  margin-right: 7em;
+}
+
 .customer-info {
   background-color: #dbf0dc;
+  display: block;
+  text-align: left;
+  padding: 0 0 1em 2em;
+  height: auto;
 }
 
 .edit-delete {
@@ -199,16 +209,6 @@ section[id^='order-item-'] {
 
 .error {
   background-color: #e18490;
-  border-radius: 0em 0em 1em 1em;
-  border: 2px solid #003D5B;
-  color: #404040;
-  margin: 0 40%;
-  padding: 1.5em;
-  text-align: center;
-}
-
-.notice {
-  background-color: #94d197;
   border-radius: 0em 0em 1em 1em;
   border: 2px solid #003D5B;
   color: #404040;
@@ -294,6 +294,20 @@ section[id^='order-item-'] {
 .item-show-details {
    padding-left: 10%;
    width: 50%;
+ }
+
+ .notice {
+   background-color: #94d197;
+   border-radius: 0em 0em 1em 1em;
+   border: 2px solid #003D5B;
+   color: #404040;
+   margin: 0 40%;
+   padding: 1.5em;
+   text-align: center;
+ }
+
+ .order-date {
+   margin-top: 0.4em;
  }
 
  .order-total {
@@ -405,4 +419,8 @@ section[id^='order-item-'] {
 
  #new-order {
    margin-right: 2em;
+ }
+
+ #order-show-total {
+   margin-right: 3em;
  }

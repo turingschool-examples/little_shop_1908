@@ -5,6 +5,9 @@
   <p><%= @order.name %></p>
   <p><%= @order.address %></p>
   <p><%= @order.city %>, <%= @order.state %> <%= @order.zip %></p>
+  <section class="order-date">
+    Order placed on: <%= @order.created_at %>
+  </section>
 </section>
 <% @items.each do |item|  %>
   <section id="order-item-<%=item.id%>">
@@ -26,9 +29,6 @@
     </section>
   </section>
 <% end %>
-<section class="order-total">
+<section class="order-total" id='order-show-total'>
   Order total: <%=number_to_currency @cart.order_total %>
-</section>
-<section class="order-date">
-  Order placed on: <%= @order.created_at %>
 </section>
