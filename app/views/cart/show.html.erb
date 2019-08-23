@@ -24,6 +24,11 @@
 <section class="order-total">
   Order total: <%=number_to_currency @cart.order_total %>
 </section>
+<% if !@cart.contents.empty? %>
+  <div class="empty-btn">
+    <%= link_to "Empty your cart", '/cart' %>
+  </div>
+<% end %>
 <div class="checkout-btn">
   <%= link_to "Checkout", '/orders/new' %>
 </div>
