@@ -17,8 +17,7 @@ class CartController < ApplicationController
   end
 
   def empty_cart
-    @cart = Cart.new(session[:cart])
-    @cart.empty_cart_items
+    session[:cart] = {}
     redirect_to '/cart'
   end
 

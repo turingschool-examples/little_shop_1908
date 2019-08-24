@@ -27,9 +27,4 @@ class Cart
     @contents.map { |id, qty| subtotal(id) }.sum
   end
 
-  def empty_cart_items
-    @contents.clear
-  end
-
-
 end
