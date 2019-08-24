@@ -20,7 +20,10 @@
       </section>
     </nav>
     <% flash.each do |type, message| %>
-      <%= content_tag :div, message, class: type %>
+      <% unless message.is_a? Array %>
+        <% message = [message] %>
+      <% end %>
+      <%= content_tag :pre, message.join("\n"), class: type %>
     <% end %>
     <%= yield %>
   </body>
