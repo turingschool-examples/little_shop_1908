@@ -21,7 +21,6 @@ describe 'User visits full cart' do
     expect(page).to_not have_content(dog_bone.price)
     expect(page).to_not have_content("2")
     expect(page).to_not have_content("$42.00")
-
-    expect(page).to have_content("Order total: $0.00")
+    expect(page).to have_content("Your cart is empty")
   end
 end

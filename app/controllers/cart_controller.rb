@@ -15,4 +15,11 @@ class CartController < ApplicationController
       flash[:error] = "Your cart is empty"
     end
   end
+
+  def empty_cart
+    @cart = Cart.new(session[:cart])
+    @cart.empty_cart_items
+    redirect_to '/cart'
+  end
+
 end
