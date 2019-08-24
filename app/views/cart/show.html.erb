@@ -1,34 +1,34 @@
-<p class="cart-title">Cart</p>
-
-<% @items.each do |item| %>
-    <section id="cart-item-<%=item.id%>">
-      <img src=<%= item.image%> class="cart-item-image">
-      <section class="details-description">
-        <p><%=link_to item.name, "/items/#{item.id}" %></p>
-        <p><%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
-      </section>
-      <section class="details-price">
-        <p class="cart-section-titles">Price:</p>
-        <p><%=number_to_currency item.price %></p>
-      </section>
-      <section class="details-quantity">
-        <p class="cart-section-titles">Quantity:</p>
-        <p><%= @cart.contents[item.id.to_s] %></p>
-      </section>
-      <section class="details-subtotal">
-        <p class="cart-section-titles">Subtotal:</p>
-        <p><%= number_to_currency @cart.subtotal(item.id) %></p>
-      </section>
-    </section>
-    <% end %>
-<section class="order-total">
-  Order total: <%=number_to_currency @cart.order_total %>
-</section>
 <% if !@cart.contents.empty? %>
-  <div class="empty-btn">
-    <%= link_to "Empty your cart", '/cart', method: :patch %>
+  <p class="cart-title">Cart</p>
+
+  <% @items.each do |item| %>
+      <section id="cart-item-<%=item.id%>">
+        <img src=<%= item.image%> class="cart-item-image">
+        <section class="details-description">
+          <p><%=link_to item.name, "/items/#{item.id}" %></p>
+          <p><%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
+        </section>
+        <section class="details-price">
+          <p class="cart-section-titles">Price:</p>
+          <p><%=number_to_currency item.price %></p>
+        </section>
+        <section class="details-quantity">
+          <p class="cart-section-titles">Quantity:</p>
+          <p><%= @cart.contents[item.id.to_s] %></p>
+        </section>
+        <section class="details-subtotal">
+          <p class="cart-section-titles">Subtotal:</p>
+          <p><%= number_to_currency @cart.subtotal(item.id) %></p>
+        </section>
+      </section>
+    <% end %>
+  <section class="order-total">
+    Order total: <%=number_to_currency @cart.order_total %>
+  </section>
+    <div class="empty-btn">
+      <%= link_to "Empty your cart", '/cart', method: :patch %>
+    </div>
+  <div class="checkout-btn">
+    <%= link_to "Checkout", '/orders/new', class: 'checkout-button' %>
   </div>
 <% end %>
-<div class="checkout-btn">
-  <%= link_to "Checkout", '/orders/new', class: 'checkout-button' %>
-</div>

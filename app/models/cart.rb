@@ -31,4 +31,5 @@ class Cart
     @contents.clear
   end
 
+
 end
