@@ -25,7 +25,10 @@ class CartController < ApplicationController
   end
 
   def me_take_away
-
+    item = Item.find(params[:id])
+    cart.subtract_item(item.id)
+    session[:cart] = cart.contents
+    redirect_to cart_path
   end
 
   def empty

@@ -10,6 +10,7 @@
         <img src="<%=item.image%>"><br>
         <p>Sold By: <%= item.merchant.name %></p>
         <p>Total Quantity: <%= @cart.quantity_of(item) %></p>
+        <%= link_to "Remove One: #{item.name}", me_take_away_path(item), method: :patch %>
         <%= link_to "Add Another: #{item.name}", me_add_path(item), method: :patch %>
         <p>Subtotal: <%= @cart.subtotal(item) %></p><br><br>
         <%= button_to "Remove From Cart", update_cart_path(item), method: :patch%>
