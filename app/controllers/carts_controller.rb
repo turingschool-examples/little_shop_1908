@@ -14,4 +14,10 @@ class CartsController < ApplicationController
 
   def show
   end
+
+  def delete
+    # binding.pry
+    reset_session
+    redirect_to "/cart"
+  end
 end
