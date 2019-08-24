@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   patch '/cart/:id/subtract', to: 'cart#me_take_away', as: :me_take_away
 
   get "/orders/new", to: "orders#new", as: :new_order
-  post "/orders", to: "orders#create"
   get "/orders/:id", to: "orders#show"
+  post "/orders", to: "orders#create"
 
 end
