@@ -56,5 +56,39 @@ describe 'Merchant Show Page' do
       expect(current_path).to eq('/merchants')
       expect(page).to_not have_content(@bike_shop.name)
     end
+
+    it "if merchant has active orders" do
+      doggo_shop = Merchant.create(name: "E's Doggo Shop", address: '123 Dog Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      tire = @bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+      order = Order.create(name: "Evette", address: "123 street", city: "Denver", state: "CO", zip: 12345)
+      io_1 = order.item_orders.create(item_id: tire.id, order_id: order.id, quantity: 5, total_cost: (tire.price * 5))
+
+      visit "/merchants/#{@bike_shop.id}"
+      click_link "Delete Merchant"
+
+      expect(current_path).to eq("/merchants")
+      expect(page).to have_content("We won't delete merchants with active orders")
+
+      click_link "E's Doggo Shop"
+      click_link "Delete Merchant"
+      expect(page).to_not have_content(doggo_shop.name)
+    end
+  end
+
+  it "displays merchant stats" do
+    pug_store = Merchant.create(name: "Puggotown", address: '123 Pupper Rd.', city: 'Pugville', state: 'VA', zip: 23137)
+    dog_food = pug_store.items.create(name: "Foodtime", description: "It's yummy!", price: 10, image: "https://www.zooplus.co.uk/magazine/CACHE_IMAGES/768/content/uploads/2018/01/fotolia_108248133.jpg", inventory: 120)
+    soap = pug_store.items.create(name: "Soapy Soap", description: "It's clean!", price: 11, image: "https://i.pinimg.com/originals/a9/bf/77/a9bf779477d6a97519cfe3b8c21dac90.jpg", inventory: 20)
+    order = Order.create(name: "Evette", address: "123 street", city: "Denver", state: "CO", zip: 12345)
+    order_2 = Order.create(name: "Other Evette", address: "123 other street", city: "New York", state: "NY", zip: 10019)
+    order.item_orders.create(item_id: soap.id, order_id: order.id, quantity: 5, total_cost: (soap.price * 5))
+    order.item_orders.create(item_id: dog_food.id, order_id: order.id, quantity: 15, total_cost: (dog_food.price * 15))
+    order_2.item_orders.create(item_id: dog_food.id, order_id: order.id, quantity: 150, total_cost: (dog_food.price * 150))
+
+    visit "/merchants/#{pug_store.id}"
+
+    expect(page).to have_content(pug_store.item_count)
+    expect(page).to have_content(pug_store.average_item_price)
+    expect(page).to have_content(pug_store.cities_serviced)
   end
 end
