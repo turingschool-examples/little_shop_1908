@@ -17,7 +17,8 @@ class OrdersController < ApplicationController
         merchant = item.merchant.name
         price = item.price
         subtotal = price * quantity
-        new_order.order_items.create(item_id: item_id, name: name, merchant: merchant, price: price, quantity: quantity, subtotal: subtotal)
+        merchant_id = item.merchant.id
+        new_order.order_items.create(item_id: item_id, name: name, merchant: merchant, price: price, quantity: quantity, subtotal: subtotal, merchant_id: merchant_id)
       end
       session[:cart] = nil
       flash[:notice] = "Your order has been created!"
