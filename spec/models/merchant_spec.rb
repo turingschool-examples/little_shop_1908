@@ -24,7 +24,7 @@ describe Merchant, type: :model do
       order = Order.create(name: "Bob", address: "234 A st.", city: "Torrance", state: "CA", zip: 90505)
       order.create_item_orders(cart)
 
-      expect (dog_shop.has_orders?).to eq(true)
+      expect(dog_shop.has_orders?).to eq(true)
     end
   end
 end

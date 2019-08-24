@@ -8,6 +8,8 @@ class Merchant <ApplicationRecord
                         :zip
 
   def has_orders?
-    
+    ItemOrder.joins(:item)
+    .where("items.merchant_id = #{self.id}")
+    .count > 0
   end
 end
