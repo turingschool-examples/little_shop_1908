@@ -28,6 +28,9 @@ RSpec.describe "As a visitor" do
         expect(current_path).to eq('/merchants')
         expect(page).to_not have_content("Brian's Bike Shop")
         expect(page).to_not have_css("#merchant-#{bike_shop.id}")
+
+        visit "/items"
+        expect(page).to_not have_css("#item-#{chain.id}")
       end
     end
   end
