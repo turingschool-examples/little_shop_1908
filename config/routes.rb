@@ -27,5 +27,5 @@ Rails.application.routes.draw do
   post "/cart/:id", to: "cart#add_item"
   patch "/cart/empty", to: "cart#empty", as: :empty_cart
   patch "/cart/:id", to: "cart#update", as: :update_cart
-
+  patch '/cart/:id/add', to: 'cart#me_add', as: :me_add
 end

@@ -14,6 +14,10 @@ class Cart
     @contents[item.id.to_s]
   end
 
+  def available_inventory?(item)
+    @contents[item.id.to_s] < item.inventory
+  end
+
   def subtotal(item)
     quantity_of(item) * item.price
   end
