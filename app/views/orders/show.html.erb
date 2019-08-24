@@ -8,7 +8,7 @@
 
 <% @order.order_items.each do |order_item| %>
   <p>Item: <%=link_to order_item.name, "/items/#{order_item.item_id}" %></p>
-  <p>Sold By: <%= order_item.merchant %></p>
+  <p>Sold By: <%=link_to order_item.merchant, "/merchants/#{order_item.merchant_id}"%></p>
   <p>Price: <%= order_item.price %></p>
   <p>Quantity: <%= order_item.quantity %></p>
   <p>Item Subtotal: <%= order_item.subtotal %></p>
