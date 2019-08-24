@@ -13,7 +13,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Cart Show Page' do
-  describe 'When I visit the cart index page' do
+  describe 'When I visit the cart show page' do
     before :each do
       @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       @brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
@@ -42,7 +42,7 @@ RSpec.describe 'Cart Show Page' do
         expect(page).to have_content(@pull_toy.merchant.name)
         expect(page).to have_content(@pull_toy.price)
         expect(page).to have_content("Quantity: 1")
-        expect(page).to have_content("Subtotal: $10.00")
+        expect(page).to have_content("Subtotal: $10")
       end
 
       within "#cart-item-#{@tire.id}" do
@@ -51,11 +51,11 @@ RSpec.describe 'Cart Show Page' do
         expect(page).to have_content(@tire.merchant.name)
         expect(page).to have_content(@tire.price)
         expect(page).to have_content("Quantity: 2")
-        expect(page).to have_content("Subtotal: $200.00")
+        expect(page).to have_content("Subtotal: $200")
       end
 
       within "#cart-summary" do
-        expect(page).to have_content("Total: $210.00")
+        expect(page).to have_content("Total: $210")
       end
     end
   end
