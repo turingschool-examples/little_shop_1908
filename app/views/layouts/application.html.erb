@@ -10,17 +10,22 @@
 
   <body>
     <nav class = "topnav">
-      <%= link_to "All Merchants", "/merchants"%>
-      <%= link_to "All Items", "/items"%>
+      <section class="topnav-links">
+        <%= link_to "All Merchants", "/merchants", class: "topnav-btn"%>
+        <%= link_to "All Items", "/items", class: "topnav-btn"%>
+      </section>
       <section id="cart-indicator">
-        <span>(<%= session[:cart] ? session[:cart].values.sum : 0 %>)</span>
         <%= link_to "/cart" do  %>
           <%= image_tag  "https://cdn0.iconfinder.com/data/icons/shopping-cart-26/1000/Shopping-Basket-03-512.png", id: "cart-pic"%>
         <% end %>
+        <span id="num-in-cart">(<%= session[:cart] ? session[:cart].values.sum : 0 %>)</span>
       </section>
     </nav>
     <% flash.each do |type, message| %>
-      <%= content_tag :div, message, class: type %>
+      <% unless message.is_a? Array %>
+        <% message = [message] %>
+      <% end %>
+      <%= content_tag :pre, message.join("\n"), class: type %>
     <% end %>
     <%= yield %>
   </body>
