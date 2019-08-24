@@ -1,4 +1,4 @@
-<h1><%= @item.name %></h1>
+<h1><%=link_to @item.name, "/items/#{@item.id}" %></h1>
 <p align="center">Sold by: <%=link_to @item.merchant.name, "/merchants/#{@item.merchant.id}" %> </p>
 <center>
   <section class = "item-show-grid">
