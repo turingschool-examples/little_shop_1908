@@ -45,19 +45,19 @@ RSpec.describe "When a user adds items to their cart" do
   it "displays the total number of items in the cart" do
     #skip
     visit "/items"
-    expect(page).to have_content("Cart: 0")
+    expect(page).to have_content("0")
 
     visit "/items/#{@tire.id}"
     click_button "Add Item"
-    expect(page).to have_content("Cart: 1")
+    expect(page).to have_content("1")
 
     visit "/items/#{@pull_toy.id}"
     click_button "Add Item"
-    expect(page).to have_content("Cart: 2")
+    expect(page).to have_content("2")
 
     visit "/items/#{@brush.id}"
     click_button "Add Item"
-    expect(page).to have_content("Cart: 3")
+    expect(page).to have_content("3")
   end
 end
 
