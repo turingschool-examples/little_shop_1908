@@ -5,5 +5,6 @@ class OrderItem < ApplicationRecord
                         :price,
                         :name,
                         :merchant,
-                        :subtotal
+                        :subtotal,
+                        :merchant_id
 end

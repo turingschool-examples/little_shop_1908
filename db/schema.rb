@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20190824175346) do
     t.string "name"
     t.string "merchant"
     t.float "subtotal"
+    t.integer "merchant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_order_items_on_item_id"

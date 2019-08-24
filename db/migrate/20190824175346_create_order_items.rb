@@ -8,6 +8,7 @@ class CreateOrderItems < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :merchant
       t.float :subtotal
+      t.integer :merchant_id
 
       t.timestamps
     end
