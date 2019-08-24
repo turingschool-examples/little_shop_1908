@@ -59,5 +59,36 @@ RSpec.describe "Updating Cart" do
         expect(page).to have_content("Total Quantity: 2")
       end
     end
+
+    it "Next to each item in my cart, I see a button or link to decrement the
+    count of items I want to purchase, If I decrement the count to 0 the
+    item is immediately removed from my cart" do
+
+    visit item_path(@chain.id)
+    click_on "Add To Cart"
+    visit item_path(@tire.id)
+    click_on "Add To Cart"
+    visit "/cart"
+
+    click_on "Add Another: Chain"
+    click_on "Add Another: Gatorskins"
+    click_on "Add Another: Chain"
+    click_on "Add Another: Gatorskins"
+
+    click_on "Remove One: Chain"
+      within "#item-#{@chain.id}" do
+        expect(page).to have_content("Total Quantity: 2")
+      end
+
+    click_on "Remove One: Gatorskins"
+      within "#item-#{@tire.id}" do
+        expect(page).to have_content("Total Quantity: 2")
+      end
+
+    click_on "Remove One: Gatorskins"
+    click_on "Remove One: Gatorskins"
+
+      expect(page).to_not have_content("Gatorskins")
+    end
   end
 end
