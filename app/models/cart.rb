@@ -24,7 +24,15 @@ class Cart
   end
 
   def order_total
-    @contents.map { |id, num| subtotal(id) }.sum
+    @contents.map { |id, qty| subtotal(id) }.sum
   end
 
+  def create_item_orders(order, total)
+    @contents.each do |item, qty|
+      ItemOrder.create(order_id: order.id,
+                      item_id: Item.find(item).id,
+                      quantity: qty,
+                      total_cost: total)
+    end
+  end
 end

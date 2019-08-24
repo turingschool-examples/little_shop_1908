@@ -9,12 +9,7 @@ class OrdersController < ApplicationController
     if order.save
       cart = Cart.new(session[:cart])
       total = cart.order_total
-      cart.contents.each do |item, qty|
-        ItemOrder.create(order_id: order.id,
-                        item_id: Item.find(item).id,
-                        quantity: qty,
-                        total_cost: total)
-      end
+      cart.create_item_orders(order, total)
       redirect_to "/orders/#{order.id}"
     else
       flash[:error] = "Please fill in all the fields"
