@@ -6,6 +6,13 @@ class Cart
     @contents = initial_contents || Hash.new(0)
   end
 
+  def item_quantity
+    @contents.map do |key, value|
+      [Item.find(key.to_i), value]
+    end.to_h
+
+  end
+
   def total_count
     @contents.values.sum
   end
@@ -21,6 +28,6 @@ class Cart
   def total
     @contents.sum do |item_id, quantity|
       Item.find(item_id).price * quantity
-    end 
+    end
   end
 end
