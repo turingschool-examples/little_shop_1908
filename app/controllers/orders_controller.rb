@@ -7,6 +7,8 @@ class OrdersController < ApplicationController
   def create
     order = Order.new(order_params)
     if order.save
+      cart = Cart.new(session[:cart])
+      order.create_item_orders(cart)
       redirect_to "/orders/#{order.id}"
     else
       flash[:error] = "Please fill in all the fields"
