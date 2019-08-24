@@ -36,6 +36,7 @@
  body {
  background-color: white;
  font-size: 1.1em;
+ font-family: Tahoma, Geneva, sans-serif
  }
 
  form {
@@ -336,22 +337,30 @@ section[id^='order-item-'],
  }
 
  .topnav {
-   overflow: hidden;
    background-color: #003D5B;
+   display: flex;
+   height: 4em;
+   justify-content: space-between;
  }
 
- .topnav a {
-   color: #f2f2f2;
-   float: left;
-   font-size: 17px;
-   padding: 14px 16px;
-   text-align: center;
+ .topnav-links {
+   margin-top: 2px;
+   padding-top: 1em;
+ }
+
+ .topnav-btn {
+   font-size: 1.5em;
+   padding: 0.75em 1em;
    text-decoration: none;
  }
 
- .topnav a:hover {
-   background-color: #00798C;
-   color: black;
+ .topnav-btn:link, .topnav-btn:visited {
+   color: #f2f2f2;
+ }
+
+ .topnav-btn:hover {
+   background-color: #00c7e6;
+   color: #003D5B;
  }
 
  .reviews-section {
@@ -362,11 +371,11 @@ section[id^='order-item-'],
  .reviews-section-header {
    background-color: #30638E;
    border-bottom: 2px solid #003D5B;
+   border-radius: 10px 10px 0px 0px;
    display: flex;
    justify-content: space-between;
    margin-top: 2em;
    padding: 0.5em 1em;
-   border-radius: 10px 10px 0px 0px;
  }
  .reviews-header-btn {
    background-color:  #b3f5ff;
@@ -409,16 +418,24 @@ section[id^='order-item-'],
  }
 
  #cart-indicator {
-   float: right;
    color: #f2f2f2;
  }
 
  #cart-pic {
-   width: 2em;
+   width: 4em;
+ }
+
+ #cart-pic:hover {
+   background-color: #00c7e6;
  }
 
  #new-order {
    margin-right: 2em;
+ }
+
+ #num-in-cart {
+   float: right;
+   padding-right: 0.5em;
  }
 
  #order-show-total {
