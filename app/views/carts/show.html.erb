@@ -1,6 +1,6 @@
 <h1>Shopping Cart</h1>
-<center>
-<section id="cart-summary">
+
+<section id = "cart-summary">
   <% cart.item_quantity.each do |item, quantity| %>
     <section id="cart-item-<%=item.id%>">
       <p>Quantity: <%= quantity %></p>
@@ -9,7 +9,7 @@
       <%= image_tag item.image, alt: item.description %>
       <p>$<%= item.price %></p>
       <p>Quantity: <%= quantity %></p>
-      <p>Subtotal: $<%= item.price * quantity %></p>
+      <p>Subtotal: $<%= item.item_subtotal(quantity) %></p>
     </section>
   <% end %>
 
@@ -17,4 +17,3 @@
   <p>Total: $<%= cart.total %></p>
 </section>
 </section>
-</center>
