@@ -33,7 +33,10 @@ RSpec.describe "When a user empties their cart" do
 
     visit "/cart"
 
-    expect(page).to have_content("Cart: 3")
+    within "#cart-indicator" do
+      expect(page).to have_content("3")
+    end
+
     expect(page).to have_content(@brush.name)
     expect(page).to have_content(@brush.price)
     expect(page).to have_content(@tire.name)
@@ -42,7 +45,11 @@ RSpec.describe "When a user empties their cart" do
     click_button "Empty Cart"
 
     expect(current_path).to eq("/cart")
-    expect(page).to have_content("Cart: 0")
+
+    within "#cart-indicator" do
+      expect(page).to have_content("0")
+    end
+
     expect(page).not_to have_content(@brush.name)
     expect(page).not_to have_content(@brush.price)
     expect(page).not_to have_content(@tire.name)
