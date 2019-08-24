@@ -8,8 +8,7 @@ class OrdersController < ApplicationController
     order = Order.new(order_params)
     if order.save
       cart = Cart.new(session[:cart])
-      total = cart.order_total
-      cart.create_item_orders(order, total)
+      order.create_item_orders(cart)
       redirect_to "/orders/#{order.id}"
     else
       flash[:error] = "Please fill in all the fields"
