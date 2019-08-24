@@ -48,7 +48,16 @@ RSpec.describe "Updating Cart" do
 
     click_on "Add Another: Chain"
 
-    save_and_open_page
+      within "#item-#{@chain.id}" do
+        expect(page).to have_content("Total Quantity: 2")
+      end
+    expect(current_path).to eq(cart_path)
+
+    click_on "Add Another: Gatorskins"
+
+      within "#item-#{@tire.id}" do
+        expect(page).to have_content("Total Quantity: 2")
+      end
     end
   end
 end
