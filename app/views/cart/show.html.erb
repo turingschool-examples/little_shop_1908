@@ -5,7 +5,7 @@
       <img src=<%= item.image%> class="cart-item-image">
       <section class="details-description">
         <p><%=link_to item.name, "/items/#{item.id}" %></p>
-        <p><%=link_to item.merchant.name, "merchants/#{item.merchant.id}" %></p>
+        <p><%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
       </section>
       <section class="details-price">
         <p class="cart-section-titles">Price:</p>
@@ -25,5 +25,5 @@
   Order total: <%=number_to_currency @cart.order_total %>
 </section>
 <div class="checkout-btn">
-  <%= link_to "Checkout", '/orders/new' %>
+  <%= link_to "Checkout", '/orders/new', class: 'checkout-button' %>
 </div>
