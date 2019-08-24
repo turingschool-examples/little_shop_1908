@@ -6,15 +6,18 @@
     <p> <%=link_to "Checkout", "/order", method: :post %> </p>
     <% @cart.contents.each do |key, value| %>
       <section id="cart-item-<%= key %>">
-        <% item = Item.find(key) %>
-        <h3><%= item.name %></h3>
-        <img src=<%= item.image %> alt="...">
-        <p>Sold by: <%= item.merchant.name %></p>
-        <p>Price: <%= number_to_currency(item.price) %></p>
-        <p>Quantity: <%= value %></p>
-        <p>Subtotal: $<%=  @cart.subtotal_item(key) %></p>
-        <p><%= link_to "Remove Item", "/cart/#{item.id}", method: :patch %></p>
-        <p><%= button_to "+", "/cart/#{item.id}/add", method: :post %></p>
+        <% unless value == 0 %>
+          <% item = Item.find(key) %>
+          <h3><%= item.name %></h3>
+          <img src=<%= item.image %> alt="...">
+          <p>Sold by: <%= item.merchant.name %></p>
+          <p>Price: <%= number_to_currency(item.price) %></p>
+          <p>Quantity: <%= value %></p>
+          <p>Subtotal: $<%=  @cart.subtotal_item(key) %></p>
+          <p><%= link_to "Remove Item", "/cart/#{item.id}", method: :patch %></p>
+          <p><%= button_to "+", "/cart/#{item.id}/add", method: :post %></p>
+          <p><%= button_to "-", "/cart/#{item.id}/remove", method: :post %></p>
+        <% end %>
       </section>
       <% end %>
       <h4>Grand Total: $<%=  @cart.grand_total %></h4>
