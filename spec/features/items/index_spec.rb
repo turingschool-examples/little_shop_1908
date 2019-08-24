@@ -55,13 +55,6 @@ describe "Item Index Page" do
     end
   end
 
-#   When I visit an item's show page from the items index
-# I see a link or button to add this item to my cart
-# And I click this link or button
-# I am returned to the item index page
-# I see a flash message indicating the item has been added to my cart
-# The cart indicator in the navigation bar increments my cart count
-
   describe "displays a flash message when an item is added to the cart" do
     it "if the addition is successful" do
       visit "items/#{@dog_bone.id}"

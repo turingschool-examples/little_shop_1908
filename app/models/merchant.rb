@@ -1,4 +1,4 @@
-class Merchant <ApplicationRecord
+class Merchant < ApplicationRecord
   has_many :items
 
   validates_presence_of :name,
@@ -23,5 +23,4 @@ class Merchant <ApplicationRecord
   def cities_serviced
     Item.joins(:orders).distinct.pluck(:city)
   end
-
 end

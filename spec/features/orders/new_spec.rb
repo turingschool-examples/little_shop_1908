@@ -63,7 +63,9 @@ describe 'Order New Page' do
 
     click_button "Create Order"
 
-    # expect(current_path).to eq("/orders/how to get the order id?")
+    new_order = Order.last
+
+    expect(current_path).to eq("/orders/#{new_order.id}")
 
     within "#order-item-#{@tire.id}" do
       expect(page).to have_content(@tire.name)
@@ -87,7 +89,6 @@ describe 'Order New Page' do
     expect(page).to have_content("City: #{city}")
     expect(page).to have_content("State: #{state}")
     expect(page).to have_content("Zip: #{zip}")
-    # expect(page).to have_content(how to get date of order?)
-
+    expect(page).to have_content("Created: #{new_order.created_at.strftime("%Y-%m-%d")}")
   end
 end

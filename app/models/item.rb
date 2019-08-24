@@ -1,4 +1,4 @@
-class Item <ApplicationRecord
+class Item < ApplicationRecord
   belongs_to :merchant
   has_many :reviews
   has_many :item_orders
@@ -12,15 +12,15 @@ class Item <ApplicationRecord
   validates_inclusion_of :active?, :in => [true, false]
 
   def avg_rating
-    self.reviews.average(:rating)
+    reviews.average(:rating)
   end
 
   def best_reviews
-    self.reviews.order(rating: :desc).limit(3)
+    reviews.order(rating: :desc).limit(3)
   end
 
   def worst_reviews
-    self.reviews.order(:rating).limit(3)
+    reviews.order(:rating).limit(3)
   end
 
   def buy
@@ -34,14 +34,11 @@ class Item <ApplicationRecord
   end
 
   def restock
-    if self.inventory > 0
-      self.update(active?: true)
-    end
+    self.update(active?: true) if self.inventory > 0
   end
 
   def restock_qty(qty)
     self.inventory += qty
     self.save
   end
-
 end

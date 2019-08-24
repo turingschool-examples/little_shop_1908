@@ -7,5 +7,4 @@ class Order < ApplicationRecord
                         :city,
                         :state,
                         :zip
-
 end

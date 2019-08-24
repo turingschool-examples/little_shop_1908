@@ -25,7 +25,7 @@ describe Merchant, type: :model do
   end
 
   describe "stat model methods" do
-    before :each do
+    before(:each) do
       @pug_store = Merchant.create(name: "Puggotown", address: '123 Pupper Rd.', city: 'Pugville', state: 'VA', zip: 23137)
       @dog_food = @pug_store.items.create(name: "Foodtime", description: "It's yummy!", price: 10, image: "https://www.zooplus.co.uk/magazine/CACHE_IMAGES/768/content/uploads/2018/01/fotolia_108248133.jpg", inventory: 120)
       @soap = @pug_store.items.create(name: "Soapy Soap", description: "It's clean!", price: 11, image: "https://i.pinimg.com/originals/a9/bf/77/a9bf779477d6a97519cfe3b8c21dac90.jpg", inventory: 20)
@@ -48,5 +48,4 @@ describe Merchant, type: :model do
       expect(@pug_store.cities_serviced).to eq([@order_2.city, @order.city])
     end
   end
-
 end

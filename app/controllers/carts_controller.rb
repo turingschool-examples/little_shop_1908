@@ -9,7 +9,8 @@ class CartsController < ApplicationController
     if item.inventory > 0
       cart.add_item(item)
       flash[:notice] = "1 #{item.name} has been added. You now have #{cart.contents[item.id.to_s]} #{item.name} in your cart."
-    else flash[:notice] = "There are not enough #{item.name} to add to yo cart, sry."
+    else
+      flash[:notice] = "There are not enough #{item.name} to add to yo cart, sry."
     end
     redirect_to '/items'
   end
