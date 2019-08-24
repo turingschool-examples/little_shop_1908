@@ -28,7 +28,7 @@ class MerchantsController <ApplicationController
 
   def destroy
     merchant = Merchant.find(params[:id])
-    if merchant.has_items_ordered(merchant)
+    if merchant.has_items_ordered
       flash[:no_delete] = "We won't delete merchants with active orders pending"
       redirect_to "/merchants"
     else

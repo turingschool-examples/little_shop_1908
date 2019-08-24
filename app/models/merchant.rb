@@ -7,9 +7,9 @@ class Merchant <ApplicationRecord
                         :state,
                         :zip
 
-  def has_items_ordered(merchant)
+  def has_items_ordered
     ids = Item.joins(:item_orders).pluck(:merchant_id)
-    if ids.include?(merchant.id)
+    if ids.include?(self.id)
       true
     else false
     end

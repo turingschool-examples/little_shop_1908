@@ -27,5 +27,6 @@ describe 'Merchant New Page' do
     expect(new_merchant.city).to eq(city)
     expect(new_merchant.state).to eq(state)
     expect(new_merchant.zip).to eq(zip)
+    expect(page).to have_content("Your merchant has been created")
   end
 end
