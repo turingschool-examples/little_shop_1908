@@ -10,7 +10,6 @@ class Cart
     @contents.map do |key, value|
       [Item.find(key.to_i), value]
     end.to_h
-
   end
 
   def total_count
