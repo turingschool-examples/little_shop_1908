@@ -9,10 +9,19 @@ class Merchant <ApplicationRecord
 
   def has_items_ordered
     ids = Item.joins(:item_orders).pluck(:merchant_id)
-    if ids.include?(self.id)
-      true
-    else false
-    end
+    ids.include?(self.id)
+  end
+
+  def item_count
+    items.count
+  end
+
+  def average_item_price
+    items.average(:price)
+  end
+
+  def cities_serviced
+    Item.joins(:orders).distinct.pluck(:city)
   end
 
 end

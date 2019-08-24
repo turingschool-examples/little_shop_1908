@@ -13,6 +13,7 @@ class MerchantsController <ApplicationController
 
   def create
     Merchant.create(merchant_params)
+    flash[:success] = "Your merchant has been created"
     redirect_to "/merchants"
   end
 
@@ -23,6 +24,7 @@ class MerchantsController <ApplicationController
   def update
     merchant = Merchant.find(params[:id])
     merchant.update(merchant_params)
+    flash[:success] = "Your merchant has been updated"
     redirect_to "/merchants/#{merchant.id}"
   end
 
