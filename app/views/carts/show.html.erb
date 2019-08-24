@@ -1,1 +1,18 @@
-<%= binding.pry %>
+<h1>Shopping Cart</h1>
+<center>
+<section id="cart-summary">
+  <% cart.contents.each do |item_id, quantity| %>
+    <section id="cart-item-<%= item_id %>">
+      <% item = Item.find(item_id) %>
+      <p><b><%= link_to item.name, "/items/#{item.id}" %></b></p>
+      <p><%= link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
+      <p><%= image_tag item.image, alt: item.description %></p>
+      <p>$<%= item.price %></p>
+      <p>Quantity: <%= quantity %></p>
+      <p>Subtotal: $<%= item.price * quantity %></p>
+  <% end %>
+</section>
+<section id="cart-total">
+  <p>Total: $<%= cart.total %></p>
+</section>
+</center>
