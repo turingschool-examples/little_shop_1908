@@ -12,7 +12,7 @@
 # I also see a grand total of what everything in my cart will cost
 require 'rails_helper'
 
-RSpec.describe 'Cart Index Page' do
+RSpec.describe 'Cart Show Page' do
   describe 'When I visit the cart index page' do
     before :each do
       @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
@@ -36,25 +36,27 @@ RSpec.describe 'Cart Index Page' do
 
       visit '/cart'
 
-      within "cart-item-#{@pull_toy.id}" do
+      within "#cart-item-#{@pull_toy.id}" do
         expect(page).to have_content(@pull_toy.name)
-        expect(page).to have_content("img[src*='#{@pull_toy.image}']")
-        expect(page).to have_content(@pull_toy.merchant)
+        expect(page).to have_xpath("//img[@src='#{@pull_toy.image}']")
+        expect(page).to have_content(@pull_toy.merchant.name)
         expect(page).to have_content(@pull_toy.price)
         expect(page).to have_content("Quantity: 1")
         expect(page).to have_content("Subtotal: $10.00")
       end
 
-      within "cart-item-#{@tire.id}" do
+      within "#cart-item-#{@tire.id}" do
         expect(page).to have_content(@tire.name)
-        expect(page).to have_content("img[src*='#{@tire.image}']")
-        expect(page).to have_content(@tire.merchant)
+        expect(page).to have_xpath("//img[@src='#{@tire.image}']")
+        expect(page).to have_content(@tire.merchant.name)
         expect(page).to have_content(@tire.price)
         expect(page).to have_content("Quantity: 2")
         expect(page).to have_content("Subtotal: $200.00")
       end
 
-      expect(page).to have_content("Total: $210.00")
+      within "#cart-summary" do
+        expect(page).to have_content("Total: $210.00")
+      end
     end
   end
 end
