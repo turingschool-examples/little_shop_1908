@@ -52,4 +52,13 @@ RSpec.describe 'Cart Show Page', type: :feature do
 
     expect(page).to have_content("Grand Total: 150")
   end
+
+  it "When I add NO items to my cart yet, and I visit my cart,
+   I see a message that my cart is empty, I do NOT see the link to empty my cart" do
+    visit "/cart"
+
+    expect(page).to have_content("Oops! You have no items in your cart!")
+    expect(page).to_not have_content("Grand Total:")
+    expect(page).to_not have_link("Empty Cart")
+  end
 end
