@@ -58,5 +58,25 @@ RSpec.describe "As a visitor" do
       expect(page).to have_content("Grand Total: 150.0")
       expect(page).to have_content("Created at: #{new_order.created_at}")
     end
+    it "From the order creation page, When I click 'Create Order' without
+    completing the shipping address form, I see a flash message indicating that
+    I need to complete the form for successful order creation " do
+    expect(current_path).to eq("/orders/new")
+
+      name = "Leiya Kelly"
+      address = '11 ILiveAtTuring Ave.'
+      city = "Denver"
+      state = "CO"
+      zip = nil
+
+      fill_in :name, with: name
+      fill_in :address, with: address
+      fill_in :city, with: city
+      fill_in :state, with: state
+      fill_in :zip, with: zip
+
+      click_on "Create Order"
+      expect(page).to have_content("You must fill out all shipping information.")
+    end
   end
 end
