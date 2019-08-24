@@ -6,10 +6,26 @@ class CartController < ApplicationController
 
   def add_item
     item = Item.find(params[:id])
-    cart.add_item(item.id)
-    session[:cart] = cart.contents
-    flash[:success] = "#{item.name} has been added to your cart!"
-    redirect_to items_path
+    if cart.available_inventory?(item)
+      cart.add_item(item.id)
+      session[:cart] = cart.contents
+      flash[:success] = "#{item.name} has been added to your cart!"
+    else
+      flash[:error] = "You cannot add any more #{item.name} to your cart."
+    end
+      redirect_to items_path
+  end
+
+  def me_add
+    item = Item.find(params[:id])
+    if cart.available_inventory?(item)
+      cart.add_item(item.id)
+    end
+    redirect_to cart_path
+  end
+
+  def me_take_away
+
   end
 
   def empty
