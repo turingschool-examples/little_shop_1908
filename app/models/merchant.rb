@@ -1,4 +1,4 @@
-class Merchant <ApplicationRecord
+class Merchant < ApplicationRecord
   has_many :items
   has_many :reviews, through: :items
 
@@ -7,5 +7,5 @@ class Merchant <ApplicationRecord
                         :city,
                         :state,
                         :zip
-  
+
 end

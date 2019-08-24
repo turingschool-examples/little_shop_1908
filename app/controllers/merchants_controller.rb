@@ -1,4 +1,4 @@
-class MerchantsController <ApplicationController
+class MerchantsController < ApplicationController
 
   def index
     @merchants = Merchant.all
@@ -14,6 +14,7 @@ class MerchantsController <ApplicationController
   def create
     Merchant.create(merchant_params)
     redirect_to "/merchants"
+  #  UPDATE SAD PATH TESTING
   end
 
   def edit
@@ -24,6 +25,7 @@ class MerchantsController <ApplicationController
     merchant = Merchant.find(params[:id])
     merchant.update(merchant_params)
     redirect_to "/merchants/#{merchant.id}"
+  #  UPDATE SAD PATH TESTING
   end
 
   def destroy
