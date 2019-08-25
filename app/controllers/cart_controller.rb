@@ -18,4 +18,12 @@ class CartController < ApplicationController
     flash[:notice] = "Your cart has been emptied."
     redirect_to '/cart'
   end
+
+  def remove_item
+    cart = Cart.new(session[:cart])
+    item = Item.find(params[:item_id])
+    cart.remove_item(item.id)
+    session[:cart] = cart.contents
+    redirect_to '/cart'
+  end
 end
