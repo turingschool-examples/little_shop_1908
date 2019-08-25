@@ -58,13 +58,4 @@ RSpec.describe 'Cart Show Page' do
         expect(page).to have_content("Total: $210")
       end
     end
-
-    it 'cannot display the empty cart button with adding items' do
-      visit "/cart"
-
-      expect(page).to have_content("You cart is empty.")
-      expect(page).not_to have_content("Empty Cart")
-      expect(page).not_to have_button("Empty Cart")
-    end
-  end
 end
