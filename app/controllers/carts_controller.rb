@@ -25,7 +25,9 @@ class CartsController < ApplicationController
 
   def delete_item
     item = Item.find(params[:item_id])
-    session[:cart].delete(item.id.to_s)
+    # binding.pry
+    # session[:cart].delete(item.id.to_s)
+    session[:cart].except!(item.id.to_s)
     flash[:message] = "You have removed #{item.name} from your cart."
     redirect_to '/cart'
   end
