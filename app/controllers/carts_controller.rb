@@ -8,9 +8,10 @@ class CartsController < ApplicationController
     cart = Cart.new(session[:cart])
     if item.inventory > 0
       cart.add_item(item)
-      flash[:notice] = "1 #{item.name} has been added. You now have #{cart.contents[item.id.to_s]} #{item.name} in your cart."
+      flash[:notice] = "1 #{item.name} has been added. You now have #{cart.contents[item.id.to_s]}
+        #{item.name.pluralize(cart.contents[item.id.to_s])} in your cart."
     else
-      flash[:notice] = "There are not enough #{item.name} to add to yo cart, sry."
+      flash[:notice] = "There are not enough #{item.name.pluralize(cart.contents[item.id.to_s])} to add to yo cart, sry."
     end
     redirect_to '/items'
   end
@@ -36,10 +37,11 @@ class CartsController < ApplicationController
     cart = Cart.new(session[:cart])
     item = Item.find(params[:item_id])
     if item.inventory == 0
-      flash[:notice] = "Eek! No more #{item.name}s left."
+      flash[:notice] = "Eek! No more #{item.name.pluralize(cart.contents[item.id.to_s])} left."
     else
       cart.add_item(item)
-      flash[:notice] = "1 #{item.name} has been added. You now have #{cart.contents[item.id.to_s]} #{item.name} in your cart."
+      flash[:notice] = "1 #{item.name} has been added. You now have #{cart.contents[item.id.to_s]}
+       #{item.name.pluralize(cart.contents[item.id.to_s])} in your cart."
     end
     redirect_to '/cart'
   end

@@ -94,7 +94,7 @@ describe 'Item Show Page' do
         expect(page).to have_link("Items in Cart: 2")
       end
 
-      expect(page).to have_content("There are not enough #{@dog_bone.name} to add to yo cart, sry.")
+      expect(page).to have_content("There are not enough #{@dog_bone.name}s to add to yo cart, sry.")
     end
   end
 

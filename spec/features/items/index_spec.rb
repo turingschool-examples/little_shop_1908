@@ -69,7 +69,7 @@ describe "Item Index Page" do
       click_button "Add Item To yo Cart"
 
       expect(current_path).to eq("/items")
-      expect(page).to have_content("1 #{@dog_bone.name} has been added. You now have 2 #{@dog_bone.name} in your cart.")
+      expect(page).to have_content("1 #{@dog_bone.name} has been added. You now have 2 #{@dog_bone.name}s in your cart.")
     end
 
     it "if the addition is unsuccessful" do
@@ -80,7 +80,7 @@ describe "Item Index Page" do
       click_button "Add Item To yo Cart"
 
       expect(current_path).to eq("/items")
-      expect(page).to have_content("There are not enough #{rope_knot.name} to add to yo cart, sry.")
+      expect(page).to have_content("There are not enough #{rope_knot.name}s to add to yo cart, sry.")
     end
   end
 
