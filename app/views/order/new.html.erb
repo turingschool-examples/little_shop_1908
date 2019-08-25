@@ -1,0 +1,22 @@
+<h1>Your Order Information</h1>
+<section>
+  <%= render "cart/show" %>
+</section>
+
+<h3>Shipping Information</h3>
+<p>Please fill out your information below</p>
+<section>
+  <%= form_tag '/orders', method: :post do |f| %>
+    <%= text_field_tag :name, "Name" %>
+
+    <%= text_field_tag :address, "Address" %>
+
+    <%= text_field_tag :city, "City" %>
+
+    <%= text_field_tag :state, "State" %>
+
+    <%= text_field_tag :zip, "Zip" %>
+
+    <%= submit_tag 'Submit Order' %>
+  <% end %>
+</section>
