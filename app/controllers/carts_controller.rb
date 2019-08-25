@@ -13,7 +13,7 @@ class CartsController < ApplicationController
   end
 
   def show
-    if !cart.has_items?
+    if cart.contents.empty?
       flash[:empty_cart] = "Your cart is empty."
     end
   end

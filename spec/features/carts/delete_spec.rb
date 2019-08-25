@@ -59,7 +59,7 @@ RSpec.describe "When a user empties their cart" do
   xit 'cannot display the empty cart button without adding items' do
     visit "/cart"
 
-    expect(page).to have_content("You cart is empty.")
+    expect(page).to have_content("Your cart is empty.")
     expect(page).not_to have_content("Empty Cart")
     expect(page).not_to have_button("Empty Cart")
   end
