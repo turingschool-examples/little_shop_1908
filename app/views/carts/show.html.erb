@@ -9,7 +9,7 @@
       <p><%= link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
       <p><%= image_tag item.image, alt: item.description %></p>
       <p>$<%= item.price %></p>
-      <p>Quantity: <%= quantity %></p>
+      <p>Quantity: <%= quantity %> <%= button_to '+', "/cart/#{item.id}/increase", method: :post%> </p>
       <p>Subtotal: $<%= item.item_subtotal(quantity) %></p>
     </section>
   <% end %>
