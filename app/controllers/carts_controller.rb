@@ -13,10 +13,12 @@ class CartsController < ApplicationController
   end
 
   def show
+    if !cart.has_items?
+      flash[:empty_cart] = "Your cart is empty."
+    end
   end
 
   def delete
-    # binding.pry
     reset_session
     redirect_to "/cart"
   end
