@@ -108,6 +108,27 @@ RSpec.describe 'Cart Show Page' do
     end
 
     it 'I cannot increment the count beyond the items inventory size' do
+
+      12.times do
+        visit "items/#{@tire.id}"
+        click_button "Add Item"
+      end
+
+      visit '/cart'
+
+      within "#cart-item-#{@tire.id}" do
+        expect(page).to have_content("Quantity: 12")
+      end
+
+      within "#cart-item-#{@tire.id}" do
+        click_button '+'
+      end
+
+      expect(page).to have_content("MESSAGE TO USER")
+
+      within "#cart-item-#{@tire.id}" do
+        expect(page).to have_content("Quantity: 12")
+      end
     end
   end
 end
