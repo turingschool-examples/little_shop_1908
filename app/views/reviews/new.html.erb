@@ -4,6 +4,6 @@
 <%= label_tag :rating %>
 <%= select_tag :rating, options_for_select([1, 2, 3, 4, 5]) %>
 <%= label_tag :content %><br>
-<%= text_area_tag :content, "Write your review here", size: "130x15"%>
+<%= text_area_tag :content, nil, placeholder: "Write your review here", size: "130x15"%>
 <%= submit_tag "Submit Review" %>
 <% end %>

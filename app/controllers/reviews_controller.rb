@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
 
   def create
     item = Item.find(params[:id])
-    if review_params.values.any? {|input| input == "" || input == "Write your review here"}
+    if review_params.values.any? {|input| input == ""}
       flash[:error] = "Do it right, yo."
     else
       flash[:success] = "Your review has been posted"
