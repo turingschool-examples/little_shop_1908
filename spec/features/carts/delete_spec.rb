@@ -20,7 +20,7 @@ RSpec.describe "When a user empties their cart" do
     @brush = @dog_shop.items.create(name: "Brush", description: "Great for long haired pets", price: 15, image: "https://images-na.ssl-images-amazon.com/images/I/71V8HaHa02L._SL1200_.jpg", inventory: 15)
   end
 
-  it 'displays a message' do
+  it 'can empty users cart' do
 
     visit "/items/#{@tire.id}"
     click_button "Add Item"
@@ -54,5 +54,13 @@ RSpec.describe "When a user empties their cart" do
     expect(page).not_to have_content(@brush.price)
     expect(page).not_to have_content(@tire.name)
     expect(page).not_to have_content(@tire.price)
+  end
+
+  it 'cannot display the empty cart button without adding items' do
+    visit "/cart"
+
+    expect(page).to have_content("You cart is empty.")
+    expect(page).not_to have_content("Empty Cart")
+    expect(page).not_to have_button("Empty Cart")
   end
 end
