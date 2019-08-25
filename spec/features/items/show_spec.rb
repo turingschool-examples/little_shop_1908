@@ -29,6 +29,7 @@ RSpec.describe 'item show page', type: :feature do
           expect(page).to have_content("Rating: #{review.rating}")
         end
       end
+      
       within '.reviews-stats' do
         within '#top-three' do
           expect(page).to have_content(review_1.title)
@@ -40,6 +41,7 @@ RSpec.describe 'item show page', type: :feature do
           expect(page).to have_content("(#{review_4.rating}/5)")
           expect(page).to_not have_content("(#{review_2.rating}/5)")
         end
+
         within '#bottom-three' do
           expect(page).to have_content(review_2.title)
           expect(page).to have_content(review_3.title)
@@ -53,10 +55,7 @@ RSpec.describe 'item show page', type: :feature do
         within '#avg-rating' do
           expect(page).to have_content("Average Rating: 2.75")
         end
-
       end
     end
-
-
   end
 end

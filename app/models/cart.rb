@@ -26,5 +26,4 @@ class Cart
   def order_total
     @contents.map { |id, qty| subtotal(id) }.sum
   end
-
 end
