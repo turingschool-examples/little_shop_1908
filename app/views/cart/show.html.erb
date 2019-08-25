@@ -31,4 +31,6 @@
   <div class="checkout-btn">
     <%= link_to "Checkout", '/orders/new', class: 'checkout-button' %>
   </div>
+<% else %>
+  <p class="page-title">Your cart is empty.</p>
 <% end %>
