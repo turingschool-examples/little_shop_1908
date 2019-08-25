@@ -73,14 +73,14 @@ describe 'When I visit my cart' do
       within ".details-quantity" do
         expect(page).to have_content("1")
       end
+
       within ".details-subtotal" do
         expect(page).to have_content("$100.00")
       end
-    end
 
-    within ".order-total" do
-      expect(page).to have_content("Order total: $110.00")
+      click_link "Remove 1: #{tire.name}"
     end
+    expect(page).to_not have_content(tire.name)
   end
 end
 
