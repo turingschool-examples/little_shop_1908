@@ -12,4 +12,10 @@ class CartController < ApplicationController
     @cart = Cart.new(session[:cart])
     @items = Item.cart_items(@cart)
   end
+
+  def empty_cart
+    session[:cart] = {}
+    flash[:notice] = "Your cart has been emptied."
+    redirect_to '/cart'
+  end
 end
