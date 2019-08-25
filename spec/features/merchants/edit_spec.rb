@@ -14,6 +14,30 @@ describe "Merchant Edit Page" do
     expect(find_field('State').value).to eq(@bike_shop.state)
     expect(find_field('Zip').value.to_i).to eq(@bike_shop.zip)
 
+    fill_in :name, with: ""
+    fill_in :address, with: ""
+    fill_in :city, with: "Denver"
+    fill_in :state, with: "CO"
+    fill_in :zip, with: 80204
+
+    click_button "Update Merchant"
+
+    expect(current_path).to eq("/merchants/#{@bike_shop.id}/edit")
+    expect(page).to have_content("Name can't be blank")
+    expect(page).to have_content("Address can't be blank")
+
+    fill_in :name, with: "Brian's Super Cool Bike Shop"
+    fill_in :address, with: "1234 New Bike Rd."
+    fill_in :city, with: ""
+    fill_in :state, with: ""
+    fill_in :zip, with: ""
+
+    click_button "Update Merchant"
+
+    expect(page).to have_content("City can't be blank")
+    expect(page).to have_content("State can't be blank")
+    expect(page).to have_content("Zip is not a number")
+
     fill_in 'Name', with: "Brian's Super Cool Bike Shop"
     fill_in 'Address', with: "1234 New Bike Rd."
     fill_in 'City', with: "Denver"
