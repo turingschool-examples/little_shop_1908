@@ -101,7 +101,7 @@ RSpec.describe 'When a user visits their cart with items' do
     within "#cart-item-#{@bike.id}" do
       click_button 'Delete Item'
     end
-
+    
     expect(page).to_not have_css("#cart-item-#{@bike.id}")
 
     within "#cart-item-#{@pull_toy.id}" do
