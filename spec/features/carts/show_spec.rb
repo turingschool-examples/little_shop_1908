@@ -58,4 +58,5 @@ RSpec.describe 'Cart Show Page' do
         expect(page).to have_content("Total: $210")
       end
     end
+  end
 end
