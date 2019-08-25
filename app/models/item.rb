@@ -6,10 +6,10 @@ class Item < ApplicationRecord
 
   validates_presence_of :name,
                         :description,
-                        :price,
-                        :image,
-                        :inventory
+                        :image
   validates_inclusion_of :active?, :in => [true, false]
+  validates :price, numericality: {only_integer: true}
+  validates :inventory, numericality: {only_integer: true}
 
   def avg_rating
     reviews.average(:rating)

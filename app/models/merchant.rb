@@ -4,8 +4,8 @@ class Merchant < ApplicationRecord
   validates_presence_of :name,
                         :address,
                         :city,
-                        :state,
-                        :zip
+                        :state
+  validates :zip, numericality: {only_integer: true}
 
   def has_items_ordered
     ids = Item.joins(:item_orders).pluck(:merchant_id)
