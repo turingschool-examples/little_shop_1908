@@ -32,8 +32,9 @@ class CartsController < ApplicationController
 
   def increase_item
     item = Item.find(params[:item_id])
-    if (session[:cart][item.id.to_s] + 1) > item.inventory
-      flash[:message] = "Sorry, no more #{item.name} can be puchased as this time."
+
+    if (cart.contents[item.id.to_s] + 1) > item.inventory
+      flash[:message] = "Sorry, no more #{pluralize(cart.contents[item.id.to_s], "#{item.name}")} can be puchased as this time."
     else
       session[:cart][item.id.to_s] += 1
     end
