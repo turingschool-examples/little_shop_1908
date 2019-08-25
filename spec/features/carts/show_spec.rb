@@ -124,7 +124,7 @@ RSpec.describe 'Cart Show Page' do
         click_button '+'
       end
 
-      expect(page).to have_content("MESSAGE TO USER")
+      expect(page).to have_content("Sorry, no more #{@tire.name} can be puchased as this time.")
 
       within "#cart-item-#{@tire.id}" do
         expect(page).to have_content("Quantity: 12")
