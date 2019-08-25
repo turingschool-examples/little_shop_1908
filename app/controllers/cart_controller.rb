@@ -17,6 +17,5 @@ class CartController < ApplicationController
     session[:cart] = {}
     flash[:notice] = "Your cart has been emptied."
     redirect_to '/cart'
-end
-
+  end
 end
