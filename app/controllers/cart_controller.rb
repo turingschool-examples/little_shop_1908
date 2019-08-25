@@ -28,10 +28,8 @@ class CartController < ApplicationController
   end
 
   def increase
-
     cart = Cart.new(session[:cart])
     item = Item.find(params[:item_id])
-    # binding.pry
     if cart.contents[item.id.to_s] < item.inventory
       cart.add_item(item.id)
       session[:cart] = cart.contents
@@ -40,4 +38,17 @@ class CartController < ApplicationController
     end
     redirect_to '/cart'
   end
+
+  def decrease
+    cart = Cart.new(session[:cart])
+    item = Item.find(params[:item_id])
+    if cart.contents[item.id.to_s] > 1
+      cart.subtract_item(item.id)
+      session[:cart] = cart.contents
+    else
+      cart.remove_item(item.id)
+    end
+    redirect_to '/cart'
+  end
+
 end

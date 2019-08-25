@@ -18,6 +18,10 @@ class Cart
       @contents[item_id.to_s] = quantity_of(item_id) + 1
   end
 
+  def subtract_item(item_id)
+      @contents[item_id.to_s] = quantity_of(item_id) - 1
+  end
+
   def remove_item(item_id)
     @contents.delete(item_id.to_s)
   end
