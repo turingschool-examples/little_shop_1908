@@ -41,4 +41,9 @@ class Item < ApplicationRecord
     self.inventory += qty
     self.save
   end
+
+  def has_been_ordered?
+    ids = Item.joins(:item_orders).pluck(:item_id)
+    ids.include?(self.id)
+  end
 end

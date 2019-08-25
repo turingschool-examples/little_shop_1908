@@ -42,7 +42,7 @@ class MerchantsController < ApplicationController
     merchant = Merchant.find(params[:id])
     if merchant.has_items_ordered
       flash[:no_delete] = "We won't delete merchants with active orders pending"
-      redirect_to "/merchants"
+      redirect_to "/merchants/#{merchant.id}"
     else
       Item.delete(Item.where(merchant_id: params[:id]))
       Merchant.destroy(params[:id])

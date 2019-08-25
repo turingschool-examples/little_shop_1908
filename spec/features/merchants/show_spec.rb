@@ -66,11 +66,13 @@ describe 'Merchant Show Page' do
       visit "/merchants/#{@bike_shop.id}"
       click_link "Delete Merchant"
 
-      expect(current_path).to eq("/merchants")
+      expect(current_path).to eq("/merchants/#{@bike_shop.id}")
       expect(page).to have_content("We won't delete merchants with active orders")
 
-      click_link "E's Doggo Shop"
+      visit "/merchants/#{doggo_shop.id}"
       click_link "Delete Merchant"
+
+      expect(current_path).to eq("/merchants")
       expect(page).to_not have_content(doggo_shop.name)
     end
   end

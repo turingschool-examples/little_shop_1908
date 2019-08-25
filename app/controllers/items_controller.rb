@@ -41,9 +41,14 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    item.reviews.destroy_all
-    item.destroy
-    redirect_to "/items"
+    if item.has_been_ordered?
+      flash[:no_delete] = "We won't delete items with active orders pending"
+      redirect_to "/items/#{item.id}"
+    else
+      item.reviews.destroy_all
+      item.destroy
+      redirect_to "/items"
+    end
   end
 
   # def buy_item
