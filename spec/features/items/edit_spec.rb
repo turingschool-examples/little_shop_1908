@@ -15,6 +15,30 @@ describe "Item Edit Page" do
     expect(find_field('Image').value).to eq(@tire.image)
     expect(find_field('Inventory').value).to eq(@tire.inventory.to_s)
 
+    fill_in :name, with: ""
+    fill_in :price, with: ""
+    fill_in :description, with: "They're a bit more expensive, and they kinda do pop sometimes, but whatevs.. this is retail."
+    fill_in :image, with: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588"
+    fill_in :inventory, with: 11
+
+    click_button "Update Item"
+
+    expect(current_path).to eq("/items/#{@tire.id}/edit")
+    expect(page).to have_content("Name can't be blank")
+    expect(page).to have_content("Price is not a number")
+
+    fill_in :name, with: "GatorSkins"
+    fill_in :price, with: 110
+    fill_in :description, with: ""
+    fill_in :image, with: ""
+    fill_in :inventory, with: ""
+
+    click_button "Update Item"
+
+    expect(page).to have_content("Description can't be blank")
+    expect(page).to have_content("Image can't be blank")
+    expect(page).to have_content("Inventory is not a number")
+
     fill_in 'Name', with: "GatorSkins"
     fill_in 'Price', with: 110
     fill_in 'Description', with: "They're a bit more expensive, and they kinda do pop sometimes, but whatevs.. this is retail."
