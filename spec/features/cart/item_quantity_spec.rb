@@ -39,12 +39,12 @@ describe 'When I visit my cart' do
     end
 
     within "#cart-item-#{pull_toy.id}" do
-      10.times do click_link "Add 1: #{pull_toy.name}"
+      31.times do click_link "Add 1: #{pull_toy.name}"
     end
-    end
-    within ".order-total" do
-      expect(page).to have_content("Order total: $320.00")
-    end
+  end
+
+  expect(page).to have_content("Item out of stock")
+
   end
 end
 
