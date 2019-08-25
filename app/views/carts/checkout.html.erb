@@ -4,7 +4,9 @@
     <% @items_hash.each do |item, qty| %>
       <section id="order-item-<%= item.id %>">
         <span class="item-show-item"><%= image_tag("#{item.image}") %></span>
-        <h1><%= item.name %></h1> <h3>from</h3> <h2><%= item.merchant.name %></h2>
+        <h1><%= link_to("#{item.name}", "/items/#{item.id}") %></h1>
+        <h3>from</h3>
+        <h2><%= link_to("#{item.merchant.name}", "/merchants/#{item.merchant.id}") %></h2>
         <h2>Purchase <%= qty %> at <%= number_to_currency(item.price) %> each</h2>
         <h2>Subtotal: <%= number_to_currency(item.price * qty) %></h2>
       </section>
