@@ -1,5 +1,12 @@
 <h1>Shopping Cart</h1>
 
+<section id="cart-actions">
+
+  <% if cart.has_items? %>
+  <%= button_to "Empty Cart", "/cart", method: :delete %>
+  <% end %>
+</section>
+
 <section id = "cart-summary">
   <% cart.item_quantity.each do |item, quantity| %>
     <section id="cart-item-<%=item.id%>">
