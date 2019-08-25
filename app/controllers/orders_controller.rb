@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
   def create
     if order_params.values.any? {|input| input == ""}
       flash[:error] = "Enter your shipping info again"
-      redirect_to "/cart"
+      redirect_to "/cart/checkout"
     else
       order = Order.create(order_params)
       session[:cart].each do |item_id, qty|

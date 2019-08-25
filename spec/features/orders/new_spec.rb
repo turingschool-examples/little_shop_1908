@@ -53,13 +53,25 @@ describe 'Order New Page' do
     state = "CO"
     zip = 80204
 
-    fill_in :name, with: name
+    fill_in :name, with: ""
     fill_in :address, with: address
     fill_in :city, with: city
     fill_in :state, with: state
     fill_in :zip, with: zip
 
     expect(page).to have_button("Create Order")
+
+    click_button "Create Order"
+
+    expect(current_path).to eq("/cart/checkout")
+
+    expect(page).to have_content("Enter your shipping info again")
+
+    fill_in :name, with: name
+    fill_in :address, with: address
+    fill_in :city, with: city
+    fill_in :state, with: state
+    fill_in :zip, with: zip
 
     click_button "Create Order"
 
