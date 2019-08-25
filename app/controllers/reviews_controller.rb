@@ -24,10 +24,11 @@ class ReviewsController < ApplicationController
     review = Review.find(params[:review_id])
     if review.update(review_params)
       flash[:success] = "Your review has been updated!"
+      redirect_to "/items/#{review.item_id}"
     else
       flash[:error] = "Retry updating your review again with better info."
+      redirect_to "/items/#{review.item_id}/reviews/#{review.id}/edit-review"
     end
-    redirect_to "/items/#{review.item_id}"
   end
 
   def delete
