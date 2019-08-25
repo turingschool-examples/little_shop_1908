@@ -136,6 +136,20 @@ describe 'Item Show Page' do
       expect(current_path).to eq("/items/#{@pull_toy.id}")
       expect(page).to have_content("We won't delete items with active orders pending")
     end
+
+    it "and shows a message if the deleted item is queried" do
+      visit "/items/#{@pull_toy.id}"
+
+      expect(page).to have_link("Delete Item")
+
+      click_link "Delete Item"
+
+      visit "/items/#{@pull_toy.id}"
+
+      expect(current_path).to eq("/items")
+
+      expect(page).to have_content("This item doesn't exist")
+    end
   end
 
   it 'has a button to add a review' do
