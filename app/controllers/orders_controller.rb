@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    if order_params.values.any? {|input| input == "" || input == "Name" || input == "Address" || input == "City" || input == "State" || input == "Zip"}
+    if order_params.values.any? {|input| input == ""}
       flash[:error] = "Enter your shipping info again"
       redirect_to "/cart"
     else
@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
   end
 
   private
-  
+
   def order_params
     params.permit(:name,:address,:city,:state,:zip)
   end

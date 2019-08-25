@@ -17,15 +17,15 @@
   <center><br><br><br><br>
     <h1>Enter your shipping information:</h1>
     <%= form_tag "/orders", method: :post do %>
-      <%= text_field_tag :name, "Name"%>
+      <%= text_field_tag :name, nil, placeholder: "Name"%>
 
-      <%= text_field_tag :address, "Address" %>
+      <%= text_field_tag :address, nil, placeholder: "Address" %>
 
-      <%= text_field_tag :city, "City" %>
+      <%= text_field_tag :city, nil, placeholder: "City" %>
 
-      <%= text_field_tag :state, "State" %>
+      <%= text_field_tag :state, nil, placeholder: "State" %>
 
-      <%= text_field_tag :zip, "Zip" %>
+      <%= text_field_tag :zip, nil, placeholder: "Zip" %>
 
       <%= submit_tag 'Create Order' %>
     <% end %>
