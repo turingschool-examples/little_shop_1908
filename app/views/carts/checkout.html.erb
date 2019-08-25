@@ -3,7 +3,7 @@
     <center class="cart-item">
     <% @items_hash.each do |item, qty| %>
       <section id="order-item-<%= item.id %>">
-        <span class="item-show-item"><%= image_tag("#{item.image}") %></span>
+        <span class="item-show-item"><img src= <%= item.image %>></span>
         <h1><%= link_to("#{item.name}", "/items/#{item.id}") %></h1>
         <h3>from</h3>
         <h2><%= link_to("#{item.merchant.name}", "/merchants/#{item.merchant.id}") %></h2>
