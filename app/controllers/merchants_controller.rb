@@ -5,7 +5,12 @@ class MerchantsController < ApplicationController
   end
 
   def show
-    @merchant = Merchant.find(params[:id])
+    if Merchant.where(id: params[:id]).empty?
+      flash[:no_merchant] = "This merchant doesn't exist"
+      redirect_to "/merchants"
+    else
+      @merchant = Merchant.find(params[:id])
+    end
   end
 
   def new

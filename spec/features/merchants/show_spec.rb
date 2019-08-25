@@ -75,6 +75,20 @@ describe 'Merchant Show Page' do
       expect(current_path).to eq("/merchants")
       expect(page).to_not have_content(doggo_shop.name)
     end
+
+    it "and shows a message if the deleted merchant is queried" do
+      visit "/merchants/#{@bike_shop.id}"
+
+      expect(page).to have_link("Delete Merchant")
+
+      click_link "Delete Merchant"
+
+      visit "/merchants/#{@bike_shop.id}"
+
+      expect(current_path).to eq("/merchants")
+
+      expect(page).to have_content("This merchant doesn't exist")
+    end
   end
 
   it "displays merchant stats" do
