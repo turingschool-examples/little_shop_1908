@@ -29,7 +29,4 @@ class Cart
       Item.find(item_id).price * quantity
     end
   end
-
-  def increase_item(item, quantity)
-  end
 end
