@@ -29,4 +29,9 @@ class CartsController < ApplicationController
     flash[:message] = "You have removed #{item.name} from your cart."
     redirect_to '/cart'
   end
+
+  def increase_item
+    session[:cart][(params[:item_id])] += 1
+    redirect_to '/cart'
+  end
 end
