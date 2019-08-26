@@ -58,7 +58,7 @@ RSpec.describe 'Cart Show Page', type: :feature do
     visit "/cart"
 
     expect(page).to have_content("Oops! You have no items in your cart!")
-    expect(page).to_not have_content("Grand Total:")
+    expect(page).to_not have_content("Grand Total: $")
     expect(page).to_not have_button("Empty Cart")
   end
 end

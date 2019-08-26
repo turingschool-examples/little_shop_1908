@@ -91,7 +91,9 @@ RSpec.describe 'item show page', type: :feature do
   visit "items/#{chain.id}"
 
   click_on 'Sort By Highest Rating'
+  expect(current_path).to eq("/items/#{chain.id}")
 
+  click_on 'Sort By Lowest Rating'
   expect(current_path).to eq("/items/#{chain.id}")
 
   end

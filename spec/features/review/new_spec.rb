@@ -21,7 +21,7 @@ RSpec.describe "Review Creation" do
     end
     it "On this new page, I see a form where I must enter my review's attributes" do
       visit new_review_path(@chain)
-      # 
+
       expect(page).to have_content("Create A Review")
       expect(page).to have_content("Headline")
       expect(page).to have_content("Rating (1-5)")
@@ -46,6 +46,23 @@ RSpec.describe "Review Creation" do
       new_review = Review.last
       expect(current_path).to eq(item_path(@chain))
       expect(page).to have_content("Thoroughly Meh")
+    end
+
+    it "If I am missing a field, I cannot create a review and get a flash message." do
+      visit item_path(@chain)
+      click_link "Add Review"
+
+      title = "Thoroughly Meh"
+      rating = 2
+      content = ""
+
+      fill_in :title, with: title
+      fill_in :rating, with: rating
+      fill_in :content, with: content
+      click_on 'Submit Your Review'
+
+      expect(current_path).to eq(item_path(@chain))
+      expect(page).to have_content("You are missing one or more of the required fields. Please update.")
     end
   end
 end
