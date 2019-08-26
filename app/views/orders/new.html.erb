@@ -1,0 +1,37 @@
+<h1 align= "center">Review Order</h1>
+<section class = "checkout-grid-container">
+  <section class="checkout-grid-headers">
+
+  </section>
+  <% cart.item_quantity.each do |item, quantity| %>
+    <section id="item-checkout-<%= item.id%>">
+      <p><%= link_to item.name, "/items/#{item.id}" %></p>
+      <p><%= link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
+      <p><%= image_tag item.image, alt: item.description %></p>
+      <p>Price: $<%= item.price %></p>
+      <p>Quantity: <%= quantity %> </p>
+      <p>Subtotal: $<%= item.item_subtotal(quantity) %></p>
+    </section>
+  <% end %>
+</section>
+
+<section id="cart-summary-checkout">
+  <center><p><b>Total: $<%= cart.total %></b></p></center>
+</section>
+
+<center>
+  <h3>Shipping Information</h3>
+  <%= form_tag '/orders', method: :post do |f| %>
+    <%= text_field_tag :name, nil, placeholder: 'Name' %>
+
+    <%= text_field_tag :address, nil, placeholder: 'Address' %>
+
+    <%= text_field_tag :city, nil, placeholder: 'City' %>
+
+    <%= text_field_tag :state, nil, placeholder: 'City' %>
+
+    <%= text_field_tag :zip, nil, placeholder: 'Zip' %>
+
+    <%= submit_tag 'Create Order' %>
+  <% end %>
+</center>
