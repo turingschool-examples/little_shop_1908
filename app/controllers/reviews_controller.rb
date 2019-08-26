@@ -26,9 +26,12 @@ class ReviewsController<ApplicationController
   end
 
   def update
-    review = Review.find(params[:id])
-    @review.update(review_params)
-    redirect_to "/items/#{@review.item_id}"
+    if @review.update(review_params)
+      redirect_to "/items/#{@review.item_id}"
+    else
+      flash[:error] = @review.errors.full_messages
+      redirect_to "/reviews/#{@review.id}/edit"
+    end
   end
 
   def destroy

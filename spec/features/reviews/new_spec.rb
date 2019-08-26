@@ -32,6 +32,7 @@ describe 'User visits the item show page' do
         click_link 'New Review'
 
         click_on 'Submit'
+        expect(current_path).to eq("/items/#{chain.id}/reviews/new")
         expect(page).to have_content("Title can't be blank")
         expect(page).to have_content("Content can't be blank")
         expect(page).to have_content("Rating is not a number")
