@@ -5,7 +5,9 @@
       <section id="cart-item-<%=item.id%>">
         <img src=<%= item.image%> class="cart-item-image">
         <section class="details-description">
+          <p class="item-details">Item</p>
           <p><%=link_to item.name, "/items/#{item.id}" %></p>
+          <p class="item-details">Merchant</p>
           <p><%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
         </section>
         <section class="details-price">
@@ -15,31 +17,29 @@
         <section class="details-quantity">
           <p class="cart-section-titles">Quantity:</p>
           <p>Qty: <%= @cart.contents[item.id.to_s] %></p>
-          <section class="add-item-quantity">
-            <%= link_to "+ 1", "/cart/#{item.id}/add", method: :patch %>
-          </section>
-          <section class="decrease-item-quantity">
-            <%= link_to "- 1", "/cart/#{item.id}/subtract", method: :patch %>
-          </section>
+            <%= link_to "+ 1", "/cart/#{item.id}/add", method: :patch, class: 'edit-btn' %>
+            <%= link_to "- 1", "/cart/#{item.id}/subtract", method: :patch, class: 'delete-btn' %>
+            <section class="remove-item">
+              <%= link_to "Remove: #{item.name}", "/cart/#{item.id}", method: :delete, class: 'remove-item-button' %>
+            </section>
         </section>
         <section class="details-subtotal">
           <p class="cart-section-titles">Subtotal:</p>
           <p><%= number_to_currency @cart.subtotal(item.id) %></p>
-        </section>
-        <section class="remove-item">
-          <%= link_to "Remove: #{item.name}", "/cart/#{item.id}", method: :delete, class: 'remove-item-button' %>
         </section>
       </section>
     <% end %>
   <section class="order-total">
     Order total: <%=number_to_currency @cart.order_total %>
   </section>
+  <section class="cart-actions">
     <div class="empty-btn">
-      <%= link_to "Empty your cart", '/cart/empty' %>
+      <%= link_to "Empty your cart", '/cart/empty', class: 'empty-the-cart' %>
     </div>
-  <div class="checkout-btn">
-    <%= link_to "Checkout", '/orders/new', class: 'checkout-button' %>
-  </div>
+    <div class="checkout-btn">
+      <%= link_to "Checkout", '/orders/new', class: 'checkout-button' %>
+    </div>
+  </section>
 <% else %>
   <p class="page-title">Your cart is empty.</p>
 <% end %>
