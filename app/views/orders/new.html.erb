@@ -1,13 +1,19 @@
 <h1 align= "center">Review Order</h1>
-<section class = "checkout-grid-container">
+<section class = "checkout-grid-container", id= "cart-summary-checkout">
   <section class="checkout-grid-headers">
-    
-  </section>
-  <% @cart.item_quantity.each do |item, quantity| %>
-    <secton class="checkout-grid-item">
 
-    </secton>
+  </section>
+  <% cart.item_quantity.each do |item, quantity| %>
+    <section id="item-checkout-<%= item.id%>">
+      <p><%= link_to item.name, "/items/#{item.id}" %></p>
+      <p><%= link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
+      <p><%= image_tag item.image, alt: item.description %></p>
+      <p>$<%= item.price %></p>
+      <p>Quantity: <%= quantity %> </p>
+      <p>Subtotal: $<%= item.item_subtotal(quantity) %></p>
+    </section>
   <% end %>
+  <p><b>Total: $<%= cart.total %></b></p>
 </section>
 
 <center>
