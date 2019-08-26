@@ -14,7 +14,13 @@
         </section>
         <section class="details-quantity">
           <p class="cart-section-titles">Quantity:</p>
-          <p><%= @cart.contents[item.id.to_s] %></p>
+          <p>Qty: <%= @cart.contents[item.id.to_s] %></p>
+          <section class="add-item-quantity">
+            <%= link_to "+ 1", "/cart/#{item.id}/add", method: :patch %>
+          </section>
+          <section class="decrease-item-quantity">
+            <%= link_to "- 1", "/cart/#{item.id}/subtract", method: :patch %>
+          </section>
         </section>
         <section class="details-subtotal">
           <p class="cart-section-titles">Subtotal:</p>
@@ -22,12 +28,6 @@
         </section>
         <section class="remove-item">
           <%= link_to "Remove: #{item.name}", "/cart/#{item.id}", method: :delete, class: 'remove-item-button' %>
-        </section>
-        <section class="add-item-quantity">
-          <%= link_to "Add 1: #{item.name}", "/cart/#{item.id}/add", method: :patch %>
-        </section>
-        <section class="decrease-item-quantity">
-          <%= link_to "Remove 1: #{item.name}", "/cart/#{item.id}/subtract", method: :patch %>
         </section>
       </section>
     <% end %>

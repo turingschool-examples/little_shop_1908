@@ -32,7 +32,7 @@ describe 'When I visit my cart' do
       expect(page).to_not have_content("Price: #{pull_toy.price}")
     end
     within ".details-quantity" do
-      expect(page).to_not have_content("1")
+      expect(page).to_not have_content("Qty: 1")
     end
     within ".details-subtotal" do
       expect(page).to_not have_content("$10.00")
