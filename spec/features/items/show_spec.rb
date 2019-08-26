@@ -75,6 +75,4 @@ RSpec.describe 'item show page', type: :feature do
         end
       expect(page).to have_content("Average Rating: 3")
   end
-    # - the bottom three reviews for this item  (title and rating only)
-    # - the average rating of all reviews for this item
 end
