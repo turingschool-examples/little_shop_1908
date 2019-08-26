@@ -2,9 +2,11 @@ class Review < ApplicationRecord
   belongs_to :item
 
   validates_presence_of :title,
-                        :content,
-                        :rating
-
+                        :content
+  validates :rating, numericality: {only_integer: true,
+                                    greater_than_or_equal_to: 1,
+                                    less_than_or_equal_to: 5}
+                                    
   def self.top_or_bottom_three(item_id, order = :desc)
     where(item_id: item_id)
       .order(rating: order)

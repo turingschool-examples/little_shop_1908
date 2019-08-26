@@ -11,11 +11,11 @@ class ReviewsController<ApplicationController
 
   def create
     item = Item.find(params[:item_id])
-    if review_params.values.none? { |val| val == "" }
-      item.reviews.create(review_params)
+    review = item.reviews.new(review_params)
+    if review.save
       redirect_to "/items/#{item.id}"
     else
-      flash[:error] = "Please fill in all the fields."
+      flash[:error] = review.errors.full_messages
       redirect_to "/items/#{item.id}/reviews/new"
     end
   end
