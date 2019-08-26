@@ -26,7 +26,7 @@ describe 'When I visit my cart' do
       within ".add-item-quantity" do
         click_link "Add 1: #{pull_toy.name}"
       end
-      
+
       expect(current_path).to eq('/cart')
 
       within ".details-quantity" do
@@ -42,8 +42,7 @@ describe 'When I visit my cart' do
     end
 
     within "#cart-item-#{pull_toy.id}" do
-      31.times do click_link "Add 1: #{pull_toy.name}"
-      end
+      31.times {click_link "Add 1: #{pull_toy.name}"}
     end
 
     expect(page).to have_content("Item out of stock")
