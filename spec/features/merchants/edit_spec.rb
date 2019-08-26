@@ -33,5 +33,22 @@ RSpec.describe "As a Visitor" do
       expect(page).to have_content("Brian's Super Cool Bike Shop")
       expect(page).to have_content("1234 New Bike Rd.\nDenver, CO 80204")
     end
+
+    it "When I am updating a merchant, If I try to submit the
+    form with incomplete information, I see a flash message indicating which
+    field(s) I am missing" do
+
+      visit "/merchants/#{@bike_shop.id}"
+      click_on "Update Merchant"
+
+      fill_in 'Name', with: "Brian's Super Cool Bike Shop"
+      fill_in 'Address', with: "1234 New Bike Rd."
+      fill_in 'City', with: "Denver"
+      fill_in 'State', with: ""
+      fill_in 'Zip', with: 80204
+
+      click_button "Update Merchant"
+      expect(page).to have_content("Please enter your state")
+    end
   end
 end
