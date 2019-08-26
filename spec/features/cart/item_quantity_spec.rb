@@ -83,10 +83,3 @@ describe 'When I visit my cart' do
     expect(page).to_not have_content(tire.name)
   end
 end
-
-# As a visitor
-# When I have items in my cart
-# And I visit my cart
-# Next to each item in my cart
-# I see a button or link to increment the count of items I want to purchase
-# I cannot increment the count beyond the item's inventory size
