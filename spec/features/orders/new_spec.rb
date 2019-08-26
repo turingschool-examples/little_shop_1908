@@ -31,8 +31,6 @@ RSpec.describe "When a user goes to the order create page" do
     @pull_toy = @dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
     @brush = @dog_shop.items.create(name: "Brush", description: "Great for long haired pets", price: 15, image: "https://images-na.ssl-images-amazon.com/images/I/71V8HaHa02L._SL1200_.jpg", inventory: 15)
 
-    # @cart_1 = Carts.create
-
     5.times do
       visit "/items/#{@brush.id}"
       click_button "Add Item"
@@ -53,7 +51,7 @@ RSpec.describe "When a user goes to the order create page" do
     within "#item-checkout-#{@brush.id}" do
       expect(page).to have_content(@brush.name)
       expect(page).to have_content(@brush.merchant.name)
-      expect(page).to have_content(@brush.price)
+      expect(page).to have_content("Price: $#{@brush.price}")
       expect(page).to have_content("Quantity: 5")
       expect(page).to have_content("Subtotal: $75")
     end
@@ -61,7 +59,7 @@ RSpec.describe "When a user goes to the order create page" do
     within "#item-checkout-#{@tire.id}" do
       expect(page).to have_content(@tire.name)
       expect(page).to have_content(@tire.merchant.name)
-      expect(page).to have_content(@tire.price)
+      expect(page).to have_content("Price: $#{@tire.price}")
       expect(page).to have_content("Quantity: 2")
       expect(page).to have_content("Subtotal: $200")
     end
@@ -72,8 +70,20 @@ RSpec.describe "When a user goes to the order create page" do
   end
 
   it 'accept users shipping information' do
+    name = "Jane Doe"
+    address = '123 Happy Street'
+    city = "Denver"
+    state = "CO"
+    zip = 80204
+
+    fill_in :name, with: name
+    fill_in :address, with: address
+    fill_in :city, with: city
+    fill_in :state, with: state
+    fill_in :zip, with: zip
   end
 
-  it 'can create a new order' do
+  it 'has a button to create order' do
+    expect(page).to have_button("Create Order")
   end
 end
