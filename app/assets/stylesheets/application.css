@@ -39,7 +39,11 @@ img{
  	grid-template-rows: auto;
  	grid-gap: 30px;
  }
-
+ .checkout-grid-container{
+   display: grid;
+   grid-template-columns: repeat(5,1fr);
+   grid-template-rows: auto;
+ }
  .grid-item{
  	background-color: #42f5c8;
  	padding: 20px;

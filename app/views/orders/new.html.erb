@@ -1,15 +1,27 @@
-<h1 align= "center">Shipping Address</h1>
+<h1 align= "center">Review Order</h1>
+<section class = "checkout-grid-container">
+  <section class="checkout-grid-headers">
+    
+  </section>
+  <% @cart.item_quantity.each do |item, quantity| %>
+    <secton class="checkout-grid-item">
+
+    </secton>
+  <% end %>
+</section>
+
 <center>
+  <h3>Shipping Information</h3>
   <%= form_tag '/orders', method: :post do |f| %>
-    <%= text_field_tag :name, "Name" %>
+    <%= text_field_tag :name, nil, placeholder: 'Name' %>
 
-    <%= text_field_tag :address, "Address" %>
+    <%= text_field_tag :address, nil, placeholder: 'Address' %>
 
-    <%= text_field_tag :city, "City" %>
+    <%= text_field_tag :city, nil, placeholder: 'City' %>
 
-    <%= text_field_tag :state, "State" %>
+    <%= text_field_tag :state, nil, placeholder: 'City' %>
 
-    <%= text_field_tag :zip, "Zip" %>
+    <%= text_field_tag :zip, nil, placeholder: 'Zip' %>
 
     <%= submit_tag 'Submit Order' %>
   <% end %>
