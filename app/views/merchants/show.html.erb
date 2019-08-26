@@ -12,4 +12,18 @@
       <p><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit", class: "btn btn-success item-buttons" %></p>
       <p><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger item-buttons" %></p>
     </div>
+  </div>
+
+  <br><br>
+  <hr>
+
+  <div class="merchant-stats">
+    <h3>Item Count: <%= @merchant.total_items_count %></h3>
+    <h3>Average price of all items: <%= number_to_currency(@merchant.average_price_items) %></h3>
+    <h3>List of cities where items have been ordered: <% @merchant.list_cities.each do |city| %>
+      <ul>
+        <li><h3><%= city %></h3></li>
+      </ul>
+    <% end %>
+  </div>
 </div>
