@@ -14,10 +14,10 @@ RSpec.describe "Updating Cart" do
       click_on "Add To Cart"
       visit "/cart"
       within "#item-#{@chain.id}" do
-        expect(page).to have_button("Remove From Cart")
+        expect(page).to have_link("Remove From Cart")
       end
       within "#item-#{@tire.id}" do
-        expect(page).to have_button("Remove From Cart")
+        expect(page).to have_link("Remove From Cart")
       end
     end
 
@@ -28,11 +28,11 @@ RSpec.describe "Updating Cart" do
       click_on "Add To Cart"
       visit "/cart"
       within "#item-#{@chain.id}" do
-        click_button("Remove From Cart")
+        click_link("Remove From Cart")
       end
       expect(page).not_to have_content(@chain.name)
       within "#item-#{@tire.id}" do
-        click_button("Remove From Cart")
+        click_link("Remove From Cart")
       end
       expect(page).not_to have_content(@tire.name)
     end
@@ -46,14 +46,14 @@ RSpec.describe "Updating Cart" do
     click_on "Add To Cart"
     visit "/cart"
 
-    click_on "Add Another: Chain"
+    click_on "Add Another Chain"
 
       within "#item-#{@chain.id}" do
         expect(page).to have_content("Total Quantity: 2")
       end
     expect(current_path).to eq(cart_path)
 
-    click_on "Add Another: Gatorskins"
+    click_on "Add Another Gatorskins"
 
       within "#item-#{@tire.id}" do
         expect(page).to have_content("Total Quantity: 2")
@@ -70,23 +70,23 @@ RSpec.describe "Updating Cart" do
     click_on "Add To Cart"
     visit "/cart"
 
-    click_on "Add Another: Chain"
-    click_on "Add Another: Gatorskins"
-    click_on "Add Another: Chain"
-    click_on "Add Another: Gatorskins"
+    click_on "Add Another Chain"
+    click_on "Add Another Gatorskins"
+    click_on "Add Another Chain"
+    click_on "Add Another Gatorskins"
 
-    click_on "Remove One: Chain"
+    click_on "Remove One Chain"
       within "#item-#{@chain.id}" do
         expect(page).to have_content("Total Quantity: 2")
       end
 
-    click_on "Remove One: Gatorskins"
+    click_on "Remove One Gatorskins"
       within "#item-#{@tire.id}" do
         expect(page).to have_content("Total Quantity: 2")
       end
 
-    click_on "Remove One: Gatorskins"
-    click_on "Remove One: Gatorskins"
+    click_on "Remove One Gatorskins"
+    click_on "Remove One Gatorskins"
 
       expect(page).to_not have_content("Gatorskins")
     end
