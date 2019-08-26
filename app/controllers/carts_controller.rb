@@ -29,4 +29,15 @@ class CartsController < ApplicationController
     flash[:message] = "You have removed #{item.name} from your cart."
     redirect_to '/cart'
   end
+
+  def increase_item
+    item = Item.find(params[:item_id])
+
+    if (cart.contents[item.id.to_s] + 1) > item.inventory
+      flash[:message] = "Sorry, no more #{pluralize(cart.contents[item.id.to_s], "#{item.name}")} can be puchased as this time."
+    else
+      session[:cart][item.id.to_s] += 1
+    end
+      redirect_to '/cart'
+  end
 end
