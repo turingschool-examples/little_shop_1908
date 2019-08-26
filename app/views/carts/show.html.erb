@@ -8,7 +8,7 @@
       <p><div id="delete-button" style="width:200px;"><%= button_to 'Delete Item', "/cart/#{item.id}", method: :delete_item %></div>
       <p><%= image_tag item.image, alt: item.description %></p>
       <p>$<%= item.price %></p>
-      <p>Quantity: <%= button_to '+', "/cart/#{item.id}/increase", method: :post%> <%= quantity %> <%= link_to "-", "/cart/#{item.id}/decrease", method: :post %> </p>
+      <p>Quantity: <%= link_to '+', "/cart/#{item.id}/increase", method: :post%> <%= quantity %> <%= link_to "-", "/cart/#{item.id}/decrease", method: :post %> </p>
       <p>Subtotal: $<%= item.item_subtotal(quantity) %></p>
     </section>
   <% end %>
