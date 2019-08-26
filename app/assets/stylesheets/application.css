@@ -47,6 +47,7 @@ img{
  	grid-template-rows: auto;
  	grid-gap: 30px;
  }
+
  .cart-grid-container{
  	display: grid;
  	grid-template-columns: repeat(1, 3fr);
