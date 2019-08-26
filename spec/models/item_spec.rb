@@ -21,7 +21,7 @@ describe Item do
     before(:each) do
       @dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
 
-      @pull_toy = @dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
+      @pull_toy = @dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 2)
       @dog_bone = @dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 2)
 
       @review_1 = @pull_toy.reviews.create(title: "This toy rules", content: "I bought this for my dog and it rules", rating: 5)
@@ -51,6 +51,27 @@ describe Item do
       order.item_orders.create(item_id: @pull_toy.id, order_id: order.id, quantity: 5, total_cost: (@pull_toy.price * 5))
 
       assert(@pull_toy.has_been_ordered?)
+    end
+
+    it "buy item ticks down inventory by 1" do
+      expect(@pull_toy.inventory).to eq(2)
+
+      @pull_toy.buy
+
+      expect(@pull_toy.inventory).to eq(1)
+    end
+
+    it "restock items" do
+      expect(@pull_toy.inventory).to eq(2)
+      @pull_toy.buy
+      @pull_toy.buy
+      expect(@pull_toy.inventory).to eq(0)
+      expect(@pull_toy.active?).to eq(false)
+
+      @pull_toy.restock_qty(2)
+      @pull_toy.restock
+      expect(@pull_toy.inventory).to eq(2)
+      expect(@pull_toy.active?).to eq(true)
     end
   end
 end
