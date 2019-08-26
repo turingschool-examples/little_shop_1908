@@ -33,10 +33,12 @@ RSpec.describe "When a user goes to the order show page" do
 
     click_button("Checkout")
 
-    expect(current_path).to eq("/order/")
+    expect(current_path).to eq("/orders/new")
   end
 
   it 'if user does not items in cart, user sees button to checkout' do
+    visit '/cart'
 
+    expect(page).not_to have_button("Checkout")
   end
 end
