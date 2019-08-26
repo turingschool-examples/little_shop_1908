@@ -85,7 +85,7 @@ img{
   font-size: 30px;
   text-align: right;
   color: white;
-  padding-right: 15px;
+  padding-right: 30px;
 }
 
  .address{
@@ -121,4 +121,8 @@ form {
   background-color: #f2f2f2;
   padding: 20px;
   width: 60%;
+}
+#cart-graphic {
+  padding-left: auto;
+  float: right;
 }
