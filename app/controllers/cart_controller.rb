@@ -26,4 +26,29 @@ class CartController < ApplicationController
     session[:cart] = cart.contents
     redirect_to '/cart'
   end
+
+  def increase
+    cart = Cart.new(session[:cart])
+    item = Item.find(params[:item_id])
+    if cart.contents[item.id.to_s] < item.inventory
+      cart.add_item(item.id)
+      session[:cart] = cart.contents
+    else
+      flash[:notice] = "Item out of stock"
+    end
+    redirect_to '/cart'
+  end
+
+  def decrease
+    cart = Cart.new(session[:cart])
+    item = Item.find(params[:item_id])
+    if cart.contents[item.id.to_s] > 1
+      cart.subtract_item(item.id)
+      session[:cart] = cart.contents
+    else
+      cart.remove_item(item.id)
+    end
+    redirect_to '/cart'
+  end
+
 end

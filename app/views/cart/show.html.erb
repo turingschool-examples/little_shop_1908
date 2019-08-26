@@ -23,6 +23,12 @@
         <section class="remove-item">
           <%= link_to "Remove: #{item.name}", "/cart/#{item.id}", method: :delete, class: 'remove-item-button' %>
         </section>
+        <section class="add-item-quantity">
+          <%= link_to "Add 1: #{item.name}", "/cart/#{item.id}/add", method: :patch %>
+        </section>
+        <section class="decrease-item-quantity">
+          <%= link_to "Remove 1: #{item.name}", "/cart/#{item.id}/subtract", method: :patch %>
+        </section>
       </section>
     <% end %>
   <section class="order-total">
