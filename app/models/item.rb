@@ -14,4 +14,8 @@ class Item <ApplicationRecord
   def self.cart_items(cart)
     Item.where(id: [cart.contents.keys])
   end
+
+  def has_orders?
+    orders.count > 0
+  end
 end

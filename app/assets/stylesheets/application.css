@@ -298,6 +298,7 @@ section[id^='order-item-'],
  .item-show-box{
   background-color: #d9e7f2;
   border: solid;
+  border-radius: 1em;
   margin-left: 20%;
   width: 60%;
  }
