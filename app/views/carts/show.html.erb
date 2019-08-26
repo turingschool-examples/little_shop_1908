@@ -20,7 +20,9 @@
 </section>
 <section id="cart-actions">
   <% unless cart.contents.empty? %>
-  <%= button_to "Empty Cart", "/cart", method: :delete %>
+  <%= button_to "Empty Cart", "/cart", method: :delete %> <%= button_to "Checkout", "/orders/new" %>
   <% end %>
 </section>
+
+
 </center>
