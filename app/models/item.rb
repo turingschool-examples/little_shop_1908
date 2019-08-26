@@ -8,7 +8,7 @@ class Item < ApplicationRecord
                         :description,
                         :image
   validates_inclusion_of :active?, :in => [true, false]
-  validates :price, numericality: {only_integer: true}
+  validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 0}
   validates :inventory, numericality: {only_integer: true, greater_than_or_equal_to: 0}
 
   def avg_rating

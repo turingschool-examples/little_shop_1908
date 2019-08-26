@@ -11,11 +11,11 @@ class OrdersController < ApplicationController
   end
 
   def create
-    if order_params.values.any? {|input| input == ""}
+    order = Order.new(order_params)
+    if !order.save
       flash[:error] = "Enter your shipping info again"
       redirect_to "/cart/checkout"
     else
-      order = Order.create(order_params)
       session[:cart].each do |item_id, qty|
         item = Item.find(item_id.to_i)
         order.item_orders.create(item_id: item.id, order_id: order.id, quantity: qty, total_cost: (item.price * qty))

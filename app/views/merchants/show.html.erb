@@ -4,7 +4,7 @@
 
 <center>
   <p>Items for Sale: <%= @merchant.item_count %></p>
-  <p>Average Cost of an Item: <%= @merchant.average_item_price %></p>
+  <p>Average Cost of an Item: <%= number_to_currency(@merchant.average_item_price) %></p>
   <p>Cities Sold To: <%= @merchant.cities_serviced %></p>
   <hr>
 </center>
