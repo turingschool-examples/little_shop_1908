@@ -50,5 +50,28 @@ RSpec.describe "Create Merchant Items" do
       expect(page).to_not have_content(new_item.description)
       expect(page).to have_content("Inventory: #{new_item.inventory}")
     end
+    it 'I must fill out the entire form for a new item' do
+      visit "/merchants/#{@brian.id}/items"
+
+      name = "Chamois Buttr"
+      price = 18
+      description = "No more chaffin'!"
+      image_url = "https://images-na.ssl-images-amazon.com/images/I/51HMpDXItgL._SX569_.jpg"
+      inventory = 25
+
+      click_on "Add New Item"
+
+      expect(page).to have_link(@brian.name)
+      expect(current_path).to eq("/merchants/#{@brian.id}/items/new")
+      fill_in :name, with: name
+      fill_in :price, with: price
+      fill_in :description, with: description
+      fill_in :image, with: nil
+      fill_in :inventory, with: inventory
+
+      click_button "Create Item"
+      expect(current_path).to eq("/merchants/#{@brian.id}/items/new")
+      expect(page).to have_content("Image can't be blank")
+    end
   end
 end
