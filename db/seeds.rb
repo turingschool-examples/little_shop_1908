@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+Order.destroy_all
 Review.destroy_all
 Item.destroy_all
 Merchant.destroy_all
@@ -26,3 +26,4 @@ dog_bone = dog_shop.items.create(name: "Dog Bone", description: "They'll love it
 review_1 = tire.reviews.create(title: "Solid bike, excellent bang for buck", content: "Solid bike. I'm 39 and just getting into BMX, had many bikes over the years. This is a well made bike, all chromo, decent functional welding but not amazing.", rating: 5)
 
 review_2 = tire.reviews.create(title: "HEADS UP TO ALL BUYERS!", content: "Whenever you purchase a 'Big Box' store BMK bike or any other bike...just know that the design on these bikes is not very good", rating: 1)
+order = pull_toy.orders.create(name: "Bob", address: '123 Bob Rd.', city: 'Denver', state: 'CO', zip: "82222")
