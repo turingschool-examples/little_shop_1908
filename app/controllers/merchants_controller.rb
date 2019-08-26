@@ -17,10 +17,11 @@ class MerchantsController <ApplicationController
       redirect_to "/merchants"
     else
       if merchant_params.each do |key, value|
-          value = ""
-          flash[:notice] = "Please enter your #{key}."
-          render :new
+          if value == ""
+            flash[:notice] = "Please enter your #{key}."
+          end
         end
+        render :new
       end
     end
   end
@@ -32,7 +33,18 @@ class MerchantsController <ApplicationController
   def update
     merchant = Merchant.find(params[:id])
     merchant.update(merchant_params)
-    redirect_to "/merchants/#{merchant.id}"
+    if merchant.save
+      redirect_to "/merchants/#{merchant.id}"
+    else
+      if merchant_params.each do |key, value|
+          if value == ""
+            flash[:notice] = "Please enter your #{key}."
+          end
+        end
+        @merchant = merchant
+        render :edit
+      end
+    end
   end
 
   def destroy
