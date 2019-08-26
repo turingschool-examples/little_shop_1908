@@ -11,6 +11,8 @@ describe Merchant, type: :model do
 
   describe "relationships" do
     it {should have_many :items}
+    it {should have_many(:item_orders).through(:items)}
+    it {should have_many(:orders).through(:item_orders)}
   end
 
   describe 'instance methods' do
@@ -24,6 +26,34 @@ describe Merchant, type: :model do
       item_order = order.item_orders.create(quantity: 2, total_cost: 15, item: dog_bone)
 
       expect(dog_shop.has_orders?).to eq(true)
+    end
+
+    it '#count_items' do
+      bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
+      tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+      chain = bike_shop.items.create(name: "Chain", description: "Its a chain!", price: 40, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 5)
+      expect(bike_shop.count_items).to eq(2)
+    end
+
+    it '#average_price' do
+      bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
+      tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+      chain = bike_shop.items.create(name: "Chain", description: "Its a chain!", price: 40, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 5)
+      expect(bike_shop.average_price).to eq(70.0)
+    end
+
+    it '#distinct_cities' do
+      bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
+      tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+      chain = bike_shop.items.create(name: "Chain", description: "Its a chain!", price: 40, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 5)
+      order_1 = Order.create(name: "Bob", address: "234 A st.", city: "Torrance", state: "CA", zip: 90505)
+      order_2 = Order.create(name: "Phil", address: "456 A st.", city: "Lake Forest", state: "IL", zip: 60045)
+      order_3 = Order.create(name: "Phil", address: "456 A st.", city: "Lake Forest", state: "IL", zip: 60045)
+      item_order_1 = order_1.item_orders.create(quantity: 1, total_cost: 100, item: tire)
+      item_order_2 = order_2.item_orders.create(quantity: 1, total_cost: 40, item: chain)
+      item_order_3 = order_3.item_orders.create(quantity: 1, total_cost: 40, item: chain)
+
+      expect(bike_shop.distinct_cities).to eq(["Lake Forest", "Torrance"])
     end
   end
 end
