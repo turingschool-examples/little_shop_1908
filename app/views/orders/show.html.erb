@@ -1,18 +1,30 @@
 <h1>Your Order</h1>
 
-<%= @order.name %><br>
-<%= @order.address %><br>
-<%= @order.city %><br>
-<%= @order.state %><br>
-<%= @order.zip %>
-
-<% @order.order_items.each do |order_item| %>
-  <p>Item: <%=link_to order_item.name, "/items/#{order_item.item_id}" %></p>
-  <p>Sold By: <%=link_to order_item.merchant, "/merchants/#{order_item.merchant_id}"%></p>
-  <p>Price: $<%= order_item.price %></p>
-  <p>Quantity: <%= order_item.quantity %></p>
-  <p>Item Subtotal: $<%= order_item.subtotal %></p>
-<% end %>
-
-  <p>Grand Total: $<%= @order.grand_total %></p>
+<section class="address">
+  <%= @order.name %><br>
+  <%= @order.address %><br>
+  <%= @order.city %><br>
+  <%= @order.state %><br>
+  <%= @order.zip %><br><br>
   <p>Created at: <%= @order.created_at %></p>
+</section>
+
+<section class="cart-grid-container">
+  <% @order.order_items.each do |order_item| %>
+    <section class = "cart-item-show-grid">
+      <section class = "cart-item-show-item">
+        <section style="text-align:center" class = "cart-item-show-item">
+          <section id="item-<%=order_item.id%>">
+            <p>Item: <%=link_to order_item.name, "/items/#{order_item.item_id}" %></p>
+            <p>Sold By: <%=link_to order_item.merchant, "/merchants/#{order_item.merchant_id}"%></p>
+            <p>Price: $<%= order_item.price %></p>
+            <p>Quantity: <%= order_item.quantity %></p>
+            <p>Item Subtotal: $<%= order_item.subtotal %></p>
+          </section>
+        </section>
+      </section>
+    </section>
+  <% end %>
+</section>
+
+  <h3>Grand Total: $<%= @order.grand_total %></h3>
