@@ -1,11 +1,18 @@
-<div>
+<br>
+<hr>
+<br>
+<%= link_to "add new review", "/items/#{@item.id}/reviews/new", class: "btn btn-outline-success" %>
+<br>
+<div class='container'>
+
   <div>
     <section id='item-<%= @item.id %>-review-stats'>
-      <p>Average Rating: <%= @item.reviews.average_review_rating %> </p>
+      <h3>Average Rating: <%= @item.reviews.average_review_rating %></h3>
     </section>
 
+    <hr>
     <section id='item-<%= @item.id %>-top-3-reviews'>
-      <p>Top 3</p>
+      <h5>Most Popular Reviews</h5>
       <% @item.reviews.top_three_reviews.each do |title, rating| %>
         <div>
           <span><%= title %></span>
@@ -14,8 +21,9 @@
       <% end %>
     </section>
 
+    <hr>
     <section id='item-<%= @item.id %>-bottom-3-reviews'>
-      <p>Bottom 3</p>
+      <h5>Least Popular Reviews</h5>
       <% @item.reviews.bottom_three_reviews.each do |title, rating| %>
         <div>
           <span><%= title %></span>
@@ -24,17 +32,26 @@
       <% end %>
     </section>
   </div>
+  <hr><hr>
 
   <div>
-    <div> <%= link_to "add new review", "/items/#{@item.id}/reviews/new" %></div>
-    <p>Reviews: <% @item.reviews.each do |review| %> </p>
-      <section id= 'review-<%=review.id%>'>
-        <p><%= review.title %></p>
-        <p><%= review.content %></p>
-        <p>Rating: <%= review.rating %></p>
-        <p> <%= link_to "edit review", "/items/#{@item.id}/#{review.id}/edit" %></p>
-        <p id="delete-review-<%= review.id %>"><%= link_to "Delete Review", "/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %></p>
-      </section>
-    <% end %>
+    <p class='display-4'>All Reviews <% @item.reviews.each do |review| %> </p>
+      <li class="list-group-item">
+        <section id= 'review-<%=review.id%>'>
+          <h5><%= review.title %> -- Rating: <%= review.rating %></h5>
+          <br>
+          <p><%= review.content %></p>
+          <br>
+          <div class="row">
+            <div class="col">
+              <p><%= link_to "Edit review", "/items/#{@item.id}/#{review.id}/edit", class: "btn btn-success item-buttons" %></p>
+            </div>
+            <div class="col">
+              <p id="delete-review-<%= review.id %>"><%= link_to "Delete Review", "/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger item-buttons" %></p>
+            </div>
+          </div>
+        </section>
+      </li>
+      <% end %>
   </div>
 </div>

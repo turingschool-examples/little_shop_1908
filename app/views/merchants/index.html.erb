@@ -1,9 +1,11 @@
-<h1 align = "center">Merchants</h1>
-<p align="center"><%= link_to "New Merchant", "/merchants/new" %></p>
+<h1 class='display-1' align = "center">Merchants</h1>
+<%= link_to "New Merchant", "/merchants/new", class: "btn btn-outline-success"%>
+<hr>
 <section class = "grid-container">
   <% @merchants.each do |merchant|%>
     <section class = "grid-item" id = "merchant-<%=merchant.id%>">
-      <h2><%=link_to merchant.name, "/merchants/#{merchant.id}"%></h2>
+      <a href=<%= "/merchants/#{merchant.id}" %>><img src="https://image.flaticon.com/icons/svg/679/679946.svg" alt="little-shop" class="img-merchant"></a>
+      <h2 class='merchant-link'><%=link_to merchant.name, "/merchants/#{merchant.id}"%></h2>
     </section>
   <% end %>
 </section>

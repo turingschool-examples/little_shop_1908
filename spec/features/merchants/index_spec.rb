@@ -8,10 +8,12 @@ RSpec.describe 'merchant index page', type: :feature do
     end
 
     it 'I can see a list of merchants in the system' do
+      img_merchant = "https://image.flaticon.com/icons/svg/679/679946.svg"
       visit '/merchants'
 
       expect(page).to have_link("Brian's Bike Shop")
       expect(page).to have_link("Meg's Dog Shop")
+      expect(page).to have_css("img[src*='#{img_merchant}']")
     end
 
     it 'I can see a link to create a new merchant' do

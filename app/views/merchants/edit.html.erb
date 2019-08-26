@@ -1,21 +1,23 @@
-<h1>Edit <%=link_to @merchant.name, "/merchants/#{@merchant.id}" %></h1>
-<center>
+<br /><br />
+<div class="container" align='center'>
+  <h1 class='display-3'><%=link_to @merchant.name, "/merchants/#{@merchant.id}" %></h1>
   <%= form_tag "/merchants/#{@merchant.id}", method: :patch do %>
-    <%= label_tag :name %>
-    <%= text_field_tag :name, "#{@merchant.name}"%>
-
-    <%= label_tag :address %>
-    <%= text_field_tag :address, "#{@merchant.address}" %>
-
-    <%= label_tag :city %>
-    <%= text_field_tag :city, "#{@merchant.city}" %>
-
-    <%= label_tag :state %>
-    <%= text_field_tag :state, "#{@merchant.state}" %>
-
-    <%= label_tag :zip %>
-    <%= text_field_tag :zip,"#{@merchant.zip}" %>
-
-    <%= submit_tag 'Update Merchant' %>
+  <div class="row">
+    <div class="col-sm-4">
+      <p class='form-label'><%= label_tag :name %></p>
+      <p class='form-label'><%= label_tag :address %></p>
+      <p class='form-label'><%= label_tag :city %></p>
+      <p class='form-label'><%= label_tag :state %></p>
+      <p class='form-label'><%= label_tag :zip %></p>
+    </div>
+    <div class="col">
+      <%= text_field_tag :name, "#{@merchant.name}"%>
+      <%= text_field_tag :address, "#{@merchant.address}" %>
+      <%= text_field_tag :city, "#{@merchant.city}" %>
+      <%= text_field_tag :state, "#{@merchant.state}" %>
+      <%= text_field_tag :zip,"#{@merchant.zip}" %>
+      <%= submit_tag 'Update Merchant', class: "btn btn-primary" %>
+    </div>
+  </div>
   <% end %>
-</center>
+</div>

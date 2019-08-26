@@ -1,14 +1,21 @@
-<h1> Edit Review </h1>
+<br /><br />
+<div class="container" align='center'>
+
+<h1 class='display-3'> Edit Review </h1>
 
 <center>
   <%= form_tag "/items/#{@item.id}/#{@review.id}", method: :patch do %>
-    <%= label_tag "Title:" %>
-    <%= text_field_tag :title, "#{@review.title}" %>
-    <%= label_tag "Review:" %>
-    <%= text_field_tag :content, "#{@review.content}" %>
-    <%= label_tag "Rating:" %>
-    <%= text_field_tag :rating, "#{@review.rating}" %>
-
-    <%= submit_tag 'Post Review' %>
+  <div class="row">
+    <div class="col-sm-4">
+      <p class='form-label'><%= label_tag :title %></p>
+      <p class='form-label'><%= label_tag :review %></p>
+      <p class='form-label'><%= label_tag :rating %></p>
+    </div>
+    <div class="col">
+      <%= text_field_tag :title, "#{@review.title}" %>
+      <%= text_field_tag :content, "#{@review.content}" %>
+      <%= text_field_tag :rating, "#{@review.rating}" %>
+      <%= submit_tag 'Post Review' %>
+    </div>
   <% end %>
 </center>
