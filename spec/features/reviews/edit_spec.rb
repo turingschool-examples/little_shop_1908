@@ -20,6 +20,24 @@ describe "Review Edit Page" do
     content = "My dog loved this until it broke."
 
     fill_in 'Title', with: title
+    fill_in 'Content', with: ""
+    select '3', from: :rating
+
+    click_button "Submit Updated Review"
+
+    expect(current_path).to eq("/items/#{@pull_toy.id}/reviews/#{@review_1.id}/edit-review")
+    expect(page).to have_content("Retry updating your review again with better info.")
+
+    fill_in 'Title', with: ""
+    fill_in 'Content', with: content
+    select '3', from: :rating
+
+    click_button "Submit Updated Review"
+
+    expect(current_path).to eq("/items/#{@pull_toy.id}/reviews/#{@review_1.id}/edit-review")
+    expect(page).to have_content("Retry updating your review again with better info.")
+
+    fill_in 'Title', with: title
     fill_in 'Content', with: content
     select '3', from: :rating
 

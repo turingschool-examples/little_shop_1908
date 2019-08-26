@@ -94,7 +94,7 @@ describe 'Item Show Page' do
         expect(page).to have_link("Items in Cart: 2")
       end
 
-      expect(page).to have_content("There are not enough #{@dog_bone.name} to add to yo cart, sry.")
+      expect(page).to have_content("There are not enough #{@dog_bone.name}s to add to yo cart, sry.")
     end
   end
 
@@ -121,6 +121,34 @@ describe 'Item Show Page' do
 
       expect(current_path).to eq("/items")
       expect(page).to_not have_css("#item-#{dog_bone.id}")
+    end
+
+    it 'if the item has been ordered' do
+      order = Order.create(name: "Evette", address: "123 street", city: "Denver", state: "CO", zip: 12345)
+      order.item_orders.create(item_id: @pull_toy.id, order_id: order.id, quantity: 5, total_cost: (@pull_toy.price * 5))
+
+      visit "/items/#{@pull_toy.id}"
+
+      expect(page).to have_link("Delete Item")
+
+      click_link "Delete Item"
+
+      expect(current_path).to eq("/items/#{@pull_toy.id}")
+      expect(page).to have_content("We won't delete items with active orders pending")
+    end
+
+    it "and shows a message if the deleted item is queried" do
+      visit "/items/#{@pull_toy.id}"
+
+      expect(page).to have_link("Delete Item")
+
+      click_link "Delete Item"
+
+      visit "/items/#{@pull_toy.id}"
+
+      expect(current_path).to eq("/items")
+
+      expect(page).to have_content("This item doesn't exist")
     end
   end
 

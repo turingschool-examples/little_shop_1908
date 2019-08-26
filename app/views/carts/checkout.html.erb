@@ -3,8 +3,10 @@
     <center class="cart-item">
     <% @items_hash.each do |item, qty| %>
       <section id="order-item-<%= item.id %>">
-        <span class="item-show-item"><%= image_tag("#{item.image}") %></span>
-        <h1><%= item.name %></h1> <h3>from</h3> <h2><%= item.merchant.name %></h2>
+        <span class="item-show-item"><img src= <%= item.image %>></span>
+        <h1><%= link_to("#{item.name}", "/items/#{item.id}") %></h1>
+        <h3>from</h3>
+        <h2><%= link_to("#{item.merchant.name}", "/merchants/#{item.merchant.id}") %></h2>
         <h2>Purchase <%= qty %> at <%= number_to_currency(item.price) %> each</h2>
         <h2>Subtotal: <%= number_to_currency(item.price * qty) %></h2>
       </section>
@@ -17,15 +19,15 @@
   <center><br><br><br><br>
     <h1>Enter your shipping information:</h1>
     <%= form_tag "/orders", method: :post do %>
-      <%= text_field_tag :name, "Name"%>
+      <%= text_field_tag :name, nil, placeholder: "Name"%>
 
-      <%= text_field_tag :address, "Address" %>
+      <%= text_field_tag :address, nil, placeholder: "Address" %>
 
-      <%= text_field_tag :city, "City" %>
+      <%= text_field_tag :city, nil, placeholder: "City" %>
 
-      <%= text_field_tag :state, "State" %>
+      <%= text_field_tag :state, nil, placeholder: "State" %>
 
-      <%= text_field_tag :zip, "Zip" %>
+      <%= text_field_tag :zip, nil, placeholder: "Zip" %>
 
       <%= submit_tag 'Create Order' %>
     <% end %>

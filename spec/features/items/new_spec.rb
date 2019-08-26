@@ -14,6 +14,30 @@ describe "Item New Page" do
     image_url = "https://images-na.ssl-images-amazon.com/images/I/51HMpDXItgL._SX569_.jpg"
     inventory = 25
 
+    fill_in :name, with: ""
+    fill_in :price, with: ""
+    fill_in :description, with: description
+    fill_in :image, with: image_url
+    fill_in :inventory, with: inventory
+
+    click_button "Create Item"
+
+    expect(current_path).to eq("/merchants/#{@dog_shop.id}/items/new")
+    expect(page).to have_content("Name can't be blank")
+    expect(page).to have_content("Price is not a number")
+
+    fill_in :name, with: name
+    fill_in :price, with: price
+    fill_in :description, with: ""
+    fill_in :image, with: ""
+    fill_in :inventory, with: ""
+
+    click_button "Create Item"
+
+    expect(page).to have_content("Description can't be blank")
+    expect(page).to have_content("Image can't be blank")
+    expect(page).to have_content("Inventory is not a number")
+
     fill_in :name, with: name
     fill_in :price, with: price
     fill_in :description, with: description

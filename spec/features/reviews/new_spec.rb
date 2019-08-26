@@ -43,7 +43,7 @@ describe 'Review New Page' do
 
     click_button "Submit Review"
 
-    expect(current_path).to eq("/items/#{@pull_toy.id}")
+    expect(current_path).to eq("/items/#{@pull_toy.id}/reviews/new-review")
 
     expect(page).to have_content("Do it right, yo.")
     expect(page).to_not have_content("Don't Waste Your Money")
@@ -55,9 +55,9 @@ describe 'Review New Page' do
 
     click_button "Submit Review"
 
-    expect(current_path).to eq("/items/#{@pull_toy.id}")
+    expect(current_path).to eq("/items/#{@pull_toy.id}/reviews/new-review")
 
     expect(page).to have_content("Do it right, yo.")
     expect(page).to_not have_content("This piece of junk was half the size I thought it should be and it smelled bad.")
-  end 
+  end
 end

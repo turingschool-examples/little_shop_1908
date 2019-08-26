@@ -1,18 +1,18 @@
-class ReviewsController <ApplicationController
+class ReviewsController < ApplicationController
 
   def new
   end
 
   def create
     item = Item.find(params[:id])
-    if review_params.values.any? {|input| input == "" || input == "Write your review here"}
+    if review_params.values.any? {|input| input == ""}
       flash[:error] = "Do it right, yo."
+      redirect_to "/items/#{item.id}/reviews/new-review"
     else
-
       flash[:success] = "Your review has been posted"
       review = item.reviews.create(review_params)
+      redirect_to "/items/#{item.id}"
     end
-    redirect_to "/items/#{item.id}"
   end
 
   def edit
@@ -24,10 +24,11 @@ class ReviewsController <ApplicationController
     review = Review.find(params[:review_id])
     if review.update(review_params)
       flash[:success] = "Your review has been updated!"
+      redirect_to "/items/#{review.item_id}"
     else
       flash[:error] = "Retry updating your review again with better info."
+      redirect_to "/items/#{review.item_id}/reviews/#{review.id}/edit-review"
     end
-    redirect_to "/items/#{review.item_id}"
   end
 
   def delete
@@ -41,5 +42,4 @@ class ReviewsController <ApplicationController
   def review_params
     params.permit(:title, :content, :rating)
   end
-
 end

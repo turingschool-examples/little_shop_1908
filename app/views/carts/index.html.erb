@@ -4,12 +4,14 @@
     <center class="cart-item">
     <% @items_hash.each do |item, qty| %>
       <section id="cart-item-<%= item.id %>">
-        <span class="item-show-item"><%= image_tag("#{item.image}") %></span>
-        <h1><%= item.name %></h1> <h3>from</h3> <h2><%= item.merchant.name %></h2>
+        <span class="item-show-item"><img src= <%= item.image %>></span>
+        <h1><%= link_to("#{item.name}", "/items/#{item.id}") %></h1>
+        <h3>from</h3>
+        <h2><%= link_to("#{item.merchant.name}", "/merchants/#{item.merchant.id}") %></h2>
         <h2>Purchase <%= qty %> at <%= number_to_currency(item.price) %> each</h2>
         <h2>Subtotal: <%= number_to_currency(item.price * qty) %></h2>
         <h3><%= link_to("Add an Additional #{item.name}", "/cart/items/#{item.id}/add-to-cart") %> | <%= link_to("Remove a #{item.name}", "/cart/items/#{item.id}/remove-from-cart") %></h3>
-        <h3> <%= link_to("Remove all #{item.name}s", "/cart/items/#{item.id}/remove-all") %></h3>
+        <h3> <%= link_to("Remove all #{item.name.pluralize(2)}", "/cart/items/#{item.id}/remove-all") %></h3>
       </section>
       <br><br><br><br><br><br>
     <% end %>

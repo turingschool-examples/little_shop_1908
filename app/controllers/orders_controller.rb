@@ -11,9 +11,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    if order_params.values.any? {|input| input == "" || input == "Name" || input == "Address" || input == "City" || input == "State" || input == "Zip"}
+    if order_params.values.any? {|input| input == ""}
       flash[:error] = "Enter your shipping info again"
-      redirect_to "/cart"
+      redirect_to "/cart/checkout"
     else
       order = Order.create(order_params)
       session[:cart].each do |item_id, qty|
@@ -26,10 +26,9 @@ class OrdersController < ApplicationController
     end
   end
 
-
   private
+
   def order_params
     params.permit(:name,:address,:city,:state,:zip)
   end
-
 end

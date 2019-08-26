@@ -55,13 +55,6 @@ describe "Item Index Page" do
     end
   end
 
-#   When I visit an item's show page from the items index
-# I see a link or button to add this item to my cart
-# And I click this link or button
-# I am returned to the item index page
-# I see a flash message indicating the item has been added to my cart
-# The cart indicator in the navigation bar increments my cart count
-
   describe "displays a flash message when an item is added to the cart" do
     it "if the addition is successful" do
       visit "items/#{@dog_bone.id}"
@@ -76,7 +69,7 @@ describe "Item Index Page" do
       click_button "Add Item To yo Cart"
 
       expect(current_path).to eq("/items")
-      expect(page).to have_content("1 #{@dog_bone.name} has been added. You now have 2 #{@dog_bone.name} in your cart.")
+      expect(page).to have_content("1 #{@dog_bone.name} has been added. You now have 2 #{@dog_bone.name}s in your cart.")
     end
 
     it "if the addition is unsuccessful" do
@@ -87,7 +80,7 @@ describe "Item Index Page" do
       click_button "Add Item To yo Cart"
 
       expect(current_path).to eq("/items")
-      expect(page).to have_content("There are not enough #{rope_knot.name} to add to yo cart, sry.")
+      expect(page).to have_content("There are not enough #{rope_knot.name}s to add to yo cart, sry.")
     end
   end
 

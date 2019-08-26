@@ -221,9 +221,9 @@ describe 'Cart Show Page' do
     visit "/cart"
 
     within "#cart-item-#{@tire.id}" do
-      expect(page).to have_link("Remove all #{@tire.name}s")
+      expect(page).to have_link("Remove all #{@tire.name.pluralize(2)}")
 
-      click_link "Remove all #{@tire.name}s"
+      click_link "Remove all #{@tire.name.pluralize(2)}"
     end
 
     within '.topnav' do

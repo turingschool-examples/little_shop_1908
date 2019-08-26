@@ -1,4 +1,4 @@
-class ItemsController<ApplicationController
+class ItemsController < ApplicationController
 
   def index
     if params[:merchant_id]
@@ -24,8 +24,14 @@ class ItemsController<ApplicationController
 
   def create
     merchant = Merchant.find(params[:merchant_id])
-    merchant.items.create(item_params)
-    redirect_to "/merchants/#{merchant.id}/items"
+    item = merchant.items.create(item_params)
+    if item.save
+      flash[:success] = "Your item has been created"
+      redirect_to "/merchants/#{merchant.id}/items"
+    else
+      flash[:error] = item.errors.full_messages.to_sentence
+      redirect_to "/merchants/#{merchant.id}/items/new"
+    end
   end
 
   def edit
@@ -35,15 +41,26 @@ class ItemsController<ApplicationController
   def update
     item = Item.find(params[:id])
     item.update(item_params)
-    item.restock
-    redirect_to "/items/#{item.id}"
+    if item.save
+      item.restock
+      flash[:success] = "Your item has been updated"
+      redirect_to "/items/#{item.id}"
+    else
+      flash[:error] = item.errors.full_messages.to_sentence
+      redirect_to "/items/#{item.id}/edit"
+    end
   end
 
   def destroy
     item = Item.find(params[:id])
-    item.reviews.destroy_all
-    item.destroy
-    redirect_to "/items"
+    if item.has_been_ordered?
+      flash[:no_delete] = "We won't delete items with active orders pending"
+      redirect_to "/items/#{item.id}"
+    else
+      item.reviews.destroy_all
+      item.destroy
+      redirect_to "/items"
+    end
   end
 
   # def buy_item
@@ -61,5 +78,4 @@ class ItemsController<ApplicationController
   def item_params
     params.permit(:name,:description,:price,:inventory,:image)
   end
-
 end

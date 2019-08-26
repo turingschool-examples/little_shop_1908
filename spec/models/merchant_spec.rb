@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-describe Merchant, type: :model do
+describe Merchant do
+  describe "relationships" do
+    it {should have_many :items}
+  end
+
   describe "validations" do
     it { should validate_presence_of :name }
     it { should validate_presence_of :address }
     it { should validate_presence_of :city }
     it { should validate_presence_of :state }
-    it { should validate_presence_of :zip }
-  end
-
-  describe "relationships" do
-    it {should have_many :items}
+    it { should validate_numericality_of :zip }
   end
 
   describe "merchants has items ordered" do
@@ -25,7 +25,7 @@ describe Merchant, type: :model do
   end
 
   describe "stat model methods" do
-    before :each do
+    before(:each) do
       @pug_store = Merchant.create(name: "Puggotown", address: '123 Pupper Rd.', city: 'Pugville', state: 'VA', zip: 23137)
       @dog_food = @pug_store.items.create(name: "Foodtime", description: "It's yummy!", price: 10, image: "https://www.zooplus.co.uk/magazine/CACHE_IMAGES/768/content/uploads/2018/01/fotolia_108248133.jpg", inventory: 120)
       @soap = @pug_store.items.create(name: "Soapy Soap", description: "It's clean!", price: 11, image: "https://i.pinimg.com/originals/a9/bf/77/a9bf779477d6a97519cfe3b8c21dac90.jpg", inventory: 20)
@@ -45,8 +45,7 @@ describe Merchant, type: :model do
     end
 
     it "should calculate all cities that had orders" do
-      expect(@pug_store.cities_serviced to eq([@order.city, @order_2.city]))
+      expect(@pug_store.cities_serviced).to eq([@order_2.city, @order.city])
     end
   end
-
 end
