@@ -17,14 +17,14 @@ describe 'When I visit my cart' do
     visit '/cart'
 
     within "#cart-item-#{pull_toy.id}" do
-      within ".add-item-quantity" do
-      expect(page).to have_link("Add 1: #{pull_toy.name}")
+      within ".details-quantity" do
+      expect(page).to have_link("+ 1")
       end
     end
 
     within "#cart-item-#{pull_toy.id}" do
-      within ".add-item-quantity" do
-        click_link "Add 1: #{pull_toy.name}"
+      within ".details-quantity" do
+        click_link "+ 1"
       end
 
       expect(current_path).to eq('/cart')
@@ -42,7 +42,7 @@ describe 'When I visit my cart' do
     end
 
     within "#cart-item-#{pull_toy.id}" do
-      31.times {click_link "Add 1: #{pull_toy.name}"}
+      31.times {click_link "+ 1"}
     end
 
     expect(page).to have_content("Item out of stock")
@@ -64,14 +64,14 @@ describe 'When I visit my cart' do
     visit '/cart'
 
     within "#cart-item-#{tire.id}" do
-      within ".decrease-item-quantity" do
-        expect(page).to have_link("Remove 1: #{tire.name}")
+      within ".details-quantity" do
+        expect(page).to have_link("- 1")
       end
     end
 
     within "#cart-item-#{tire.id}" do
-      within ".decrease-item-quantity" do
-        click_link "Remove 1: #{tire.name}"
+      within ".details-quantity" do
+        click_link "- 1"
       end
 
       expect(current_path).to eq('/cart')
@@ -84,7 +84,7 @@ describe 'When I visit my cart' do
         expect(page).to have_content("$100.00")
       end
 
-      click_link "Remove 1: #{tire.name}"
+      click_link "- 1"
     end
     expect(page).to_not have_content(tire.name)
   end

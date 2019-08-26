@@ -28,7 +28,7 @@ describe 'When I visit my cart' do
         expect(page).to have_content(pull_toy.price)
       end
       within ".details-quantity" do
-        expect(page).to have_content("1")
+        expect(page).to have_content("Qty: 1")
       end
       within ".details-subtotal" do
         expect(page).to have_content("$10.00")
@@ -45,7 +45,7 @@ describe 'When I visit my cart' do
         expect(page).to have_content(dog_bone.price)
       end
       within ".details-quantity" do
-        expect(page).to have_content("2")
+        expect(page).to have_content("Qty: 2")
       end
       within ".details-subtotal" do
         expect(page).to have_content("$42.00")
