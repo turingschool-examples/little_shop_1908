@@ -19,8 +19,19 @@ class ItemsController<ApplicationController
 
   def create
     merchant = Merchant.find(params[:merchant_id])
-    merchant.items.create(item_params)
-    redirect_to "/merchants/#{merchant.id}/items"
+    item = merchant.items.create(item_params)
+    if item.save
+      redirect_to "/merchants/#{merchant.id}/items"
+    else
+      if item_params.each do |key, value|
+          if value == ""
+            flash[:notice] = "Please enter your item #{key}."
+          end
+        end
+        @merchant = merchant
+        render :new
+      end
+    end
   end
 
   def edit
@@ -30,7 +41,18 @@ class ItemsController<ApplicationController
   def update
     item = Item.find(params[:id])
     item.update(item_params)
-    redirect_to "/items/#{item.id}"
+    if item.save
+      redirect_to "/items/#{item.id}"
+    else
+      if item_params.each do |key, value|
+          if value == ""
+            flash[:notice] = "Please enter your item #{key}."
+          end
+        end
+        @item = item
+        render :edit
+      end
+    end
   end
 
   def destroy
