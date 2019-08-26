@@ -49,6 +49,7 @@ class MerchantsController < ApplicationController
       flash[:no_delete] = "We won't delete merchants with active orders pending"
       redirect_to "/merchants/#{merchant.id}"
     else
+      Review.where(item_id: Item.where(merchant_id: params[:id])).destroy_all
       Item.delete(Item.where(merchant_id: params[:id]))
       Merchant.destroy(params[:id])
       redirect_to '/merchants'
