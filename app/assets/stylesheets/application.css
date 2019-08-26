@@ -27,6 +27,12 @@
  	font-family: "Marker Felt", fantasy;
  }
 
+ h3 {
+  text-align: center;
+   font-size: 28px;
+   color: #002244;
+ }
+
 ul{
   padding: 0px;
   text-align: center;
@@ -41,6 +47,13 @@ img{
  	grid-template-rows: auto;
  	grid-gap: 30px;
  }
+ .cart-grid-container{
+ 	display: grid;
+ 	grid-template-columns: repeat(1, 3fr);
+ 	grid-template-rows: auto;
+ 	grid-gap: 10px;
+  justify-items: center;
+ }
 
  .grid-item{
  	background-color: #17BEBB;
@@ -50,6 +63,7 @@ img{
   border-color: #002244;
  	text-align: center
  }
+
  .item-show-grid{
   width: 60%;
  	display: grid;
@@ -58,7 +72,22 @@ img{
  	grid-template-columns: repeat(2,1fr);
  }
 
+ .cart-item-show-grid{
+  width: 60%;
+ 	display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid;
+  border-radius: 12px;
+ 	grid-template-columns: repeat(2,1fr);
+ }
+
  .item-show-item{
+ 	padding: 20px;
+ 	text-align: right;
+ }
+
+ .cart-item-show-item{
  	padding: 20px;
  	text-align: right;
  }
