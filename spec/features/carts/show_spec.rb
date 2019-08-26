@@ -48,7 +48,7 @@ RSpec.describe 'Cart Show Page' do
         expect(page).to have_xpath("//img[@src='#{@pull_toy.image}']")
         expect(page).to have_content(@pull_toy.merchant.name)
         expect(page).to have_content(@pull_toy.price)
-        expect(page).to have_content("Quantity: 1")
+        expect(page).to have_content("Quantity: + 1 -")
         expect(page).to have_content("Subtotal: $10")
       end
 
@@ -57,7 +57,7 @@ RSpec.describe 'Cart Show Page' do
         expect(page).to have_xpath("//img[@src='#{@tire.image}']")
         expect(page).to have_content(@tire.merchant.name)
         expect(page).to have_content(@tire.price)
-        expect(page).to have_content("Quantity: 2")
+        expect(page).to have_content("Quantity: + 2 -")
         expect(page).to have_content("Subtotal: $200")
       end
 
@@ -91,19 +91,19 @@ RSpec.describe 'Cart Show Page' do
       visit '/cart'
 
       within "#cart-item-#{@tire.id}" do
-        click_button '+'
+        click_link '+'
       end
 
       within "#cart-item-#{@tire.id}" do
-        expect(page).to have_content("Quantity: 3")
+        expect(page).to have_content("Quantity: + 3 -")
       end
 
       within "#cart-item-#{@tire.id}" do
-        click_button '+'
+        click_link '+'
       end
 
       within "#cart-item-#{@tire.id}" do
-        expect(page).to have_content("Quantity: 4")
+        expect(page).to have_content("Quantity: + 4 -")
       end
     end
 
@@ -117,17 +117,17 @@ RSpec.describe 'Cart Show Page' do
       visit '/cart'
 
       within "#cart-item-#{@tire.id}" do
-        expect(page).to have_content("Quantity: 12")
+        expect(page).to have_content("Quantity: + 12 -")
       end
 
       within "#cart-item-#{@tire.id}" do
-        click_button '+'
+        click_link '+'
       end
 
       expect(page).to have_content("Sorry, no more #{@tire.inventory} #{@tire.name} can be puchased as this time.")
 
       within "#cart-item-#{@tire.id}" do
-        expect(page).to have_content("Quantity: 12")
+        expect(page).to have_content("Quantity: + 12 -")
       end
     end
   end

@@ -145,7 +145,7 @@ RSpec.describe "When Visiting the Cart Show Page" do
     end
 
     within "#cart-item-#{@tire.id}" do
-      expect(page).to have_content('Quantity: 1')
+      expect(page).to have_content('Quantity: + 1 -')
     end
   end
 
