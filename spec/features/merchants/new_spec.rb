@@ -30,5 +30,16 @@ RSpec.describe 'merchant new page', type: :feature do
       expect(new_merchant.zip).to eq(zip)
     end
 
+    it 'shows alert flash messages when form is not completely filled' do
+      visit '/merchants/new'
+
+      fill_in :name, with: "Merchant"
+
+      click_button "Create Merchant"
+
+      expect(current_path).to eq('/merchants/new')
+      expect(page).to have_content("You have not completed the form. Please complete all three sections to create a new merchant.")
+    end
+
   end
 end
