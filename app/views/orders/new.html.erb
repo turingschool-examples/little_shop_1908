@@ -4,7 +4,7 @@
   <section id="item-<%=item.id%>">
     <p>Name: <%=link_to item.name, "/items/#{item.id}" %></p>
     <p>Price: <%= item.price %></p>
-    <p>Sold By: <%= item.merchant.name %></p>
+    <p>Sold By: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}"%></p>
     <p>Total Quantity: <%= @cart.quantity_of(item) %></p>
     <p>Subtotal: <%= @cart.subtotal(item) %></p><br><br>
   </section>
