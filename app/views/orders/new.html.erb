@@ -3,14 +3,14 @@
 <% @cart.items.each do |item| %>
   <section id="item-<%=item.id%>">
     <p>Name: <%=link_to item.name, "/items/#{item.id}" %></p>
-    <p>Price: <%= item.price %></p>
+    <p>Price: $<%= item.price %></p>
     <p>Sold By: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}"%></p>
     <p>Total Quantity: <%= @cart.quantity_of(item) %></p>
-    <p>Subtotal: <%= @cart.subtotal(item) %></p><br><br>
+    <p>Subtotal: $<%= @cart.subtotal(item) %></p><br><br>
   </section>
 <% end %>
 
-<p>Grand Total: <%= @cart.grand_total %></p>
+<p>Grand Total: $<%= @cart.grand_total %></p>
 
   <section class='order'>
     <%= form_tag '/orders', method: :post do |f| %>

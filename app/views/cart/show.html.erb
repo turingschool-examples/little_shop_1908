@@ -6,17 +6,17 @@
     <% @cart.items.each do |item| %>
       <section id="item-<%=item.id%>">
         <p>Name: <%=link_to item.name, "/items/#{item.id}" %></p>
-        <p>Price: <%= item.price %></p>
+        <p>Price: $<%= item.price %></p>
         <img src="<%=item.image%>"><br>
         <p>Sold By: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}"%></p>
         <p>Total Quantity: <%= @cart.quantity_of(item) %></p>
         <%= link_to "Remove One: #{item.name}", me_take_away_path(item), method: :patch %>
         <%= link_to "Add Another: #{item.name}", me_add_path(item), method: :patch %>
-        <p>Subtotal: <%= @cart.subtotal(item) %></p><br><br>
+        <p>Subtotal: $<%= @cart.subtotal(item) %></p><br><br>
         <%= button_to "Remove From Cart", update_cart_path(item), method: :patch%>
       </section>
     <% end %>
-    <p>Grand Total: <%= @cart.grand_total %></p>
+    <p>Grand Total: $<%= @cart.grand_total %></p>
 
     <%= link_to 'Empty Cart', empty_cart_path, method: :patch%>
 
