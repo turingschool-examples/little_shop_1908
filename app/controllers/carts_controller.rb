@@ -29,4 +29,16 @@ class CartsController < ApplicationController
     flash[:message] = "You have removed #{item.name} from your cart."
     redirect_to '/cart'
   end
+
+  def decrease
+    item = Item.find(params[:item_id])
+    session[:cart][item.id.to_s] -= 1
+    if cart.contents[item.id.to_s] == 0
+      session[:cart].delete(item.id.to_s)
+      flash[:message] = "You have removed #{item.name} from your cart."
+    else
+      flash[:message] = "You have removed a #{item.name} from your cart."
+    end
+    redirect_to '/cart'
+  end
 end
