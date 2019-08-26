@@ -12,8 +12,17 @@ class MerchantsController <ApplicationController
   end
 
   def create
-    Merchant.create(merchant_params)
-    redirect_to "/merchants"
+    merchant = Merchant.create(merchant_params)
+    if merchant.save
+      redirect_to "/merchants"
+    else
+      if merchant_params.each do |key, value|
+          value = ""
+          flash[:notice] = "Please enter your #{key}."
+          render :new
+        end
+      end
+    end
   end
 
   def edit
