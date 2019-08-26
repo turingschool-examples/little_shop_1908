@@ -28,5 +28,6 @@ Rails.application.routes.draw do
   get '/cart', to: 'carts#show'
   delete '/cart', to: 'carts#delete'
   post '/cart/:item_id', to: 'carts#delete_item'
-  post '/cart/:item_id/increase', to: 'carts#increase_item'
+  post '/cart/:item_id/decrease', to: 'carts#decrease'
+  post '/cart/:item_id/increase', to: 'carts#increase'
 end
