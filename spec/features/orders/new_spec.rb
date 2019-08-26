@@ -22,15 +22,15 @@ RSpec.describe "As A Visitor" do
     expect(page).to have_content(@chain.merchant.name)
     expect(page).to have_content(@chain.price)
     expect(page).to have_content("Total Quantity: 1")
-    expect(page).to have_content("Subtotal: 50")
+    expect(page).to have_content("Subtotal: $50")
 
     expect(page).to have_content(@tire.name)
     expect(page).to have_content(@tire.merchant.name)
     expect(page).to have_content(@tire.price)
     expect(page).to have_content("Total Quantity: 1")
-    expect(page).to have_content("Subtotal: 100")
+    expect(page).to have_content("Subtotal: $100")
 
-    expect(page).to have_content("Grand Total: 150")
+    expect(page).to have_content("Grand Total: $150")
     end
     it "I also see a form to where I must enter my shipping information for the order:
     name, address, city, state, zip" do

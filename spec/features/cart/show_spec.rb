@@ -32,14 +32,14 @@ RSpec.describe 'Cart Show Page', type: :feature do
       expect(page).to have_content(@chain.merchant.name)
       expect(page).to have_content(@chain.price)
       expect(page).to have_content("Total Quantity: 1")
-      expect(page).to have_content("Subtotal: 50")
+      expect(page).to have_content("Subtotal: $50")
 
       expect(page).to have_content(@tire.name)
       expect(page).to have_css("img[src*='#{@tire.image}']")
       expect(page).to have_content(@tire.merchant.name)
       expect(page).to have_content(@tire.price)
       expect(page).to have_content("Total Quantity: 1")
-      expect(page).to have_content("Subtotal: 100")
+      expect(page).to have_content("Subtotal: $100")
   end
 
   it "I also see a grand total of what everything in my cart will cost" do
@@ -50,7 +50,7 @@ RSpec.describe 'Cart Show Page', type: :feature do
 
     visit "/cart"
 
-    expect(page).to have_content("Grand Total: 150")
+    expect(page).to have_content("Grand Total: $150")
   end
 
   it "When I add NO items to my cart yet, and I visit my cart,
@@ -59,6 +59,6 @@ RSpec.describe 'Cart Show Page', type: :feature do
 
     expect(page).to have_content("Oops! You have no items in your cart!")
     expect(page).to_not have_content("Grand Total:")
-    expect(page).to_not have_link("Empty Cart")
+    expect(page).to_not have_button("Empty Cart")
   end
 end
