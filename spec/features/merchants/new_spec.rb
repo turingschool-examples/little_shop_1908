@@ -49,7 +49,24 @@ RSpec.describe 'merchant new page', type: :feature do
     fill_in :zip, with: zip
 
     click_button "Create Merchant"
-    expect(page).to have_content("Please enter a state.")
+    expect(page).to have_content("Please enter your state.")
+
+    visit '/merchants/new'
+
+    name = "Sal's Calz(ones)"
+    address = '123 Kindalikeapizza Dr.'
+    city = ""
+    state = "CO"
+    zip = 80204
+
+    fill_in :name, with: name
+    fill_in :address, with: address
+    fill_in :city, with: city
+    fill_in :state, with: state
+    fill_in :zip, with: zip
+
+    click_button "Create Merchant"
+    expect(page).to have_content("Please enter your city.")
 
     end
 
