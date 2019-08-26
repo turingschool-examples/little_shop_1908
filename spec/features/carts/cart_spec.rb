@@ -139,9 +139,9 @@ RSpec.describe "When Visiting the Cart Show Page" do
     visit '/cart'
 
     within "#cart-item-#{@tire.id}" do
-      expect(page).to have_link("Remove a #{@tire.name}")
+      expect(page).to have_link("-")
 
-      click_link "Remove a #{@tire.name}"
+      click_link "-"
     end
 
     within "#cart-item-#{@tire.id}" do
@@ -149,9 +149,15 @@ RSpec.describe "When Visiting the Cart Show Page" do
     end
   end
 
-  it 'remove item completely if quantity is decremented to zero' do
+  it 'removes item completely if quantity is decremented to zero' do
+    visit "/items/#{@bike.id}"
+    click_button "Add Item"
+
+    visit '/cart'
+
     within "#cart-item-#{@bike.id}" do
-      click_link "Remove a #{@bike.name}"
+
+      click_link "-"
     end
 
     expect(page).to_not have_css("#cart-item-#{@bike.id}")
