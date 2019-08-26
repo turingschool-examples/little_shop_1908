@@ -150,6 +150,39 @@ describe 'Item Show Page' do
 
       expect(page).to have_content("This item doesn't exist")
     end
+
+    it "doesn't delete if added to cart" do
+      visit "/items/#{@pull_toy.id}"
+      click_button "Add Item To yo Cart"
+
+      visit "/items/#{@pull_toy.id}"
+      click_on "Delete Item"
+
+      expect(page).to have_content("We won't delete items that are in your cart.")
+    end
+
+    it "if other items are in the cart" do
+      visit "/items/#{@dog_bone.id}"
+      click_button "Add Item To yo Cart"
+
+      visit "/items/#{@pull_toy.id}"
+      click_on "Delete Item"
+
+      expect(current_path).to eq("/items")
+      expect(page).to_not have_content(@pull_toy.name)
+    end 
+
+    it "if other items are in the cart" do
+      order = Order.create(name: "Evette", address: "123 street", city: "Denver", state: "CO", zip: 12345)
+      io_1 = order.item_orders.create(item_id: @pull_toy.id, order_id: order.id, quantity: 5, total_cost: (@pull_toy.price * 5))
+      visit "/items/#{@dog_bone.id}"
+      click_button "Add Item To yo Cart"
+
+      visit "/items/#{@pull_toy.id}"
+      click_on "Delete Item"
+
+      expect(page).to have_content("We won't delete items with active orders")
+    end 
   end
 
   it 'has a button to add a review' do
