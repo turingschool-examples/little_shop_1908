@@ -50,5 +50,32 @@ RSpec.describe "Create Merchant Items" do
       expect(page).to_not have_content(new_item.description)
       expect(page).to have_content("Inventory: #{new_item.inventory}")
     end
+
+    it "When I am creating a new item, If I try to submit the
+    form with incomplete information, I see a flash message indicating which
+    field(s) I am missing" do
+    visit "/merchants/#{@brian.id}/items"
+
+    name = "Chamois Buttr"
+    price = 18
+    description = ""
+    image_url = "https://images-na.ssl-images-amazon.com/images/I/51HMpDXItgL._SX569_.jpg"
+    inventory = 25
+
+    click_on "Add New Item"
+
+    expect(page).to have_link(@brian.name)
+    expect(current_path).to eq("/merchants/#{@brian.id}/items/new")
+    fill_in :name, with: name
+    fill_in :price, with: price
+    fill_in :description, with: description
+    fill_in :image, with: image_url
+    fill_in :inventory, with: inventory
+
+    click_button "Create Item"
+    expect(page).to have_content("Please enter your item description.")
+
+    end
+
   end
 end
