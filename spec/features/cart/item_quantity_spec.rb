@@ -23,7 +23,10 @@ describe 'When I visit my cart' do
     end
 
     within "#cart-item-#{pull_toy.id}" do
-      click_link "Add 1: #{pull_toy.name}"
+      within ".add-item-quantity" do
+        click_link "Add 1: #{pull_toy.name}"
+      end
+      
       expect(current_path).to eq('/cart')
 
       within ".details-quantity" do
@@ -40,12 +43,13 @@ describe 'When I visit my cart' do
 
     within "#cart-item-#{pull_toy.id}" do
       31.times do click_link "Add 1: #{pull_toy.name}"
+      end
     end
-  end
-  expect(page).to have_content("Item out of stock")
-  end
 
-  it 'I can decreasee item quantity' do
+    expect(page).to have_content("Item out of stock")
+    end
+
+  it 'I can decrease item quantity' do
     dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
     bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
     tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
@@ -67,7 +71,10 @@ describe 'When I visit my cart' do
     end
 
     within "#cart-item-#{tire.id}" do
-      click_link "Remove 1: #{tire.name}"
+      within ".decrease-item-quantity" do
+        click_link "Remove 1: #{tire.name}"
+      end
+
       expect(current_path).to eq('/cart')
 
       within ".details-quantity" do
