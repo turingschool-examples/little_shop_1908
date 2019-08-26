@@ -12,8 +12,13 @@ class MerchantsController <ApplicationController
   end
 
   def create
-    Merchant.create(merchant_params)
-    redirect_to "/merchants"
+    merchant = Merchant.create(merchant_params)
+    if merchant.save
+      redirect_to "/merchants"
+    else
+      flash[:incomplete_merchant] = "You have not completed the form. Please complete all three sections to create a new merchant."
+      redirect_to "/merchants/new"
+    end
   end
 
   def edit
