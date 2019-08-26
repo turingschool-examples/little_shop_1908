@@ -5,7 +5,7 @@
   <% else %>
     <% @cart.items.each do |item| %>
       <section id="item-<%=item.id%>">
-        <p>Name: <%= item.name %></p>
+        <p>Name: <%=link_to item.name, "/items/#{item.id}" %></p>
         <p>Price: <%= item.price %></p>
         <img src="<%=item.image%>"><br>
         <p>Sold By: <%= item.merchant.name %></p>
