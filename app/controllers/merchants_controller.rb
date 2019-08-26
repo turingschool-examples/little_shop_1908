@@ -16,7 +16,7 @@ class MerchantsController <ApplicationController
     if merchant.save
       redirect_to "/merchants"
     else
-      flash[:incomplete_merchant] = "You have not completed the form. Please complete all three sections to create a new merchant."
+      flash[:error] = merchant.errors.full_messages.to_sentence
       redirect_to "/merchants/new"
     end
   end

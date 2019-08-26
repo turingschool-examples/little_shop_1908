@@ -30,15 +30,31 @@ RSpec.describe 'merchant new page', type: :feature do
       expect(new_merchant.zip).to eq(zip)
     end
 
-    it 'shows alert flash messages when form is not completely filled' do
+    it 'shows alert flash messages when form is filled with only name and address' do
       visit '/merchants/new'
 
       fill_in :name, with: "Merchant"
+      fill_in :address, with: "123 Road"
 
       click_button "Create Merchant"
 
       expect(current_path).to eq('/merchants/new')
-      expect(page).to have_content("You have not completed the form. Please complete all three sections to create a new merchant.")
+
+      expect(page).to have_content("City can't be blank, State can't be blank, and Zip can't be blank")
+    end
+
+    it 'shows alert flash messages when form is only filled with city, state, and zip' do
+      visit '/merchants/new'
+
+      fill_in :city, with: "Merchant"
+      fill_in :state, with: "Merchant"
+      fill_in :zip, with: "Merchant"
+
+      click_button "Create Merchant"
+
+      expect(current_path).to eq('/merchants/new')
+
+      expect(page).to have_content("Name can't be blank and Address can't be blank")
     end
 
   end
