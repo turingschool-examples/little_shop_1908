@@ -27,4 +27,18 @@ describe Item, type: :model do
       expect(Item.cart_items(cart)).to eq(items)
     end
   end
+
+  describe 'instance methods' do
+    it "can tell if an item has orders" do
+      bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      light = bike_shop.items.create(name: "Lights", description: "So bright!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
+
+      expect(light.has_orders?).to eq(false)
+
+      order = Order.create(name: "Bob", address: "234 A st.", city: "Torrance", state: "CA", zip: 90505)
+      item_order = order.item_orders.create(quantity: 2, total_cost: 100, item: light)
+
+      expect(light.has_orders?).to eq(true)
+    end
+  end
 end
