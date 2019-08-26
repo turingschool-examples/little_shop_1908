@@ -40,6 +40,7 @@ class CartsController < ApplicationController
       flash[:message] = "You have removed a #{item.name} from your cart."
     end
     redirect_to '/cart'
+  end 
 
   def increase
     item = Item.find(params[:item_id])
@@ -48,5 +49,6 @@ class CartsController < ApplicationController
     else
       session[:cart][item.id.to_s] += 1
     end
+    redirect_to '/cart'
   end
 end
