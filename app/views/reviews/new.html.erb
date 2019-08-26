@@ -1,12 +1,13 @@
-<h1> Add New Review </h1>
+<br /><br />
+<h1 class='display-3' align='center'> Add New Review </h1>
 
 <center>
   <%= form_tag "/items/#{@item.id}/reviews", method: :post do %>
-    <%= text_field_tag :title %>
+    <%= text_field_tag :title, nil, placeholder: "Title" %>
 
-    <%= text_field_tag :content %>
+    <%= text_field_tag :content, nil, placeholder: "Content" %>
 
-    <%= text_field_tag :rating %>
+    <%= text_field_tag :rating, nil, placeholder: "Rating" %>
 
     <%= submit_tag 'Post Review' %>
   <% end %>
