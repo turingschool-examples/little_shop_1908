@@ -40,8 +40,13 @@
           <p>Average Rating: <%= @item.average_rating %></p>
 
         <p><%= link_to "Add Review", new_review_path %></p>
-      <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
-      <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
+        <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
+
+      <% if @item.merchant.sold_items? %>
+        <p>You cannot delete this item</p>
+      <% else %>
+        <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
+      <% end %>
     </section>
   </section>
 </center>
