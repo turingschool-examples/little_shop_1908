@@ -42,8 +42,12 @@ class ItemsController < ApplicationController
 
   def update
     item = Item.find(params[:id])
-    item.update(item_params)
-    redirect_to "/items/#{item.id}"
+    if item.update(item_params)
+      redirect_to "/items/#{item.id}"
+    else
+      flash[:error] = item.errors.full_messages
+      redirect_to "/items/#{item.id}/edit"
+    end
   end
 
   def destroy
