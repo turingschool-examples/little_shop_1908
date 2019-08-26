@@ -1,8 +1,15 @@
-<h1><%= @merchant.name %></h1>
-<p class="address"><%= @merchant.address %></p>
-<p class="address"><%= @merchant.city %>, <%= @merchant.state %> <%= @merchant.zip %></p>
+<br><br>
+<div class="container" >
+  <div class="row">
+    <div class="col">
+      <h1 class='display-3' align='center'><%= @merchant.name %></h1>
+      <p class="address"><%= @merchant.address %></p>
+      <p class="address"><%= @merchant.city %>, <%= @merchant.state %> <%= @merchant.zip %></p>
+    </div>
 
-<ul><%= link_to "All #{@merchant.name} Items", "/merchants/#{@merchant.id}/items" %></ul>
-<ul><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit" %></ul>
-<ul><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete %>
-</ul>
+    <div class="col">
+      <p><%= link_to "Show All Items", "/merchants/#{@merchant.id}/items", class: "btn btn-info btn-lg item-buttons" %></p>
+      <p><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit", class: "btn btn-success item-buttons" %></p>
+      <p><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger item-buttons" %></p>
+    </div>
+</div>
