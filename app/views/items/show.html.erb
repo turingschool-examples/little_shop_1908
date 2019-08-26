@@ -5,8 +5,8 @@
     <title></title>
   </head>
   <body>
-    
-    
+
+
     <h1><%=link_to @item.name, "/items/#{@item.id}" %></h1>
 <p align="center">Sold by: <%=link_to @item.merchant.name, "/merchants/#{@item.merchant.id}" %> </p>
 <center>
@@ -14,9 +14,9 @@
     <section class = "item-show-item">
       <img src= <%= @item.image %>>
     </section>
-   
+
     <section style="text-align:left" class = "item-show-item">
-      
+
       <p><%= @item.description %></p>
       <p>Price: $<%= @item.price %> </p>
       <p>Inventory: <%= @item.inventory %> </p>
@@ -33,15 +33,15 @@
         <% else %>
         <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
         <% end %>
-      
+
         <br>
         <br>
         <br>
-      
+
         <h2>Item Statistics</h2><br>
         <h3>Average Rating: <%= @item.average_rating %></h3><br>
         <p>--------------------------------</p><br>
-       
+
        <section id="top-reviews">
           <h3>Top Three Reviews</h3>
           <% @item.top_reviews.each do |top_review| %>
@@ -51,7 +51,7 @@
           <p>--------------------------------</p><br>
           <% end %>
         </section>
-      
+
         <section id="bottom-reviews">
           <h3>Bottom Three Reviews</h3>
           <% @item.bottom_reviews.each do |bottom_review| %>
@@ -61,9 +61,9 @@
           <p>--------------------------------</p><br>
           <% end %>
         </section>
-      
-            <h2>Item Reviews</h2>
-         <p><%= link_to "Add Review", new_review_path %></p>
+
+        <h2>Item Reviews</h2>
+          <p><%= link_to "Add Review", new_review_path %></p>
 
           <%= button_to 'Sort By Highest Rating', highest_reviews_path(@item), method: :get, params: {:sort => "highest"}  %>
           <%= button_to 'Sort By Lowest Rating', lowest_reviews_path(@item), method: :get, params: {:sort => "lowest"} %>
@@ -86,4 +86,3 @@
      </center>
    </body>
 </html>
-
