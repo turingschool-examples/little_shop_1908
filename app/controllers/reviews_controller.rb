@@ -5,13 +5,13 @@ class ReviewsController < ApplicationController
 
   def create
     item = Item.find(params[:id])
-    if review_params.values.any? {|input| input == ""}
+    review = item.reviews.new(review_params)
+    if review.save
+      flash[:success] = "Your review has been posted"
+      redirect_to "/items/#{item.id}"
+    else
       flash[:error] = "Do it right, yo."
       redirect_to "/items/#{item.id}/reviews/new-review"
-    else
-      flash[:success] = "Your review has been posted"
-      review = item.reviews.create(review_params)
-      redirect_to "/items/#{item.id}"
     end
   end
 

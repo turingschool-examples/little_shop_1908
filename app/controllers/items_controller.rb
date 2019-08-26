@@ -26,6 +26,7 @@ class ItemsController < ApplicationController
     merchant = Merchant.find(params[:merchant_id])
     item = merchant.items.create(item_params)
     if item.save
+      item.update(active?: false) if item.inventory == 0
       flash[:success] = "Your item has been created"
       redirect_to "/merchants/#{merchant.id}/items"
     else
