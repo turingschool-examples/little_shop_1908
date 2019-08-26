@@ -31,10 +31,21 @@ describe 'User visits the item show page' do
 
         click_link 'New Review'
 
-        fill_in :title, with: "Great Chain"
-
         click_on 'Submit'
-        expect(page).to have_content("Please fill in all the fields.")
+        expect(current_path).to eq("/items/#{chain.id}/reviews/new")
+        expect(page).to have_content("Title can't be blank")
+        expect(page).to have_content("Content can't be blank")
+        expect(page).to have_content("Rating is not a number")
+
+        fill_in :rating, with: -1234
+        click_on 'Submit'
+
+        expect(page).to have_content('Rating must be greater than or equal to 1')
+
+        fill_in :rating, with: 12
+        click_on 'Submit'
+
+        expect(page).to have_content('Rating must be less than or equal to 5')
       end
     end
   end

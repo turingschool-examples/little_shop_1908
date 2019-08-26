@@ -11,11 +11,11 @@ class ReviewsController<ApplicationController
 
   def create
     item = Item.find(params[:item_id])
-    if review_params.values.none? { |val| val == "" }
-      item.reviews.create(review_params)
+    review = item.reviews.new(review_params)
+    if review.save
       redirect_to "/items/#{item.id}"
     else
-      flash[:error] = "Please fill in all the fields."
+      flash[:error] = review.errors.full_messages
       redirect_to "/items/#{item.id}/reviews/new"
     end
   end
@@ -26,9 +26,12 @@ class ReviewsController<ApplicationController
   end
 
   def update
-    review = Review.find(params[:id])
-    @review.update(review_params)
-    redirect_to "/items/#{@review.item_id}"
+    if @review.update(review_params)
+      redirect_to "/items/#{@review.item_id}"
+    else
+      flash[:error] = @review.errors.full_messages
+      redirect_to "/reviews/#{@review.id}/edit"
+    end
   end
 
   def destroy
