@@ -13,4 +13,16 @@ class Merchant <ApplicationRecord
     #use more ActiveRecord on refactor - joins tables together to see if they're empty or not
   end
 
+  def count_of_items
+    items.count
+  end
+
+  def average_price
+    items.average(:price)
+  end
+
+  def distinct_cities
+    items.joins(:orders).order("orders.city").distinct.pluck("orders.city")
+  end
+
 end
