@@ -7,7 +7,7 @@ class Order < ApplicationRecord
     total = cart.order_total
     cart.contents.each do |item, qty|
       ItemOrder.create(order_id: self.id,
-                      item_id: Item.find(item).id,
+                      item_id: item,
                       quantity: qty,
                       total_cost: total)
     end

@@ -1,5 +1,6 @@
 class Merchant <ApplicationRecord
   has_many :items, dependent: :destroy
+  has_many :item_orders, through: :items
 
   validates_presence_of :name,
                         :address,
@@ -8,8 +9,6 @@ class Merchant <ApplicationRecord
                         :zip
 
   def has_orders?
-    ItemOrder.joins(:item)
-    .where("items.merchant_id = #{self.id}")
-    .count > 0
+    item_orders.count > 0
   end
 end

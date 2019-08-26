@@ -20,9 +20,8 @@ describe Merchant, type: :model do
 
       expect(dog_shop.has_orders?).to eq(false)
 
-      cart = Cart.new( {"#{dog_bone.id}" => "1"} )
       order = Order.create(name: "Bob", address: "234 A st.", city: "Torrance", state: "CA", zip: 90505)
-      order.create_item_orders(cart)
+      item_order = order.item_orders.create(quantity: 2, total_cost: 15, item: dog_bone)
 
       expect(dog_shop.has_orders?).to eq(true)
     end
