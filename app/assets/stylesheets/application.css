@@ -50,6 +50,14 @@ p {
   width: 10%;
 }
 
+#cart-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5rem;
+  width: 10%;
+}
+
 ul{
   padding: 0px;
   text-align: center;

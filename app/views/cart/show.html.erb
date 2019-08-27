@@ -1,6 +1,8 @@
-  <h1>Cart</h1>
+  <h1 class='display-3' align='center'>Cart</h1>
     <% if @cart.contents.empty? %>
-      <p>Your cart is empty</p>
+      <br>
+      <p align='center'>Your cart is empty</p>
+      <%= image_tag "https://image.flaticon.com/icons/svg/265/265731.svg", id: "cart-img" %>
     <% else %>
     <p> <%=link_to "Empty Cart", "/cart", method: :delete %> </p>
     <p> <%=link_to "Checkout", "/orders/new" %> </p>
