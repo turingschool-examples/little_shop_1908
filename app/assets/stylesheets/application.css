@@ -27,6 +27,7 @@
 
  a:link, a:visited {
   color: #30638E;
+  text-decoration: none;
  }
 
  a:hover {
@@ -107,10 +108,6 @@ section[id^='order-item-'],
   text-align: center;
 }
 
-.bottom-three {
-
-}
-
 .cart-actions {
   display: flex;
   justify-content: space-between;
@@ -134,26 +131,6 @@ section[id^='order-item-'],
  	font-size: 40px;
   margin-top: 1.5%;
   margin-bottom: 1.5%;
-}
-
-.checkout-button, .empty-the-cart {
-  background-color: #00798C;
-  border-radius: 7px;
-  box-shadow: 2px 2px 4px #202020;
-  display: inline-block;
-  font-size: 1.3em;
-  padding: 0.5em 2em;
-  text-align: center;
-  text-decoration: none;
-  margin-left: 5em;
-}
-
-.checkout-button:link, .checkout-button:visited {
-  color: #f2f2f2;
-}
-
-.checkout-button:hover {
-  background-color: #45a049;
 }
 
 .checkout-btn {
@@ -193,6 +170,32 @@ section[id^='order-item-'],
   margin-right: 1.7em;
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 12em;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 .edit-btn {
   background-color: #f6d6a2;
   border-radius: 7px;
@@ -226,20 +229,20 @@ section[id^='order-item-'],
   color:#f2f2f2;
 }
 
-.error {
-  background-color: #e18490;
-  border-radius: 0em 0em 1em 1em;
-  border: 2px solid #003D5B;
-  color: #404040;
-  margin: 0 40%;
-  padding: 1.5em;
-  text-align: center;
-}
-
 .edit-btn:hover {
   background-color: #EDAE49;
   color:#f2f2f2;
 }
+
+.flash {
+  border-radius: 0em 0em 1em 1em;
+  border: 2px solid #003D5B;
+  color: #404040;
+  margin: 0 30%;
+  padding: 1.5em;
+  text-align: center;
+}
+
  .grid-container {
  	display: grid;
  	grid-gap: 30px;
@@ -269,10 +272,6 @@ section[id^='order-item-'],
    max-height: 8em;
    object-fit: contain;
    width: 100%;
- }
-
- .grid-item-details {
-
  }
 
  .h3-new-order {
@@ -321,14 +320,17 @@ section[id^='order-item-'],
    width: 50%;
  }
 
- .notice {
-   background-color: #94d197;
-   border-radius: 0em 0em 1em 1em;
-   border: 2px solid #003D5B;
-   color: #404040;
-   margin: 0 40%;
-   padding: 1.5em;
-   text-align: center;
+ .merchant-edit-del {
+   display: flex;
+   justify-content: space-around;
+   margin: 0 30%;
+ }
+
+ .merchant-stats {
+   border-top: 2px solid #003D5B;
+   border-bottom: 2px solid #003D5B;
+   margin: 3em 30%;
+   padding-bottom: 1em;
  }
 
  .order-date {
@@ -344,6 +346,26 @@ section[id^='order-item-'],
  .page-title {
    font-size: 2.2em;
    text-align: center;
+ }
+
+ .regular-button, .empty-the-cart {
+   background-color: #00798C;
+   border-radius: 7px;
+   box-shadow: 2px 2px 4px #202020;
+   display: inline-block;
+   font-size: 1.3em;
+   padding: 0.5em 2em;
+   text-align: center;
+   text-decoration: none;
+   margin-left: 5em;
+ }
+
+ .regular-button:link, .regular-button:visited {
+   color: #f2f2f2;
+ }
+
+ .regular-button:hover {
+   background-color: #45a049;
  }
 
  .remove-item {
@@ -404,7 +426,7 @@ section[id^='order-item-'],
    margin-top: 2em;
    padding: 0.5em 1em;
  }
- .reviews-header-btn {
+ .reviews-header-btn, .dropbtn {
    background-color:  #b3f5ff;
    border-radius: 7px;
    box-shadow: 2px 2px 4px #202020;
@@ -415,11 +437,15 @@ section[id^='order-item-'],
    text-decoration: none;
  }
 
- .reviews-header-btn:link, .reviews-header-btn:visited{
+ .reviews-header-btn:link,
+ .reviews-header-btn:visited,
+ .dropbtn:link,
+ .dropbtn:visited {
    color: #404040;
  }
 
- .reviews-header-btn:hover {
+ .reviews-header-btn:hover,
+ .dropbtn:hover {
    background-color: #00ddff;
    color: #f2f2f2;
  }
@@ -440,6 +466,16 @@ section[id^='order-item-'],
 
  }
 
+ #add-item {
+   margin: 0.5em 0;
+ }
+
+ #add-to-cart {
+   margin: 1em 0;
+   padding: 0.5em 1em;
+   font-size: 1em;
+ }
+
  #avg-rating {
    padding-left: 2em;
  }
@@ -456,8 +492,25 @@ section[id^='order-item-'],
    background-color: #00c7e6;
  }
 
+ #error {
+   background-color: #e18490;
+ }
+
+ #merchant-show {
+   margin: 1em 0 0 0;
+ }
+
+ #new-merchant {
+   margin: 0;
+   margin-bottom: 1em;
+ }
+
  #new-order {
    margin-right: 2em;
+ }
+
+ #notice {
+   background-color: #94d197;
  }
 
  #num-in-cart {

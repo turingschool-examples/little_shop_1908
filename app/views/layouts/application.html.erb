@@ -25,7 +25,7 @@
       <% unless message.is_a? Array %>
         <% message = [message] %>
       <% end %>
-      <%= content_tag :pre, message.join("\n"), class: type %>
+      <%= content_tag :pre, message.join("\n"), class: "flash", id: type %>
     <% end %>
     <%= yield %>
   </body>
