@@ -11,7 +11,7 @@ class OrdersController<ApplicationController
       ItemOrder.create(:order_id => order.id, :item_id => item.id, :quantity => quantity, :subtotal => item.item_subtotal(quantity))
     end
 
-  
+    reset_session
     redirect_to "/orders/#{order.id}"
   end
 
