@@ -23,4 +23,12 @@ class Item <ApplicationRecord
     reviews.average(:rating)
   end
 
+  def lowest_reviews
+    reviews.order(:rating)
+  end
+
+  def highest_reviews
+    reviews.order(rating: :desc)
+  end
+
 end
