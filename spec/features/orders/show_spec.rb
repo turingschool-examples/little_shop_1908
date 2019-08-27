@@ -49,15 +49,14 @@ RSpec.describe "New Order Page" do
       subtotal_tire = @tire.price * quantity_tire
       grand_total = subtotal_tire
 
-      expect(page).to have_content(new_order.name)
-      expect(page).to have_content(new_order.address)
+      expect(page).to have_content("Thanks, #{new_order.name}!")
       expect(page).to have_content(@tire.name)
       expect(page).to have_content("Sold by: #{@tire.merchant.name}")
       expect(page).to have_content("Price: $#{@tire.price}")
       expect(page).to have_content("Quantity: #{quantity_tire}")
       expect(page).to have_content("Subtotal: $#{subtotal_tire}")
       expect(page).to have_content("Grand Total: $#{grand_total}")
-      expect(page).to have_content("Order Created At: #{new_order.created_at.strftime("%Y-%m-%d")}")
+      expect(page).to have_content("The following order that was placed on #{new_order.created_at.strftime("%Y-%m-%d")} will be shipped to #{new_order.address}")
     end
 
     it 'shows flash message when I attempt to visit order page that does not exist' do

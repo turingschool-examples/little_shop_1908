@@ -2,28 +2,31 @@
   <h1><%= link_to @merchant.name, "/merchants/#{@merchant.id}"%><span> Items</span></h1>
   <p align="center"><%= link_to "Add New Item", "/merchants/#{@merchant.id}/items/new" %></p>
 <% else %>
-  <h1 class='display-1' align='center'>All Items</h1>
+  <h1 class='display-3' align='center'>All Items</h1>
 <% end %>
 
-<div class="card-group">
-  <% @items.each do |item| %>
-  <div class="card" id='item-<%=item.id%>'>
-    <img><%= image_tag("#{item.image}", class: "card-img-top", alt: "Card image cap")%></img>
-    <div class="card-body" align='center'>
-      <h5 class="card-title display-4"><%=link_to item.name, "/items/#{item.id}" %></h5>
-      <p class="card-text"> Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
-      <p class="card-text"><%= item.description unless @merchant%> </p>
-      <p class="card-text">Price: $<%= item.price %> </p>
-      <p>Inventory: <%= item.inventory %></p>
-    </div>
+<section class = "grid-container">
 
-    <div class="card-footer">
-      <% if item.active? %>
-        <small class="text-muted">Active</small>
-      <% else %>
-        <small class="text-muted">Inactive</small>
-      <% end %>
+  <% @items.each do |item| %>
+    <div class="grid-item">
+      <div class="card" id='item-<%=item.id%>'>
+        <img class="card-img-top" src=<%= item.image %> alt="Card image cap">
+        <div class="card-body" align='center'>
+          <h5 class="card-title"><%=link_to item.name, "/items/#{item.id}" %></h5>
+          <p class="card-text"> Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
+          <p class="card-text"><%= item.description unless @merchant%> </p>
+          <p class="card-text">Price: $<%= item.price %> </p>
+          <p>Inventory: <%= item.inventory %></p>
+        </div>
+        <div class="card-footer">
+          <% if item.active? %>
+            <small class="text-muted">Active</small>
+          <% else %>
+            <small class="text-muted">Inactive</small>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </div>
-    <% end %>
-</div>
+  <% end %>
+
+</section>
