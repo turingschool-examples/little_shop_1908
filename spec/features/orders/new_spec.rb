@@ -44,6 +44,8 @@ RSpec.describe "When a user goes to the order create page" do
     visit '/cart'
 
     click_button("Checkout")
+
+    expect(current_path).to eq("/orders/new")
   end
 
   it 'can show the users order details' do
@@ -134,5 +136,20 @@ RSpec.describe "When a user goes to the order create page" do
       expect(page).to have_content("Total: $275")
       expect(page).to have_content("Date Ordered: #{new_order.created_at}")
     end
+  end
+
+# As a visitor
+# From the order creation page
+# When I click 'Create Order' without completing the shipping address form
+# I see a flash message indicating that I need to complete the form for successful order creation
+
+  it 'sees a flash message when submitting an incomplete form' do
+
+    fill_in :name, with: 'Corina'
+    fill_in :state, with: 'Colorado'
+
+    click_on 'Create Order'
+
+    expect(page).to have_content('All fields must be completed to create a new order. Please try again.')
   end
 end
