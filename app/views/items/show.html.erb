@@ -21,4 +21,8 @@
   </section>
 </center>
 
-<%= render "reviews/index" %>
+<% if @item.reviews.empty? %>
+  <%= render "reviews/index_2" %>
+<% else %>
+  <%= render "reviews/index" %>
+<% end %>
