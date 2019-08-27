@@ -1,10 +1,12 @@
 <h1> Order </h1>
-
-<p><%= @order.name %></p>
-<p><%= @order.address %></p>
-<p><%= @order.city %></p>
-<p><%= @order.state %></p>
-<p><%= @order.zip %></p>
+<section id='order-summary'>
+  <section id='order-address'>
+    <p><%= @order.name %></p>
+    <p><%= @order.address %></p>
+    <p><%= @order.city %></p>
+    <p><%= @order.state %></p>
+    <p><%= @order.zip %></p>
+  </section>
 
 <% @order.order_details.each do |item, quantity| %>
   <section id="order-<%= item.id%>">
@@ -14,4 +16,8 @@
     <p>Quantity: <%= quantity %> </p>
     <p>Subtotal: $<%= item.item_subtotal(quantity) %></p>
   </section>
-<% end %>
+  <% end %>
+
+<p>Total: $<%= @order.order_total %></p>
+<p>Date Ordered: <%= @order.created_at %></p>
+</section>
