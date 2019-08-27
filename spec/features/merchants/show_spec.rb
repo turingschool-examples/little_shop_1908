@@ -105,6 +105,7 @@ describe 'Merchant Show Page' do
 
     expect(page).to have_content(pug_store.item_count)
     expect(page).to have_content(pug_store.average_item_price)
-    expect(page).to have_content(pug_store.cities_serviced)
+    expect(page).to have_content(pug_store.cities_serviced.first)
+    expect(page).to have_content(pug_store.cities_serviced.last)
   end
 end

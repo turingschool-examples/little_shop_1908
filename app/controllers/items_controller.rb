@@ -43,7 +43,7 @@ class ItemsController < ApplicationController
     item = Item.find(params[:id])
     item.update(item_params)
     if item.save
-      item.restock
+      item.activate
       flash[:success] = "Your item has been updated"
       redirect_to "/items/#{item.id}"
     else

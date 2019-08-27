@@ -68,8 +68,7 @@ describe Item do
       expect(@pull_toy.inventory).to eq(0)
       expect(@pull_toy.active?).to eq(false)
 
-      @pull_toy.restock_qty(2)
-      @pull_toy.restock
+      @pull_toy.restock(2)
       expect(@pull_toy.inventory).to eq(2)
       expect(@pull_toy.active?).to eq(true)
     end

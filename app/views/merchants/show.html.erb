@@ -7,8 +7,12 @@
   <p><b>Items for Sale:</b> <%= @merchant.item_count %></p>
   <p><b>Average Cost of an Item:</b> <%= number_to_currency(@merchant.average_item_price) %></p>
   <p><b>Cities Served</b> |
-  <% @merchant.cities_serviced.each do |city| %>
-   <%= city %> |
+  <% if @merchant.cities_serviced == [] %>
+      nada &#x1F614;</p>
+    <% else %>
+    <% @merchant.cities_serviced.each do |city| %>
+    <%= city %> |
+   <% end %>
   <% end %></p>
   <hr>
 </center>
