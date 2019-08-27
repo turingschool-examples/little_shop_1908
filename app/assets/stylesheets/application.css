@@ -85,7 +85,6 @@ section[id^='review-'] {
 }
 
 section[id^='cart-item-'],
-section[id^='order-item-'],
 .customer-info {
   display: flex;
   justify-content: space-between;
@@ -95,13 +94,6 @@ section[id^='order-item-'],
   margin: 0.5em 5% 0 5%;
   padding: 0.5em 4em 0 4em;
   background-color: #d9e7f2;
-}
-
-section[id^='order-item-'],
-.customer-info {
-  margin: 0 10% 0.2em 10%;
-  text-align: center;
-  height: 10em;
 }
 
 .address {
