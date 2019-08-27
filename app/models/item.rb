@@ -33,10 +33,6 @@ class Item < ApplicationRecord
     self.save
   end
 
-  # def restock
-  #   self.update(active?: true) if self.inventory > 0
-  # end
-
   def restock(qty = 1)
     self.inventory += qty
     self.update(active?: true) if self.inventory > 0

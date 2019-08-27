@@ -69,18 +69,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def buy_item
-  #   item = Item.find(params[:id])
-  #   if item.inventory <= 0
-  #     flash[:fail] = "There is not enough in stock. sry."
-  #   end
-  #   if item.inventory > 0
-  #     item.buy
-  #   end
-  # end
-
   private
-
   def item_params
     params.permit(:name,:description,:price,:inventory,:image)
   end
