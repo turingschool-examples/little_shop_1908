@@ -70,7 +70,7 @@ img{
    float: left;
    color: #f2f2f2;
    text-align: center;
-   padding: 36px 36px;
+   padding: 49px 49px;
    text-decoration: none;
    font-size: 24px;
  }
@@ -133,7 +133,7 @@ form {
 }
 
 #cart-icon{
-  width: 120px;
+  width: 140px;
 }
 
 .flash-message{
@@ -185,3 +185,11 @@ form {
  text-align: center
 }
 
+.order-check {
+            width:250px;
+            height:126px;
+            /* overflow: hidden; */
+            /* background-color: #002244; */
+            /* float: left; */
+            /* color: #f2f2f2; */
+        }
