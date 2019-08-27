@@ -12,11 +12,11 @@ class Item <ApplicationRecord
   validates_inclusion_of :active?, :in => [true, false]
 
   def top_reviews
-    reviews.order(rating: :desc).limit(3).pluck(:title, :rating)
+    reviews.order(rating: :desc).limit(3).pluck(:title, :rating, :content)
   end
 
   def bottom_reviews
-    reviews.order(:rating).limit(3).pluck(:title, :rating)
+    reviews.order(:rating).limit(3).pluck(:title, :rating, :content)
   end
 
   def average_rating

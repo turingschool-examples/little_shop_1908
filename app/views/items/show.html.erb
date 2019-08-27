@@ -5,69 +5,85 @@
     <title></title>
   </head>
   <body>
-      <h1><%=link_to @item.name, "/items/#{@item.id}" %></h1>
-      <p align="center">Sold by: <%=link_to @item.merchant.name, "/merchants/#{@item.merchant.id}" %> </p>
-      <center>
-        <section class = "item-show-grid">
-          <section class = "item-show-item">
-            <img src= <%= @item.image %>>
-          </section>
-          <section style="text-align:left" class = "item-show-item">
-            <p><%= @item.description %></p>
-            <p>Price: $<%= @item.price %> </p>
-            <p>Inventory: <%= @item.inventory %> </p>
-            <% if @item.active? %>
-              <p style= "color:green">Active</p>
-            <% else %>
-              <p style= "color:red">Inactive</p>
-            <% end %>
-            <br>
+    
+    
+    <h1><%=link_to @item.name, "/items/#{@item.id}" %></h1>
+<p align="center">Sold by: <%=link_to @item.merchant.name, "/merchants/#{@item.merchant.id}" %> </p>
+<center>
+  <section class = "item-show-grid">
+    <section class = "item-show-item">
+      <img src= <%= @item.image %>>
+    </section>
+   
+    <section style="text-align:left" class = "item-show-item">
+      
+      <p><%= @item.description %></p>
+      <p>Price: $<%= @item.price %> </p>
+      <p>Inventory: <%= @item.inventory %> </p>
+      <% if @item.active? %>
+        <p style= "color:green">Active</p>
+      <% else %>
+        <p style= "color:red">Inactive</p>
+      <% end %>
+        <p> <%= link_to "Add To Cart", "/cart/#{@item.id}", method: :post %> </p>
+        <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
+
+        <% if @item.merchant.sold_items? %>
+        <p>You cannot delete this item</p>
+        <% else %>
+        <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
+        <% end %>
+      
+        <br>
+        <br>
+        <br>
+      
+        <h2>Item Statistics</h2><br>
+        <h3>Average Rating: <%= @item.average_rating %></h3><br>
+        <p>--------------------------------</p><br>
+       
+       <section id="top-reviews">
+          <h3>Top Three Reviews</h3>
+          <% @item.top_reviews.each do |top_review| %>
+          <p><b><%= top_review[0] %></b></p>
+          <p><%= top_review[2] %></p>
+          <p>Rating: <%= top_review[1] %></p><br>
+          <p>--------------------------------</p><br>
+          <% end %>
+        </section>
+      
+        <section id="bottom-reviews">
+          <h3>Bottom Three Reviews</h3>
+          <% @item.bottom_reviews.each do |bottom_review| %>
+          <p><b><%= bottom_review[0] %></b></p>
+          <p><%= bottom_review[2] %></p>
+          <p>Rating: <%= bottom_review[1] %></p><br>
+          <p>--------------------------------</p><br>
+          <% end %>
+        </section>
+      
             <h2>Item Reviews</h2>
+         <p><%= link_to "Add Review", new_review_path %></p>
 
           <%= button_to 'Sort By Highest Rating', highest_reviews_path(@item), method: :get, params: {:sort => "highest"}  %>
           <%= button_to 'Sort By Lowest Rating', lowest_reviews_path(@item), method: :get, params: {:sort => "lowest"} %>
 
-      <section class="reviews">
-        <% @reviews.each do |review| %>
-          <section id="review-<%=review.id%>">
-            <p><%= review.title %></p>
-            <p><%= review.content %></p>
-            <p>Rating: <%= review.rating %></p>
-            <%= link_to 'Delete Review', delete_review_path(@item, review), method: :delete %>     <%= link_to "Edit Review", edit_review_path(@item, review) %>
-            <br>
-            <br>
-            <p>------------------------------------</p>
-          </section>
-        <% end %>
-      </section>
-
-
-              <p> <%= link_to "Add To Cart", "/cart/#{@item.id}", method: :post %> </p>
-              <h2>Item Statistics</h2>
-              <section id="top-reviews">
-                <p>Top Three Reviews</p>
-                <% @item.top_reviews.each do |top_review| %>
-                <p><%= top_review %></p>
-                <% end %>
-              </section>
-              <section id="bottom-reviews">
-                <p>Bottom Three Reviews</p>
-                <% @item.bottom_reviews.each do |bottom_review| %>
-                <p><%= bottom_review %></p>
-                <% end %>
-              </section>
-                <p>Average Rating: <%= @item.average_rating %></p>
-
-              <p><%= link_to "Add Review", new_review_path %></p>
-              <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
-
-            <% if @item.merchant.sold_items? %>
-              <p>You cannot delete this item</p>
-            <% else %>
-              <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
-            <% end %>
-          </section>
-        </section>
-      </center>
-    </body>
+           <section class="reviews">
+             <% @reviews.each do |review| %>
+                <section id="review-<%=review.id%>">
+                  <p><%= review.title %></p>
+                  <p><%= review.content %></p>
+                  <p>Rating: <%= review.rating %></p>
+                  <%= link_to 'Delete Review', delete_review_path(@item, review), method: :delete %>     <%= link_to "Edit Review", edit_review_path(@item, review) %>
+                  <br>
+                  <br>
+                  <p>------------------------------------</p>
+                </section>
+              <% end %>
+           </section>
+         </section>
+       </section>
+     </center>
+   </body>
 </html>
+
