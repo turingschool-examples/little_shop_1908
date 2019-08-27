@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
       flash[:success] = 'Your order has been placed.'
       redirect_to "/orders/#{order.id}"
     else
-      flash[:address] = "Address can't be confirmed"
+      flash[:address] = "Address can't be confirmed. Enter a valid address."
       redirect_to "/cart/checkout"
     end
   end
