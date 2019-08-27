@@ -21,7 +21,7 @@
 
 <center>
   <h3>Shipping Information</h3>
-  <%= form_tag '/orders', method: :post do |f| %>
+  <%= form_for '/orders', method: :post do |f| %>
     <%= text_field_tag :name, nil, placeholder: 'Name' %>
 
     <%= text_field_tag :address, nil, placeholder: 'Address' %>

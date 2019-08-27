@@ -5,6 +5,7 @@ class OrdersController<ApplicationController
 
   def create
     order = Order.create(order_params)
+
     redirect_to "/orders/#{order.id}"
   end
 

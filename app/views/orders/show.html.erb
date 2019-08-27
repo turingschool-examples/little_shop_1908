@@ -1,11 +1,1 @@
-<%# <% @order.item_quantity.each do |item, quantity| %>
-  <section id="item-checkout-<%= item.id%>">
-    <p><%= link_to item.name, "/items/#{item.id}" %></p>
-    <p><%= link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
-    <p><%= image_tag item.image, alt: item.description %></p>
-    <p>Price: $<%= item.price %></p>
-    <p>Quantity: <%= quantity %> </p>
-    <p>Subtotal: $<%= item.item_subtotal(quantity) %></p>
-  </section>
-<% end %>
-</section> %>
+
