@@ -2,13 +2,16 @@
 <p class="address"><%= @merchant.address %></p>
 <p class="address"><%= @merchant.city %>, <%= @merchant.state %> <%= @merchant.zip %></p>
 
-<p><%= link_to "All #{@merchant.name} Items", "/merchants/#{@merchant.id}/items" %></p>
-<p><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit", class: "edit-btn"%></p>
+<p style="text-align:center;"><%= link_to "All #{@merchant.name} Items", "/merchants/#{@merchant.id}/items", class: 'regular-button', id: 'merchant-show' %></p>
 <section class="merchant-stats">
+  <h3 style="text-align:center;">Merchant Stats</h3>
   <p><span style="font-weight:bold;">Count of items: </span><%= @merchant.count_items %></p>
   <p><span style="font-weight:bold;">Average price: </span><%= number_to_currency @merchant.average_price %></p>
   <p><span style="font-weight:bold;">Customer locations: </span><%= @merchant.distinct_cities.join(", ") %></p>
 </section>
+<section class="merchant-edit-del">
+<p><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit", class: "edit-btn"%></p>
 <% unless @merchant.has_orders? %>
   <p><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete, class: "delete-btn" %></p>
 <% end %>
+</section>
