@@ -48,6 +48,8 @@ RSpec.describe "When a user goes to the order create page" do
 
   it 'can show the users order details' do
 
+    expect(current_path).to eq("/orders/new")
+
     within "#item-checkout-#{@brush.id}" do
       expect(page).to have_content(@brush.name)
       expect(page).to have_content(@brush.merchant.name)
@@ -74,7 +76,7 @@ RSpec.describe "When a user goes to the order create page" do
     address = '123 Happy Street'
     city = "Denver"
     state = "CO"
-    zip = 80204
+    zip = "80204"
 
     fill_in :name, with: name
     fill_in :address, with: address
@@ -85,5 +87,52 @@ RSpec.describe "When a user goes to the order create page" do
 
   it 'has a button to create order' do
     expect(page).to have_button("Create Order")
+  end
+
+  it 'can add a new order' do
+    name = "Jane Doe"
+    address = '123 Happy Street'
+    city = "Denver"
+    state = "CO"
+    zip = "80204"
+
+    fill_in :name, with: name
+    fill_in :address, with: address
+    fill_in :city, with: city
+    fill_in :state, with: state
+    fill_in :zip, with: zip
+
+    click_button("Create Order")
+
+    new_order = Order.last
+
+    expect(current_path).to eq("/orders/#{new_order.id}")
+
+    expect(new_order.name).to eq(name)
+    expect(new_order.address).to eq(address)
+    expect(new_order.city).to eq(city)
+    expect(new_order.state).to eq(state)
+    expect(new_order.zip).to eq(zip)
+
+    within "#order-#{@brush.id}" do
+      expect(page).to have_content(@brush.name)
+      expect(page).to have_content(@brush.merchant.name)
+      expect(page).to have_content("Price: $#{@brush.price}")
+      expect(page).to have_content("Quantity: 5")
+      expect(page).to have_content("Subtotal: $75")
+    end
+
+    within "#order-#{@tire.id}" do
+      expect(page).to have_content(@tire.name)
+      expect(page).to have_content(@tire.merchant.name)
+      expect(page).to have_content("Price: $#{@tire.price}")
+      expect(page).to have_content("Quantity: 2")
+      expect(page).to have_content("Subtotal: $200")
+    end
+
+    within "#order-summary" do
+      expect(page).to have_content("Total: $275")
+      expect(page).to have_content("Date Ordered: #{new_order.created_at}")
+    end
   end
 end

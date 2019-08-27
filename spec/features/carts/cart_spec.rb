@@ -65,7 +65,7 @@ end
 # And I visit my cart
 # Next to each item in my cart
 # I see a button or link to remove that item from my cart
-# - clicking this button will remove the item but not other items
+# clicking this button will remove the item but not other items
 RSpec.describe 'When a user visits their cart with items' do
   before(:each) do
     @bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
