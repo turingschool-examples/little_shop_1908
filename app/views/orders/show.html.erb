@@ -1,14 +1,12 @@
 <h1> Order </h1>
 
-<%= @order.name %>
-<%= @order.address %>
-<%= @order.city %>
-<%= @order.state %>
-<%= @order.zip %>
+<p><%= @order.name %></p>
+<p><%= @order.address %></p>
+<p><%= @order.city %></p>
+<p><%= @order.state %></p>
+<p><%= @order.zip %></p>
 
-#Need to figure out how to return order details after
-#cart is reset
-<% @order.order_details(@order.id).each do |item, quantity| %>
+<% @order.order_details.each do |item, quantity| %>
   <section id="order-<%= item.id%>">
     <p><%= item.name %></p>
     <p><%= item.merchant.name %></p>
