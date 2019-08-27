@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
+    @order = Order.find(params[:id]) || Order.find(params[:search])
   end
 
   def create
@@ -28,6 +28,10 @@ class OrdersController < ApplicationController
       @cart = cart
       render :new
     end
+  end
+
+  def search
+
   end
 
   private

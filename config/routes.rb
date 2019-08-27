@@ -36,4 +36,6 @@ Rails.application.routes.draw do
   get "/orders/:id", to: "orders#show"
   post "/orders", to: "orders#create"
 
+  get "/orders", to: "orders#search", as: :search_orders
+
 end

@@ -94,8 +94,5 @@ RSpec.describe 'item show page', type: :feature do
 
   expect(current_path).to eq("/items/#{chain.id}")
 
-
-  # save_and_open_page
-
   end
 end
