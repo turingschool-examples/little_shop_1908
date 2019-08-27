@@ -4,15 +4,18 @@ class OrdersController<ApplicationController
   end
 
   def create
-    order = Order.create(order_params)
-
-    #MOVE INTO ITEM_ORDER MODEL
-    cart.item_quantity.each do |item, quantity|
-      ItemOrder.create(:order_id => order.id, :item_id => item.id, :quantity => quantity, :subtotal => item.item_subtotal(quantity))
+    order = Order.new(order_params)
+    if order.save
+      #MOVE INTO ITEM_ORDER MODEL
+      cart.item_quantity.each do |item, quantity|
+        ItemOrder.create(:order_id => order.id, :item_id => item.id, :quantity => quantity, :subtotal => item.item_subtotal(quantity))
+      end
+      reset_session
+      redirect_to "/orders/#{order.id}"
+    else
+      flash[:incomplete] = 'All fields must be completed to create a new order. Please try again.'
+      redirect_to '/orders/new'
     end
-
-    reset_session
-    redirect_to "/orders/#{order.id}"
   end
 
   def show
@@ -20,6 +23,7 @@ class OrdersController<ApplicationController
   end
 
   private
+
   def order_params
     params.permit(:name,:address,:city,:state,:zip)
   end
