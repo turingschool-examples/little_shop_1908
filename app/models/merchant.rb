@@ -21,6 +21,9 @@ class Merchant < ApplicationRecord
   end
 
   def cities_serviced
-    Item.joins(:orders).distinct.pluck(:city)
+    Item.joins(:orders)
+    .where(merchant_id: self.id)
+    .distinct
+    .pluck(:city)
   end
 end
