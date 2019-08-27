@@ -23,7 +23,7 @@ class ReviewsController <ApplicationController
       flash[:success] = "You have successfully posted a review"
       redirect_to "/items/#{@item.id}"
     else
-      flash[:alert] = "You have not completed the form. Please complete all three sections to post a review."
+      flash[:error] = review.errors.full_messages.to_sentence
       redirect_to "/items/#{@item.id}/reviews/new"
     end
   end
@@ -41,7 +41,7 @@ class ReviewsController <ApplicationController
       flash[:success] = "You have successfully edited a review"
       redirect_to "/items/#{item.id}"
     else
-      flash[:alert] = "You have not completed the form. Please complete all three sections to post a review."
+      flash[:error] = review.errors.full_messages.to_sentence
       redirect_to "/items/#{item.id}/#{review.id}/edit"
     end
   end

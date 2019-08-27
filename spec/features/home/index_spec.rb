@@ -14,4 +14,11 @@ RSpec.describe "Home Page" do
     expect(page).to have_css("img[src*='#{img_bike}']")
     expect(page).to have_css("img[src*='#{img_dog}']")
   end
+
+  it "should show flash message when I go to a page that does not exist" do
+    visit '/'
+    visit '/abcde'
+
+    expect(page).to have_content("The page you have selected does not exist")
+  end
 end

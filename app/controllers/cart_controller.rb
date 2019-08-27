@@ -3,13 +3,18 @@ class CartController<ApplicationController
 
   def add_item
     item = Item.find(params[:item_id])
-    item_id_str = item.id.to_s
-    session[:cart] ||= Hash.new(0)
-    session[:cart][item_id_str] ||= 0
-    session[:cart][item_id_str] = session[:cart][item_id_str] + 1
-    quantity = session[:cart][item_id_str]
-    flash[:notice] = "You now have #{pluralize(quantity, "copy")} of #{item.name} in your cart."
-    redirect_to "/items"
+    if item.active?
+      item_id_str = item.id.to_s
+      session[:cart] ||= Hash.new(0)
+      session[:cart][item_id_str] ||= 0
+      session[:cart][item_id_str] = session[:cart][item_id_str] + 1
+      quantity = session[:cart][item_id_str]
+      flash[:notice] = "You now have #{pluralize(quantity, "copy")} of #{item.name} in your cart."
+      redirect_to "/items"
+    else
+      flash[:inactive_item] = "You cannot add #{item.name} to your cart because it is inactive."
+      redirect_to "/items/#{item.id}"
+    end
   end
 
   def remove_item

@@ -37,5 +37,14 @@ RSpec.describe 'merchant show page', type: :feature do
       expect(page).to have_content("List of cities where items have been ordered:\nBoston\nDenver")
     end
 
+    it 'shows flash message when I attempt to visit merchant page that does not exist' do
+
+      visit "merchants/bad_id"
+
+      expect(current_path).to eq("/merchants")
+
+      expect(page).to have_content("The page you have selected does not exist")
+    end
+
   end
 end

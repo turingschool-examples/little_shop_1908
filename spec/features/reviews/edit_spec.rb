@@ -8,18 +8,34 @@ RSpec.describe "Review Edit Page" do
       @good_review = @chain.reviews.create(title: "I like this product", content: "This is a great product. I will buy it again soon.", rating: 5)
     end
 
-  it 'I can see the prepopulated fields of that item' do
-    visit "/items/#{@chain.id}"
+    it 'I can see the prepopulated fields of that item' do
+      visit "/items/#{@chain.id}"
 
-    within "#review-#{@good_review.id}" do
-      click_on "Edit review"
+      within "#review-#{@good_review.id}" do
+        click_on "Edit review"
+      end
+
+      expect(current_path).to eq("/items/#{@chain.id}/#{@good_review.id}/edit")
+
+      expect(find_field('Title').value).to eq "I like this product"
+      expect(find_field('Content').value).to eq "This is a great product. I will buy it again soon."
+      expect(find_field('Rating').value).to eq "5"
     end
 
-    expect(current_path).to eq("/items/#{@chain.id}/#{@good_review.id}/edit")
+    it 'I see alert flash message when form is not completely filled' do
+      visit "/items/#{@chain.id}"
 
-    expect(find_field('Title').value).to eq "I like this product"
-    expect(find_field('Content').value).to eq "This is a great product. I will buy it again soon."
-    expect(find_field('Rating').value).to eq "5"
+      within "#review-#{@good_review.id}" do
+        click_on "Edit review"
+      end
+
+      fill_in :title, with: ""
+      fill_in :content, with: ""
+
+      click_button "Post Review"
+
+      expect(current_path).to eq("/items/#{@chain.id}/#{@good_review.id}/edit")
+      expect(page).to have_content("Title can't be blank and Content can't be blank")
+    end
   end
-end
 end
