@@ -15,7 +15,7 @@ describe 'User clicks link to go to new order page' do
     visit '/cart'
     click_link 'Checkout'
 
-    within "#order-item-#{pull_toy.id}" do
+    within "#cart-item-#{pull_toy.id}" do
       expect(page).to have_content(pull_toy.name)
       expect(page).to have_content(pull_toy.merchant.name)
       expect(page).to have_content(pull_toy.price)
@@ -28,7 +28,7 @@ describe 'User clicks link to go to new order page' do
       end
     end
 
-    within "#order-item-#{dog_bone.id}" do
+    within "#cart-item-#{dog_bone.id}" do
       expect(page).to have_content(dog_bone.name)
       expect(page).to have_content(dog_bone.merchant.name)
       expect(page).to have_content(dog_bone.price)
@@ -101,7 +101,7 @@ describe 'User clicks link to Place Order' do
       expect(page).to have_content(zip)
     end
 
-    within "#order-item-#{pull_toy.id}" do
+    within "#cart-item-#{pull_toy.id}" do
       expect(page).to have_content(pull_toy.name)
       expect(page).to have_content(pull_toy.merchant.name)
       expect(page).to have_content(pull_toy.price)
@@ -114,7 +114,7 @@ describe 'User clicks link to Place Order' do
       end
     end
 
-    within "#order-item-#{dog_bone.id}" do
+    within "#cart-item-#{dog_bone.id}" do
       expect(page).to have_content(dog_bone.name)
       expect(page).to have_content(dog_bone.merchant.name)
       expect(page).to have_content(dog_bone.price)

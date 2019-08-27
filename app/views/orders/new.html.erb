@@ -1,40 +1,11 @@
 <p class="page-title">New Order</p>
 
 <h3 class="h3-new-order">Cart Details</h3>
-<% @items.each do |item|  %>
-  <section id="order-item-<%=item.id%>">
-    <section class="details-description">
-      <p><%=link_to item.name, "/items/#{item.id}" %></p>
-      <p><%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
-    </section>
-    <section class="details-price">
-      <p class="cart-section-titles">Price:</p>
-      <p><%=number_to_currency item.price %></p>
-    </section>
-    <section class="details-quantity">
-      <p class="cart-section-titles">Quantity:</p>
-      <p><%= @cart.contents[item.id.to_s] %></p>
-    </section>
-    <section class="details-subtotal">
-      <p class="cart-section-titles">Subtotal:</p>
-      <p><%= number_to_currency @cart.subtotal(item.id) %></p>
-    </section>
-  </section>
-<% end %>
-<section class="order-total" id="new-order">
-  Order total: <%=number_to_currency @cart.order_total %>
-</section>
+<%= render partial: '/partials/order_items', locals: {items: @items,
+  cart_show: params[:controller]=='cart'} %>
 <center>
   <h3 class="h3-new-order">Shipping Information</h3>
   <div class="shipping-form">
-    <%= form_tag '/orders', method: :post do %>
-      <%= text_field_tag :name, nil, placeholder: "Name" %>
-      <%= text_field_tag :address, nil, placeholder: "Address" %>
-      <%= text_field_tag :city, nil, placeholder: "City" %>
-      <%= text_field_tag :state, nil, placeholder:  "State" %>
-      <%= text_field_tag :zip, nil, placeholder: "Zip" %>
-
-      <%= submit_tag 'Place Order' %>
-    <% end %>
+    <%= render partial: '/partials/address_form', locals: {path: '/orders', button: 'Place Order'} %>
   </div>
 </center>
