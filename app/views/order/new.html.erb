@@ -1,22 +1,15 @@
-<h1>Your Order Information</h1>
-<section>
-  <%= render "cart/show" %>
-</section>
+<div class="container-fluid">
+  <br>
+  <div class="row">
+    <div class="col-sm">
+      <h3>Your Order Information</h3>
+      <%= render "cart/show" %>
+    </div>
 
-<h3>Shipping Information</h3>
-<p>Please fill out your information below</p>
-<section>
-  <%= form_tag '/orders', method: :post do |f| %>
-    <%= text_field_tag :name, nil, placeholder: "Name" %>
-
-    <%= text_field_tag :address, nil, placeholder: "Address" %>
-
-    <%= text_field_tag :city, nil, placeholder: "City" %>
-
-    <%= text_field_tag :state, nil, placeholder: "State" %>
-
-    <%= text_field_tag :zip, nil, placeholder: "Zip" %>
-
-    <%= submit_tag 'Submit Order' %>
-  <% end %>
-</section>
+    <div class="col-6" align='center'>
+      <h3>Shipping Information</h3>
+      <p>Please fill out your information below</p>
+      <%= render partial: 'partials/form', locals: { path: '/orders', method: :post, button: 'Submit Order' } %>
+    </div>
+  </div>
+</div>
