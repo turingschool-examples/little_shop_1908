@@ -1,26 +1,57 @@
-  <h1 class='display-3' align='center'>Cart</h1>
-    <% if @cart.contents.empty? %>
-      <br>
-      <p align='center'>Your cart is empty</p>
-      <%= image_tag "https://image.flaticon.com/icons/svg/265/265731.svg", id: "cart-img" %>
-    <% else %>
-    <p> <%=link_to "Empty Cart", "/cart", method: :delete %> </p>
-    <p> <%=link_to "Checkout", "/orders/new" %> </p>
-    <% @cart.contents.each do |key, value| %>
-      <section id="cart-item-<%= key %>">
-        <% unless value == 0 %>
-          <% item = Item.find(key) %>
-          <h3><%= item.name %></h3>
-          <img src=<%= item.image %> alt="...">
-          <p>Sold by: <%= item.merchant.name %></p>
-          <p>Price: <%= number_to_currency(item.price) %></p>
-          <p>Quantity: <%= value %></p>
-          <p>Subtotal: $<%=  @cart.subtotal_item(key) %></p>
-          <p><%= link_to "Remove Item", "/cart/#{item.id}", method: :patch %></p>
-          <p><%= button_to "+", "/cart/#{item.id}/add", method: :post %></p>
-          <p><%= button_to "-", "/cart/#{item.id}/remove", method: :post %></p>
-        <% end %>
-      </section>
-      <% end %>
-      <h4>Grand Total: $<%=  @cart.grand_total %></h4>
-    <% end %>
+<h1 class='display-3' align='center'>Cart</h1>
+<hr>
+<% if @cart.contents.empty? %>
+  <br>
+  <p align='center'>Your cart is empty</p>
+  <%= image_tag "https://image.flaticon.com/icons/svg/265/265731.svg", id: "cart-img" %>
+<% else %>
+  <div class="container">
+    <div class="row">
+      <div class="col-9">
+        <% @cart.contents.each do |key, value| %>
+          <section id="cart-item-<%= key %>">
+            <% unless value == 0 %>
+              <% item = Item.find(key) %>
+
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col" align='center'>
+                      <p><img src=<%= item.image %> alt="..."></p>
+                      <%= button_to "+", "/cart/#{item.id}/add", method: :post, :form_class => "quantity-btn" %>
+                      <%= button_to "-", "/cart/#{item.id}/remove", method: :post, :form_class => "quantity-btn"%>
+                      <p><%= link_to "Remove Item", "/cart/#{item.id}", method: :patch %></p>
+                    </div>
+                    <div class="col-6">
+                      <h3 class="card-title"><%= item.name %></h3>
+                      <p class="card-text">Sold by: <%= item.merchant.name %></p>
+                      <p class="card-text">Price: <%= number_to_currency(item.price) %></p>
+                      <p class="card-text">Quantity: <%= value %></p>
+                      <p class="card-text">Subtotal: $<%=  @cart.subtotal_item(key) %></p>
+                    </div>
+                    <div class="col-sm">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <% end %>
+          </section>
+          <% end %>
+
+      </div>
+      <div class="col-sm" align='center'>
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+          <div class="card-header">Your Order</div>
+          <div class="card-body">
+            <h5 class="card-title">Grand Total: $<%=  @cart.grand_total %></h5>
+            <p class="card-text">
+              <%=link_to "Checkout", "/orders/new", :id => 'checkout-button'%>
+              <%=link_to "Empty Cart", "/cart", method: :delete, :id => 'empty-cart-button' %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

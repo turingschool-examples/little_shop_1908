@@ -197,3 +197,34 @@ form {
 .rating {
   width: 2%;
 }
+
+.quantity-btn {
+  display: inline-block;
+  margin-top: 0px;
+  /* margin-left: 20px; */
+  margin-right: 30px;
+  width: 10%;
+  font-size: 15px;
+}
+
+#checkout-button {
+  display: block;
+  background-color: #f0c14b;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  opacity: 0.9;
+  padding: 0.5rem;
+  margin-top: 30px;
+}
+
+#empty-cart-button {
+  display: block;
+  background-color: #E0E0E0;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  opacity: 0.9;
+  padding: 0.5rem;
+  margin-top: 30px;
+}
