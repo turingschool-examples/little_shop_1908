@@ -6,7 +6,9 @@
 <%= @order.state %>
 <%= @order.zip %>
 
-<% @order.order_details.each do |item, quantity| %>
+#Need to figure out how to return order details after
+#cart is reset
+<% @order.order_details(@order.id).each do |item, quantity| %>
   <section id="order-<%= item.id%>">
     <p><%= item.name %></p>
     <p><%= item.merchant.name %></p>
