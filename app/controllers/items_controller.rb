@@ -54,16 +54,7 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    if session[:cart].nil?
-      if item.has_been_ordered?
-        flash[:no_delete] = "We won't delete items with active orders pending"
-        redirect_to "/items/#{item.id}"
-      else
-        item.reviews.destroy_all
-        item.destroy
-        redirect_to "/items"
-      end
-    elsif session[:cart][item.id.to_s].nil?
+    if session[:cart].nil? || session[:cart][item.id.to_s].nil?
       if item.has_been_ordered?
         flash[:no_delete] = "We won't delete items with active orders pending"
         redirect_to "/items/#{item.id}"

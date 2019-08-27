@@ -10,12 +10,27 @@ class OrdersController < ApplicationController
     end
   end
 
+  # def create
+  #   order = Order.new(order_params)
+  #   if !order.save
+  #     flash[:error] = "Enter your shipping info again"
+  #     redirect_to "/cart/checkout"
+  #   else
+  #     session[:cart].each do |item_id, qty|
+  #       item = Item.find(item_id.to_i)
+  #       order.item_orders.create(item_id: item.id, order_id: order.id, quantity: qty, total_cost: (item.price * qty))
+  #     end
+  #     session[:cart] = nil
+  #     flash[:success] = 'Your order has been placed.'
+  #     redirect_to "/orders/#{order.id}"
+  #   end
+  # end
+
   def create
-    order = Order.new(order_params)
-    if !order.save
-      flash[:error] = "Enter your shipping info again"
-      redirect_to "/cart/checkout"
-    else
+    address = order_params[:address] + " " + order_params[:city] + " " + order_params[:state] + " " + (order_params[:zip].to_s.rjust(5, '0'))
+    verifier = MainStreet::AddressVerifier.new(address)
+    if verifier.success?
+      order = Order.create(order_params)
       session[:cart].each do |item_id, qty|
         item = Item.find(item_id.to_i)
         order.item_orders.create(item_id: item.id, order_id: order.id, quantity: qty, total_cost: (item.price * qty))
@@ -23,6 +38,9 @@ class OrdersController < ApplicationController
       session[:cart] = nil
       flash[:success] = 'Your order has been placed.'
       redirect_to "/orders/#{order.id}"
+    else
+      flash[:address] = verifier.failure_message
+      redirect_to "/cart/checkout"
     end
   end
 
