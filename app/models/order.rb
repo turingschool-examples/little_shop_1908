@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  #has_many :items
+
   has_many :item_orders
   has_many :items, through: :item_orders
 
@@ -9,4 +9,10 @@ class Order < ApplicationRecord
                         :state,
                         :zip
 
+  def self.order_details
+    select()
+    # self.map do |order|
+    #   [Item.find(key.to_i), value]
+    # end.to_h
+  end
 end
