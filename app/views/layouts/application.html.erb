@@ -10,16 +10,18 @@
 
   <body>
     <nav class = "topnav">
-      <div class = "order-check" style="float:left">
+      <span id="order-check">
         <%= form_tag '/verified_order', method: :get do %>
           <%= text_field_tag :order_key, nil, placeholder: "Enter your order key here"%>
           <%= submit_tag 'Check Order' %>
         <% end %>
-      </div>
-      <%= link_to "All Merchants", "/merchants"%>
-      <%= link_to "All Items", "/items"%>
+      </span>
       <% cart = Cart.new(session[:cart]) %>
-      <div style="float:right"><%= link_to "Items in Cart: #{cart.total_items}", "/cart" %><%= image_tag 'pug_cart.png', id: 'cart-icon' %></div>
+      <div style="float:right">
+          <%= link_to "All Merchants", "/merchants", style: "padding:75px;"%>
+          <%= link_to "All Items", "/items", style: "padding:75px;"%>
+          <%= link_to "Items in Cart: #{cart.total_items}", "/cart", style: "padding:75px;" %><%= image_tag 'pug_cart.png', id: 'cart-icon' %>
+        </div>
     </nav>
     <div class="flash-message"><% flash.each do |type, message| %>
       <p><%= message %></p>
