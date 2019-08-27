@@ -27,6 +27,7 @@
 
  a:link, a:visited {
   color: #30638E;
+  text-decoration: none;
  }
 
  a:hover {
@@ -228,8 +229,12 @@ section[id^='order-item-'],
   color:#f2f2f2;
 }
 
-.error {
-  background-color: #e18490;
+.edit-btn:hover {
+  background-color: #EDAE49;
+  color:#f2f2f2;
+}
+
+.flash {
   border-radius: 0em 0em 1em 1em;
   border: 2px solid #003D5B;
   color: #404040;
@@ -238,10 +243,6 @@ section[id^='order-item-'],
   text-align: center;
 }
 
-.edit-btn:hover {
-  background-color: #EDAE49;
-  color:#f2f2f2;
-}
  .grid-container {
  	display: grid;
  	grid-gap: 30px;
@@ -330,16 +331,6 @@ section[id^='order-item-'],
    border-bottom: 2px solid #003D5B;
    margin: 3em 30%;
    padding-bottom: 1em;
- }
-
- .notice {
-   background-color: #94d197;
-   border-radius: 0em 0em 1em 1em;
-   border: 2px solid #003D5B;
-   color: #404040;
-   margin: 0 40%;
-   padding: 1.5em;
-   text-align: center;
  }
 
  .order-date {
@@ -475,6 +466,10 @@ section[id^='order-item-'],
 
  }
 
+ #add-item {
+   margin: 0.5em 0;
+ }
+
  #add-to-cart {
    margin: 1em 0;
    padding: 0.5em 1em;
@@ -497,6 +492,10 @@ section[id^='order-item-'],
    background-color: #00c7e6;
  }
 
+ #error {
+   background-color: #e18490;
+ }
+
  #merchant-show {
    margin: 1em 0 0 0;
  }
@@ -508,6 +507,10 @@ section[id^='order-item-'],
 
  #new-order {
    margin-right: 2em;
+ }
+
+ #notice {
+   background-color: #94d197;
  }
 
  #num-in-cart {
