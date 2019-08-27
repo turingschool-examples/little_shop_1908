@@ -26,14 +26,18 @@
   </section>
   <section class="reviews-section">
     <div class="reviews-section-header">
-      <span class="reviews-title">Customer Reviews</span>
-      <div class="dropdown">
-        <button class="dropbtn">Sort By</button>
-        <div class="dropdown-content">
-          <%= link_to 'Rating: High - Low', "?sort=max-rating" %>
-          <%= link_to 'Rating: Low - High', "?sort=min-rating" %>
+      <% if @item.reviews.empty? %>
+        <span class="reviews-title">Customer Reviews: No reviews yet</span>
+      <% else %>
+        <span class="reviews-title">Customer Reviews</span>
+        <div class="dropdown">
+          <button class="dropbtn">Sort By</button>
+          <div class="dropdown-content">
+            <%= link_to 'Rating: High - Low', "?sort=max-rating" %>
+            <%= link_to 'Rating: Low - High', "?sort=min-rating" %>
+          </div>
         </div>
-      </div>
+      <% end %>
       <%= link_to "New Review", "/items/#{@item.id}/reviews/new", class: "reviews-header-btn" %>
     </div>
     <% unless @item.reviews.count <= 3 %>
