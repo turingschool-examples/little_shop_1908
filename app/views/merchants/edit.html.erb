@@ -1,16 +1,16 @@
 <h1>Edit <%=link_to @merchant.name, "/merchants/#{@merchant.id}" %></h1>
 <center>
   <%= form_tag "/merchants/#{@merchant.id}", method: :patch do %>
-  
-    <%= text_field_tag :name, nil, placeholder: "#{@merchant.name}"%>
 
-    <%= text_field_tag :address, nil, placeholder: "#{@merchant.address}" %>
+    <%= text_field_tag :name, "#{@merchant.name}"%>
 
-    <%= text_field_tag :city, nil, placeholder: "#{@merchant.city}" %>
+    <%= text_field_tag :address, "#{@merchant.address}" %>
 
-    <%= text_field_tag :state, nil, placeholder: "#{@merchant.state}" %>
+    <%= text_field_tag :city, "#{@merchant.city}" %>
 
-    <%= text_field_tag :zip, nil, placeholder: "#{@merchant.zip}" %>
+    <%= text_field_tag :state, "#{@merchant.state}" %>
+
+    <%= text_field_tag :zip, "#{@merchant.zip}" %>
 
     <%= submit_tag 'Update Merchant' %>
   <% end %>
