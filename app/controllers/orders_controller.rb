@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
       order.create_item_orders(cart)
       redirect_to "/orders/#{order.id}"
     else
-      flash[:error] = "Please fill in all the fields"
+      flash[:error] = order.errors.full_messages
       redirect_to '/orders/new'
     end
   end
