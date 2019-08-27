@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
         order.item_orders.create(item_id: item.id, order_id: order.id, quantity: qty, total_cost: (item.price * qty))
       end
       session[:cart] = nil
-      flash[:success] = 'Your order has been placed.'
+      flash[:success] = "Your order has been placed. Your order key is #{order.order_key}"
       redirect_to "/orders/#{order.id}"
     else
       flash[:address] = "Address can't be confirmed. Enter a valid address."
@@ -47,6 +47,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.permit(:name,:address,:city,:state,:zip)
+    params.permit(:name,:address,:city,:state,:zip,:order_key)
   end
 end
