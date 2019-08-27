@@ -65,7 +65,7 @@ describe 'Order New Page' do
 
     expect(current_path).to eq("/cart/checkout")
 
-    expect(page).to have_content("Address can't be confirmed")
+    expect(page).to have_content("Address can't be confirmed. Enter a valid address.")
 
     fill_in :name, with: name
     fill_in :address, with: address
