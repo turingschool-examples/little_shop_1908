@@ -35,6 +35,8 @@
           <div class="dropdown-content">
             <%= link_to 'Rating: High - Low', "?sort=max-rating" %>
             <%= link_to 'Rating: Low - High', "?sort=min-rating" %>
+            <%= link_to 'Date: Newest First', "?sort=date-desc" %>
+            <%= link_to 'Date: Oldest First', "?sort=date-asc" %>
           </div>
         </div>
       <% end %>
@@ -65,7 +67,7 @@
         </section>
       </section>
     <% end %>
-    <% @item.reviews.each do |review| %>
+    <% @sorted_reviews.each do |review| %>
       <section id="review-<%= review.id %>">
         <h4><%= review.title %></h4>
         <p><%= review.content %></p>

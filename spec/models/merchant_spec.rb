@@ -28,6 +28,19 @@ describe Merchant, type: :model do
       expect(dog_shop.has_orders?).to eq(true)
     end
 
+    it "#best-items" do
+      bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
+      tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+      chain = bike_shop.items.create(name: "Chain", description: "Its a chain!", price: 40, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 5)
+      light = bike_shop.items.create(name: "Light", description: "Its a light!", price: 40, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 5)
+      horn = bike_shop.items.create(name: "Horn", description: "Its a chain!", price: 40, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 5)
+      review_1 = chain.reviews.create(title: "It's Great!", content: "Best chain ever!", rating: 1)
+      review_2 = tire.reviews.create(title: "It's Great!", content: "Best chain ever!", rating: 2)
+      review_3 = light.reviews.create(title: "It's Great!", content: "Best chain ever!", rating: 3)
+      review_4 = horn.reviews.create(title: "It's Great!", content: "Best chain ever!", rating: 4)
+      expect(bike_shop.best_items).to eq([horn, light, tire])
+    end
+
     it '#count_items' do
       bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
       tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)

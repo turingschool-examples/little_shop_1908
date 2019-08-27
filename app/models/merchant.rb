@@ -26,4 +26,9 @@ class Merchant <ApplicationRecord
       .order(:city)
       .pluck(:city)
   end
+
+  def best_items
+    Merchant.joins(:reviews)
+      .where("merchants.id = #{self.id}").order(:rating)
+  end
 end
