@@ -27,14 +27,6 @@
 <center>
   <h3 class="h3-new-order">Shipping Information</h3>
   <div class="shipping-form">
-    <%= form_tag '/orders', method: :post do %>
-      <%= text_field_tag :name, nil, placeholder: "Name" %>
-      <%= text_field_tag :address, nil, placeholder: "Address" %>
-      <%= text_field_tag :city, nil, placeholder: "City" %>
-      <%= text_field_tag :state, nil, placeholder:  "State" %>
-      <%= text_field_tag :zip, nil, placeholder: "Zip" %>
-
-      <%= submit_tag 'Place Order' %>
-    <% end %>
+    <%= render partial: '/partials/address_form', locals: {path: '/orders', button: 'Place Order'} %>
   </div>
 </center>
