@@ -17,4 +17,10 @@ class Order < ApplicationRecord
                       hash[Item.find(item.item_id)] = item.quantity
                     end
   end
+
+  def order_total
+    self.order_details.sum do |item, quantity|
+      Item.find(item.id).price * quantity
+    end
+  end
 end
