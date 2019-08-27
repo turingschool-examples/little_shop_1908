@@ -74,7 +74,7 @@ RSpec.describe "When a user goes to the order create page" do
     address = '123 Happy Street'
     city = "Denver"
     state = "CO"
-    zip = 80204
+    zip = "80204"
 
     fill_in :name, with: name
     fill_in :address, with: address
@@ -92,7 +92,7 @@ RSpec.describe "When a user goes to the order create page" do
     address = '123 Happy Street'
     city = "Denver"
     state = "CO"
-    zip = 80204
+    zip = "80204"
 
     fill_in :name, with: name
     fill_in :address, with: address
