@@ -5,8 +5,8 @@
     <span class="item-details-header">Item Details</span>
     <span>
       <%= link_to "Edit Item", "/items/#{@item.id}/edit", class: "edit-btn" %>
-      <% unless @item.has_orders? %>
-        <%= link_to "Delete Item", "/items/#{@item.id}", method: :delete, class: "delete-btn" %>
+      <% unless @item.has_orders? || @cart.quantity_of(@item.id) != 0%>
+          <%= link_to "Delete Item", "/items/#{@item.id}", method: :delete, class: "delete-btn" %>
       <% end %>
     </span>
   </div>
