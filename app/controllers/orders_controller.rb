@@ -6,10 +6,14 @@ class OrdersController<ApplicationController
   def create
     order = Order.create(order_params)
 
+    cart.item_quantity.each do |item, quantity|
+      ItemOrder.new(item_order_params)
+    end
     redirect_to "/orders/#{order.id}"
   end
 
   def show
+    @order = Order.find(params[:order_id])
   end
 
   private
