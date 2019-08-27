@@ -11,6 +11,13 @@ class ItemsController<ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    if params[:sort] == 'highest'
+      @reviews = @item.highest_reviews
+    elsif params[:sort] == 'lowest'
+      @reviews = @item.lowest_reviews
+    else params[:sort] == nil
+      @reviews = @item.reviews
+    end
   end
 
   def new
