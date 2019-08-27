@@ -45,7 +45,7 @@ describe Merchant do
     end
 
     it "should calculate all cities that had orders" do
-      expect(@pug_store.cities_serviced).to eq([@order_2.city, @order.city])
+      expect(@pug_store.cities_serviced.sort).to eq([@order.city, @order_2.city])
     end
   end
 end

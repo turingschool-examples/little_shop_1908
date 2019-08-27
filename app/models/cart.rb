@@ -54,8 +54,7 @@ class Cart
   end
 
   def remove_all_items(item)
-    item.restock_qty(@contents[item.id.to_s])
-    item.update(active?: true)
+    item.restock(@contents[item.id.to_s])
     @contents.delete(item.id.to_s)
     item.save
   end

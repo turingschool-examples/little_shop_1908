@@ -43,7 +43,7 @@ class ItemsController < ApplicationController
     item = Item.find(params[:id])
     item.update(item_params)
     if item.save
-      item.restock
+      item.activate
       flash[:success] = "Your item has been updated"
       redirect_to "/items/#{item.id}"
     else
@@ -54,16 +54,7 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    if session[:cart].nil?
-      if item.has_been_ordered?
-        flash[:no_delete] = "We won't delete items with active orders pending"
-        redirect_to "/items/#{item.id}"
-      else
-        item.reviews.destroy_all
-        item.destroy
-        redirect_to "/items"
-      end
-    elsif session[:cart][item.id.to_s].nil?
+    if session[:cart].nil? || session[:cart][item.id.to_s].nil?
       if item.has_been_ordered?
         flash[:no_delete] = "We won't delete items with active orders pending"
         redirect_to "/items/#{item.id}"
@@ -78,18 +69,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def buy_item
-  #   item = Item.find(params[:id])
-  #   if item.inventory <= 0
-  #     flash[:fail] = "There is not enough in stock. sry."
-  #   end
-  #   if item.inventory > 0
-  #     item.buy
-  #   end
-  # end
-
   private
-
   def item_params
     params.permit(:name,:description,:price,:inventory,:image)
   end

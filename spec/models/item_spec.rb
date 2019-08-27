@@ -68,10 +68,27 @@ describe Item do
       expect(@pull_toy.inventory).to eq(0)
       expect(@pull_toy.active?).to eq(false)
 
-      @pull_toy.restock_qty(2)
-      @pull_toy.restock
+      @pull_toy.restock(2)
       expect(@pull_toy.inventory).to eq(2)
       expect(@pull_toy.active?).to eq(true)
+    end
+
+    it "activate items upon edit" do
+      @pull_toy.buy
+      @pull_toy.buy
+      expect(@pull_toy.active?).to be false
+
+      @pull_toy.activate
+      expect(@pull_toy.active?).to be false
+
+      @pull_toy.restock
+      expect(@pull_toy.active?).to be true
+      expect(@pull_toy.inventory).to eq(1)
+
+      @pull_toy.buy
+
+      @pull_toy.restock(12)
+      expect(@pull_toy.inventory).to eq(12)
     end
   end
 end

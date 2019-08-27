@@ -2,10 +2,18 @@
 <p class="address"><%= @merchant.address %></p>
 <p class="address"><%= @merchant.city %>, <%= @merchant.state %> <%= @merchant.zip %></p>
 
+<h1><%= @merchant.name %> Item Details</h1>
 <center>
-  <p>Items for Sale: <%= @merchant.item_count %></p>
-  <p>Average Cost of an Item: <%= number_to_currency(@merchant.average_item_price) %></p>
-  <p>Cities Sold To: <%= @merchant.cities_serviced %></p>
+  <p><b>Items for Sale:</b> <%= @merchant.item_count %></p>
+  <p><b>Average Cost of an Item:</b> <%= number_to_currency(@merchant.average_item_price) %></p>
+  <p><b>Cities Served</b> |
+  <% if @merchant.cities_serviced == [] %>
+      nada &#x1F614;</p>
+    <% else %>
+    <% @merchant.cities_serviced.each do |city| %>
+    <%= city %> |
+   <% end %>
+  <% end %></p>
   <hr>
 </center>
 
