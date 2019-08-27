@@ -23,6 +23,6 @@
   <h2>Address: <%= @order.address %></h2>
   <h2>City: <%= @order.city %></h2>
   <h2>State: <%= @order.state %></h2>
-  <h2>Zip: <%= @order.zip %></h2>
+  <h2>Zip: <%= @order.zip.to_s.rjust(5, '0') %></h2>
   <h2>Created: <%= @order.created_at.strftime("%Y-%m-%d") %></h2>
 </center>

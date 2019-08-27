@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
   # end
 
   def create
-    address = order_params[:address] + " " + order_params[:city] + " " + order_params[:state] + " " + (order_params[:zip].to_s.rjust(5, '0'))
+    address = order_params[:address] + " " + order_params[:city] + " " + order_params[:state] + " " + order_params[:zip]
     verifier = MainStreet::AddressVerifier.new(address)
     if verifier.success? && order_params[:name] != ""
       order = Order.create(order_params)
