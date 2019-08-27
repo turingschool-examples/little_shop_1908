@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
   def create
     address = order_params[:address] + " " + order_params[:city] + " " + order_params[:state] + " " + (order_params[:zip].to_s.rjust(5, '0'))
     verifier = MainStreet::AddressVerifier.new(address)
-    if verifier.success?
+    if verifier.success? && order_params[:name] != ""
       order = Order.create(order_params)
       session[:cart].each do |item_id, qty|
         item = Item.find(item_id.to_i)
@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
       flash[:success] = 'Your order has been placed.'
       redirect_to "/orders/#{order.id}"
     else
-      flash[:address] = verifier.failure_message
+      flash[:address] = "Address can't be confirmed"
       redirect_to "/cart/checkout"
     end
   end

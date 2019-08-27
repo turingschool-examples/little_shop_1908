@@ -48,10 +48,10 @@ describe 'Order New Page' do
     expect(page).to have_content("Total Cost: $142.00")
 
     name = "Pug Lover"
-    address = "123 Kindalikeapugs St."
+    address = "3515 Ringsby Court"
     city = "Denver"
     state = "CO"
-    zip = 80204
+    zip = 80216
 
     fill_in :name, with: ""
     fill_in :address, with: address
@@ -65,7 +65,7 @@ describe 'Order New Page' do
 
     expect(current_path).to eq("/cart/checkout")
 
-    expect(page).to have_content("Enter your shipping info again")
+    expect(page).to have_content("Address can't be confirmed")
 
     fill_in :name, with: name
     fill_in :address, with: address
