@@ -48,6 +48,8 @@ RSpec.describe "When a user goes to the order create page" do
 
   it 'can show the users order details' do
 
+    expect(current_path).to eq("/orders/new")
+
     within "#item-checkout-#{@brush.id}" do
       expect(page).to have_content(@brush.name)
       expect(page).to have_content(@brush.merchant.name)
