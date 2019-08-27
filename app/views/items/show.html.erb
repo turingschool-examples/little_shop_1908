@@ -1,11 +1,22 @@
-<h1><%=link_to @item.name, "/items/#{@item.id}" %></h1>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    
+    
+    <h1><%=link_to @item.name, "/items/#{@item.id}" %></h1>
 <p align="center">Sold by: <%=link_to @item.merchant.name, "/merchants/#{@item.merchant.id}" %> </p>
 <center>
   <section class = "item-show-grid">
     <section class = "item-show-item">
       <img src= <%= @item.image %>>
     </section>
+   
     <section style="text-align:left" class = "item-show-item">
+      
       <p><%= @item.description %></p>
       <p>Price: $<%= @item.price %> </p>
       <p>Inventory: <%= @item.inventory %> </p>
@@ -22,13 +33,16 @@
         <% else %>
         <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
         <% end %>
+      
         <br>
         <br>
         <br>
+      
         <h2>Item Statistics</h2><br>
         <h3>Average Rating: <%= @item.average_rating %></h3><br>
         <p>--------------------------------</p><br>
-        <section id="top-reviews">
+       
+       <section id="top-reviews">
           <h3>Top Three Reviews</h3>
           <% @item.top_reviews.each do |top_review| %>
           <p><b><%= top_review[0] %></b></p>
@@ -37,6 +51,7 @@
           <p>--------------------------------</p><br>
           <% end %>
         </section>
+      
         <section id="bottom-reviews">
           <h3>Bottom Three Reviews</h3>
           <% @item.bottom_reviews.each do |bottom_review| %>
@@ -46,18 +61,29 @@
           <p>--------------------------------</p><br>
           <% end %>
         </section>
-        <% @item.reviews.each do |review| %>
-        <section id="review-<%=review.id%>">
-          <p><%= review.title %></p>
-          <p><%= review.content %></p>
-          <p>Rating: <%= review.rating %></p>
-          <%= link_to 'Delete Review', delete_review_path(@item, review), method: :delete %>
-          <p><%= link_to "Edit Review", edit_review_path(@item, review) %></p><br>
-          <p>--------------------------------</p><br>
-        </section>
-        <% end %>
+      
+            <h2>Item Reviews</h2>
+         <p><%= link_to "Add Review", new_review_path %></p>
 
-        <p><%= link_to "Add Review", new_review_path %></p>
-    </section>
-  </section>
-</center>
+          <%= button_to 'Sort By Highest Rating', highest_reviews_path(@item), method: :get, params: {:sort => "highest"}  %>
+          <%= button_to 'Sort By Lowest Rating', lowest_reviews_path(@item), method: :get, params: {:sort => "lowest"} %>
+
+           <section class="reviews">
+             <% @reviews.each do |review| %>
+                <section id="review-<%=review.id%>">
+                  <p><%= review.title %></p>
+                  <p><%= review.content %></p>
+                  <p>Rating: <%= review.rating %></p>
+                  <%= link_to 'Delete Review', delete_review_path(@item, review), method: :delete %>     <%= link_to "Edit Review", edit_review_path(@item, review) %>
+                  <br>
+                  <br>
+                  <p>------------------------------------</p>
+                </section>
+              <% end %>
+           </section>
+         </section>
+       </section>
+     </center>
+   </body>
+</html>
+

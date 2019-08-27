@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get "/items", to: "items#index", as: :items
   get "/items/:id", to: "items#show", as: :item
+  get "/items/:id", to: "items#show", as: :highest_reviews
+  get "/items/:id", to: "items#show", as: :lowest_reviews
   get "/items/:id/reviews/new", to: "reviews#new", as: :new_review
   post "/items/:id", to: "reviews#create"
   get "/items/:id/edit", to: "items#edit"
