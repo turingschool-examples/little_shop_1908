@@ -56,12 +56,7 @@ Students will be put into pairs to complete the project.
 
 - if there is a specific gem you'd like to use in the project, please get permission from your instructors first
 
-## Rubric
-| -------------- | Feature Completeness | Rails | ActiveRecord | Testing and Debugging | Styling, UI/UX |
-| **4: Exceptional**  | All User Stories 100% complete and some extension work completed |
-| **3: Passing** | Students complete the core functionality of all User Stories. No more than 2 Stories fail to correctly implement sad path and edge case functionality.
-| **2: Passing with Concerns** | Students complete the core functionality for all but 1 - 3 User Stories
-| **1: Failing** | Students fail to complete the core functionality of 4 or more User Stories
+## User Stories
 
 ```
 [ ] done
