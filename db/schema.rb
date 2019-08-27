@@ -22,8 +22,6 @@ ActiveRecord::Schema.define(version: 20190826204205) do
     t.float "subtotal"
     t.index ["item_id"], name: "index_item_orders_on_item_id"
     t.index ["order_id"], name: "index_item_orders_on_order_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "items", force: :cascade do |t|
