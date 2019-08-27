@@ -9,10 +9,7 @@ class Order < ApplicationRecord
                         :state,
                         :zip
 
-  def self.order_details
-    select()
-    # self.map do |order|
-    #   [Item.find(key.to_i), value]
-    # end.to_h
+  def self.order_details(order_id)
+    select(where(id: [order_id]))
   end
 end
