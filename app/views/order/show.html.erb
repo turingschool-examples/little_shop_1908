@@ -1,16 +1,20 @@
-<h1>Your Completed Order</h1>
+<div class="container" align='center'>
+  <br />
+  <h1 class='display-4'>Your Completed Order</h1>
+  <br />
 
-<section>
-
-<h3><%= @order.name %></h3>
-<p><span> <%= @order.address %> </span>
-<span> <%= @order.city %> </span>
-<span> <%= @order.state %> </span>
-<span> <%= @order.zip %> </span></p>
-<h5>Order Created At: <%= @order.created_at.strftime("%Y-%m-%d") %></h5>
-
-</section>
-
-<section>
-  <%= render "cart/show" %>
-</section>
+  <h3>Thanks, <%= @order.name %>!</h3>
+  <br />
+  <p>The following order that was placed on <%= @order.created_at.strftime("%Y-%m-%d") %> will be shipped to
+    <span> <%= @order.address %> </span>
+    <span> <%= @order.city %> </span>
+    <span> <%= @order.state %> </span>
+    <span> <%= @order.zip %> </span>
+    in 4-5 business days.
+  <p>
+  <br />
+  <section align='left'>
+    <h4>Order Details</h4>
+    <%= render "cart/show" %>
+  </section>
+</div>

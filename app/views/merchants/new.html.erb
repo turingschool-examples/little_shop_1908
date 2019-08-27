@@ -1,17 +1,5 @@
 <br /><br />
 <h1 class='display-3' align= "center">Create Merchant</h1>
 <center>
-  <%= form_tag '/merchants', method: :post do |f| %>
-    <%= text_field_tag :name, nil, placeholder: "Name" %>
-
-    <%= text_field_tag :address, nil, placeholder: "Address" %>
-
-    <%= text_field_tag :city, nil, placeholder: "City" %>
-
-    <%= text_field_tag :state, nil, placeholder: "State" %>
-
-    <%= text_field_tag :zip, nil, placeholder: "Zip" %>
-
-    <%= submit_tag 'Create Merchant' %>
-  <% end %>
+  <%= render partial: 'partials/form', locals: { path: '/merchants', method: :post, button: 'Create Merchant'  } %>
 </center>
