@@ -6,9 +6,12 @@ class OrdersController<ApplicationController
   def create
     order = Order.create(order_params)
 
+    #MOVE INTO ITEM_ORDER MODEL?
     cart.item_quantity.each do |item, quantity|
-      ItemOrder.new(item_order_params)
+      ItemOrder.create(:order_id => order.id, :item_id => item.id, :quantity => quantity, :subtotal => item.item_subtotal(quantity))
     end
+
+  
     redirect_to "/orders/#{order.id}"
   end
 
