@@ -19,6 +19,7 @@ class ItemsController < ApplicationController
       @top = Review.top_or_bottom_three(@item.id)
       @bottom = Review.top_or_bottom_three(@item.id, :asc)
       @average = Review.average_rating(@item.id)
+      @sorted_reviews = Review.sort_reviews(params[:sort], @item.id)
     end
   end
 
