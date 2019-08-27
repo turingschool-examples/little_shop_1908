@@ -14,9 +14,13 @@
       <%= link_to "All Items", "/items"%>
       <%= link_to "Cart: #{cart.total_count}", "/cart" %>
     </nav>
+    <%= form_tag(search_orders_path, method: :get) do %>
+    <%= text_field_tag(:search) %>
+    <%= submit_tag("Search") %>
     <% flash.each do |type, message| %>
       <%= content_tag :div, message, class: type %>
     <% end %>
+<% end %>
     <%= yield %>
   </body>
 </html>
