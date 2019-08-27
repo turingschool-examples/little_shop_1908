@@ -30,5 +30,14 @@ RSpec.describe 'merchant new page', type: :feature do
       expect(new_merchant.zip).to eq(zip)
     end
 
+    it 'flash messasge for incomplete form' do
+      visit '/merchants/new'
+
+      fill_in :name, with: "Sammie's Socks"
+
+      click_button 'Create Merchant'
+
+      expect(page).to have_content("All fields must be completed before creating a new merchant. Please try again.")
+    end
   end
 end

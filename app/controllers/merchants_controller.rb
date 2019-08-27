@@ -11,11 +11,15 @@ class MerchantsController < ApplicationController
   def new
   end
 
-  
+
   def create
-    Merchant.create(merchant_params)
-    redirect_to "/merchants"
-  #  UPDATE SAD PATH TESTING
+    new_merchant = Merchant.new(merchant_params)
+    if new_merchant.save
+      redirect_to "/merchants"
+    else
+      flash[:messasge] = "All fields must be completed before creating a new merchant. Please try again."
+      redirect_to "/merchants/new"
+    end
   end
 
   def edit
