@@ -49,7 +49,11 @@ RSpec.describe 'merchant show page', type: :feature do
 
       visit "/merchants/#{@bike_shop.id}"
       within ".merchant-stats" do
-        expect(page).to have_content("Top reviewed items: #{horn.name} (#{review_4.rating}), #{light.name} (#{review_3.rating}), #{tire.name} (#{review_1.rating})")
+        within ".top-reviewed-items"do
+          expect(page).to have_content("#{horn.name} (#{review_4.rating.round(2)})")
+          expect(page).to have_content("#{light.name} (#{review_3.rating.round(2)})")
+          expect(page).to have_content("#{tire.name} (#{review_1.rating.round(2)})")
+        end
       end
     end
   end

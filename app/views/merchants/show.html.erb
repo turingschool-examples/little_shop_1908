@@ -8,12 +8,13 @@
   <p><span style="font-weight:bold;">Count of items: </span><%= @merchant.count_items %></p>
   <p><span style="font-weight:bold;">Average price: </span><%= number_to_currency @merchant.average_price %></p>
   <p><span style="font-weight:bold;">Customer locations: </span><%= @merchant.distinct_cities.join(", ") %></p>
-  <span style="font-weight:bold;">Top reviewed items: </span>
-  <ol>
-    <% @top_items.each do |item| %>
-        <li><%= "#{item.name} (#{item.avg.round(2)})" %></li>
-    <% end %>
-  </ol>
+  <section class="top-reviewed-items"><span style="font-weight:bold;">Top reviewed items:</span>
+    <ol>
+      <% @top_items.each do |item| %>
+          <li><%= "#{item.name} (#{item.avg.round(2)})" %></li>
+      <% end %>
+    </ol>
+  </section>
 </section>
 <section class="merchant-edit-del">
 <p><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit", class: "edit-btn"%></p>
