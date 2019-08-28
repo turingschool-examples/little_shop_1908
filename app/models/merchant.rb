@@ -26,4 +26,12 @@ class Merchant < ApplicationRecord
     .distinct
     .pluck(:city)
   end
+
+  def top_three_item_ids
+    top_ids = ActiveRecord::Base.connection.execute("select item_id from (select items.id as item_id, items.merchant_id, items.name, avg(reviews.rating) from items inner join reviews on items.id = reviews.item_id where items.merchant_id = #{self.id} group by items.id order by avg desc limit 3) as item_id")
+    ids = top_ids.values.flatten
+    ids
+    # top = items.sort_by{|item| item.avg_rating}.reverse
+    # top.slice(0..2)
+  end
 end

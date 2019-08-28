@@ -233,17 +233,38 @@ form {
 
 /* Links inside the dropdown */
 .dropdown-content a {
-  color: black;
+  color: white;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  background-color: blueviolet
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {
+  background-color: rgb(182, 235, 123);
+  color: black}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {display: block;}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #39daf0;}
+
+.show-container{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: auto;
+  grid-gap: 30px;
+  justify-content: center;
+  justify-items: center;
+}
+
+.show-item{
+  background-color: #17BEBB;
+  padding: 20px;
+ border: solid;
+  border-radius: 12px;
+ border-color: #002244;
+  text-align: center
+}

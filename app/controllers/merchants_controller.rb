@@ -10,6 +10,7 @@ class MerchantsController < ApplicationController
       redirect_to "/merchants"
     else
       @merchant = Merchant.find(params[:id])
+      @top_item_ids = @merchant.top_three_item_ids
     end
   end
 

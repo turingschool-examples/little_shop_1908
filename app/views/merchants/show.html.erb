@@ -14,7 +14,27 @@
     <%= city %> |
    <% end %>
   <% end %></p>
-  <hr>
+</center>
+<center>
+  <h1>Top Three Items for <%= @merchant.name %></h1>
+  <section class="show-container">
+      <% @top_item_ids.each do |item_id| %>
+      <% item = Item.find(item_id) %>
+        <section class = "show-item" id= 'item-<%=item.id%>'>
+          <h2> <%=link_to item.name, "/items/#{item.id}" %> </h2>
+          <img src= <%= item.image %>>
+          <p> <%= item.description unless @merchant%> </p>
+          <p>Average Rating: <%= item.avg_rating %></p>
+          <p>Price: $<%= item.price %> </p>
+          <p>Inventory: <%= item.inventory %> </p>
+          <% if item.active? %>
+            <p>Active</p>
+          <% else %>
+            <p>Inactive</p>
+          <% end %>
+        </section>
+        <% end %>
+    </section>
 </center>
 
 <ul><%= link_to "All #{@merchant.name} Items", "/merchants/#{@merchant.id}/items" %></ul>
