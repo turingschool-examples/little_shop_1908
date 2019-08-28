@@ -34,7 +34,9 @@ RSpec.describe 'merchant show page', type: :feature do
 
       expect(page).to have_content("Item Count: 3")
       expect(page).to have_content("Average price of all items: $43.67")
-      expect(page).to have_content("List of cities where items have been ordered:\nBoston\nDenver")
+      expect(page).to have_content("List of Cities")
+      expect(page).to have_content("Boston")
+      expect(page).to have_content("Denver")
     end
 
     it 'shows flash message when I attempt to visit merchant page that does not exist' do

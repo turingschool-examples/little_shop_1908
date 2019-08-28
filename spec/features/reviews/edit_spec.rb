@@ -12,7 +12,7 @@ RSpec.describe "Review Edit Page" do
       visit "/items/#{@chain.id}"
 
       within "#review-#{@good_review.id}" do
-        click_on "Edit review"
+        click_on "Edit"
       end
 
       expect(current_path).to eq("/items/#{@chain.id}/#{@good_review.id}/edit")
@@ -26,7 +26,7 @@ RSpec.describe "Review Edit Page" do
       visit "/items/#{@chain.id}"
 
       within "#review-#{@good_review.id}" do
-        click_on "Edit review"
+        click_on "Edit"
       end
 
       fill_in :title, with: ""
@@ -42,7 +42,7 @@ RSpec.describe "Review Edit Page" do
       visit "/items/#{@chain.id}"
 
       within "#review-#{@good_review.id}" do
-        click_on "Edit review"
+        click_on "Edit"
       end
 
       fill_in :title, with: "This is an average product"
@@ -56,7 +56,7 @@ RSpec.describe "Review Edit Page" do
       within "#review-#{@good_review.id}" do
         expect(page).to have_content("This is an average product")
         expect(page).to have_content("Very average")
-        expect(page).to have_content("Rating: 3")
+        expect(page).to have_css('span', :class => 'glyphicon-star')
       end
     end
   end

@@ -11,4 +11,17 @@ class Item <ApplicationRecord
                         :inventory
   validates_inclusion_of :active?, :in => [true, false]
 
+  def show_rating
+    reviews.average_review_rating.to_i
+  end
+
 end
+
+
+# def remove_inventory(cart_items)
+#   loop to find item ids and remove those from items table
+# end
+
+# def add_inventory(cart_items)
+#   loop to get id and return to items table
+# end
