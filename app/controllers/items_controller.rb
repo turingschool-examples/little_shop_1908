@@ -19,8 +19,13 @@ class ItemsController<ApplicationController
 
   def create
     merchant = Merchant.find(params[:merchant_id])
-    merchant.items.create(item_params)
-    redirect_to "/merchants/#{merchant.id}/items"
+    new_item = merchant.items.new(item_params)
+    if new_item.save
+      redirect_to "/merchants/#{merchant.id}/items"
+    else
+      flash[:error] = new_item.errors.full_messages.to_sentence
+      redirect_to "/merchants/#{merchant.id}/items/new"
+    end
   end
 
   def edit
@@ -29,8 +34,12 @@ class ItemsController<ApplicationController
 
   def update
     item = Item.find(params[:id])
-    item.update(item_params)
-    redirect_to "/items/#{item.id}"
+    if item.update(item_params)
+      redirect_to "/items/#{item.id}"
+    else
+       flash[:error] = item.errors.full_messages.to_sentence
+       redirect_to "/items/#{item.id}/edit"
+    end
   end
 
   def destroy
