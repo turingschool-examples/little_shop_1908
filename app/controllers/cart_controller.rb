@@ -1,7 +1,7 @@
 class CartController < ApplicationController
   before_action :set_cart, only: [:add_item, :show, :remove_item, :increase, :decrease]
   before_action :set_item, only: [:add_item, :remove_item, :increase, :decrease]
-
+  after_action :set_session_cart, only: [:remove_item, :increase, :decrease]
   def add_item
     @cart.add_item(@item.id)
     session[:cart] = @cart.contents
@@ -21,7 +21,6 @@ class CartController < ApplicationController
 
   def remove_item
     @cart.remove_item(@item.id)
-    session[:cart] = @cart.contents
     redirect_to '/cart'
   end
 
@@ -31,7 +30,6 @@ class CartController < ApplicationController
     else
       flash[:notice] = "Item out of stock"
     end
-    session[:cart] = @cart.contents
     redirect_to '/cart'
   end
 
@@ -41,7 +39,6 @@ class CartController < ApplicationController
     else
       @cart.remove_item(@item.id)
     end
-    session[:cart] = @cart.contents
     redirect_to '/cart'
   end
 
@@ -53,5 +50,9 @@ class CartController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def set_session_cart
+    session[:cart] = @cart.contents
   end
 end
