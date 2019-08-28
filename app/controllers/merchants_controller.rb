@@ -6,6 +6,7 @@ class MerchantsController <ApplicationController
 
   def show
     @merchant = Merchant.find(params[:id])
+    @top_items = @merchant.best_items
   end
 
   def new
