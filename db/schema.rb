@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20190821202704) do
     t.string "city"
     t.string "state"
     t.string "zip"
-    t.string "order_key", default: "1584141370"
+    t.string "order_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

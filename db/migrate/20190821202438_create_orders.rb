@@ -6,7 +6,7 @@ class CreateOrders < ActiveRecord::Migration[5.1]
       t.string :city
       t.string :state
       t.string :zip
-      t.string :order_key, default: (rand(10 ** 10).to_s.rjust(10, "0"))
+      t.string :order_key
 
       t.timestamps
     end
