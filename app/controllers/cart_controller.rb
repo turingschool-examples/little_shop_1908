@@ -20,6 +20,8 @@ class CartController < ApplicationController
     item = Item.find(params[:id])
     if cart.available_inventory?(item)
       cart.add_item(item.id)
+    else
+      flash[:error] = "You cannot add any more #{item.name} to your cart."
     end
     redirect_to cart_path
   end
