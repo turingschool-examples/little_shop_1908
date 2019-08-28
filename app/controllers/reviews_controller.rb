@@ -1,10 +1,6 @@
 class ReviewsController<ApplicationController
-  before_action :set_review, only: [:index, :edit, :update, :destroy]
-  before_action :set_item, only: [:index, :new, :create]
-
-  def index
-    @reviews = @item.reviews
-  end
+  before_action :set_review, only: [:edit, :update, :destroy]
+  before_action :set_item, only: [ :new, :create]
 
   def new
   end
