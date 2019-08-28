@@ -53,26 +53,27 @@ RSpec.describe "As a visitor" do
 
   describe 'merchants can have stats on merchant show page' do
     it 'can show count of items for that merchant' do
-      visit "/merchants/#{@bike_shop}"
+      visit "/merchants/#{@bike_shop.id}"
 
       within "#merchant-stats" do
-        expect(page).to have("Products: 2")
+        expect(page).to have_content("Products: 2")
       end
     end
 
     it 'can show average price of that merchants items' do
-      visit "/merchants/#{@bike_shop}"
+      visit "/merchants/#{@bike_shop.id}"
 
       within "#merchant-stats" do
-        expect(page).to have("Average Product Price: $150")
+        expect(page).to have_content("Average Product Price: $150")
       end
     end
 
     it 'can show distinct cities where my items have been ordered' do
-      visit "/merchants/#{@bike_shop}"
+
+      visit "/merchants/#{@bike_shop.id}"
 
       within "#merchant-stats" do
-        expect(page).to have("Shipped To: Denver, Golden, Chicago")
+        expect(page).to have_content("Shipped To: Denver, Golden, Chicago")
       end
     end
   end
