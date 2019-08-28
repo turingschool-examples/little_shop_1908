@@ -55,14 +55,25 @@ RSpec.describe "As a visitor" do
     it 'can show count of items for that merchant' do
       visit "/merchants/#{@bike_shop}"
 
-      within "#merchant-stats"
-      expect(page).to have("Item Count:")
+      within "#merchant-stats" do 
+        expect(page).to have("Products: 2")
       end
     end
 
     it 'can show average price of that merchants items' do
+      visit "/merchants/#{@bike_shop}"
+
+      within "#merchant-stats" do
+        expect(page).to have("Average Product Price: $150")
+      end
     end
 
     it 'can show distinct cities where my items have been ordered' do
+      visit "/merchants/#{@bike_shop}"
+
+      within "#merchant-stats" do
+        expect(page).to have("Average Product Price: $150")
+      end
+    end
   end
 end
