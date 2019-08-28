@@ -22,8 +22,6 @@ class ReviewsController < ApplicationController
   def update
     review = Review.find(params[:review_id])
     if review.update(review_params)
-    # redirect_to "/items/#{review.item.id}"
-    # if review.save
       redirect_to "/items/#{review.item.id}"
     else
       flash[:error] = review.errors.full_messages.to_sentence
