@@ -3,14 +3,14 @@
 <center>
 <% @order.order_details.each do |item, quantity| %>
   <section id="order-<%= item.id%>">
-    <p>Item: <%= link_to item.name, "/items/#{item.id}" %></p>
-    <p>Purchased from: <%= link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
-    <p>Price: $<%= item.price %></p>
-    <p>Quantity: <%= quantity %> </p>
-    <p>Subtotal: $<%= item.item_subtotal(quantity) %></p>
+    <br>Item: <%= link_to item.name, "/items/#{item.id}" %>
+    <br>Purchased from: <%= link_to item.merchant.name, "/merchants/#{item.merchant.id}" %>
+    <br>Price: $<%= item.price %>
+    <br>Quantity: <%= quantity %>
+    <br>Subtotal: $<%= item.item_subtotal(quantity) %>
   </section>
   <% end %>
-<p>Total: $<%= @order.order_total %></p>
+<p><b>Order Total: $<%= @order.order_total %></b></p>
 <section id='order-address'>
   <b><u>Shipped To:</u></b>
   <br><%= @order.name %>

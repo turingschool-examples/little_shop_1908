@@ -1,6 +1,7 @@
 <h1>Shopping Cart</h1>
 <center>
 <section id = "cart-summary">
+  <section id ="cart-item-section">
   <% cart.item_quantity.each do |item, quantity| %>
     <section id="cart-item-<%=item.id%>">
       <%= render partial:"partials/item_info", locals:{item:item} %>
@@ -10,6 +11,7 @@
       <p>Subtotal: $<%= item.item_subtotal(quantity) %></p>
     </section>
   <% end %>
+  </section>
 
   <section id="cart-total">
     <p><b>Total: $<%= cart.total %></b></p>
