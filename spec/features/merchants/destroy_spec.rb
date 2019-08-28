@@ -13,29 +13,30 @@ RSpec.describe "As a visitor" do
     #dog_shop items
     @pull_toy = @dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
     @brush = @dog_shop.items.create(name: "Brush", description: "Great for long haired pets", price: 15, image: "https://images-na.ssl-images-amazon.com/images/I/71V8HaHa02L._SL1200_.jpg", inventory: 15)
+
+    @review_1 = @tire.reviews.create(title: 'Review Title 1', content: "Content 1", rating: 1)
+    @review_2 = @tire.reviews.create(title: 'Review Title 2', content: "Content 2", rating: 2)
+    @review_3 = @tire.reviews.create(title: 'Review Title 3', content: "Content 3", rating: 3)
   end
 
   describe "When I visit a merchant show page" do
     it "I can delete a merchant" do
-      bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 80203)
 
       visit '/merchants'
-      expect(page).to have_css("#merchant-#{bike_shop.id}")
+      expect(page).to have_css("#merchant-#{@bike_shop.id}")
 
-      visit "merchants/#{bike_shop.id}"
+      visit "merchants/#{@bike_shop.id}"
 
       click_on "Delete Merchant"
 
       expect(current_path).to eq('/merchants')
       expect(page).to_not have_content("Brian's Bike Shop")
-      expect(page).to_not have_css("#merchant-#{bike_shop.id}")
+      expect(page).to_not have_css("#merchant-#{@bike_shop.id}")
     end
 
-    it "I can delete a merchant that has items" do
-      bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
-      chain = bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
+    it "I can delete a merchant that has items and reviews" do
 
-      visit "merchants/#{bike_shop.id}"
+      visit "merchants/#{@bike_shop.id}"
 
       click_on "Delete Merchant"
 
