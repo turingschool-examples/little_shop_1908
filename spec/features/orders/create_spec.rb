@@ -51,13 +51,14 @@ RSpec.describe "As a visitor" do
 
       expect(page).to have_content("Item: #{@chain.name}")
       expect(page).to have_content("Sold By: #{@chain.merchant.name}")
-      expect(page).to have_content("Price: #{@chain.price}")
+      expect(page).to have_content("Price: $#{@chain.price}")
       expect(page).to have_content("Quantity: 1")
-      expect(page).to have_content("Item Subtotal: 50.0")
+      expect(page).to have_content("Item Subtotal: $50.0")
 
-      expect(page).to have_content("Grand Total: 150.0")
+      expect(page).to have_content("Grand Total: $150.0")
       expect(page).to have_content("Created at: #{new_order.created_at}")
     end
+    
     it "From the order creation page, When I click 'Create Order' without
     completing the shipping address form, I see a flash message indicating that
     I need to complete the form for successful order creation " do

@@ -1,34 +1,42 @@
 <h1>Review Your Order</h1>
 
-<% @cart.items.each do |item| %>
-  <section id="item-<%=item.id%>">
-    <p>Name: <%=link_to item.name, "/items/#{item.id}" %></p>
-    <p>Price: <%= item.price %></p>
-    <p>Sold By: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}"%></p>
-    <p>Total Quantity: <%= @cart.quantity_of(item) %></p>
-    <p>Subtotal: <%= @cart.subtotal(item) %></p><br><br>
+  <section class="cart-grid-container">
+    <% @cart.items.each do |item| %>
+    <section class = "cart-item-show-grid">
+      <section class = "cart-item-show-item">
+        <section style="text-align:center" class = "cart-item-show-item">
+          <section id="item-<%=item.id%>">
+            <p>Name: <%=link_to item.name, "/items/#{item.id}" %></p>
+            <p>Price: $<%= item.price %></p>
+            <p>Sold By: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}"%></p>
+            <p>Total Quantity: <%= @cart.quantity_of(item) %></p>
+            <p>Subtotal: $<%= @cart.subtotal(item) %></p><br><br>
+          </section>
+        </section>
+      </section>
+    </section>
+    <% end %>
   </section>
-<% end %>
 
-<p>Grand Total: <%= @cart.grand_total %></p>
+<h3>Grand Total: $<%= @cart.grand_total %></h3>
 
-  <section class='order'>
+  <center><section class='order'>
     <%= form_tag '/orders', method: :post do |f| %>
-      <%= label_tag :name %>
-      <%= text_field_tag :name %><br>
+    <%= label_tag :name %>
+    <%= text_field_tag :name %><br>
 
-      <%= label_tag :address %>
-      <%= text_field_tag :address %><br>
+    <%= label_tag :address %>
+    <%= text_field_tag :address %><br>
 
-      <%= label_tag :city %>
-      <%= text_field_tag :city %><br>
+    <%= label_tag :city %>
+    <%= text_field_tag :city %><br>
 
-      <%= label_tag :state %>
-      <%= text_field_tag :state %><br>
+    <%= label_tag :state %>
+    <%= text_field_tag :state %><br>
 
-      <%= label_tag :zip %>
-      <%= text_field_tag :zip %><br>
+    <%= label_tag :zip %>
+    <%= text_field_tag :zip %><br>
 
-      <%= submit_tag "Create Order" %>
+    <%= submit_tag "Create Order" %>
     <% end %>
   </section>

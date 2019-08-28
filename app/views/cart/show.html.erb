@@ -1,24 +1,32 @@
-<h1>Welcome To Cart!</h1>
+<h1>Welcome To Your Cart!</h1>
 
   <% if @cart.contents.empty? %>
     <p>Oops! You have no items in your cart!</p>
   <% else %>
+  <section class="cart-grid-container">
     <% @cart.items.each do |item| %>
-      <section id="item-<%=item.id%>">
-        <p>Name: <%=link_to item.name, "/items/#{item.id}" %></p>
-        <p>Price: <%= item.price %></p>
-        <img src="<%=item.image%>"><br>
-        <p>Sold By: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}"%></p>
-        <p>Total Quantity: <%= @cart.quantity_of(item) %></p>
-        <%= link_to "Remove One: #{item.name}", me_take_away_path(item), method: :patch %>
-        <%= link_to "Add Another: #{item.name}", me_add_path(item), method: :patch %>
-        <p>Subtotal: <%= @cart.subtotal(item) %></p><br><br>
-        <%= button_to "Remove From Cart", update_cart_path(item), method: :patch%>
+    <section class = "cart-item-show-grid">
+      <section class = "cart-item-show-item">
+        <section style="text-align:center" class = "cart-item-show-item">
+          <section id="item-<%=item.id%>">
+            <h3>Name:</b> <%=link_to item.name, "/items/#{item.id}" %></h3>
+            <p><b>Price:</b> $<%= item.price %></p>
+            <img src= <%= item.image %>>
+            <p><b>Sold By:</b> <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}"%></p>
+            <p><b>Total Quantity:</b> <%= @cart.quantity_of(item) %></p>
+            <%= link_to "Add Another #{item.name}", me_add_path(item), method: :patch %>
+            <%= link_to "Remove One #{item.name}", me_take_away_path(item), method: :patch %>
+            <p><b>Subtotal:</b> $<%= @cart.subtotal(item) %></p><br><br>
+            <%= link_to "Remove From Cart", update_cart_path(item), method: :patch%>
+          </section>
+        </section>
       </section>
+    </section>
     <% end %>
-    <p>Grand Total: <%= @cart.grand_total %></p>
 
-    <%= link_to 'Empty Cart', empty_cart_path, method: :patch%>
-
-    <%= link_to 'Checkout', new_order_path %>
+  </section>
+  <center><%= button_to 'Empty Cart', empty_cart_path, method: :patch%></center>
+  <h3>Grand Total: $<%= @cart.grand_total %></h3>
   <% end %>
+
+    <h3><center><%= link_to 'Checkout', new_order_path %></center></h3>

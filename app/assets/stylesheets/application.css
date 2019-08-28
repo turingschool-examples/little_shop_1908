@@ -14,6 +14,8 @@
  *= require_self
  */
 
+ * {box-sizing: border-box;}
+
  body {
  background-color: white;
  }
@@ -23,6 +25,12 @@
  	font-size: 40px;
  	color: #002244;
  	font-family: "Marker Felt", fantasy;
+ }
+
+ h3 {
+  text-align: center;
+   font-size: 28px;
+   color: #002244;
  }
 
 ul{
@@ -40,6 +48,14 @@ img{
  	grid-gap: 30px;
  }
 
+ .cart-grid-container{
+ 	display: grid;
+ 	grid-template-columns: repeat(1, 3fr);
+ 	grid-template-rows: auto;
+ 	grid-gap: 10px;
+  justify-items: center;
+ }
+
  .grid-item{
  	background-color: #17BEBB;
  	padding: 20px;
@@ -48,6 +64,7 @@ img{
   border-color: #002244;
  	text-align: center
  }
+
  .item-show-grid{
   width: 60%;
  	display: grid;
@@ -56,7 +73,22 @@ img{
  	grid-template-columns: repeat(2,1fr);
  }
 
+ .cart-item-show-grid{
+  width: 60%;
+ 	display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid;
+  border-radius: 12px;
+ 	grid-template-columns: repeat(2,1fr);
+ }
+
  .item-show-item{
+ 	padding: 20px;
+ 	text-align: right;
+ }
+
+ .cart-item-show-item{
  	padding: 20px;
  	text-align: right;
  }
@@ -68,6 +100,16 @@ img{
 
  .topnav a {
    float: left;
+   display: block;
+   color: #f2f2f2;
+   text-align: center;
+   padding: 14px 16px;
+   text-decoration: none;
+   font-size: 17px;
+ }
+ .topnav-right {
+   float: right;
+   display: block;
    color: #f2f2f2;
    text-align: center;
    padding: 14px 16px;
@@ -79,6 +121,15 @@ img{
    background-color: #17BEBB;
    color: black;
  }
+
+ .topnav input[type=text] {
+  float: right;
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 16px;
+}
 
  .address{
    text-align: center;
