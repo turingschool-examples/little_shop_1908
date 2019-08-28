@@ -1,57 +1,17 @@
-<br>
-<hr>
-<br>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<br><hr><br>
 <%= link_to "add new review", "/items/#{@item.id}/reviews/new", class: "btn btn-outline-success" %>
 <br>
 <div class='container'>
-
   <div>
-    <section id='item-<%= @item.id %>-review-stats'>
-      <h3>Average Rating: <%= @item.reviews.average_review_rating %></h3>
-    </section>
-
+    <%= render 'partials/average_rating' %>
     <hr>
-    <section id='item-<%= @item.id %>-top-3-reviews'>
-      <h5>Most Popular Reviews</h5>
-      <% @item.reviews.top_three_reviews.each do |title, rating| %>
-        <div>
-          <span><%= title %></span>
-          <span><%= rating %></span>
-        </div>
-      <% end %>
-    </section>
-
+    <%= render 'partials/most_popular_reviews' %>
     <hr>
-    <section id='item-<%= @item.id %>-bottom-3-reviews'>
-      <h5>Least Popular Reviews</h5>
-      <% @item.reviews.bottom_three_reviews.each do |title, rating| %>
-        <div>
-          <span><%= title %></span>
-          <span><%= rating %></span>
-        </div>
-      <% end %>
-    </section>
+    <%= render 'partials/least_popular_reviews' %>
   </div>
-  <hr><hr>
-
+  <hr>
   <div>
-    <p class='display-4'>All Reviews <% @item.reviews.each do |review| %> </p>
-      <li class="list-group-item">
-        <section id= 'review-<%=review.id%>'>
-          <h5><%= review.title %> -- Rating: <%= review.rating %></h5>
-          <br>
-          <p><%= review.content %></p>
-          <br>
-          <div class="row">
-            <div class="col">
-              <p><%= link_to "Edit review", "/items/#{@item.id}/#{review.id}/edit", class: "btn btn-success item-buttons" %></p>
-            </div>
-            <div class="col">
-              <p id="delete-review-<%= review.id %>"><%= link_to "Delete Review", "/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger item-buttons" %></p>
-            </div>
-          </div>
-        </section>
-      </li>
-      <% end %>
+    <%= render 'partials/all_reviews' %>
   </div>
 </div>
