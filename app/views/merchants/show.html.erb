@@ -5,7 +5,7 @@
 <section id= "merchant-stats">
   <h2> Merchant Statistics </h2>
   <p>Products: <%= @merchant.num_products %></p>
-  <p>Average Product Price: $<%= @merchant.avg_price %></p>
+  <p>Average Product Price: <%= number_to_currency @merchant.avg_price %></p>
   <p>Shipped To: <%= @merchant.shipped_to_cities %></p>
 <section>
 
