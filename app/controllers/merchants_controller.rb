@@ -37,9 +37,19 @@ class MerchantsController < ApplicationController
   end
 
   def destroy
-    Item.delete(Item.where(merchant_id: params[:id]))
-    Merchant.destroy(params[:id])
-    redirect_to '/merchants'
+    merchant = Merchant.find(params[:id])
+
+    if merchant.item_orders.empty?
+      Review.delete(Review.where(item_id: Item.where(merchant_id: params[:id])))
+      Item.delete(Item.where(merchant_id: params[:id]))
+      Merchant.destroy(params[:id])
+      
+      redirect_to '/merchants'
+    else
+      flash[:error] = "Sorry, this merchant has orders and cannot be deleted."
+      redirect_to "/merchants/#{merchant.id}"
+    end
+
   end
 
   private
