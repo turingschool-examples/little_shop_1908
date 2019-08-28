@@ -16,7 +16,7 @@ class Item <ApplicationRecord
   end
 
   def self.exists?(id)
-    Item.where(id: id).empty?
+    !Item.where(id: id).empty?
   end
 
   def has_orders?
