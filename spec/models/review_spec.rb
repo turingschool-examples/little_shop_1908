@@ -21,15 +21,15 @@ describe Review, type: :model do
       @terrible_review = @chain.reviews.create(title: "I hate it", content: "Never buy it again.", rating: 1)
     end
 
-    it "average review rating" do
+    it "show average review rating" do
       expect(Review.average_review_rating).to eq(2.75)
     end
 
-    it "shows top three ratings" do
+    it "show top three ratings" do
       expect(Review.top_three_reviews.length).to eq(3)
     end
 
-    it "shows bottom three ratings" do
+    it "show bottom three ratings" do
       expect(Review.bottom_three_reviews.length).to eq(3)
     end
   end

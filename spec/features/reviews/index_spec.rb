@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Reviews Index" do
+RSpec.describe "As a visitor" do
   describe "When I visit the items show page" do
     before(:each) do
       @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
@@ -11,7 +11,7 @@ RSpec.describe "Reviews Index" do
       @terrible_review = @chain.reviews.create(title: "I hate it", content: "Never buy it again.", rating: 1)
     end
 
-    it 'shows reviews for an item' do
+    it 'it shows reviews for an item' do
 
       visit "items/#{@chain.id}"
 

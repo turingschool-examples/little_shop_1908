@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "New Order Page" do
-  describe "When I visit the new order page" do
+RSpec.describe "As a visitor" do
+  describe "when I visit the new order page" do
     before(:each) do
       @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 2)
@@ -10,7 +10,7 @@ RSpec.describe "New Order Page" do
       @cart = Cart.new({})
     end
 
-    it "shows new order information and shipping information form" do
+    it "it shows new order information and shipping information form" do
       visit "/items/#{@tire.id}"
 
       within "#item-info" do
@@ -52,7 +52,7 @@ RSpec.describe "New Order Page" do
       expect(page).to have_button("Submit Order")
     end
 
-    it "shows flash message when shipping information form is incomplete" do
+    it "it shows flash message when shipping information form is incomplete" do
 
       visit "/items/#{@tire.id}"
 
@@ -93,7 +93,7 @@ RSpec.describe "New Order Page" do
 
       click_on("Submit Order")
       expect(current_path).to eq("/orders/new")
-      expect(page).to have_content("The shipping information form is incomplete. Please fill in all five fields in order to submit order.")
+      expect(page).to have_content("Zip can't be blank")
     end
   end
 end

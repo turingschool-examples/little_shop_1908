@@ -31,7 +31,7 @@ RSpec.describe 'Item show page', type: :feature do
     expect(page).to have_css("img[src*='#{@chain.image}']")
   end
 
-  it 'shows flash message when I attempt to visit item page that does not exist' do
+  it 'shows flash message when I attempt to visit item page that does not exist and redirects me to item index page' do
 
     visit "items/bad_id"
 

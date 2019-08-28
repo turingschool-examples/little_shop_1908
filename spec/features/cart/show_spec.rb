@@ -9,7 +9,7 @@ RSpec.describe "As a Visitor" do
     @cart = Cart.new({})
   end
 
-  it "see all items that I have added to my cart with item info" do
+  it "I see all items that I have added to my cart with item info" do
     visit "/items/#{@tire.id}"
 
     within "#item-info" do
@@ -59,7 +59,7 @@ RSpec.describe "As a Visitor" do
     expect(page).to have_content("Grand Total: $#{grand_total}")
   end
 
-  it "see all items that I have added to my cart with item info" do
+  it "I see an empty cart when items have been emptied from it" do
     visit "/cart"
 
 
@@ -125,7 +125,7 @@ RSpec.describe "As a Visitor" do
   end
 
 
-  it "can remove an item from cart" do
+  it "I can remove an item from cart" do
     visit "/items/#{@tire.id}"
 
     within "#item-info" do
@@ -166,7 +166,7 @@ RSpec.describe "As a Visitor" do
     expect(page).to_not have_content("Subtotal: $#{subtotal_tire}")
   end
 
-  it "quantity of item is increased in cart" do
+  it "I see that the quantity of an item is increased in cart" do
     visit "/items/#{@tire.id}"
 
     within "#item-info" do
@@ -202,7 +202,7 @@ RSpec.describe "As a Visitor" do
     end
   end
 
-  it "quantity of item cannot be increased in cart beyond item inventory size" do
+  it "I see that the quantity of an item cannot be increased in the cart beyond item inventory size" do
     visit "/items/#{@tire.id}"
 
     within "#item-info" do
@@ -221,7 +221,7 @@ RSpec.describe "As a Visitor" do
     expect(page).to have_content("There is no more inventory for #{@tire.name}")
   end
 
-  it "quantity of item is decreased in cart and item is deleted when quantity is zero" do
+  it "I see that the quantity of an item is decreased in the cart and item is deleted when quantity is zero" do
     visit "/items/#{@pull_toy.id}"
 
     within "#item-info" do
@@ -267,7 +267,7 @@ RSpec.describe "As a Visitor" do
     expect(page).to_not have_content("Subtotal: $#{subtotal_pulltoy}")
   end
 
-  it "has checkout link when item is in cart" do
+  it "I see that the cart has a checkout link when item is in the cart" do
     visit "/items/#{@tire.id}"
 
     within "#item-info" do
@@ -280,7 +280,7 @@ RSpec.describe "As a Visitor" do
     expect(page).to have_link("Checkout")
   end
 
-  it "does not have checkout link when there are no items in cart" do
+  it "I see that the cart does not have checkout link when there are no items in the cart" do
     visit "/cart"
 
     expect(page).to_not have_link("Checkout")

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "Reviews Index" do
-  describe "When I visit the items show page" do
+RSpec.describe "As a visitor" do
+  describe "when I visit the items show page" do
     before(:each) do
       @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       @pull_toy = @bike_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 2)
@@ -12,7 +12,7 @@ RSpec.describe "Reviews Index" do
       @terrible_review = @chain.reviews.create(title: "I hate it", content: "Never buy it again.", rating: 1)
     end
 
-    it 'shows review stats' do
+    it 'it shows review stats' do
       visit "/items/#{@chain.id}"
 
       within "#item-#{@chain.id}-review-stats" do
@@ -38,7 +38,7 @@ RSpec.describe "Reviews Index" do
       end
     end
 
-    it 'shows message when no reviews have been posted yet' do
+    it 'it shows message when no reviews have been posted yet' do
       visit "/items/#{@pull_toy.id}"
 
       expect(page).to have_content("There are no reviews yet")
