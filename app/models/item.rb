@@ -12,3 +12,12 @@ class Item <ApplicationRecord
   validates_inclusion_of :active?, :in => [true, false]
 
 end
+
+
+# def remove_inventory(cart_items)
+#   loop to find item ids and remove those from items table
+# end
+
+# def add_inventory(cart_items)
+#   loop to get id and return to items table
+# end
