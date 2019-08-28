@@ -14,7 +14,8 @@ class Merchant < ApplicationRecord
   end
 
   def avg_price
-    self.items.average(:price)
+    # binding.pry
+   items.average(:price)
   end
 
   def shipped_to_cities
