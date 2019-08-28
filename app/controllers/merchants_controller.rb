@@ -11,7 +11,6 @@ class MerchantsController < ApplicationController
   def new
   end
 
-
   def create
     new_merchant = Merchant.new(merchant_params)
     if new_merchant.save
@@ -43,7 +42,7 @@ class MerchantsController < ApplicationController
       Review.delete(Review.where(item_id: Item.where(merchant_id: params[:id])))
       Item.delete(Item.where(merchant_id: params[:id]))
       Merchant.destroy(params[:id])
-      
+
       redirect_to '/merchants'
     else
       flash[:error] = "Sorry, this merchant has orders and cannot be deleted."
