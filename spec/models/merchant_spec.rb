@@ -34,6 +34,10 @@ describe Merchant do
       @order.item_orders.create(item_id: @soap.id, order_id: @order.id, quantity: 5, total_cost: (@soap.price * 5))
       @order.item_orders.create(item_id: @dog_food.id, order_id: @order.id, quantity: 15, total_cost: (@dog_food.price * 15))
       @order_2.item_orders.create(item_id: @dog_food.id, order_id: @order.id, quantity: 150, total_cost: (@dog_food.price * 150))
+      @review_1 = @dog_food.reviews.create(title: "woo", content: "this rules", rating: 5)
+      @review_2 = @dog_food.reviews.create(title: "woowooo", content: "this is ok", rating: 4)
+      @review_3 = @soap.reviews.create(title: "meh", content: "ok", rating: 3)
+      @review_4 = @soap.reviews.create(title: "woowoooo", content: "YEAH", rating: 5)
     end
 
     it "should calculate total items" do
@@ -46,6 +50,10 @@ describe Merchant do
 
     it "should calculate all cities that had orders" do
       expect(@pug_store.cities_serviced.sort).to eq([@order.city, @order_2.city])
+    end
+
+    it "should calculate top three item ids" do
+      expect(@pug_store.top_three_item_ids).to eq([@dog_food.id, @soap.id])
     end
   end
 end
