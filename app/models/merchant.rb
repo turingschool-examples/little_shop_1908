@@ -26,13 +26,7 @@ class Merchant <ApplicationRecord
   end
 
   def top_3_items
-    hash = Hash.new(0)
-    avg_rtg_array = items.each do |item|
-                      hash[item.name] = item.average_rating
-                    end
-    sorted_hash = hash.sort_by { |name, avg_rtg| avg_rtg }
-    sorted_hash.last(3)
-    # binding.pry
+    items.joins(:reviews).order("reviews.rating desc").limit(3).pluck(:name).uniq
   end
 
 end

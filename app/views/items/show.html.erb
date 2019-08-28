@@ -71,13 +71,10 @@
            <section class="reviews">
              <% @reviews.each do |review| %>
                 <section id="review-<%=review.id%>">
-                  <p><%= review.title %></p>
-                  <p><%= review.content %></p>
+                  <p>Title: <%= review.title %></p>
+                  <p>Review: <%= review.content %></p>
                   <p>Rating: <%= review.rating %></p>
                   <%= link_to 'Delete Review', delete_review_path(@item, review), method: :delete %>     <%= link_to "Edit Review", edit_review_path(@item, review) %>
-                  <br>
-                  <br>
-                  <p>------------------------------------</p>
                 </section>
               <% end %>
            </section>
