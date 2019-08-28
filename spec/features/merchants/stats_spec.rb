@@ -55,7 +55,7 @@ RSpec.describe "As a visitor" do
     it 'can show count of items for that merchant' do
       visit "/merchants/#{@bike_shop}"
 
-      within "#merchant-stats" do 
+      within "#merchant-stats" do
         expect(page).to have("Products: 2")
       end
     end
@@ -72,7 +72,7 @@ RSpec.describe "As a visitor" do
       visit "/merchants/#{@bike_shop}"
 
       within "#merchant-stats" do
-        expect(page).to have("Average Product Price: $150")
+        expect(page).to have("Shipped To: Denver, Golden, Chicago")
       end
     end
   end
