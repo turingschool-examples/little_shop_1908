@@ -18,9 +18,7 @@ class Merchant < ApplicationRecord
   end
 
   def shipped_to_cities
-    self.items.map do |item|
-      # binding.pry
-      item
-    end
+    binding.pry
+     self.item_orders.select(Item.where(Merchant.where(id: id)))
   end
 end
