@@ -11,6 +11,10 @@ class Item <ApplicationRecord
                         :inventory
   validates_inclusion_of :active?, :in => [true, false]
 
+  def show_rating
+    reviews.average_review_rating.to_i
+  end
+
 end
 
 
