@@ -1,27 +1,25 @@
 class ReviewsController<ApplicationController
   before_action :set_review, only: [:index, :edit, :update, :destroy]
+  before_action :set_item, only: [:index, :new, :create]
+
   def index
-    @item = Item.find(params[:item_id])
     @reviews = @item.reviews
   end
 
   def new
-    @item = Item.find(params[:item_id])
   end
 
   def create
-    item = Item.find(params[:item_id])
-    review = item.reviews.new(review_params)
+    review = @item.reviews.new(review_params)
     if review.save
-      redirect_to "/items/#{item.id}"
+      redirect_to "/items/#{@item.id}"
     else
       flash[:error] = review.errors.full_messages
-      redirect_to "/items/#{item.id}/reviews/new"
+      redirect_to "/items/#{@item.id}/reviews/new"
     end
   end
 
   def edit
-    @review = Review.find(params[:id])
     @item = @review.item
   end
 
@@ -47,6 +45,10 @@ class ReviewsController<ApplicationController
 
   def set_review
     @review = Review.find(params[:id])
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 
 end

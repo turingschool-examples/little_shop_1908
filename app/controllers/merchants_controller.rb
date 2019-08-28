@@ -1,11 +1,11 @@
 class MerchantsController <ApplicationController
+  before_action :set_merchant, only: [:show, :edit, :update]
 
   def index
     @merchants = Merchant.all
   end
 
   def show
-    @merchant = Merchant.find(params[:id])
     @top_items = @merchant.best_items
   end
 
@@ -23,16 +23,14 @@ class MerchantsController <ApplicationController
   end
 
   def edit
-    @merchant = Merchant.find(params[:id])
   end
 
   def update
-    merchant = Merchant.find(params[:id])
-    if merchant.update(merchant_params)
-      redirect_to "/merchants/#{merchant.id}"
+    if @merchant.update(merchant_params)
+      redirect_to "/merchants/#{@merchant.id}"
     else
-      flash[:error] = merchant.errors.full_messages
-      redirect_to "/merchants/#{merchant.id}/edit"
+      flash[:error] = @merchant.errors.full_messages
+      redirect_to "/merchants/#{@merchant.id}/edit"
     end
   end
 
@@ -45,5 +43,9 @@ class MerchantsController <ApplicationController
 
   def merchant_params
     params.permit(:name,:address,:city,:state,:zip)
+  end
+
+  def set_merchant
+    @merchant = Merchant.find(params[:id])
   end
 end

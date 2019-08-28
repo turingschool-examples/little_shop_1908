@@ -1,15 +1,15 @@
 class CartController < ApplicationController
+  before_action :set_cart, only: [:add_item, :show, :remove_item, :increase, :decrease]
+  before_action :set_item, only: [:add_item, :remove_item, :increase, :decrease]
+  after_action :set_session_cart, only: [:remove_item, :increase, :decrease]
   def add_item
-    cart = Cart.new(session[:cart])
-    item = Item.find(params[:item_id])
-    cart.add_item(item.id)
-    session[:cart] = cart.contents
-    flash[:notice] = "#{item.name} added to cart."
+    @cart.add_item(@item.id)
+    session[:cart] = @cart.contents
+    flash[:notice] = "#{@item.name} added to cart."
     redirect_to '/items'
   end
 
   def show
-    @cart = Cart.new(session[:cart])
     @items = Item.cart_items(@cart)
   end
 
@@ -20,34 +20,39 @@ class CartController < ApplicationController
   end
 
   def remove_item
-    cart = Cart.new(session[:cart])
-    item = Item.find(params[:item_id])
-    cart.remove_item(item.id)
-    session[:cart] = cart.contents
+    @cart.remove_item(@item.id)
     redirect_to '/cart'
   end
 
   def increase
-    cart = Cart.new(session[:cart])
-    item = Item.find(params[:item_id])
-    if cart.quantity_of(item.id) < item.inventory
-      cart.add_item(item.id)
+    if @cart.quantity_of(@item.id) < @item.inventory
+      @cart.add_item(@item.id)
     else
       flash[:notice] = "Item out of stock"
     end
-    session[:cart] = cart.contents
     redirect_to '/cart'
   end
 
   def decrease
-    cart = Cart.new(session[:cart])
-    item = Item.find(params[:item_id])
-    if cart.quantity_of(item.id) > 1
-      cart.subtract_item(item.id)
+    if @cart.quantity_of(@item.id) > 1
+      @cart.subtract_item(@item.id)
     else
-      cart.remove_item(item.id)
+      @cart.remove_item(@item.id)
     end
-    session[:cart] = cart.contents
     redirect_to '/cart'
+  end
+
+  private
+
+  def set_cart
+    @cart = Cart.new(session[:cart])
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def set_session_cart
+    session[:cart] = @cart.contents
   end
 end
