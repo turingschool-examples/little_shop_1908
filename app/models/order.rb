@@ -19,8 +19,6 @@ class Order < ApplicationRecord
   end
 
   def order_total
-    self.order_details.sum do |item, quantity|
-      Item.find(item.id).price * quantity
-    end
+    self.item_orders.sum(:subtotal)
   end
 end
