@@ -9,4 +9,22 @@ class Merchant < ApplicationRecord
                         :state,
                         :zip
 
+  def num_products
+    self.items.count
+  end
+
+  def avg_price
+    # binding.pry
+   items.average(:price)
+  end
+
+  def shipped_to_cities
+    cities = []
+    self.items.each do |item|
+      item.item_orders.each do |item_order|
+         cities << item_order.order.city
+      end
+    end
+    cities.uniq.join(", ")
+  end
 end
