@@ -23,7 +23,8 @@ horn = bike_shop.items.create(name: "Honky Horn", description: "Let everyone kno
 #dog_shop items
 pull_toy = dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
 dog_bone = dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
-collar = dog_shop.items.create(name: "Chaco Collar", description: "Dogs love name brand stuff too!", price: 35.79, image: "https://www.rei.com/media/3ef543ea-9b63-4f97-9c24-e5f2d4de4b85?size=784x588", active?:false, inventory: 21)
+collar = dog_shop.items.create(name: "Chaco Collar", description: "Dogs love name brand stuff too!", price: 35.79, image: "https://www.rei.com/media/3ef543ea-9b63-4f97-9c24-e5f2d4de4b85?size=784x588", inventory: 21)
+stache = dog_shop.items.create(name: "Humunga Stache", description: "Make your dog look like an old-timey gentleman!", price: 19.99, image: "https://www.glamourmutt.com/thumbnail.asp?file=assets/images/stache1.jpg&maxx=300&maxy=0", inventory: 21)
 
 #tire reviews
 tire_review_1 = tire.reviews.create(title: 'Its Great!', content: 'Best tire ever!', rating: 5)
@@ -42,3 +43,12 @@ horn_review_2 = horn.reviews.create(title: 'Stylish!', content: 'Everyone loves 
 
 #lights review
 lights_review_1 = lights.reviews.create(title: 'Lame', content: "They barely light up anything", rating: 1)
+
+#pull_toy reviews
+pull_toy_review_1 = pull_toy.reviews.create(title: 'Broke immediately', content: "I guess it's cheap for a reason", rating: 1)
+
+#dog_bone reviews
+dog_bone_review_1 = dog_bone.reviews.create(title: 'Great toy', content: "My dogs love them, but not quite as durable as I'd like.", rating: 4)
+
+#stache reviews
+stache_review_1 = stache.reviews.create(title: 'Hilarious', content: "I can't stop laughing hysterically whenever my dog picks this thing up!", rating: 5)
