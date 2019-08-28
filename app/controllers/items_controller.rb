@@ -13,8 +13,15 @@ class ItemsController < ApplicationController
     if Item.where(id: params[:id]).empty?
       flash[:no_item] = "This item doesn't exist"
       redirect_to "/items"
-    else
+    elsif params[:sort] == "highest-lowest"
       @item = Item.find(params[:id])
+      @reviews = @item.reviews.order(rating: :desc, updated_at: :desc)
+    elsif params[:sort] == "lowest-highest"
+      @item = Item.find(params[:id])
+      @reviews = @item.reviews.order(:rating, updated_at: :asc)
+    else 
+      @item = Item.find(params[:id])
+      @reviews = @item.reviews
     end
   end
 
