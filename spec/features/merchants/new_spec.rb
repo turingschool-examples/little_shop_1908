@@ -30,14 +30,78 @@ RSpec.describe 'merchant new page', type: :feature do
       expect(new_merchant.zip).to eq(zip)
     end
 
-    it 'flash messasge for incomplete form' do
-      visit '/merchants/new'
+    # As a visitor
+    # When I am updating or creating a new merchant
+    # If I try to submit the form with incomplete information
+    # I see a flash message indicating which field(s) I am missing
+    describe 'flash messasge for incomplete form specific to each field' do
+      it 'empty zip flash message' do
+        visit '/merchants/new'
 
-      fill_in :name, with: "Sammie's Socks"
+        fill_in :name, with: "Sammie's Socks"
+        fill_in :address, with: 'One Merchant Road'
+        fill_in :city, with: 'Cash City'
+        fill_in :state, with: 'MD'
 
-      click_button 'Create Merchant'
 
-      expect(page).to have_content("All fields must be completed before creating a new merchant. Please try again.")
+        click_button 'Create Merchant'
+
+        expect(page).to have_content("Zip can't be blank")
+      end
+
+      it 'empty state flash message' do
+        visit '/merchants/new'
+
+        fill_in :name, with: "Sammie's Socks"
+        fill_in :address, with: 'One Merchant Road'
+        fill_in :city, with: 'Cash City'
+        fill_in :zip, with: '10456'
+
+
+        click_button 'Create Merchant'
+
+        expect(page).to have_content("State can't be blank")
+      end
+
+      it 'empty city flash message' do
+        visit '/merchants/new'
+
+        fill_in :name, with: "Sammie's Socks"
+        fill_in :address, with: 'One Merchant Road'
+        fill_in :state, with: 'MD'
+        fill_in :zip, with: '10456'
+
+
+        click_button 'Create Merchant'
+
+        expect(page).to have_content("City can't be blank")
+      end
+
+      it 'empty address flash message' do
+        visit '/merchants/new'
+
+        fill_in :name, with: "Sammie's Socks"
+        fill_in :city, with: 'Cash City'
+        fill_in :state, with: 'MD'
+        fill_in :zip, with: '10456'
+
+        click_button 'Create Merchant'
+
+        expect(page).to have_content("Address can't be blank")
+      end
+
+      it 'empty zip flash message' do
+        visit '/merchants/new'
+
+        fill_in :address, with: 'One Merchant Road'
+        fill_in :city, with: 'Cash City'
+        fill_in :state, with: 'MD'
+        fill_in :zip, with: '10456'
+
+        click_button 'Create Merchant'
+
+        expect(page).to have_content("Name can't be blank")
+      end
     end
   end
 end
