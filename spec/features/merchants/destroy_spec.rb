@@ -44,42 +44,22 @@ RSpec.describe "As a visitor" do
     end
 
     it "cannot delete a merchant that has orders" do
-    #As a visitor
-    # If a merchant has items that have been ordered
-    # I can not delete that merchant
-    # Either:
-    # - there is no button visible for me to delete the merchant
-    # - if I click on the delete button, I see a flash message indicating that the merchant can not be deleted.
 
-      5.times do
-        visit "/items/#{@brush.id}"
-        click_button "Add Item"
-      end
+      order_1 = Order.create(
+        name: "Mack", address: "123 Happy Street", city: "Denver", state: "Co", zip: "80205")
 
-      2.times do
-        visit "/items/#{@tire.id}"
-        click_button "Add Item"
-      end
+      item_order_1 = ItemOrder.create(
+        order: order_1,
+        item: @bike,
+        quantity: 1,
+        subtotal: @bike.item_subtotal(1))
 
-      visit '/cart'
+      visit "/merchants/#{@bike_shop.id}"
 
-      click_button("Checkout")
+      click_on "Delete Merchant"
 
-      name = "Jane Doe"
-      address = '123 Happy Street'
-      city = "Denver"
-      state = "CO"
-      zip = "80204"
-
-      fill_in :name, with: name
-      fill_in :address, with: address
-      fill_in :city, with: city
-      fill_in :state, with: state
-      fill_in :zip, with: zip
-
-      click_button("Create Order")
-
-
+      expect(current_path).to eq("/merchants/#{@bike_shop.id}")
+      expect(page).to have_content("Sorry, this merchant has orders and cannot be deleted.")
     end
   end
 end
