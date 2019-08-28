@@ -1,0 +1,5 @@
+<section id='item-<%= @item.id %>-review-stats'>
+  <p class='display-4'>
+    Average Rating: <%= render partial: 'partials/star_rating', locals: {star: @item.show_rating} %>
+  </p>
+</section>

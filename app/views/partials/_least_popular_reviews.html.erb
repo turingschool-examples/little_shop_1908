@@ -1,0 +1,10 @@
+<section id='item-<%= @item.id %>-bottom-3-reviews'>
+  <h5>Least Popular Reviews</h5>
+  <% @item.reviews.bottom_three_reviews.each do |title, rating| %>
+    <div>
+      <span>
+        <%= title %> | <%= render partial: 'partials/star_rating', locals: {star: rating} %>
+      </span>
+    </div>
+  <% end %>
+</section>

@@ -1,0 +1,22 @@
+<p class='display-4'>All Reviews <% @item.reviews.each do |review| %>
+  <li class="list-group-item">
+    <section id= 'review-<%=review.id%>'>
+      <review>
+        <%= review.title %> |
+        <span><%= render partial: 'partials/star_rating', locals: {star: review.rating} %></span>
+      </review>
+
+      <br><br>
+      <div class="row">
+        <div class="col">
+          <span><%= link_to "Edit", "/items/#{@item.id}/#{review.id}/edit" %> | </span>
+          <span id="delete-review-<%= review.id %>"><%= link_to "Delete", "/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %></span>
+        </div>
+      </div>
+      <br />
+      <span><%= review.content %></span>
+      <br><br>
+    </section>
+  </li>
+<% end %>
+</p>
