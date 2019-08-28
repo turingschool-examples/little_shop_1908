@@ -14,6 +14,7 @@ RSpec.describe "As a visitor" do
     @pull_toy = @dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
     @brush = @dog_shop.items.create(name: "Brush", description: "Great for long haired pets", price: 15, image: "https://images-na.ssl-images-amazon.com/images/I/71V8HaHa02L._SL1200_.jpg", inventory: 15)
 
+    #tire_reviews 
     @review_1 = @tire.reviews.create(title: 'Review Title 1', content: "Content 1", rating: 1)
     @review_2 = @tire.reviews.create(title: 'Review Title 2', content: "Content 2", rating: 2)
     @review_3 = @tire.reviews.create(title: 'Review Title 3', content: "Content 3", rating: 3)
