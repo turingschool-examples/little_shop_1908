@@ -9,7 +9,7 @@ class CartController<ApplicationController
       session[:cart][item_id_str] ||= 0
       session[:cart][item_id_str] = session[:cart][item_id_str] + 1
       quantity = session[:cart][item_id_str]
-      flash[:notice] = "You now have #{pluralize(quantity, "copy")} of #{item.name} in your cart."
+      flash[:notice] = "You now have #{pluralize(quantity, "item")} of #{item.name} in your cart."
       redirect_to "/items"
     else
       flash[:inactive_item] = "You cannot add #{item.name} to your cart because it is inactive."
@@ -48,7 +48,7 @@ class CartController<ApplicationController
     item_id = Item.find(params[:item_id]).id
     @cart = Cart.new(session[:cart])
 
-    if @cart.quantity_of(item_id) == 0
+    if @cart.quantity_of(item_id) == 1
       @cart.contents.delete(item_id.to_s)
     else
       @cart.contents[item_id.to_s] -= 1

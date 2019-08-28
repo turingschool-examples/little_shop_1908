@@ -10,10 +10,10 @@
           Sold by: <%= item.merchant.name %> |
           Price: <%= number_to_currency(item.price) %> |
           Quantity: <%= value %> |
-          Subtotal: $<%=  @cart.subtotal_item(key) %>
+          Subtotal: <%=  number_to_currency(@cart.subtotal_item(key)) %>
         </div>
       </div>
       <hr>
     </section>
     <% end %>
-<h4>Grand Total: $<%=  @cart.grand_total %></h4>
+<h4>Grand Total: <%=  number_to_currency(@cart.grand_total)%></h4>

@@ -27,7 +27,7 @@
                       <p class="card-text">Sold by: <%= item.merchant.name %></p>
                       <p class="card-text">Price: <%= number_to_currency(item.price) %></p>
                       <p class="card-text">Quantity: <%= value %></p>
-                      <p class="card-text">Subtotal: $<%=  @cart.subtotal_item(key) %></p>
+                      <p class="card-text">Subtotal: <%=  number_to_currency(@cart.subtotal_item(key)) %></p>
                     </div>
                     <div class="col-sm">
                     </div>

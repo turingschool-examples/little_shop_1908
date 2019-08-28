@@ -37,5 +37,27 @@ RSpec.describe "Review Edit Page" do
       expect(current_path).to eq("/items/#{@chain.id}/#{@good_review.id}/edit")
       expect(page).to have_content("Title can't be blank and Content can't be blank")
     end
+
+    it 'I can change the review by changing information in fields' do
+      visit "/items/#{@chain.id}"
+
+      within "#review-#{@good_review.id}" do
+        click_on "Edit review"
+      end
+
+      fill_in :title, with: "This is an average product"
+      fill_in :content, with: "Very average"
+      fill_in :rating, with: "3"
+
+      click_button "Post Review"
+
+      expect(current_path).to eq("/items/#{@chain.id}")
+      expect(page).to have_content("You have successfully edited a review")
+      within "#review-#{@good_review.id}" do
+        expect(page).to have_content("This is an average product")
+        expect(page).to have_content("Very average")
+        expect(page).to have_content("Rating: 3")
+      end
+    end
   end
 end

@@ -1,19 +1,7 @@
 class ReviewsController <ApplicationController
-  def index
-    if params[:item_id]
-      @item = Item.find(params[:item_id])
-      @reviews = @item.reviews
-    else
-      @reviews = Review.all
-    end
-  end
 
   def new
     @item = Item.find(params[:item_id])
-  end
-
-  def show
-    @review = Review.find(params[:id])
   end
 
   def create

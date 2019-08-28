@@ -197,7 +197,6 @@ RSpec.describe "As a Visitor" do
       expect(page).to have_content("Quantity: 1")
 
       click_button "+"
-      #@cart.increase_quantity(@tire.id.to_s)
 
       expect(page).to have_content("Quantity: 2")
     end
@@ -222,7 +221,7 @@ RSpec.describe "As a Visitor" do
     expect(page).to have_content("There is no more inventory for #{@tire.name}")
   end
 
-  it "quantity of item is decreased in cart" do
+  it "quantity of item is decreased in cart and item is deleted when quantity is zero" do
     visit "/items/#{@pull_toy.id}"
 
     within "#item-info" do
@@ -251,6 +250,9 @@ RSpec.describe "As a Visitor" do
     within "#cart-item-#{@pull_toy.id}" do
       click_button "-"
     end
+
+    expect(@cart).to have_attributes(:contents => {})
+    expect(@cart.contents).to_not have_content("#{@pull_toy.id}")
 
     visit "/cart"
 

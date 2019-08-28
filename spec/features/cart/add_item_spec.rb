@@ -7,7 +7,7 @@ RSpec.describe "As a Visitor" do
     @dog_bone = @meg.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
   end
 
-  it "I can add an item to a cart" do
+  it "I can add items to a cart" do
 
     visit "/items/#{@tire.id}"
 
@@ -17,7 +17,15 @@ RSpec.describe "As a Visitor" do
       click_button "Add to Cart"
     end
 
-    expect(page).to have_content("You now have 1 copy of #{@tire.name} in your cart.")
+    expect(page).to have_content("You now have 1 item of #{@tire.name} in your cart.")
+
+    visit "/items/#{@tire.id}"
+
+    within "#item-info" do
+      click_button "Add to Cart"
+    end
+
+    expect(page).to have_content("You now have 2 items of #{@tire.name} in your cart.")
   end
 
   it "I cannot add an inactive item to a cart" do
