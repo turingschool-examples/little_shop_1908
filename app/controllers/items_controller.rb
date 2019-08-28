@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
 
   def show
     @cart = Cart.new(session[:cart])
-    if Item.where(id: params[:id]).empty?
+    if Item.exists?([params[:id]])
       flash[:error] = "Sorry, that item does not exist"
       redirect_to "/items"
     else

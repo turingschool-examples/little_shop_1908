@@ -15,7 +15,12 @@ class Item <ApplicationRecord
     Item.where(id: [cart.contents.keys])
   end
 
+  def self.exists?(id)
+    Item.where(id: id).empty?
+  end
+
   def has_orders?
     orders.count > 0
   end
+
 end
