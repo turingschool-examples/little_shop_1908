@@ -6,7 +6,7 @@
   <h2> Merchant Statistics </h2>
   <p>Products: <%= @merchant.num_products %></p>
   <p>Average Product Price: $<%= @merchant.avg_price %></p>
-  <p>Shipped To: $<%= @merchant.shipped_to_cities %></p>
+  <p>Shipped To: <%= @merchant.shipped_to_cities %></p>
 <section>
 
 <ul><%= link_to "All #{@merchant.name} Items", "/merchants/#{@merchant.id}/items" %></ul>

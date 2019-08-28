@@ -7,7 +7,6 @@ require 'rails_helper'
 # - average price of that merchant's items
 # - Distinct cities where my items have been ordered
 
-
 RSpec.describe "As a visitor" do
   before(:each) do
     #shops
@@ -77,10 +76,8 @@ RSpec.describe "As a visitor" do
 
     visit "/merchants/#{@bike_shop.id}"
 
-
-
     within "#merchant-stats" do
-      expect(page).to have_content("Shipped To: Denver, Golden, Chicago")
+      expect(page).to have_content("Shipped To: Golden, Denver, Chicago")
     end
   end
 end
