@@ -14,14 +14,13 @@ class Merchant < ApplicationRecord
   end
 
   def avg_price
-    if num_products > 0
-      price_sum = self.items.sum do |item|
-        item.price
-      end/num_products
-    end
+    self.items.average(:price)
   end
 
   def shipped_to_cities
-    order(rating: :asc).limit(3)
+    self.items.map do |item|
+      # binding.pry
+      item
+    end
   end
 end
