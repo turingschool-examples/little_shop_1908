@@ -17,7 +17,7 @@ class MerchantsController < ApplicationController
     if new_merchant.save
       redirect_to "/merchants"
     else
-      flash[:messasge] = "All fields must be completed before creating a new merchant. Please try again."
+      flash[:error] = new_merchant.errors.full_messages.to_sentence
       redirect_to "/merchants/new"
     end
   end
@@ -28,9 +28,12 @@ class MerchantsController < ApplicationController
 
   def update
     merchant = Merchant.find(params[:id])
-    merchant.update(merchant_params)
-    redirect_to "/merchants/#{merchant.id}"
-  #  UPDATE SAD PATH TESTING
+    if merchant.update(merchant_params)
+      redirect_to "/merchants/#{merchant.id}"
+    else
+      flash[:error] = merchant.errors.full_messages.to_sentence
+      redirect_to "/merchants/#{merchant.id}/edit"
+    end
   end
 
   def destroy
