@@ -13,7 +13,7 @@ RSpec.describe "Reviews Index" do
 
     it 'shows link to add a new review for item and shows flash messages' do
       visit "/items/#{@chain.id}"
-      click_link "add new review"
+      click_link "Add New Review"
 
       expect(current_path).to eq("/items/#{@chain.id}/reviews/new")
 
@@ -39,7 +39,7 @@ RSpec.describe "Reviews Index" do
 
     it 'shows alert flash messages when form is not completely filled' do
       visit "/items/#{@chain.id}"
-      click_link "add new review"
+      click_link "Add New Review"
 
       expect(current_path).to eq("/items/#{@chain.id}/reviews/new")
 
