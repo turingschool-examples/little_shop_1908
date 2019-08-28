@@ -107,9 +107,13 @@ img{
 
  .item-show-item{
  	padding: 20px;
- 	text-align: right;
+ 	text-align: center;
+  margin-top: 3rem;
  }
 
+ .item-show {
+   width: 70%;
+ }
  /* .topnav {
    overflow: hidden;
    background-color: #002244;
