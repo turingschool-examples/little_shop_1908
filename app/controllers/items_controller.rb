@@ -35,9 +35,14 @@ class ItemsController<ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    Review.delete(Review.where(item_id: params[:id]))
-    item.destroy
-    redirect_to "/items"
+    if !item.item_orders.empty?
+      flash[:message] = 'This item has been ordered and cannot be deleted.'
+      redirect_to "/items/#{item.id}"
+    else
+      Review.delete(Review.where(item_id: params[:id]))
+      item.destroy
+      redirect_to "/items"
+    end
   end
 
   private
