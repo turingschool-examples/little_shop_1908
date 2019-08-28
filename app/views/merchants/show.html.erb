@@ -2,6 +2,13 @@
 <p class="address"><%= @merchant.address %></p>
 <p class="address"><%= @merchant.city %>, <%= @merchant.state %> <%= @merchant.zip %></p>
 
+<section id= "merchant-stats">
+  <h2> Merchant Statistics </h2>
+  <p>Products: <%= @merchant.num_products %></p>
+  <p>Average Product Price: $<%= @merchant.avg_price %></p>
+  <p>Shipped To: $<%= @merchant.shipped_to_cities %></p>
+<section>
+
 <ul><%= link_to "All #{@merchant.name} Items", "/merchants/#{@merchant.id}/items" %></ul>
 <ul><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit" %></ul>
 <ul><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete %>
