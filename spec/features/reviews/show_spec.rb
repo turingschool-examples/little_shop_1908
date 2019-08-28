@@ -16,25 +16,27 @@ RSpec.describe "As a visitor" do
       visit "/items/#{@chain.id}"
 
       within "#item-#{@chain.id}-review-stats" do
-        expect(page).to have_content("Average Rating: #{@chain.reviews.average(:rating)}")
+        expect(page).to have_content("Average Rating")
+        expect(page).to have_css('span', :class => 'glyphicon-star')
       end
 
       within "#item-#{@chain.id}-top-3-reviews" do
         top_three_title_rating = @chain.reviews.order(:rating).reverse[0..2].pluck(:title, :rating)
 
         expect(page).to have_content("#{top_three_title_rating[0][0]}")
-        expect(page).to have_content("#{top_three_title_rating[0][1]}")
         expect(page).to have_content("#{top_three_title_rating[1][0]}")
-        expect(page).to have_content("#{top_three_title_rating[1][1]}")
+        expect(page).to have_css('span', :class => 'glyphicon-star')
       end
+
+
+
 
       within "#item-#{@chain.id}-bottom-3-reviews" do
         bottom_three_title_rating = @chain.reviews.order(:rating)[0..2].pluck(:title, :rating)
 
         expect(page).to have_content("#{bottom_three_title_rating[0][0]}")
-        expect(page).to have_content("#{bottom_three_title_rating[0][1]}")
         expect(page).to have_content("#{bottom_three_title_rating[1][0]}")
-        expect(page).to have_content("#{bottom_three_title_rating[1][1]}")
+        expect(page).to have_css('span', :class => 'glyphicon-star')
       end
     end
 
@@ -43,5 +45,6 @@ RSpec.describe "As a visitor" do
 
       expect(page).to have_content("There are no reviews yet")
     end
+
   end
 end

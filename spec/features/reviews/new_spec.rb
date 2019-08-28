@@ -13,7 +13,7 @@ RSpec.describe "As a visitor" do
 
     it 'it shows link to add a new review for item, allows me to add a review, and shows flash message when review is successfully posted' do
       visit "/items/#{@chain.id}"
-      click_link "add new review"
+      click_link "Add New Review"
 
       expect(current_path).to eq("/items/#{@chain.id}/reviews/new")
 
@@ -33,13 +33,13 @@ RSpec.describe "As a visitor" do
       within "#review-#{Review.last.id}" do
         expect(page).to have_content(title)
         expect(page).to have_content(content)
-        expect(page).to have_content("Rating: #{rating}")
+        expect(page).to have_css('span', :class => 'glyphicon-star')
       end
     end
 
     it 'shows alert flash messages when I am on the new review form and it is not completely filled' do
       visit "/items/#{@chain.id}"
-      click_link "add new review"
+      click_link "Add New Review"
 
       expect(current_path).to eq("/items/#{@chain.id}/reviews/new")
 

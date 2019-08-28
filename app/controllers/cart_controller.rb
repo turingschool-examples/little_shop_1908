@@ -9,6 +9,7 @@ class CartController<ApplicationController
       session[:cart][item_id_str] ||= 0
       session[:cart][item_id_str] = session[:cart][item_id_str] + 1
       quantity = session[:cart][item_id_str]
+      #item.checkout
       flash[:notice] = "You now have #{pluralize(quantity, "item")} of #{item.name} in your cart."
       redirect_to "/items"
     else
@@ -21,6 +22,7 @@ class CartController<ApplicationController
     item = Item.find(params[:item_id])
     @cart = Cart.new(session[:cart])
     @cart.contents.delete(item.id.to_s)
+    #item.inventory_return
     redirect_to "/cart"
   end
 
@@ -38,6 +40,7 @@ class CartController<ApplicationController
     @cart = Cart.new(session[:cart])
     if item.inventory > @cart.contents[item.id.to_s]
       @cart.contents[item.id.to_s] += 1
+      #item.remove_inventory
     else
       flash[:limit] = "There is no more inventory for #{item.name}"
     end
@@ -50,6 +53,7 @@ class CartController<ApplicationController
 
     if @cart.quantity_of(item_id) == 1
       @cart.contents.delete(item_id.to_s)
+      #item.return_inventory
     else
       @cart.contents[item_id.to_s] -= 1
     end

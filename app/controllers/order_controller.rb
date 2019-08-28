@@ -11,6 +11,8 @@ class OrderController <ApplicationController
       @cart.contents.keys.each do |id|
         item = Item.find(id)
         item.orders << order
+        #reverse this session[:cart][item_id_str] = session[:cart][item_id_str] + 1
+        #session[:cart][item_id_str] = session[:cart][item_id_str] - cart.contents.count 
       end
       redirect_to "/orders/#{order.id}"
     else
