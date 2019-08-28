@@ -18,7 +18,13 @@ class Merchant < ApplicationRecord
   end
 
   def shipped_to_cities
-    binding.pry
-     self.items.select(Item.where(Merchant.where(id: id)))
+    cities = []
+    self.items.each do |item|
+      item.item_orders.each do |item_order|
+         cities << item_order.order.city
+      end
+    end
+
+    cities.uniq.join(", ")
   end
 end
