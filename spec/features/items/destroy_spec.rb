@@ -14,6 +14,7 @@ RSpec.describe 'item delete', type: :feature do
     @review_2 = @tire.reviews.create(title: 'Review Title 2', content: "Content 2", rating: 2)
     @review_3 = @tire.reviews.create(title: 'Review Title 3', content: "Content 3", rating: 3)
   end
+
   describe 'when I visit an item show page' do
     it 'I can delete an item' do
 
@@ -37,5 +38,16 @@ RSpec.describe 'item delete', type: :feature do
       expect(current_path).to eq("/items")
       expect(page).to_not have_css("#item-#{@tire.id}")
     end
+  end
+
+# As a visitor
+# If an item has been ordered
+# I can not delete that item
+# Either:
+# - there is no button visible for me to delete the item
+# - if I click on the delete button, I see a flash message indicating that the item can not be deleted.
+
+  it 'cannot delete item if it has been ordered' do
+    
   end
 end
