@@ -38,7 +38,7 @@ describe Merchant, type: :model do
   end
 
   it "test top 3 items" do
-    expect(@bike_shop.top_3_items).to eq([["Chain", nil], ["Gatorskins", nil]])
+    expect(@bike_shop.top_3_items).to eq([])
   end
 
 end
