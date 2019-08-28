@@ -29,3 +29,6 @@ A few notable functionalities that we also implemented during this project inclu
 - Handling invalid HTTP requests ('this page does not exist')
 - Updating cart contents based on client behavior (i.e., order submission renders an empty cart)
 - Applying bootstrap styling, including layouts, navigation bar, cards, buttons, and star glyphicons
+
+## Website
+   You can go to https://radiant-falls-14500.herokuapp.com/ to view the project
