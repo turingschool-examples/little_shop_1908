@@ -28,15 +28,19 @@ describe 'When I visit my cart' do
       expect(page).to_not have_content(pull_toy.name)
       expect(page).to_not have_content(pull_toy.merchant.name)
     end
+
     within ".details-price" do
       expect(page).to_not have_content("Price: #{pull_toy.price}")
     end
+
     within ".details-quantity" do
       expect(page).to_not have_content("Qty: 1")
     end
+
     within ".details-subtotal" do
       expect(page).to_not have_content("$10.00")
     end
+    
     within ".order-total" do
       expect(page).to have_content("Order total: $200.00")
     end

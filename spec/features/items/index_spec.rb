@@ -56,7 +56,6 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_content("Sold by: #{@brian.name}")
         expect(page).to have_css("img[src*='#{@dog_bone.image}']")
       end
-
     end
   end
 end
