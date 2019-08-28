@@ -1,4 +1,4 @@
-class MerchantsController <ApplicationController
+class MerchantsController < ApplicationController
 
   def index
     @merchants = Merchant.all
@@ -11,9 +11,11 @@ class MerchantsController <ApplicationController
   def new
   end
 
+
   def create
     Merchant.create(merchant_params)
     redirect_to "/merchants"
+  #  UPDATE SAD PATH TESTING
   end
 
   def edit
@@ -24,12 +26,23 @@ class MerchantsController <ApplicationController
     merchant = Merchant.find(params[:id])
     merchant.update(merchant_params)
     redirect_to "/merchants/#{merchant.id}"
+  #  UPDATE SAD PATH TESTING
   end
 
   def destroy
-    Item.delete(Item.where(merchant_id: params[:id]))
-    Merchant.destroy(params[:id])
-    redirect_to '/merchants'
+    merchant = Merchant.find(params[:id])
+
+    if merchant.item_orders.empty?
+      Review.delete(Review.where(item_id: Item.where(merchant_id: params[:id])))
+      Item.delete(Item.where(merchant_id: params[:id]))
+      Merchant.destroy(params[:id])
+      
+      redirect_to '/merchants'
+    else
+      flash[:error] = "Sorry, this merchant has orders and cannot be deleted."
+      redirect_to "/merchants/#{merchant.id}"
+    end
+
   end
 
   private

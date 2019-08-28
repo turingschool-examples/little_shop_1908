@@ -29,6 +29,5 @@ RSpec.describe 'merchant new page', type: :feature do
       expect(new_merchant.state).to eq(state)
       expect(new_merchant.zip).to eq(zip)
     end
-
   end
 end

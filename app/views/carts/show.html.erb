@@ -1,0 +1,24 @@
+<h1>Shopping Cart</h1>
+<center>
+<section id = "cart-summary">
+  <% cart.item_quantity.each do |item, quantity| %>
+    <section id="cart-item-<%=item.id%>">
+      <%= render partial:"partials/item_info", locals:{item:item} %>
+      <%= button_to 'Delete Item', "/cart/#{item.id}", method: :delete_item %>
+      <p>$<%= item.price %></p>
+      <p>Quantity: <%= link_to '+', "/cart/#{item.id}/increase", method: :post%> <%= quantity %> <%= link_to "-", "/cart/#{item.id}/decrease", method: :post %> </p>
+      <p>Subtotal: $<%= item.item_subtotal(quantity) %></p>
+    </section>
+  <% end %>
+
+  <section id="cart-total">
+    <p><b>Total: $<%= cart.total %></b></p>
+  </section>
+</section>
+
+<section id="cart-actions">
+  <% unless cart.contents.empty? %>
+  <%= button_to "Empty Cart", "/cart", method: :delete %> <%= button_to "Checkout", "/orders/new", method: :get %>
+  <% end %>
+</section>
+</center>
