@@ -50,8 +50,6 @@ RSpec.describe "As a visitor" do
     @order_6 = Order.create(name: "Matt", address: "123 Road St", city: "Chicago", state: "IL", zip: "61704")
       @item_order_11 = ItemOrder.create(order: @order_6, item: @bike, quantity: 2, subtotal: @bike.item_subtotal(2))
       @item_order_12 = ItemOrder.create(order: @order_6, item: @brush, quantity: 1, subtotal: @brush.item_subtotal(1))
-
-
   end
 
   it 'can show count of items for that merchant' do
