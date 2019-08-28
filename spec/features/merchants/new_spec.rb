@@ -30,5 +30,16 @@ RSpec.describe 'merchant new page', type: :feature do
       expect(new_merchant.zip).to eq(zip)
     end
 
+    it "I must fill out the entire form or I will see an error message" do
+      visit "/merchants/new"
+
+      click_button 'Create Merchant'
+
+      expect(page).to have_content("Name can't be blank")
+      expect(page).to have_content("Address can't be blank")
+      expect(page).to have_content("City can't be blank")
+      expect(page).to have_content("State can't be blank")
+      expect(page).to have_content("Zip can't be blank")
+    end
   end
 end

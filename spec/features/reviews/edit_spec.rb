@@ -33,6 +33,7 @@ describe 'User visits the item show page' do
       end
     end
   end
+  
   describe 'If user leaves part of form blank' do
     it 'Gives flash message to do it right' do
       bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)

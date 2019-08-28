@@ -9,6 +9,7 @@ describe 'User visits empty cart' do
 
     expect(page).to have_content("Your cart is empty")
     expect(page).to_not have_link("Empty your cart")
+
     visit "/items/#{dog_bone.id}"
     click_link 'Add to Cart'
 

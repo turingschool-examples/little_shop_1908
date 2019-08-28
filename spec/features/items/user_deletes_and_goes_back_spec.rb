@@ -12,6 +12,5 @@ describe 'User deletes item from show page and goes back' do
     visit "/items/#{pull_toy.id}"
     expect(current_path).to eq('/items')
     expect(page).to have_content("Sorry, that item does not exist")
-
   end
 end
