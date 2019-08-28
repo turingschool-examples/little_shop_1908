@@ -40,6 +40,18 @@ describe 'Item Show Page' do
     end
   end
 
+  it "sorts reviews best-worst for an item" do
+    visit "/items/#{@pull_toy.id}/?sort=highest-lowest"
+
+    expect(@pull_toy.reviews.first).to eq(@review_1)
+  end
+
+  it "sorts reviews worst-best for an item" do
+    visit "/items/#{@pull_toy.id}/?sort=lowest-highest"
+
+    expect(@pull_toy.reviews.first).to eq(@review_1)
+  end
+
   it 'has a link to the merchant that sells the item' do
     visit "/items/#{@pull_toy.id}"
 
