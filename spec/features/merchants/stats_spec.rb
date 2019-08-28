@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 # As a visitor
 # When I visit a merchant's show page
 # I see statistics for that merchant, including:
@@ -26,55 +28,59 @@ RSpec.describe "As a visitor" do
     @review_3 = @tire.reviews.create(title: 'Review Title 3', content: "Content 3", rating: 3)
 
     #user orders
-    @order_1 = Order.create(name: "Mack", address: "123 Happy St", city: "Denver", state: "CO", zip: "80205")
-    @item_order_1 = ItemOrder.create(order: @order_1, item: @bike, quantity: 1, subtotal: @bike.item_subtotal(1))
+    @order_1 = Order.create!(name: "Mack", address: "123 Happy St", city: "Denver", state: "CO", zip: "80205")
+      @item_order_1 = @order_1.item_orders.create!(order: @order_1, item: @bike, quantity: 1, subtotal: @bike.item_subtotal(1))
 
     @order_2 = Order.create(name: "John", address: "123 West St", city: "Golden", state: "CO", zip: "56600")
-    @item_order_2 = ItemOrder.create(order: @order_2, item: @tire, quantity: 12, subtotal: @tire.item_subtotal(12))
-    @item_order_3 = ItemOrder.create(order: @order_2, item: @brush, quantity: 3, subtotal: @brush.item_subtotal(3))
+      @item_order_2 = ItemOrder.create(order: @order_2, item: @tire, quantity: 12, subtotal: @tire.item_subtotal(12))
+      @item_order_3 = ItemOrder.create(order: @order_2, item: @brush, quantity: 3, subtotal: @brush.item_subtotal(3))
 
     @order_3 = Order.create(name: "Amber", address: "123 East St", city: "Denver", state: "CO", zip: "80205")
-    @item_order_4 = ItemOrder.create(order: @order_3, item: @pull_toy, quantity: 4, subtotal: @pull_toy.item_subtotal(4))
-    @item_order_5 = ItemOrder.create(order: @order_3, item: @brush, quantity: 3, subtotal: @brush.item_subtotal(3))
-    @item_order_6 = ItemOrder.create(order: @order_3, item: @tire, quantity: 1, subtotal: @tire.item_subtotal(1))
+      @item_order_4 = ItemOrder.create(order: @order_3, item: @pull_toy, quantity: 4, subtotal: @pull_toy.item_subtotal(4))
+      @item_order_5 = ItemOrder.create(order: @order_3, item: @brush, quantity: 3, subtotal: @brush.item_subtotal(3))
+      @item_order_6 = ItemOrder.create(order: @order_3, item: @tire, quantity: 1, subtotal: @tire.item_subtotal(1))
 
     @order_4 = Order.create(name: "Emily", address: "123 North St", city: "Golden", state: "CO", zip: "56601")
-    @item_order_7 = ItemOrder.create(order: @order_4, item: @tire, quantity: 1, subtotal: @tire.item_subtotal(1))
-    @item_order_8 = ItemOrder.create(order: @order_4, item: @bike, quantity: 1, subtotal: @bike.item_subtotal(1))
+      @item_order_7 = ItemOrder.create(order: @order_4, item: @tire, quantity: 1, subtotal: @tire.item_subtotal(1))
+      @item_order_8 = ItemOrder.create(order: @order_4, item: @bike, quantity: 1, subtotal: @bike.item_subtotal(1))
 
     @order_5 = Order.create(name: "Adam", address: "123 South St", city: "Chicago", state: "IL", zip: "61704")
-    @item_order_9 = ItemOrder.create(order: @order_5, item: @pull_toy, quantity: 5, subtotal: @pull_toy.item_subtotal(5))
-    @item_order_10 = ItemOrder.create(order: @order_5, item: @tire, quantity: 2, subtotal: @tire.item_subtotal(2))
+      @item_order_9 = ItemOrder.create(order: @order_5, item: @pull_toy, quantity: 5, subtotal: @pull_toy.item_subtotal(5))
+      @item_order_10 = ItemOrder.create(order: @order_5, item: @tire, quantity: 2, subtotal: @tire.item_subtotal(2))
 
     @order_6 = Order.create(name: "Matt", address: "123 Road St", city: "Chicago", state: "IL", zip: "61704")
-    @item_order_11 = ItemOrder.create(order: @order_6, item: @bike, quantity: 2, subtotal: @bike.item_subtotal(2))
-    @item_order_12 = ItemOrder.create(order: @order_6, item: @brush, quantity: 1, subtotal: @brush.item_subtotal(1))
+      @item_order_11 = ItemOrder.create(order: @order_6, item: @bike, quantity: 2, subtotal: @bike.item_subtotal(2))
+      @item_order_12 = ItemOrder.create(order: @order_6, item: @brush, quantity: 1, subtotal: @brush.item_subtotal(1))
+
+
   end
 
-  describe 'merchants can have stats on merchant show page' do
-    it 'can show count of items for that merchant' do
-      visit "/merchants/#{@bike_shop.id}"
+  it 'can show count of items for that merchant' do
 
-      within "#merchant-stats" do
-        expect(page).to have_content("Products: 2")
-      end
+    visit "/merchants/#{@bike_shop.id}"
+
+    within "#merchant-stats" do
+      expect(page).to have_content("Products: 2")
     end
+  end
 
-    it 'can show average price of that merchants items' do
-      visit "/merchants/#{@bike_shop.id}"
+  it 'can show average price of that merchants items' do
+    visit "/merchants/#{@bike_shop.id}"
 
-      within "#merchant-stats" do
-        expect(page).to have_content("Average Product Price: $150")
-      end
+
+    within "#merchant-stats" do
+      expect(page).to have_content("Average Product Price: $150")
     end
+  end
 
-    it 'can show distinct cities where my items have been ordered' do
+  it 'can show distinct cities where my items have been ordered' do
 
-      visit "/merchants/#{@bike_shop.id}"
+    visit "/merchants/#{@bike_shop.id}"
 
-      within "#merchant-stats" do
-        expect(page).to have_content("Shipped To: Denver, Golden, Chicago")
-      end
+
+
+    within "#merchant-stats" do
+      expect(page).to have_content("Shipped To: Denver, Golden, Chicago")
     end
   end
 end
