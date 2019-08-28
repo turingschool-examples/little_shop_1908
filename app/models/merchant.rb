@@ -24,7 +24,6 @@ class Merchant < ApplicationRecord
          cities << item_order.order.city
       end
     end
-
     cities.uniq.join(", ")
   end
 end
