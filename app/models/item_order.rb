@@ -6,5 +6,6 @@ class ItemOrder < ApplicationRecord
                         :item_id,
                         :quantity,
                         :subtotal
-                  
+
+
 end
