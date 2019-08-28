@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get "/", to: "merchants#index"
 
   get "/merchants", to: "merchants#index"
   get "/merchants/new", to: "merchants#new"
@@ -37,5 +38,6 @@ Rails.application.routes.draw do
   post "/orders", to: "orders#create"
 
   get "/orders", to: "orders#search", as: :search_orders
+
 
 end
