@@ -14,7 +14,6 @@ class Merchant < ApplicationRecord
   end
 
   def avg_price
-    # binding.pry
    items.average(:price)
   end
 

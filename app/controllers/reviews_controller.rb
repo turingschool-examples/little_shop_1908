@@ -21,15 +21,12 @@ class ReviewsController < ApplicationController
 
   def update
     review = Review.find(params[:review_id])
-    review.update(review_params)
-    redirect_to "/items/#{review.item.id}"
-    # ADD SAD PATH TESTING WITH FLASH MESSAGE BELOW
-    # if review.save
-    #   redirect_to "/items/#{item.id}"
-    # else
-    #   flash[:incomplete] = review.errors.full_messages
-    #   redirect_to "/items/#{item.id}/reviews/new"
-    # end
+    if review.update(review_params)
+      redirect_to "/items/#{review.item.id}"
+    else
+      flash[:error] = review.errors.full_messages.to_sentence
+      redirect_to "/reviews/#{review.id}/edit"
+    end
   end
 
   def destroy

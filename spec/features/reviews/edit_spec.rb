@@ -56,7 +56,20 @@ RSpec.describe 'Edit an Existing Review' do
               expect(page).to_not have_content("Never Buy This Tire")
               expect(page).to_not have_content('I bought two of these and they blew within a week of each other, a month after purchase')
               expect(page).to_not have_content(1)
-            end 
+            end
+          end
+
+          it 'displays flash message if incomplete edit form' do
+            visit "/reviews/#{@corina.id}/edit"
+
+            fill_in :title, with: 'Never Ever Again'
+            fill_in :content, with: nil
+            fill_in :rating, with: 2
+
+            click_button 'Update Review'
+
+            expect(current_path).to eq("/reviews/#{@corina.id}/edit")
+            expect(page).to have_content("Content can't be blank")
           end
         end
       end
