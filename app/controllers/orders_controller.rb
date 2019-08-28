@@ -10,6 +10,21 @@ class OrdersController < ApplicationController
     end
   end
 
+  def verified_show
+    if Order.find_by(order_key: params[:order_key])
+      @order = Order.find_by(order_key: params[:order_key])
+      @items_hash = Hash.new
+      @total_cost = 0
+      @order.item_orders.each do |item_order|
+        @items_hash[Item.find(item_order.item_id)] = item_order.quantity
+        @total_cost += item_order.total_cost
+      end
+    else
+      flash[:error] = "That order doesn't exist."
+      redirect_back(fallback_location: "/items")
+    end
+  end
+
   # def create
   #   order = Order.new(order_params)
   #   if !order.save
@@ -42,6 +57,51 @@ class OrdersController < ApplicationController
       flash[:address] = "Address can't be confirmed. Enter a valid address."
       redirect_to "/cart/checkout"
     end
+  end
+
+  def update
+    @order = Order.find(params[:id])
+    if @order.update(order_params)
+      @items_hash = Hash.new
+      @total_cost = 0
+      @order.item_orders.each do |item_order|
+        @items_hash[Item.find(item_order.item_id)] = item_order.quantity
+        @total_cost += item_order.total_cost
+      end
+      flash.now[:success] = "Your shipping info has been updated"
+      render "verified_show"
+    else
+      @items_hash = Hash.new
+      @total_cost = 0
+      @order.item_orders.each do |item_order|
+        @items_hash[Item.find(item_order.item_id)] = item_order.quantity
+        @total_cost += item_order.total_cost
+      end
+      flash.now[:error] = @order.errors.full_messages.to_sentence
+      render "verified_show"
+    end
+  end
+
+  def delete
+    order = Order.find(params[:order_id])
+    order.item_orders.destroy_all
+    order.destroy
+    flash[:success] = "Your order is history!"
+    redirect_to "/items"
+  end
+
+  def remove_all_item
+    @order = Order.find(params[:order_id])
+    item_orders = @order.item_orders.where(item_id: params[:item_id])
+    item_orders.destroy_all
+    @items_hash = Hash.new
+    @total_cost = 0
+    @order.item_orders.each do |item_order|
+      @items_hash[Item.find(item_order.item_id)] = item_order.quantity
+      @total_cost += item_order.total_cost
+    end
+    flash.now[:success] = "Item removed from your order"
+    render "verified_show"
   end
 
   private

@@ -1,0 +1,43 @@
+<h1>Order #<%= @order.id %></h1>
+
+<div class="cart-container">
+  <center class="cart-item">
+  <% @items_hash.each do |item, qty| %>
+    <section id="order-item-<%= item.id %>">
+      <span class="item-show-item"><%= image_tag("#{item.image}") %></span>
+      <h1><%= link_to("#{item.name}", "/items/#{item.id}") %></h1>
+      <h3>from</h3>
+      <h2><%= link_to("#{item.merchant.name}", "/merchants/#{item.merchant.id}") %></h2>
+      <h2>Purchase <%= qty %> at <%= number_to_currency(item.price) %> each</h2>
+      <h2>Subtotal: <%= number_to_currency(item.price * qty) %></h2>
+      <h3> <%= link_to("Remove all #{item.name.pluralize(2)}", "/verified_orders/#{@order.id}/items/#{item.id}/remove-all") %></h3>
+    </section>
+  <% end %><br><br><br>
+    <h1>Total Items: <%= @items_hash.values.sum %></h1>
+    <h1>Total Cost: <%= number_to_currency(@total_cost) %></h1>
+  </center>
+</div>
+
+<ul><%= link_to "Cancel This Order", "/verified_orders/#{@order.id}", method: :delete %></ul>
+
+<center><br><br><br><br>
+  <h1>Update your shipping information:</h1>
+  <%= form_tag "/verified_orders", method: :patch do %>
+
+    <%= text_field_tag :name, @order.name, placeholder: "Name"%>
+
+    <%= text_field_tag :address, @order.address, placeholder: "Address" %>
+
+    <%= text_field_tag :city, @order.city, placeholder: "City" %>
+
+    <%= text_field_tag :state, @order.state, placeholder: "State" %>
+
+    <%= text_field_tag :zip, @order.zip, placeholder: "Zip" %>
+
+    <%= hidden_field_tag :id, @order.id %>
+
+    <%= hidden_field_tag :order_key, @order.order_key %>
+
+    <%= submit_tag 'Update Order' %>
+  <% end %>
+</center>

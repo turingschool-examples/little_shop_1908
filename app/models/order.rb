@@ -7,4 +7,11 @@ class Order < ApplicationRecord
                         :city,
                         :state,
                         :zip
+
+  before_create :generate_order_key
+
+  private
+  def generate_order_key
+    self.order_key = rand(10 ** 10).to_s.rjust(10, "0")
+  end
 end

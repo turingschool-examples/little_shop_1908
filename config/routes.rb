@@ -37,5 +37,9 @@ Rails.application.routes.draw do
   #order
   post "/orders", to: 'orders#create'
   get "/orders/:order_id", to: 'orders#show'
+  get "/verified_orders", to: 'orders#verified_show'
+  patch "/verified_orders", to: 'orders#update'
+  delete "/verified_orders/:order_id", to: 'orders#delete'
+  get '/verified_orders/:order_id/items/:item_id/remove-all', to: 'orders#remove_all_item'
 
 end

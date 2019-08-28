@@ -11,7 +11,7 @@
   <body>
     <nav class = "topnav">
       <span id="order-check">
-        <%= form_tag '/verified_order', method: :get do %>
+        <%= form_tag "/verified_orders", method: :get do %>
           <%= text_field_tag :order_key, nil, placeholder: "Enter your order key here"%>
           <%= submit_tag 'Check Order' %>
         <% end %>
