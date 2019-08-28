@@ -13,7 +13,13 @@ RSpec.describe 'item delete', type: :feature do
     @review_1 = @tire.reviews.create(title: 'Review Title 1', content: "Content 1", rating: 1)
     @review_2 = @tire.reviews.create(title: 'Review Title 2', content: "Content 2", rating: 2)
     @review_3 = @tire.reviews.create(title: 'Review Title 3', content: "Content 3", rating: 3)
+
+    #order data
+    @order_1 = Order.create(name: 'Corina', address: '1488 S Kenton St', city: 'Aurora', state: 'CO', zip: "80014")
+      # @item_1 = ItemOrder.create(order: @order_1, item: @tire, quantity: 2, subtotal: @tire.item_subtotal(2))
+      @item_2 = ItemOrder.create(order: @order_1, item: @dog_bone, quantity: 5, subtotal: @dog_bone.item_subtotal(5))
   end
+
   describe 'when I visit an item show page' do
     it 'I can delete an item' do
 
@@ -37,5 +43,20 @@ RSpec.describe 'item delete', type: :feature do
       expect(current_path).to eq("/items")
       expect(page).to_not have_css("#item-#{@tire.id}")
     end
+  end
+
+# As a visitor
+# If an item has been ordered
+# I can not delete that item
+# Either:
+# - there is no button visible for me to delete the item
+# - if I click on the delete button, I see a flash message indicating that the item can not be deleted.
+
+  it 'cannot delete item if it has been ordered' do
+    visit "/items/#{@dog_bone.id}"
+
+    click_on 'Delete Item'
+
+    expect(page).to have_content('This item has been ordered and cannot be deleted.')
   end
 end
