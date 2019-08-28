@@ -17,14 +17,22 @@ describe Item, type: :model do
   end
 
   describe "class methods" do
+    before :each do
+      @dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
+      @pull_toy = @dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
+      @dog_bone = @dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
+    end
+
     it "can get all items from the cart" do
-      dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
-      pull_toy = dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
-      dog_bone = dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
-      cart = Cart.new({pull_toy.id.to_s=>1, dog_bone.id.to_s=>2})
-      items = [pull_toy, dog_bone]
+      cart = Cart.new({@pull_toy.id.to_s=>1, @dog_bone.id.to_s=>2})
+      items = [@pull_toy, @dog_bone]
 
       expect(Item.cart_items(cart)).to eq(items)
+    end
+
+    it "item #exists?" do
+      expect(Item.exists?(@pull_toy.id)).to eq(true)
+      expect(Item.exists?(0)).to eq(false)
     end
   end
 
