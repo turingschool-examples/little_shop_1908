@@ -1,6 +1,6 @@
 <div class="container" align='center'>
   <br />
-  <h1 class='display-4'>Your Completed Order</h1>
+    <h1 class='display-4'>Your Completed Order</h1>
   <br />
 
   <h3>Thanks, <%= @order.name %>!</h3>
@@ -10,11 +10,28 @@
     <span> <%= @order.city %> </span>
     <span> <%= @order.state %> </span>
     <span> <%= @order.zip %> </span>
-    in 4-5 business days.
+  in 4-5 business days.
   <p>
-  <br />
+<br />
+
   <section align='left'>
     <h4>Order Details</h4>
-    <%= render "partials/cart_show" %>
-  </section>
+  <hr>
+  <% @order.items_orders.each do |itemorder| %>
+    <div class="row">
+       <div class="col-2" align='center'>
+        <% item = Item.find(itemorder.item_id) %>
+        <%=item.name%>
+      </div>
+    <div class="col-10" align='left'>
+      Sold by: <%= item.merchant.name %> |
+      Price: <%= number_to_currency(item.price) %> |
+      Quantity: <%= itemorder.quantity %> |
+      Subtotal: <%=  number_to_currency(@order.show_subtotal(itemorder, item)) %>
+      </div>
+    </div>
+    <hr>
+    </section>
+    <% end %>
+  <h4 align='left'>Grand Total: <%= number_to_currency(@order.show_grand_total) %><h4>
 </div>
