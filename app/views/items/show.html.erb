@@ -1,21 +1,22 @@
-<h1><%= @item.name %></h1>
+<h1 align='center'><%= @item.name %></h1>
 <p align="center">Sold by: <%=link_to @item.merchant.name, "/merchants/#{@item.merchant.id}" %> </p>
 <center>
   <section class = "item-show-grid">
     <section class = "item-show-item">
-      <%= image_tag("#{@item.image}")%>
+      <%= image_tag("#{@item.image}", class: 'item-show') %>
     </section>
     <section style="text-align:left" id = "item-info">
       <p><%= @item.description %></p>
       <p>Price: $<%= @item.price %> </p>
-      <p>Inventory: <%= @item.inventory %> </p>
-      <% if @item.active? %>
-        <p style= "color:green">Active</p>
-      <% else %>
-        <p style= "color:red">Inactive</p>
-      <% end %>
+      <p>Inventory: <%= @item.inventory %> |
+        <% if @item.active? %>
+          <span style= "color:green">Active</span>
+        <% else %>
+          <span style= "color:red">Inactive</span>
+        <% end %>
+      </p>
         <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
-        <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
+        <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete, data: { confirm: 'Are you sure?' } %></p>
         <p><%= button_to "Add to Cart", "/cart/#{@item.id}", method: :post%></p>
     </section>
   </section>
