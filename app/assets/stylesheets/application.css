@@ -165,3 +165,8 @@ form {
   padding: 20px;
   width: 60%;
 }
+
+.reviews {
+  align-content: left;
+  border: 1px solid #ccc;
+}
