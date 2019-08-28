@@ -19,6 +19,6 @@ class Merchant < ApplicationRecord
 
   def shipped_to_cities
     binding.pry
-     self.item_orders.select(Item.where(Merchant.where(id: id)))
+     self.items.select(Item.where(Merchant.where(id: id)))
   end
 end
