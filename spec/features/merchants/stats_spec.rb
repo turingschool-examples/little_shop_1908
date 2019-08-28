@@ -68,7 +68,7 @@ RSpec.describe "As a visitor" do
 
 
     within "#merchant-stats" do
-      expect(page).to have_content("Average Product Price: $150")
+      expect(page).to have_content("Average Product Price: $150.00")
     end
   end
 
