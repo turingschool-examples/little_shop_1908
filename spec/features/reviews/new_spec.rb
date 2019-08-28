@@ -33,7 +33,7 @@ RSpec.describe "Reviews Index" do
       within "#review-#{Review.last.id}" do
         expect(page).to have_content(title)
         expect(page).to have_content(content)
-        expect(page).to have_content("Rating: #{rating}")
+        expect(page).to have_css('span', :class => 'glyphicon-star')
       end
     end
 

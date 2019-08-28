@@ -18,7 +18,7 @@ RSpec.describe "Reviews Index" do
       within "#review-#{@good_review.id}" do
         expect(page).to have_content(@good_review.title)
         expect(page).to have_content(@good_review.content)
-        expect(page).to have_content(@good_review.rating)
+        expect(page).to have_css('span', :class => 'glyphicon-star')
       end
     end
   end
