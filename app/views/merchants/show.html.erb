@@ -18,12 +18,29 @@
   <hr>
 
   <div class="merchant-stats">
-    <h3>Item Count: <%= @merchant.total_items_count %></h3>
-    <h3>Average price of all items: <%= number_to_currency(@merchant.average_price_items) %></h3>
-    <h3>List of cities where items have been ordered: <% @merchant.list_cities.each do |city| %>
-      <ul>
-        <li><h3><%= city %></h3></li>
-      </ul>
-    <% end %>
+    <div class="row">
+      <div class="col">
+        <p>Item Count: <%= @merchant.total_items_count %></p>
+        <p>Average price of all items: <%= number_to_currency(@merchant.average_price_items) %></p>
+      </div>
+      <div class="col">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">List of Cities</th>
+            </tr>
+          </thead>
+          <% @merchant.list_cities.each_with_index do |city, i| %>
+          <tbody>
+            <tr>
+              <th scope="row"><%= i + 1 %></th>
+              <td><%= city %></td>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
