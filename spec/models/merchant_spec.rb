@@ -10,9 +10,10 @@ describe Merchant, type: :model do
   end
 
   describe "relationships" do
-    it {should have_many :items}
-    it {should have_many(:item_orders).through(:items)}
-    it {should have_many(:orders).through(:item_orders)}
+    it { should have_many :items}
+    it { should have_many(:item_orders).through(:items) }
+    it { should have_many(:orders).through(:item_orders) }
+    it { should have_many(:reviews).through(:items) }
   end
 
   describe 'instance methods' do
@@ -26,6 +27,31 @@ describe Merchant, type: :model do
       item_order = order.item_orders.create(quantity: 2, total_cost: 15, item: dog_bone)
 
       expect(dog_shop.has_orders?).to eq(true)
+    end
+
+    it "#best-items" do
+      bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
+
+      tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+      review_1 = tire.reviews.create(title: "It's Great!", content: "Best chain ever!", rating: 2)
+
+      chain = bike_shop.items.create(name: "Chain", description: "Its a chain!", price: 40, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 5)
+      review_2 = chain.reviews.create(title: "It's Great!", content: "Best chain ever!", rating: 1)
+
+      light = bike_shop.items.create(name: "Light", description: "Its a light!", price: 40, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 5)
+      review_3 = light.reviews.create(title: "It's Great!", content: "Best chain ever!", rating: 3)
+
+      horn = bike_shop.items.create(name: "Horn", description: "Its a chain!", price: 40, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 5)
+      review_4 = horn.reviews.create(title: "It's Great!", content: "Best chain ever!", rating: 4)
+
+      top = bike_shop.best_items
+      expect(top[0].name).to eq(horn.name)
+      expect(top[1].name).to eq(light.name)
+      expect(top[2].name).to eq(tire.name)
+
+      expect(top[0].avg).to eq(4)
+      expect(top[1].avg).to eq(3)
+      expect(top[2].avg).to eq(2)
     end
 
     it '#count_items' do
