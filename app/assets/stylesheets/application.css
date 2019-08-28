@@ -45,21 +45,53 @@ img{
    grid-template-rows: auto;
  }
  .grid-item{
- 	background-color: #42f5c8;
- 	padding: 20px;
-  border: solid;
- 	border-radius: 12px;
-  border-color: #000000;
- 	text-align: center
+   	background-color: #42f5c8;
+   	padding: 20px;
+    border: solid;
+   	border-radius: 12px;
+    border-color: #000000;
+   	text-align: center
  }
  .item-show-grid{
-  width: 60%;
- 	display: grid;
-  border: solid;
-  border-radius: 12px;
- 	grid-template-columns: repeat(2,1fr);
+    width: 60%;
+   	display: grid;
+    border: solid;
+    border-radius: 12px;
+   	grid-template-columns: repeat(2,1fr);
  }
-
+ #review-stat-section{
+   margin: 0 auto;
+ }
+ #review-title{
+   font-size: 20px;
+ }
+ #top-reviews-section{
+   width: 30%;
+   float: left;
+   border: solid;
+   margin: 20px;
+   border-radius: 12px;
+   padding: 25px;
+ }
+ #bottom-reviews-section{
+   width: 30%;
+   float: right;
+   border: solid;
+   margin: 20px;
+   border-radius: 12px;
+   padding: 25px;
+ }
+#cart-item-section{
+  width: 30%;
+  float: center;
+  border: solid;
+  margin: 20px;
+  border-radius: 12px;
+  padding: 25px;
+}
+#cart-actions{
+  width: 50%
+}
  .item-show-item{
  	padding: 20px;
  	text-align: right;

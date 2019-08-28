@@ -22,13 +22,14 @@
   </section>
 
   <section id = "reviews-section">
-    <h2>Customer Reviews</h2>
+    <h1>Customer Reviews</h1>
+    <h3> Average Product Rating </h3>
+    <h4><%= @item.reviews.avg_rating.to_f.round(2)%></h4>
     <p><%= link_to 'New Review', "/items/#{@item.id}/reviews/new" %></p>
     <% @item.reviews.each do |review| %>
       <section id= "review-<%=review.id%>"
-        <p><%= review.title %></p>
-        <p><%= link_to 'Edit Review', "/reviews/#{review.id}/edit" %></p>
-        <p><%= link_to 'Delete Review', "/reviews/#{review.id}", method: :delete%></p>
+        <p><i><span id="review-title"><%= review.title %></span></i><br />
+          <%= link_to 'Edit Review', "/reviews/#{review.id}/edit" %> <%= link_to 'Delete Review', "/reviews/#{review.id}", method: :delete%></p>
         <p><%= review.content %></p>
         <p>Rating: <%= review.rating %> stars</p>
       </section>
@@ -36,9 +37,8 @@
   </section>
 
   <section id ="reviews-stat-section">
-    <h3> Average Product Rating </h3>
-    <h4><%= @item.reviews.avg_rating.to_f.round(2)%></h4>
 
+    <section id ="top-reviews-section">
    <h3> Top Three Reviews </h3>
     <% @item.reviews.top_three_reviews.each do |review| %>
       <section id= "top_three_review-<%=review.id%>"
@@ -46,8 +46,9 @@
       <p>Rating: <%= review.rating %> stars</p>
       </section>
       <% end %>
-    <br>
-
+    </section>
+  
+    <section id ="bottom-reviews-section">
     <h3> Bottom Three Reviews </h3>
      <% @item.reviews.bottom_three_reviews.each do |review| %>
        <section id= "top_three_review-<%=review.id%>"
@@ -55,6 +56,7 @@
        <p>Rating: <%= review.rating %> stars</p>
        </section>
        <% end %>
-     <br>
+     </section>
+
   </section>
 </center>
