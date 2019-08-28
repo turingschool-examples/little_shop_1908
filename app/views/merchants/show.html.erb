@@ -24,7 +24,7 @@
           <h2> <%=link_to item.name, "/items/#{item.id}" %> </h2>
           <img src= <%= item.image %>>
           <p> <%= item.description unless @merchant%> </p>
-          <p>Average Rating: <%= item.avg_rating %></p>
+          <p>Average Rating: <%= item.avg_rating.round(2) %></p>
           <p>Price: $<%= item.price %> </p>
           <p>Inventory: <%= item.inventory %> </p>
           <% if item.active? %>
