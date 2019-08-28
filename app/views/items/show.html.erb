@@ -19,7 +19,6 @@
       <%= button_to "Add Item To yo Cart", carts_path(item_id: @item.id) %>
     </section>
   </section>
-
     <div class="row">
       <% if @item.reviews.empty? %>
         <h2>&#x1F31F; No reviews yet! &#x1F31F; </h2>
@@ -40,10 +39,17 @@
         <% end %>
       </div>
     </div>
+    <div class="dropdown">
+        <button class="dropbtn">Sort Reviews</button>
+        <div class="dropdown-content">
+            <%= link_to 'YAY to Yikes', "?sort=highest-lowest" %>
+            <%= link_to 'Yikes to YAY', "?sort=lowest-highest" %>
+        </div>
+      </div>
     <div class="row">
       <section class= "item-review">
         <h1><%= @item.name %> Reviews</h1>
-          <% @item.reviews.each do |review| %>
+          <% @reviews.each do |review| %>
               <div class="review-column" id="review-<%=review.id%>">
                 <h3> <%= review.title %></h3>
                 <h3> <%= review.rating %>/5 &#x1F31F;'s</h3>
