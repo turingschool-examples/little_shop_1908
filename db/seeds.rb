@@ -20,7 +20,7 @@ Merchant.destroy_all
 @brush = @dog_shop.items.create(name: "Brush", description: "Great for long haired pets", price: 15, image: "https://images-na.ssl-images-amazon.com/images/I/71V8HaHa02L._SL1200_.jpg", inventory: 15)
 
 #make_up_shop items
-@lipstick = @make_up_shop.items.create(name: "Pretty Pink", description: "Lipstick for your lips!", price: 20, image: "https://png.pngtree.com/png-clipart/20190116/ourmid/pngtree-aunt-red-lipstick-cartoon-lipstick-red-png-image_402359.jpg", inventory: 20)
+@lipstick = @make_up_shop.items.create(name: "Pretty Pink", description: "Lipstick for your lips!", price: 20, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDZOukIvE2bTXsP-nKZYWW6jcZnVUFH9KRKoAy3UQTjabG8_efaQ", inventory: 20)
 @eye_liner = @make_up_shop.items.create(name: "Wing-tastic", description: "The best eyeliner", price: 15, image: "https://reema-beauty.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/l/black.png", inventory: 5)
 
 #tire_reviews
