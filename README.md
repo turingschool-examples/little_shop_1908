@@ -7,7 +7,7 @@ BE Mod 2 Week 2/3 Pair Project
 
 ## Project Overview
 
-- Use nav bar to view all merchants, all items and cart as well as total count of items in cart
+- Use nav bar to view all merchants, all items and cart as well as total count of items in cart, has a search bar (but is not functional)
 - Home page is the merchant index
 - User can view all items on the site, or only those specific to a merchant through the merchant page
 - For items, merchants and reviews, a visitor has the ability to create new, edit and delete. You can't delete items if they are in a cart, or merchants if they have orders
