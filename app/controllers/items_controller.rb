@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :set_cart
   before_action :set_item, only: [:edit, :update, :destroy]
   before_action :set_merchant, only: [:new, :create]
 
@@ -12,7 +13,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @cart = Cart.new(session[:cart])
+    # @cart = Cart.new(session[:cart])
     unless Item.exists?([params[:id]])
       flash[:error] = "Sorry, that item does not exist"
       redirect_to "/items"
@@ -71,5 +72,9 @@ class ItemsController < ApplicationController
 
   def set_merchant
     @merchant = Merchant.find(params[:merchant_id])
+  end
+
+  def set_cart
+    @cart = Cart.new(session[:cart])
   end
 end

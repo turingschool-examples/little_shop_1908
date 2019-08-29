@@ -1,5 +1,5 @@
 class CartController < ApplicationController
-  before_action :set_cart, only: [:add_item, :show, :remove_item, :increase, :decrease, :empty_cart]
+  before_action :set_cart
   before_action :set_item, only: [:add_item, :remove_item, :increase, :decrease]
   after_action :set_session_cart, only: [:remove_item, :increase, :decrease, :add_item, :empty_cart]
 
