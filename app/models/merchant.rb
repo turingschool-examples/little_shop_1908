@@ -10,20 +10,16 @@ class Merchant < ApplicationRecord
                         :zip
 
   def num_products
-    self.items.count
+    items.count
   end
 
   def avg_price
-   items.average(:price)
+    items.average(:price)
   end
 
   def shipped_to_cities
-    cities = []
-    self.items.each do |item|
-      item.item_orders.each do |item_order|
-         cities << item_order.order.city
-      end
-    end
-    cities.uniq.join(", ")
+    Order.where(id: item_orders.pluck(:order_id))
+    .distinct
+    .pluck(:city)
   end
 end

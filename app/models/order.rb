@@ -11,7 +11,7 @@ class Order < ApplicationRecord
 
   def order_details
 
-    item_orders = ItemOrder.where('order_id' => self.id)
+    item_orders = ItemOrder.where(order_id: self.id)
 
     order_details = item_orders.each_with_object({}) do |item, hash|
                       hash[Item.find(item.item_id)] = item.quantity
@@ -19,8 +19,6 @@ class Order < ApplicationRecord
   end
 
   def order_total
-    self.order_details.sum do |item, quantity|
-      Item.find(item.id).price * quantity
-    end
+    self.item_orders.sum(:subtotal)
   end
 end

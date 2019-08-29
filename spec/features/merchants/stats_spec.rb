@@ -51,7 +51,8 @@ RSpec.describe "As a visitor" do
       @item_order_11 = ItemOrder.create(order: @order_6, item: @bike, quantity: 2, subtotal: @bike.item_subtotal(2))
       @item_order_12 = ItemOrder.create(order: @order_6, item: @brush, quantity: 1, subtotal: @brush.item_subtotal(1))
 
-
+    @order_7 = Order.create(name: "Jake", address: "123 Red St", city: "New York", state: "NY", zip: "6177")
+      @item_order_13 = ItemOrder.create(order: @order_7, item: @brush, quantity: 1, subtotal: @brush.item_subtotal(1))
   end
 
   it 'can show count of items for that merchant' do
@@ -77,7 +78,13 @@ RSpec.describe "As a visitor" do
     visit "/merchants/#{@bike_shop.id}"
 
     within "#merchant-stats" do
-      expect(page).to have_content("Shipped To: Golden, Denver, Chicago")
+      expect(page).to have_content("Shipped To: Chicago, Denver, Golden")
+    end
+
+    visit "/merchants/#{@dog_shop.id}"
+
+    within "#merchant-stats" do
+      expect(page).to have_content("Shipped To: Chicago, Denver, Golden, New York")
     end
   end
 end
