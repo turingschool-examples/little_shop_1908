@@ -54,7 +54,7 @@ RSpec.describe 'item show page', type: :feature do
 
       expect(page).to have_content("Item Statistics")
       expect(page).to have_content("Top Three Reviews")
-        within "#top-reviews" do
+        within ".top-reviews" do
           expect(page).to have_content(review_1.title)
           expect(page).to have_content(review_2.title)
           expect(page).to have_content(review_3.title)
@@ -64,7 +64,7 @@ RSpec.describe 'item show page', type: :feature do
           expect(page).to have_content(review_3.rating)
         end
       expect(page).to have_content("Bottom Three Reviews")
-        within "#bottom-reviews" do
+        within ".bottom-reviews" do
           expect(page).to have_content(review_4.title)
           expect(page).to have_content(review_5.title)
           expect(page).to have_content(review_6.title)

@@ -42,7 +42,7 @@
         <h3>Average Rating: <%= @item.average_rating %></h3><br>
         <p>--------------------------------</p><br>
 
-       <section class="reviews">
+       <section class="top-reviews">
           <h3>Top Three Reviews</h3>
           <% @item.top_reviews.each do |top_review| %>
           <p>Title: <b><%= top_review[0] %></b></p>
@@ -51,7 +51,7 @@
           <% end %>
         </section>
 
-        <section class="reviews">
+        <section class="bottom-reviews">
           <h3>Bottom Three Reviews</h3>
           <% @item.bottom_reviews.each do |bottom_review| %>
           <p>Title: <b><%= bottom_review[0] %></b></p>
