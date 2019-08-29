@@ -22,6 +22,7 @@ Merchant.destroy_all
 #make_up_shop items
 @lipstick = @make_up_shop.items.create(name: "Pretty Pink", description: "Lipstick for your lips!", price: 20, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDZOukIvE2bTXsP-nKZYWW6jcZnVUFH9KRKoAy3UQTjabG8_efaQ", inventory: 20)
 @eye_liner = @make_up_shop.items.create(name: "Wing-tastic", description: "The best eyeliner", price: 15, image: "https://reema-beauty.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/l/black.png", inventory: 5)
+@eyeshadow = @make_up_shop.items.create(name: "Too Faced Gingerbread Spice", description: "Too Faced Gingerbread Spice Eyeshadow Palette", price: 35, image: "https://img.shopstyle-cdn.com/sim/67/bb/67bb83d281c29eba19c5d82cf2fde6f0_best/Too-Faced-Gingerbread-Spice-Palette.jpg", inventory: 20)
 
 #tire_reviews
 @review_1 = @tire.reviews.create(title: 'Review Title 1', content: "Content 1", rating: 1)
