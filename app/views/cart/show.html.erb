@@ -18,8 +18,8 @@
                   <div class="row">
                     <div class="col" align='center'>
                       <p><img src=<%= item.image %> alt="..."></p>
-                      <%= link_to fa_icon("plus"), "/cart/#{item.id}/add", method: :post, class: "quantity-btn" %>
-                      <%= link_to fa_icon("minus"),"/cart/#{item.id}/remove", method: :post, class: "quantity-btn" %>
+                      <%= link_to fa_icon("plus"), "/cart/#{item.id}/add", method: :post, class: "quantity-inc-btn", title: "increase_qtn" %>
+                      <%= link_to fa_icon("minus"),"/cart/#{item.id}/remove", method: :post, class: "quantity-dec-btn", title: "decrease_qtn" %>
                       <p><%= link_to fa_icon("trash") + " Remove Item", "/cart/#{item.id}", method: :patch %></p>
                     </div>
                     <div class="col-6">
