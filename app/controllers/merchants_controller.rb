@@ -52,7 +52,6 @@ class MerchantsController < ApplicationController
   end
 
   private
-
   def merchant_params
     params.permit(:name,:address,:city,:state,:zip)
   end

@@ -2,11 +2,11 @@ class CartsController < ApplicationController
   include ActionView::Helpers::TextHelper
 
   def create
-    cart = Cart.new(session[:cart])
-
     item = Item.find(params[:item_id])
     cart.add_item(item.id)
+
     session[:cart] = cart.contents
+    
     quantity = cart.contents[item.id.to_s]
     flash[:notice] = "You now have #{pluralize(quantity, "#{item.name}")} in your cart."
     redirect_to "/items"
