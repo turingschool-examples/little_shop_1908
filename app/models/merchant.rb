@@ -26,7 +26,7 @@ class Merchant <ApplicationRecord
   end
 
   def top_3_items
-    items.joins(:reviews).order("reviews.rating desc").limit(3).pluck(:name).uniq
+    items.joins(:reviews).order("reviews.rating desc").pluck(:name).uniq[0...3]
   end
 
 end
