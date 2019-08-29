@@ -1,15 +1,15 @@
 <h1><%= @merchant.name %></h1>
 <p class="address"><%= @merchant.address %></p>
 <p class="address"><%= @merchant.city %>, <%= @merchant.state %> <%= @merchant.zip %></p>
-<p> Items From This Merchant: <%= @merchant.count_of_items %> </p>
-<p> Average Price: $<%= @merchant.average_price %> </p>
+<p><b> Items From This Merchant:</b> <%= @merchant.count_of_items %> </p>
+<p><b> Average Price:</b> $<%= @merchant.average_price %> </p>
 
 <% @merchant.distinct_cities.each do |city| %>
 <p> Cities: <%= city %></p>
 <% end %>
 
 <section class="top-reviews">
-  <p><%= @merchant.name %>'s Top Three Items:</p>
+  <p><h4><%= @merchant.name %>'s Top Three Items:</h4></p>
   <% @merchant.top_3_items.each do |item| %>
   <p><%= item %></p>
   <% end %>

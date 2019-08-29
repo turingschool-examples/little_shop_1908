@@ -45,18 +45,18 @@
        <section class="top-reviews">
           <h4>Top Three Reviews</h4>
           <% @item.top_reviews.each do |top_review| %>
-          <p>Title: <b><%= top_review[0] %></b></p>
-          <p>Content: <%= top_review[2] %></p>
-          <p>Rating: <%= top_review[1] %></p><br>
+          <p><b>Title:</b> <%= top_review[0] %></p>
+          <p><b>Review:</b> <%= top_review[2] %></p>
+          <p><b>Rating:</b> <%= top_review[1] %></p><br>
           <% end %>
         </section>
 
         <section class="bottom-reviews">
           <h4>Bottom Three Reviews</h4>
           <% @item.bottom_reviews.each do |bottom_review| %>
-          <p>Title: <b><%= bottom_review[0] %></b></p>
-          <p>Content: <%= bottom_review[2] %></p>
-          <p>Rating: <%= bottom_review[1] %></p><br>
+          <p><b>Title:</b> <%= bottom_review[0] %></p>
+          <p><b>Review:</b> <%= bottom_review[2] %></p>
+          <p><b>Rating:</b> <%= bottom_review[1] %></p><br>
           <% end %>
         </section>
 
@@ -69,9 +69,9 @@
            <section class="reviews">
              <% @reviews.each do |review| %>
                 <section id="review-<%=review.id%>">
-                  <p>Title: <%= review.title %></p>
-                  <p>Review: <%= review.content %></p>
-                  <p>Rating: <%= review.rating %></p>
+                  <p><b>Title:</b> <%= review.title %></p>
+                  <p><b>Review:</b> <%= review.content %></p>
+                  <p><b>Rating:</b> <%= review.rating %></p>
                   <%= link_to 'Delete Review', delete_review_path(@item, review), method: :delete %>     <%= link_to "Edit Review", edit_review_path(@item, review) %>
                 </section>
               <% end %>
