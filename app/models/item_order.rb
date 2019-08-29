@@ -7,5 +7,4 @@ class ItemOrder < ApplicationRecord
                         :quantity,
                         :subtotal
 
-
 end
