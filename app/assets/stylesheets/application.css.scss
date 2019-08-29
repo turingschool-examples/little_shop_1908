@@ -13,29 +13,69 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+@import "responsive";
 
- body {
- background-color: white;
+body {
+  background-color: white;
  }
+
 
 p {
   font-size: 20px;
 }
 
- /* h1 {
+ul{
+  padding: 0px;
   text-align: center;
- 	font-size: 40px;
- 	color: #002244;
- 	font-family: "Marker Felt", fantasy;
- } */
-
-#top-navbar {
-  font-size: 20px;
 }
 
-.home-page {
-  text-align: center;
-  margin-top: 10rem;
+img{
+  width: 50%;
+}
+
+input[type=text], select {
+ width: 100%;
+ padding: 12px 20px;
+ margin: 8px 0;
+ display: inline-block;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+ box-sizing: border-box;
+}
+
+input[type=submit] {
+ width: 100%;
+ background-color: #17BEBB;
+ color: white;
+ padding: 14px 20px;
+ margin: 8px 0;
+ border: none;
+ border-radius: 4px;
+ cursor: pointer;
+}
+
+input[type=submit]:hover {
+ background-color: #45a049;
+}
+
+form {
+ font-size: 15px;
+ margin-top: 20px;
+ align-content: center;
+ padding: 20px;
+ width: 70%;
+}
+
+review {
+ font-size: 18px;
+}
+
+#top-navbar {
+  margin-bottom: 20px;
+  font-size: 20px;
 }
 
 #home-img-bike {
@@ -58,12 +98,31 @@ p {
   width: 10%;
 }
 
-ul{
-  padding: 0px;
+#checkout-button {
+  display: block;
+  background-color: #f0c14b;
+  color: black;
+  text-decoration: none;
   text-align: center;
+  opacity: 0.9;
+  padding: 0.5rem;
+  margin-top: 30px;
 }
-img{
-  width: 50%;
+
+#empty-cart-button {
+  display: block;
+  background-color: #E0E0E0;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  opacity: 0.9;
+  padding: 0.5rem;
+  margin-top: 30px;
+}
+
+.home-page {
+  margin-top: 10rem;
+  text-align: center;
 }
 
 .img-merchant {
@@ -74,15 +133,6 @@ img{
 .merchant-link {
   font-family: "Geneva";
   font-size: 2rem;
-}
-
-.btn-outline-success {
-  font-size: 25px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  width: 20%;
 }
 
  .grid-container{
@@ -114,19 +164,6 @@ img{
  .item-show {
    width: 70%;
  }
- /* .topnav {
-   overflow: hidden;
-   background-color: #002244;
- }
-
- .topnav a {
-   float: left;
-   color: #f2f2f2;
-   text-align: center;
-   padding: 14px 16px;
-   text-decoration: none;
-   font-size: 17px;
- } */
 
  .topnav a:hover {
    background-color: #17BEBB;
@@ -136,39 +173,6 @@ img{
  .address{
    text-align: center;
  }
-
- input[type=text], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-input[type=submit] {
-  width: 100%;
-  background-color: #17BEBB;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
-form {
-  font-size: 15px;
-  margin-top: 20px;
-  align-content: center;
-  padding: 20px;
-  width: 70%;
-}
 
 .form-label {
   font-size: 2.8rem;
@@ -193,6 +197,10 @@ form {
   height: auto;
 }
 
+.card-title {
+  font-size: 25px;
+}
+
 .card-footer {
   text-align: center;
   font-size: 20px;
@@ -202,37 +210,24 @@ form {
   width: 2%;
 }
 
-.quantity-btn {
-  display: inline-block;
-  margin-top: 0px;
-  /* margin-left: 20px; */
-  margin-right: 30px;
-  width: 10%;
-  font-size: 15px;
+a.new {
+  @extend .btn;
+  @extend .btn-success;
+
+  &:before {
+    font-family: "FontAwesome";
+    @extend .fa-plus;
+    padding-right: 0.5em;
+  }
 }
 
-#checkout-button {
-  display: block;
-  background-color: #f0c14b;
-  color: black;
-  text-decoration: none;
-  text-align: center;
-  opacity: 0.9;
-  padding: 0.5rem;
-  margin-top: 30px;
+a.cart {
+  margin-right: 0.5em;
 }
 
-#empty-cart-button {
-  display: block;
-  background-color: #E0E0E0;
-  color: black;
-  text-decoration: none;
-  text-align: center;
-  opacity: 0.9;
-  padding: 0.5rem;
-  margin-top: 30px;
-}
-
-review {
-  font-size: 18px;
+a.quantity-btn {
+  @extend .btn;
+  @extend .btn-info;
+  @extend .btn-sm;
+  margin: 15px;
 }
