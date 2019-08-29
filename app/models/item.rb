@@ -22,4 +22,8 @@ class Item <ApplicationRecord
   def has_orders?
     orders.count > 0
   end
+
+  def top_or_bottom_three_reviews(order: :desc)
+    reviews.order(rating: order).limit(3)
+  end
 end

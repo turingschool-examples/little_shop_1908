@@ -7,11 +7,7 @@ class Review < ApplicationRecord
                                     greater_than_or_equal_to: 1,
                                     less_than_or_equal_to: 5}
 
-  def self.top_or_bottom_three(item_id, order = :desc)
-    where(item_id: item_id)
-      .order(rating: order)
-      .limit(3)
-  end
+
 
   def self.average_rating(item_id)
     where(item_id: item_id)
