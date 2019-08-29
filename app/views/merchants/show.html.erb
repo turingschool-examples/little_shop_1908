@@ -6,8 +6,8 @@
 <% @merchant.distinct_cities.each do |city| %>
 <p> Cities: <%= city %></p>
 <% end %>
-<section class="reviews">
 
+<section class="top-reviews">
   <p><%= @merchant.name %>'s Top Three Items:</p>
   <% @merchant.top_3_items.each do |item| %>
   <p><%= item %></p>
