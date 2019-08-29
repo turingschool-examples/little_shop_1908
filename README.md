@@ -5,6 +5,8 @@ BE Mod 2 Week 2/3 Pair Project
 
 Little Shop is a fictitious online e-commerce platform built with Ruby on Rails. Functionality includes merchants, items, reviews, orders, and a cart. Users can create, read, update, and destroy items, reviews, merchants, and orders. Cart functionality uses sessions to track items to be ordered across the platform. Database interaction was handled with ActiveRecord/SQL queries, and address verification uses the MainStreet gem. Sad paths/edge cases are handled primarily through displaying flash messages to the user specifying what information is missing to complete their request or why their request is invalid. Model and feature testing was implemented with RSpec/Capybara, and SimpleCov shows 100% testing coverage.
 
+Heroku: https://e-s-pug-n.herokuapp.com
+
 ## Learning Goals
 
 ### Rails
