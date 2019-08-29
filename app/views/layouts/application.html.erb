@@ -4,7 +4,7 @@
     <title>Little Shop</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag  'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
@@ -12,7 +12,12 @@
     <nav class = "topnav">
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
+      <div id='cart-indicator'><%=cart.total_count%></div>
+      <a id="cart-graphic" href="/cart"><img src="http://i.imgur.com/DrC6cXz.png" alt ="shopping cart graphic" style="width:45px;height:45px;" align="right"/></a>
     </nav>
+    <% flash.each do |type, message| %>
+      <p><%= message %></p>
+    <% end  %>
     <%= yield %>
   </body>
 </html>

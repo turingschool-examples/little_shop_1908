@@ -21,7 +21,7 @@
  h1 {
   text-align: center;
  	font-size: 40px;
- 	color: #002244;
+ 	color: #000000;
  	font-family: "Marker Felt", fantasy;
  }
 
@@ -39,23 +39,59 @@ img{
  	grid-template-rows: auto;
  	grid-gap: 30px;
  }
-
+ .checkout-grid-container{
+   display: grid;
+   grid-template-columns: repeat(5,1fr);
+   grid-template-rows: auto;
+ }
  .grid-item{
- 	background-color: #17BEBB;
- 	padding: 20px;
-  border: solid;
- 	border-radius: 12px;
-  border-color: #002244;
- 	text-align: center
+   	background-color: #42f5c8;
+   	padding: 20px;
+    border: solid;
+   	border-radius: 12px;
+    border-color: #000000;
+   	text-align: center
  }
  .item-show-grid{
-  width: 60%;
- 	display: grid;
-  border: solid;
-  border-radius: 12px;
- 	grid-template-columns: repeat(2,1fr);
+    width: 60%;
+   	display: grid;
+    border: solid;
+    border-radius: 12px;
+   	grid-template-columns: repeat(2,1fr);
  }
-
+ #review-stat-section{
+   margin: 0 auto;
+ }
+ #review-title{
+   font-size: 20px;
+ }
+ #top-reviews-section{
+   width: 30%;
+   float: left;
+   border: solid;
+   margin: 20px;
+   border-radius: 12px;
+   padding: 25px;
+ }
+ #bottom-reviews-section{
+   width: 30%;
+   float: right;
+   border: solid;
+   margin: 20px;
+   border-radius: 12px;
+   padding: 25px;
+ }
+#cart-item-section{
+  width: 30%;
+  float: center;
+  border: solid;
+  margin: 20px;
+  border-radius: 12px;
+  padding: 25px;
+}
+#cart-actions{
+  width: 50%
+}
  .item-show-item{
  	padding: 20px;
  	text-align: right;
@@ -63,7 +99,8 @@ img{
 
  .topnav {
    overflow: hidden;
-   background-color: #002244;
+   background-color: #000000;
+   padding: 14px 16px;
  }
 
  .topnav a {
@@ -76,9 +113,16 @@ img{
  }
 
  .topnav a:hover {
-   background-color: #17BEBB;
+   background-color: #42f5c8;
    color: black;
  }
+
+#cart-indicator {
+  font-size: 30px;
+  text-align: right;
+  color: white;
+  padding-right: 30px;
+}
 
  .address{
    text-align: center;
@@ -96,7 +140,7 @@ img{
 
 input[type=submit] {
   width: 100%;
-  background-color: #17BEBB;
+  background-color: #42f5c8;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -106,11 +150,15 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-  background-color: #45a049;
+  background-color: #f04dbc;
 }
 form {
   align-content: center;
   background-color: #f2f2f2;
   padding: 20px;
   width: 60%;
+}
+#cart-graphic {
+  padding-left: auto;
+  float: right;
 }

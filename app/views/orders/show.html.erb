@@ -1,0 +1,26 @@
+<h1> Order </h1>
+<section id='order-summary'>
+<center>
+<% @order.order_details.each do |item, quantity| %>
+  <section id="order-<%= item.id%>">
+    <br>Item: <%= link_to item.name, "/items/#{item.id}" %>
+    <br>Purchased from: <%= link_to item.merchant.name, "/merchants/#{item.merchant.id}" %>
+    <br>Price: $<%= item.price %>
+    <br>Quantity: <%= quantity %>
+    <br>Subtotal: $<%= item.item_subtotal(quantity) %>
+  </section>
+  <% end %>
+
+<p><b>Order Total: <%= number_to_currency @order.order_total %></b></p>
+
+<section id='order-address'>
+  <b><u>Shipped To:</u></b>
+  <br><%= @order.name %>
+  <br><%= @order.address %>
+  <br><%= @order.city %>
+  <br><%= @order.state %>
+  <br><%= @order.zip %>
+</section>
+<p>Date Ordered: <%= @order.created_at %></p>
+</center>
+</section>
