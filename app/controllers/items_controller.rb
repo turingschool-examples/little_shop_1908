@@ -51,7 +51,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy
+    if @item.has_orders?
+      flash[:error] = "Can't delete items with orders"
+    else
+      @item.destroy
+    end
     redirect_to "/items"
   end
 

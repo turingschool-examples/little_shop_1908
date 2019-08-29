@@ -30,10 +30,10 @@ class Merchant <ApplicationRecord
 
   def best_items
     Merchant.joins(:reviews)
-      .select("items.id, items.name, avg(reviews.rating)")
+      .select("items.id, items.name, avg(reviews.rating) as average_rating")
       .where("merchants.id = #{self.id}")
       .group("items.id")
-      .order("avg desc")
+      .order("average_rating desc")
       .limit(3)
   end
 end

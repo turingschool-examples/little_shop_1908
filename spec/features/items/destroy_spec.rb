@@ -40,5 +40,14 @@ RSpec.describe 'item delete', type: :feature do
         expect(page).to_not have_content('Delete Item')
       end
     end
+
+    it "I can't delete an item if it has orders" do
+      order = Order.create(name: "Bob", address: "234 A st.", city: "Torrance", state: "CA", zip: 90505)
+      item_order = order.item_orders.create(quantity: 2, total_cost: 100, item: @chain)
+
+      page.driver.submit :delete, "/items/#{@chain.id}", {}
+
+      expect(page).to have_content("Can't delete items with orders")
+    end
   end
 end

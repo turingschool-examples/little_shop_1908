@@ -19,7 +19,8 @@ class Review < ApplicationRecord
   end
 
   def self.sort_reviews(method, item_id)
-    reviews = Review.where(item_id: item_id)
+    item = Item.find(item_id)
+    reviews = item.reviews
     if method == 'max-rating'
       reviews.order(rating: :desc, created_at: :desc)
     elsif method == 'min-rating'
