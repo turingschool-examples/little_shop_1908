@@ -193,11 +193,11 @@ RSpec.describe "As a Visitor" do
     quantity_tire = @cart.quantity_of(@tire.id)
 
     within "#cart-item-#{@tire.id}" do
-      expect(page).to have_button("+")
+      expect(page).to have_css('a', :class => 'quantity-inc-btn')
       expect(page).to have_content("Quantity: 1")
 
-      click_button "+"
-
+      click_link "increase_qtn"
+      
       expect(page).to have_content("Quantity: 2")
     end
   end
@@ -213,8 +213,8 @@ RSpec.describe "As a Visitor" do
     visit "/cart"
 
     within "#cart-item-#{@tire.id}" do
-      click_button "+"
-      click_button "+"
+      click_link "increase_qtn"
+      click_link "increase_qtn"
       expect(page).to have_content("Quantity: 2")
     end
 
@@ -237,18 +237,18 @@ RSpec.describe "As a Visitor" do
     visit "/cart"
 
     within "#cart-item-#{@pull_toy.id}" do
-      expect(page).to have_button("-")
+      expect(page).to have_css('a', :class => 'quantity-dec-btn')
       expect(page).to have_content("Quantity: 2")
 
-      click_button "-"
+      click_link "decrease_qtn"
+      expect(page).to have_content("Quantity: 1")
     end
+
 
     visit "/cart"
 
-    expect(page).to have_content("Quantity: 1")
-
     within "#cart-item-#{@pull_toy.id}" do
-      click_button "-"
+      click_link "decrease_qtn"
     end
 
     expect(@cart).to have_attributes(:contents => {})
