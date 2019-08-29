@@ -22,5 +22,4 @@ class Item <ApplicationRecord
   def has_orders?
     orders.count > 0
   end
-
 end

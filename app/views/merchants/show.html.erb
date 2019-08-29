@@ -31,7 +31,7 @@
     <% else %>
       <ol>
         <% @top_items.each do |item| %>
-            <li><%= "#{item.name} (#{item.avg.round(2)})" %></li>
+            <li><%= "#{item.name} (#{item.average_rating.round(2)})" %></li>
         <% end %>
       </ol>
     <% end %>
