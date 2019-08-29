@@ -10,8 +10,8 @@
     <br>Subtotal: $<%= item.item_subtotal(quantity) %>
   </section>
   <% end %>
-  
-<p>Order Total: <%= number_to_currency @order.order_total %></p>
+
+<p><b>Order Total: <%= number_to_currency @order.order_total %></b></p>
 
 <section id='order-address'>
   <b><u>Shipped To:</u></b>
