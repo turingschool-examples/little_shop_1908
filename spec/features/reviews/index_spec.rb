@@ -92,7 +92,7 @@ RSpec.describe 'From Item Show Page', type: :feature do
 
       visit "/items/#{@tire.id}"
 
-      within '#reviews-stat-section' do
+      within '#reviews-section' do
 
 
         expect(page).to have_content(2.67)
