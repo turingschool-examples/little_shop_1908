@@ -5,18 +5,36 @@
 <p style="text-align:center;"><%= link_to "All #{@merchant.name} Items", "/merchants/#{@merchant.id}/items", class: 'regular-button', id: 'merchant-show' %></p>
 <section class="merchant-stats">
   <h3 style="text-align:center;">Merchant Stats</h3>
-  <p><span style="font-weight:bold;">Count of items:
-    </span><%= @merchant.count_items %></p>
-  <p><span style="font-weight:bold;">Average price:
-    </span><%= number_to_currency @merchant.average_price %></p>
-  <p><span style="font-weight:bold;">Customer locations:
-    </span><%= @merchant.distinct_cities.join(", ") %></p>
+  <p>
+    <span style="font-weight:bold;">Count of items:</span>
+    <%= @merchant.count_items %>
+  </p>
+  <p>
+    <span style="font-weight:bold;">Average price:</span>
+    <% unless @merchant.average_price.nil? %>
+      <%= number_to_currency @merchant.average_price %>
+    <% else %>
+      <span>No items for <%= @merchant.name %> yet</span>
+    <% end %>
+  </p>
+  <p>
+    <span style="font-weight:bold;">Customer locations:</span>
+    <% unless  @merchant.distinct_cities.empty? %>
+      <%= @merchant.distinct_cities.join(", ") %>
+    <% else %>
+      <span><%= @merchant.name %> has not shipped any orders yet</span>
+    <% end %>
+  </p>
   <section class="top-reviewed-items"><span style="font-weight:bold;">Top reviewed items:</span>
-    <ol>
-      <% @top_items.each do |item| %>
-          <li><%= "#{item.name} (#{item.avg.round(2)})" %></li>
-      <% end %>
-    </ol>
+    <% if @top_items.empty? %>
+      <span>No reviews for <%= @merchant.name %>'s items yet</span>
+    <% else %>
+      <ol>
+        <% @top_items.each do |item| %>
+            <li><%= "#{item.name} (#{item.avg.round(2)})" %></li>
+        <% end %>
+      </ol>
+    <% end %>
   </section>
 </section>
 <section class="merchant-edit-del">

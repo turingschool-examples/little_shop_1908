@@ -7,6 +7,7 @@ class MerchantsController <ApplicationController
 
   def show
     @top_items = @merchant.best_items
+    # binding.pry
   end
 
   def new
