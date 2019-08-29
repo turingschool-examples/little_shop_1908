@@ -3,6 +3,7 @@
 <p class="address"><%= @merchant.city %>, <%= @merchant.state %> <%= @merchant.zip %></p>
 <p> Items From This Merchant: <%= @merchant.count_of_items %> </p>
 <p> Average Price: $<%= @merchant.average_price %> </p>
+
 <% @merchant.distinct_cities.each do |city| %>
 <p> Cities: <%= city %></p>
 <% end %>

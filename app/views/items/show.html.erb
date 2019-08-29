@@ -39,11 +39,11 @@
         <br>
 
         <h2>Item Statistics</h2><br>
-        <h3>Average Rating: <%= @item.average_rating %></h3><br>
+        <h4>Average Rating: <%= @item.average_rating %></h4><br>
         <p>--------------------------------</p><br>
 
        <section class="top-reviews">
-          <h3>Top Three Reviews</h3>
+          <h4>Top Three Reviews</h4>
           <% @item.top_reviews.each do |top_review| %>
           <p>Title: <b><%= top_review[0] %></b></p>
           <p>Content: <%= top_review[2] %></p>
@@ -52,7 +52,7 @@
         </section>
 
         <section class="bottom-reviews">
-          <h3>Bottom Three Reviews</h3>
+          <h4>Bottom Three Reviews</h4>
           <% @item.bottom_reviews.each do |bottom_review| %>
           <p>Title: <b><%= bottom_review[0] %></b></p>
           <p>Content: <%= bottom_review[2] %></p>
