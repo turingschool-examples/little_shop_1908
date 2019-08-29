@@ -1,0 +1,12 @@
+<h2> <%=link_to item_par.name, "/items/#{item_par.id}" %> </h2>
+<p>Sold by: <%=link_to item_par.merchant.name, "/merchants/#{item_par.merchant.id}" %></p>
+<img src= <%= item_par.image %>>
+<p> <%= item_par.description unless @merchant%> </p>
+<p>Price: $<%= item_par.price %> </p>
+<p>Inventory: <%= item_par.inventory %> </p>
+<% if item_par.active? %>
+  <p>Active</p>
+<% else %>
+  <p>Inactive</p>
+<% end %>
+<p><%= button_to "Add Item", "/cart/#{item_par.id}" %></p>

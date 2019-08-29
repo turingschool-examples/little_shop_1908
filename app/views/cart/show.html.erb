@@ -1,0 +1,27 @@
+<center>
+<h1>Shopping Cart</h1>
+<% if cart.contents.empty? %>
+ <p>Your Cart is Empty</p>
+<% else %>
+
+
+<%= button_to "Checkout", '/orders/new', :method => :get %>
+
+
+<h3>Total: <%= number_to_currency(cart.grand_total) %></h3>
+<% cart.actual_items.each do |item| %>
+<section id = 'item-<%=item.id%>'>
+     <h2><%= link_to item.name, "/items/#{item.id}" %></h2>
+     <img src=<%= item.image %>>
+     <p>Price: <%= number_to_currency(item.price) %></p>
+     <p>Quantity: <%= cart.count_of(item.id) %></p>
+     <p>Subtotal: <%= number_to_currency(cart.subtotal(item.id)) %></p>
+     <p>Sold by: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %>, Inventory: <%= item.inventory %></p>
+     <%= button_to 'Add More', "/cart/more/#{item.id}", method: :patch unless cart.limit?(item.id) %>
+     <%= button_to 'Remove One', "/cart/less/#{item.id}", method: :patch %>
+     <%= button_to "Remove from cart", "/cart/remove_item/#{item.id}", method: :patch %>
+   </section>
+ <% end %>
+ <%= button_to 'Empty Cart', '/cart', method: :delete %>
+<% end %>
+</center>

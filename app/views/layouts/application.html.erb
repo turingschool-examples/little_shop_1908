@@ -12,7 +12,18 @@
     <nav class = "topnav">
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
+      <div id = 'cart'>
+        <a href = '/cart'><h4> Cart: <%= cart.total_count %> </h4></a>
+        <a href = '/cart'><img src="https://cdn0.iconfinder.com/data/icons/business-finance-vol-10-5/512/19-512.png" alt="Grocery cart"></a>
+      </div>
     </nav>
+    <% flash.each do |type, message| %>
+    <center>
+    <div id = "flash">
+    <%= content_tag :div, message, class: type %>
+  </div>
+  </center>
+    <% end %>
     <%= yield %>
   </body>
 </html>

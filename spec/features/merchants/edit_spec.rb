@@ -33,5 +33,19 @@ RSpec.describe "As a Visitor" do
       expect(page).to have_content("Brian's Super Cool Bike Shop")
       expect(page).to have_content("1234 New Bike Rd.\nDenver, CO 80204")
     end
+
+    it "will flash a message if unable to update merchant properly" do
+      visit "/merchants/#{@bike_shop.id}/edit"
+
+      fill_in 'Name', with: ""
+      fill_in 'Address', with: "1234 New Bike Rd."
+      fill_in 'City', with: "Denver"
+      fill_in 'State', with: "CO"
+      fill_in 'Zip', with: 80204
+
+      click_button 'Update Merchant'
+
+      expect(page).to have_content("You must fill in all fields to update a merchant.")
+    end
   end
 end

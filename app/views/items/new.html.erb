@@ -2,14 +2,19 @@
 
 <center>
   <%= form_tag "/merchants/#{@merchant.id}/items", method: :post do %>
+    <%= label_tag :name %>:<br>
     <%= text_field_tag :name, "Name"%>
 
+    <%= label_tag :description %>:<br>
     <%= text_field_tag :description, "Description" %>
 
+    <%= label_tag :price %>:<br>
     <%= text_field_tag :price, "Price" %>
 
+    <%= label_tag :image %>:<br>
     <%= text_field_tag :image, "Image" %>
 
+    <%= label_tag :inventory %>:<br>
     <%= text_field_tag :inventory, "Inventory" %>
 
     <%= submit_tag 'Create Item' %>

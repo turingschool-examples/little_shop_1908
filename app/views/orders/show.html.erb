@@ -1,0 +1,26 @@
+<center>
+<h1>Order Details</h1>
+
+<h5>Order number: <%= @order.id %></h5>
+<h5>Order Date: <%= @order.created_at %></h5>
+<h4>Name: <%= @order.username %></h4>
+
+<h4>Shipping Address: </h4>
+<p>Street:  <%= @order.address %></p>
+<p>City:  <%= @order.city %></p>
+<p>State:  <%= @order.state %></p>
+<p>Zip:  <%= @order.zipcode %></p>
+
+<% @order.items.each do |item| %>
+  <h4>Item: <%= link_to item.name, "/items/#{item.id}" %></h4>
+  <h5>Merchant: <%= item.merchant.name %></h5>
+  <h5>Cost: <%= number_to_currency(item.price) %></h5>
+<% end %>
+
+<% @order.order_items.each do |order_item| %>
+  <h5>Amount: <%= order_item.quantity %></h5>
+  <h5>Subtotal: <%= number_to_currency((order_item.price) * (order_item.quantity)) %></h5>
+<% end  %>
+
+<h4>Grand Total: <%= number_to_currency(cart.grand_total) %></h4>
+</center>

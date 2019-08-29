@@ -14,8 +14,45 @@
       <% else %>
         <p style= "color:red">Inactive</p>
       <% end %>
+      <%= button_to "Add Item", "/cart/#{@item.id}" %><br>
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
+      <p><%= link_to 'Update Item', "/items/#{@item.id}/edit" %></p>
+
     </section>
   </section>
+
+      <hr>
+      <section class = 'actual_review'
+    <h4>Reviews</h4>
+    <% @item.reviews.each do |review| %>
+        <p>Title: <%= review.title %></p>
+        <p>Description: <%= review.content %></p>
+        <p>Rating: <%= review.rating %></p>
+        <%= link_to "Edit Review", "/reviews/#{review.id}/edit" %>
+        <%= link_to 'Delete Review', "/reviews/#{review.id}", method: :delete %>
+    <% end %>
+    </section>
+
+      <h1><%= link_to 'Add Review', "/items/#{@item.id}/review", method: :get %><h1>
+
+<section class='reviews'>
+  <h2>Reviews</h2>
+    <h3>Average Rating: <%= @item.average_rating %></h3>
+    <section id='top-three-reviews'>
+    <h3>Top 3 Reviews</h3>
+    <ul>
+      <% @item.sort_reviews(3, :desc).each do |review| %>
+      <li><%= review.title %></li>
+  <% end %>
+  </ul>
+    </section>
+    <section id='bottom-three-reviews'>
+      <h3>Bottom 3 Reviews</h3>
+      <ul>
+      <% @item.sort_reviews(3, :asc).each do |review| %>
+      <li><%= review.title %></li>
+    <% end %>
+  </ul>
+</section>
 </center>
