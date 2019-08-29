@@ -1,0 +1,34 @@
+<h1 align= "center">Review Order</h1>
+<section class = "checkout-grid-container">
+  <section class="checkout-grid-headers">
+
+  </section>
+  <% cart.item_quantity.each do |item, quantity| %>
+    <section id="item-checkout-<%= item.id%>">
+      <%= render partial:"partials/item_info", locals:{item:item} %>
+      <p>Quantity: <%= quantity %> </p>
+      <p>Subtotal: $<%= item.item_subtotal(quantity) %></p>
+    </section>
+  <% end %>
+</section>
+
+<section id="cart-summary-checkout">
+  <center><p><b>Total: $<%= cart.total %></b></p></center>
+</section>
+
+<center>
+  <h3>Shipping Information</h3>
+  <%= form_tag '/orders', method: :post do%>
+    <%= text_field_tag :name, nil, placeholder: 'Name' %>
+
+    <%= text_field_tag :address, nil, placeholder: 'Address' %>
+
+    <%= text_field_tag :city, nil, placeholder: 'City' %>
+
+    <%= text_field_tag :state, nil, placeholder: 'City' %>
+
+    <%= text_field_tag :zip, nil, placeholder: 'Zip' %>
+
+    <%= submit_tag 'Create Order' %>
+  <% end %>
+</center>

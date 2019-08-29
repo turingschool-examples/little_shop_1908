@@ -1,6 +1,8 @@
-class Merchant <ApplicationRecord
+class Merchant < ApplicationRecord
   has_many :items
-  
+  has_many :item_orders, through: :items
+  has_many :reviews, through: :items
+
   validates_presence_of :name,
                         :address,
                         :city,

@@ -5,6 +5,7 @@
     <section class = "item-show-item">
       <img src= <%= @item.image %>>
     </section>
+
     <section style="text-align:left" class = "item-show-item">
       <p><%= @item.description %></p>
       <p>Price: $<%= @item.price %> </p>
@@ -16,6 +17,44 @@
       <% end %>
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
+      <p><%= button_to "Add Item", "/cart/#{@item.id}", method: :patch %><p>
     </section>
+  </section>
+
+  <section id = "reviews-section">
+    <h2>Customer Reviews</h2>
+    <p><%= link_to 'New Review', "/items/#{@item.id}/reviews/new" %></p>
+    <% @item.reviews.each do |review| %>
+      <section id= "review-<%=review.id%>"
+        <p><%= review.title %></p>
+        <p><%= link_to 'Edit Review', "/reviews/#{review.id}/edit" %></p>
+        <p><%= link_to 'Delete Review', "/reviews/#{review.id}", method: :delete%></p>
+        <p><%= review.content %></p>
+        <p>Rating: <%= review.rating %> stars</p>
+      </section>
+      <% end %>
+  </section>
+
+  <section id ="reviews-stat-section">
+    <h3> Average Product Rating </h3>
+    <h4><%= @item.reviews.avg_rating.to_f.round(2)%></h4>
+
+   <h3> Top Three Reviews </h3>
+    <% @item.reviews.top_three_reviews.each do |review| %>
+      <section id= "top_three_review-<%=review.id%>"
+      <p><%= review.title %></p>
+      <p>Rating: <%= review.rating %> stars</p>
+      </section>
+      <% end %>
+    <br>
+
+    <h3> Bottom Three Reviews </h3>
+     <% @item.reviews.bottom_three_reviews.each do |review| %>
+       <section id= "top_three_review-<%=review.id%>"
+       <p><%= review.title %></p>
+       <p>Rating: <%= review.rating %> stars</p>
+       </section>
+       <% end %>
+     <br>
   </section>
 </center>
