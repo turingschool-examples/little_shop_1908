@@ -28,7 +28,7 @@ class Cart
 
   def subtotal(item_id)
     item = Item.find(item_id)
-    @contents[item_id.to_s] * item.price
+    @contents[item_id.to_s].to_i * item.price
   end
 
   def order_total
