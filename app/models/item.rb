@@ -26,4 +26,21 @@ class Item <ApplicationRecord
   def top_or_bottom_3_reviews(order: :desc)
     reviews.order(rating: order).limit(3)
   end
+
+  def average_rating
+    reviews.average(:rating)
+  end
+
+  def sort_reviews(method)
+    revs = reviews
+    if method == 'max-rating'
+      revs.order(rating: :desc, created_at: :desc)
+    elsif method == 'min-rating'
+      revs.order(rating: :asc, created_at: :desc)
+    elsif method == 'date-asc'
+      revs.order(created_at: :asc)
+    else
+      revs.order(created_at: :desc)
+    end
+  end
 end
