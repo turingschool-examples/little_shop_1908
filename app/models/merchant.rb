@@ -1,5 +1,5 @@
 class Merchant <ApplicationRecord
-  has_many :items
+  has_many :items, dependent: :nullify
 
   validates_presence_of :name,
                         :address,
