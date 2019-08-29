@@ -1,18 +1,10 @@
 class CartController < ApplicationController
   before_action :set_cart, only: [:add_item, :show, :remove_item, :increase, :decrease, :empty_cart]
   before_action :set_item, only: [:add_item, :remove_item, :increase, :decrease]
-<<<<<<< Updated upstream
   after_action :set_session_cart, only: [:remove_item, :increase, :decrease, :add_item, :empty_cart]
 
   def add_item
     @cart.add_item(@item.id)
-=======
-  after_action :set_session_cart, only: [:remove_item, :increase, :decrease]
-
-  def add_item
-    @cart.add_item(@item.id)
-    # session[:cart] = @cart.contents
->>>>>>> Stashed changes
     flash[:notice] = "#{@item.name} added to cart."
     redirect_to '/items'
   end
