@@ -6,7 +6,7 @@ BE Mod 2 Week 2/3 Pair Project
 "Little Shop" is a fictitious e-commerce platform where users can place items into a shopping cart and 'check out' to create Orders in the database.
 
 ## Project Overview
-
+- Heroku link: https://dashboard.heroku.com/apps/minishop-kellyleiya
 - Use nav bar to view all merchants, all items and cart as well as total count of items in cart, has a search bar (but is not functional)
 - Home page is the merchant index
 - User can view all items on the site, or only those specific to a merchant through the merchant page
