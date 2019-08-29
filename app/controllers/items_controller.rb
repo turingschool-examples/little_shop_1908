@@ -44,9 +44,15 @@ class ItemsController<ApplicationController
 
   def destroy
     item = Item.find(params[:id])
+
     if !item.item_orders.empty?
       flash[:message] = 'This item has been ordered and cannot be deleted.'
       redirect_to "/items/#{item.id}"
+
+    elsif cart.contents.keys.include?(item.id.to_s)
+      flash[:message] = "This item is in a user's cart and cannot be deleted."
+      redirect_to "/items/#{item.id}"
+
     else
       Review.delete(Review.where(item_id: params[:id]))
       item.destroy
