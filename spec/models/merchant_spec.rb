@@ -34,7 +34,7 @@ describe Merchant, type: :model do
       @review_3 = @tire.reviews.create(title: 'Review Title 3', content: "Content 3", rating: 3)
 
       #user orders
-      @order_1 = Order.create!(name: "Mack", address: "123 Happy St", city: "Denver", state: "CO", zip: "80205")
+      @order_1 = Order.create!(name: "Mack", address: "123 Happy St", city: "Colorado Springs", state: "CO", zip: "80205")
         @item_order_1 = @order_1.item_orders.create!(order: @order_1, item: @bike, quantity: 1, subtotal: @bike.item_subtotal(1))
 
       @order_2 = Order.create(name: "John", address: "123 West St", city: "Golden", state: "CO", zip: "56600")
@@ -50,11 +50,17 @@ describe Merchant, type: :model do
         @item_order_7 = ItemOrder.create(order: @order_4, item: @tire, quantity: 1, subtotal: @tire.item_subtotal(1))
         @item_order_8 = ItemOrder.create(order: @order_4, item: @bike, quantity: 1, subtotal: @bike.item_subtotal(1))
 
-      @order_5 = Order.create(name: "Adam", address: "123 South St", city: "Chicago", state: "IL", zip: "61704")
+      @order_5 = Order.create(name: "Adam", address: "123 South St", city: "Seattle", state: "WA", zip: "61704")
         @item_order_10 = ItemOrder.create(order: @order_5, item: @tire, quantity: 2, subtotal: @tire.item_subtotal(2))
 
-      @order_6 = Order.create(name: "Matt", address: "123 Road St", city: "Chicago", state: "IL", zip: "61704")
+      @order_6 = Order.create(name: "Matt", address: "123 Road St", city: "Denver", state: "CO", zip: "61704")
         @item_order_11 = ItemOrder.create(order: @order_6, item: @bike, quantity: 2, subtotal: @bike.item_subtotal(2))
+
+      @order_7 = Order.create(name: "Julie", address: "123 Red St", city: "Denver", state: "CO", zip: "61704")
+        @item_order_12 = ItemOrder.create(order: @order_7, item: @bike, quantity: 2, subtotal: @bike.item_subtotal(2))
+
+      @order_8 = Order.create(name: "Julie", address: "123 Red St", city: "Denver", state: "CO", zip: "61704")
+        @item_order_13 = ItemOrder.create(order: @order_8, item: @bike, quantity: 2, subtotal: @bike.item_subtotal(2))
     end
 
     it 'can return the number of unique products a merchant sells' do
@@ -71,8 +77,8 @@ describe Merchant, type: :model do
 
     it 'can return the cities a merchant has shipped to' do
 
-      expected_1 = "Golden, Denver, Chicago"
-      expected_2 = "Denver, Golden"
+      expected_1 = ["Colorado Springs", "Denver", "Golden", "Seattle"]
+      expected_2 = ["Denver", "Golden"]
 
       expect(@bike_shop.shipped_to_cities).to eq(expected_1)
       expect(@dog_shop.shipped_to_cities).to eq(expected_2)
