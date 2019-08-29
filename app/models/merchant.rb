@@ -14,11 +14,12 @@ class Merchant < ApplicationRecord
   end
 
   def avg_price
-   items.average(:price)
+    items.average(:price)
   end
 
   def shipped_to_cities
-    # binding.pry
-    # item_orders.joins(:order).pluck('orders.city')
+    Order.where(id: item_orders.pluck(:order_id))
+    .distinct
+    .pluck(:city)
   end
 end
