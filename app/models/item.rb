@@ -23,7 +23,7 @@ class Item <ApplicationRecord
     orders.count > 0
   end
 
-  def top_or_bottom_three_reviews(order: :desc)
+  def top_or_bottom_3_reviews(order: :desc)
     reviews.order(rating: order).limit(3)
   end
 end

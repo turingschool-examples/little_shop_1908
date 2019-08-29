@@ -18,8 +18,8 @@ class ItemsController < ApplicationController
       redirect_to "/items"
     else
       @item = Item.find(params[:id])
-      @top = @item.top_or_bottom_three_reviews(order: :desc)
-      @bottom = @item.top_or_bottom_three_reviews(order: :asc)
+      @top = @item.top_or_bottom_3_reviews(order: :desc)
+      @bottom = @item.top_or_bottom_3_reviews(order: :asc)
       @average = Review.average_rating(@item.id)
       @sorted_reviews = Review.sort_reviews(params[:sort], @item.id)
     end
