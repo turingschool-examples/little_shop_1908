@@ -8,11 +8,10 @@ class Review < ApplicationRecord
   # VIEW SHOULDA MATCHERS DOC - ACTIVEMODEL MATCHERS
 
   def self.avg_rating
-      average(:rating)
+    average(:rating)
   end
 
   def self.top_three_reviews
-
     order(rating: :desc).limit(3)
   end
 

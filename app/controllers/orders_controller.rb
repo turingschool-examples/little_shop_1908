@@ -7,7 +7,7 @@ class OrdersController<ApplicationController
     order = Order.new(order_params)
     if order.save
       cart.item_quantity.each do |item, quantity|
-        ItemOrder.create(:order_id => order.id, :item_id => item.id, :quantity => quantity, :subtotal => item.item_subtotal(quantity))
+        ItemOrder.create(order_id: order.id, item_id: item.id, quantity: quantity, subtotal: item.item_subtotal(quantity))
       end
       reset_session
       redirect_to "/orders/#{order.id}"
