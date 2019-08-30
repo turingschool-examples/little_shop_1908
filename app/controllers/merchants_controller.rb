@@ -1,4 +1,5 @@
 class MerchantsController <ApplicationController
+  before_action :set_cart
   before_action :set_merchant, only: [:show, :edit, :update]
 
   def index
@@ -47,5 +48,9 @@ class MerchantsController <ApplicationController
 
   def set_merchant
     @merchant = Merchant.find(params[:id])
+  end
+
+  def set_cart
+    @cart = Cart.new(session[:cart])
   end
 end

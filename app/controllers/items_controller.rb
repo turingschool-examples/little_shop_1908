@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :set_cart
   before_action :set_item, only: [:edit, :update, :destroy]
   before_action :set_merchant, only: [:new, :create]
 
@@ -12,16 +13,16 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @cart = Cart.new(session[:cart])
+    # @cart = Cart.new(session[:cart])
     unless Item.exists?([params[:id]])
       flash[:error] = "Sorry, that item does not exist"
       redirect_to "/items"
     else
       @item = Item.find(params[:id])
-      @top = Review.top_or_bottom_three(@item.id)
-      @bottom = Review.top_or_bottom_three(@item.id, :asc)
-      @average = Review.average_rating(@item.id)
-      @sorted_reviews = Review.sort_reviews(params[:sort], @item.id)
+      @top = @item.top_or_bottom_3_reviews(order: :desc)
+      @bottom = @item.top_or_bottom_3_reviews(order: :asc)
+      @average = @item.average_rating
+      @sorted_reviews = @item.sort_reviews(params[:sort])
     end
   end
 
@@ -51,7 +52,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy
+    if @item.has_orders?
+      flash[:error] = "Can't delete items with orders"
+    else
+      @item.destroy
+    end
     redirect_to "/items"
   end
 
@@ -69,4 +74,7 @@ class ItemsController < ApplicationController
     @merchant = Merchant.find(params[:merchant_id])
   end
 
+  def set_cart
+    @cart = Cart.new(session[:cart])
+  end
 end

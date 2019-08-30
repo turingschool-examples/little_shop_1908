@@ -1,6 +1,7 @@
 class ReviewsController<ApplicationController
+  before_action :set_cart
   before_action :set_review, only: [:edit, :update, :destroy]
-  before_action :set_item, only: [ :new, :create]
+  before_action :set_item, only: [:new, :create]
 
   def new
   end
@@ -47,4 +48,7 @@ class ReviewsController<ApplicationController
     @item = Item.find(params[:item_id])
   end
 
+  def set_cart
+    @cart = Cart.new(session[:cart])
+  end
 end

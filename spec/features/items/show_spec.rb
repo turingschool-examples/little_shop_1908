@@ -71,3 +71,29 @@ RSpec.describe 'item show page', type: :feature do
     end
   end
 end
+
+describe 'User can use sort by button' do
+  it "sorts the reviews" do
+    bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+    tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+    review_1 = tire.reviews.create(title: 'Its Great!', content: 'Best tire ever!', rating: 5)
+    review_2 = tire.reviews.create(title: 'Its awful!', content: 'I hate it!', rating: 1)
+    review_3 = tire.reviews.create(title: 'Its okay!', content: 'Mediocre at best...', rating: 3)
+    review_4 = tire.reviews.create(title: "It's pretty good", content: 'Maybe a little pricey, but they sure work good.', rating: 2)
+    review_5 = tire.reviews.create(title: "It's pretty decent", content: 'Lasted a pretty long time on my last set', rating: 4)
+
+    visit "/items/#{tire.id}"
+
+    click_link 'Rating: High - Low'
+    # expect(page).to have_current_path(items_path(only_path: true, sort: 'max-rating'))
+
+    click_link 'Rating: Low - High'
+    # expect(current_path).to eq("/items/#{tire.id}?sort=min-rating")
+
+    click_link 'Date: Newest First'
+    # expect(current_path).to eq("/items/#{tire.id}?sort=date-desc")
+
+    click_link 'Date: Oldest First'
+    # expect(current_path).to eq("/items/#{tire.id}?sort=date-asc")
+  end
+end

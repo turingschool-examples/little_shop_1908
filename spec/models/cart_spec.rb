@@ -31,7 +31,7 @@ describe Cart do
     expect(cart.contents).to eq({"7"=>1})
   end
 
-  it "can remove and item" do
+  it "can remove an item" do
     cart = Cart.new(nil)
     cart.add_item(7)
     cart.remove_item(7)
@@ -60,5 +60,10 @@ describe Cart do
 
   it "can calculate order total" do
     expect(@cart.order_total).to eq(52)
+  end
+
+  it "can reset a cart to empty" do
+    @cart.empty
+    expect(@cart.contents).to eq({})
   end
 end

@@ -30,14 +30,14 @@ describe Item, type: :model do
       expect(Item.cart_items(cart)).to eq(items)
     end
 
-    it "item #exists?" do
+    it "Item.exists?" do
       expect(Item.exists?(@pull_toy.id)).to eq(true)
       expect(Item.exists?(0)).to eq(false)
     end
   end
 
   describe 'instance methods' do
-    it "can tell if an item has orders" do
+    it "#has_orders?" do
       bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       light = bike_shop.items.create(name: "Lights", description: "So bright!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
 
@@ -47,6 +47,32 @@ describe Item, type: :model do
       item_order = order.item_orders.create(quantity: 2, total_cost: 100, item: light)
 
       expect(light.has_orders?).to eq(true)
+    end
+
+    before :each do
+      @bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      @tire = @bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+      @review_1 = @tire.reviews.create(title: 'Its Great!', content: 'Best tire ever!', rating: 5)
+      @review_2 = @tire.reviews.create(title: 'Its awful!', content: 'I hate it!', rating: 1)
+      @review_3 = @tire.reviews.create(title: 'Its okay!', content: 'Mediocre at best...', rating: 3)
+      @review_4 = @tire.reviews.create(title: "It's pretty good", content: 'Maybe a little pricey, but they sure work good.', rating: 2)
+      @review_5 = @tire.reviews.create(title: "It's pretty decent", content: 'Lasted a pretty long time on my last set', rating: 4)
+    end
+
+    it "#top_or_bottom_3_reviews" do
+      expect(@tire.top_or_bottom_3_reviews(order: :desc)).to eq([@review_1, @review_5, @review_3])
+      expect(@tire.top_or_bottom_3_reviews(order: :asc)).to eq([@review_2, @review_4, @review_3])
+    end
+
+    it "#average_rating" do
+      expect(@tire.average_rating).to eq(3)
+    end
+
+    it "#sort_reviews" do
+      expect(@tire.sort_reviews('max-rating')).to eq([@review_1, @review_5, @review_3, @review_4, @review_2])
+      expect(@tire.sort_reviews('min-rating')).to eq([@review_2, @review_4, @review_3, @review_5, @review_1])
+      expect(@tire.sort_reviews('date-asc')).to eq([@review_1, @review_2, @review_3, @review_4, @review_5])
+      expect(@tire.sort_reviews('date-desc')).to eq([@review_5, @review_4, @review_3, @review_2, @review_1])
     end
   end
 end

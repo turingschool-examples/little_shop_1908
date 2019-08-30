@@ -49,9 +49,9 @@ describe Merchant, type: :model do
       expect(top[1].name).to eq(light.name)
       expect(top[2].name).to eq(tire.name)
 
-      expect(top[0].avg).to eq(4)
-      expect(top[1].avg).to eq(3)
-      expect(top[2].avg).to eq(2)
+      expect(top[0].average_rating).to eq(4)
+      expect(top[1].average_rating).to eq(3)
+      expect(top[2].average_rating).to eq(2)
     end
 
     before :each do

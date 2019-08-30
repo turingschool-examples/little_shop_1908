@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_cart, only: [:new, :show]
+  before_action :set_cart
   before_action :set_items, only: [:new, :show]
 
   def new
