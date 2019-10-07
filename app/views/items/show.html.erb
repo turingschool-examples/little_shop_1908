@@ -2,10 +2,10 @@
 <p align="center">Sold by: <%=link_to @item.merchant.name, "/merchants/#{@item.merchant.id}" %> </p>
 <center>
   <section class = "item-show-grid">
-    <section class = "item-show-item">
+    <article class = "item-show-item">
       <img src= <%= @item.image %>>
-    </section>
-    <section style="text-align:left" class = "item-show-item">
+    </article>
+    <article style="text-align:left" class = "item-show-item">
       <p><%= @item.description %></p>
       <p>Price: <%= number_to_currency(@item.price) %> </p>
       <p>Inventory: <%= @item.inventory %> </p>
@@ -16,6 +16,13 @@
       <% end %>
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
-    </section>
+    </article>
   </section>
+  <% @item.reviews.each do |review| %>
+    <section id= 'review-<%= review.id %>'>
+      <p><%= review.title %></p>
+      <p><%= review.content %></p>
+      <p>Rating: <%= review.rating %></p>
+    </section>
+  <% end %>
 </center>
