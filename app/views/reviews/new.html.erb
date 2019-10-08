@@ -1,0 +1,13 @@
+<h1>Create New Review for <%=link_to @item.name, "/items/#{@item.id}" %></h1>
+
+<center>
+  <%= form_tag "/items/#{@item.id}/reviews", method: :post do %>
+    <%= text_field_tag :title, "Title"%>
+
+    <%= text_area_tag :content, "Review Content" %>
+
+    <%= number_field_tag :rating, "Rating", min: 1, max: 5, step: 1 %>
+
+    <%= submit_tag 'Create Review' %>
+  <% end %>
+</center>
