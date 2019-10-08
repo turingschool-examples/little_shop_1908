@@ -14,6 +14,15 @@
       <% else %>
         <p style= "color:red">Inactive</p>
       <% end %>
+        <% @item.reviews.each do |review| %>
+        <section id= "review-<%= review.id %>">
+          <ul>
+            <li> <%= review.title %></li>
+            <li> <%= review.content %></li>
+            <li> <%= review.rating %></li>
+          </ul>
+        </section>
+        <% end %>
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
     </section>

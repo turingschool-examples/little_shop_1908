@@ -8,6 +8,6 @@ describe Review, type: :model do
   end
 
   describe "relationships" do
-    it {should belong_to :items }
+    it {should belong_to :item }
   end
 end
