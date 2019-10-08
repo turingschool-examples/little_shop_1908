@@ -34,6 +34,7 @@
   },
   "name": "little_shop_1908",
   "scripts": {
+    "postdeploy": "rake db:migrate && rake db:seed"
   },
   "stack": "heroku-18"
 }
