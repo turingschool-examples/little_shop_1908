@@ -26,6 +26,7 @@
       <p>Content: <%= review.content %></p>
       <p>Rating: <%= review.rating %></p>
       <%= link_to 'Edit Review', "/items/#{@item.id}/reviews/#{review.id}/edit" %>
+      <%= link_to "Delete Review", "/items/#{@item.id}/reviews/#{review.id}", method: :delete %>
     </section>
   <% end %>
   <h2>Top 3 Reviews</h2>
@@ -42,8 +43,7 @@
       <p>Rating: <%= review.rating %></p>
     <% end  %>
   </section>
-  <h2>Average Rating</h2>
   <section id="review-average-rating">
-    <p>Average Rating: <%= @item.average_review_rating %></p>
+    <h2>Average Rating: <%= @item.average_review_rating %></h2>
   </section>
 </center>
