@@ -1,27 +1,26 @@
 require 'rails_helper'
 
-RSpec.describe "Create Merchant Items" do
-  describe "When I visit the merchant items index page" do
+RSpec.describe "create merchant item" do
+  describe "when I visit the merchant items index page" do
+
     before(:each) do
       @brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
+
+      visit "/merchants/#{@brian.id}/items"
     end
 
-    it 'I see a link to add a new item for that merchant' do
-      visit "/merchants/#{@brian.id}/items"
-
+    it 'can see a link to add a new item for that merchant' do
       expect(page).to have_link "Add New Item"
     end
 
-    it 'I can add a new item by filling out a form' do
-      visit "/merchants/#{@brian.id}/items"
-
+    it 'can add a new item by filling out a form' do
       name = "Chamois Buttr"
       price = 18
       description = "No more chaffin'!"
       image_url = "https://images-na.ssl-images-amazon.com/images/I/51HMpDXItgL._SX569_.jpg"
       inventory = 25
 
-      click_on "Add New Item"
+      click_link "Add New Item"
 
       expect(page).to have_link(@brian.name)
       expect(current_path).to eq("/merchants/#{@brian.id}/items/new")
@@ -41,7 +40,7 @@ RSpec.describe "Create Merchant Items" do
       expect(new_item.description).to eq(description)
       expect(new_item.image).to eq(image_url)
       expect(new_item.inventory).to eq(inventory)
-      expect(Item.last.active?).to be(true)
+      expect(new_item.active?).to be(true)
       expect(page).to have_css("#item-#{Item.last.id}")
       expect(page).to have_content(name)
       expect(page).to have_content("Price: $#{new_item.price}")
