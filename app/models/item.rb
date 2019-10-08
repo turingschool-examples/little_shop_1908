@@ -7,7 +7,7 @@ class Item <ApplicationRecord
                         :price,
                         :image,
                         :inventory
-  validates_inclusion_of :active?, :in => [true, false]
+  validates_inclusion_of :active?, in: [true, false]
 
 
 end
