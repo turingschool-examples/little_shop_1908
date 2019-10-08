@@ -12,7 +12,7 @@ RSpec.describe 'As a visitor' do
 
 
     it 'I can see the prepopulated fields of that review' do
-      expect(current_path).to eq("/items/#{@chain.id}/reviews/edit")
+      expect(current_path).to eq("/reviews/#{@review_1.id}/edit")
       expect(page).to have_link('Chain')
       expect(find_field('Title').value).to eq('Worst chain!')
       expect(find_field('Content').value).to eq('NEVER buy this chain.')

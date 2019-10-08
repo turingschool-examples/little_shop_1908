@@ -26,6 +26,7 @@
           <h3><%= review.title %></h3>
           <p><%= review.content %></p>
           <p>Rating: <%= review.rating %></p>
+          <%= link_to 'Edit Review', "/reviews/#{review.id}/edit" %>
         </section>
       <% end %>
     </section>
@@ -46,10 +47,6 @@
       <h3>Average Rating: <%= @item.average_rating %></h3>
     </section>
   <% end  %>
-
-
-
-
 
 
   <%= link_to 'Add New Review', "/items/#{@item.id}/reviews/new" %>
