@@ -19,3 +19,11 @@ tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never po
 #dog_shop items
 pull_toy = dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
 dog_bone = dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
+
+#tire reviews
+review_1 = tire.reviews.create(title: "Worst tire!", content: "NEVER buy this tire.", rating: 1)
+review_2 = tire.reviews.create(title: "Awesome tire!", content: "This was a great tire! Would buy again.", rating: 5)
+review_3 = tire.reviews.create(title: "Meh", content: "I probably wouldn't buy this again.", rating: 3)
+review_4 = tire.reviews.create(title: "Really Good Chain", content: "Can't wait to order more. I gave it a 4 because the order took long to process.", rating: 4)
+review_5 = tire.reviews.create(title: "Disappointed", content: "Super disappointed in this tire. It broke after two uses! Don't buy.", rating: 2)
+review_6 = tire.reviews.create(title: "Best tire EVER!", content: "I'm ordering this tire for everyone I know with a bike. That's how much I loved it!", rating: 5)
