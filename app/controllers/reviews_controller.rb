@@ -1,15 +1,17 @@
 class ReviewsController < ApplicationController
   def new
-    # binding.pry
     @item = Item.find(params[:id])
   end
 
   def create
-    item = Item.find(params[:id])
-
-    item.reviews.create(review_params)
-
-    redirect_to "/items/#{item.id}"
+    @item = Item.find(params[:id])
+    review = @item.reviews.new(review_params)
+    if review.save
+      redirect_to "/items/#{@item.id}"
+    else
+      flash[:notice] = "Review not submitted: Required information is missing"
+      render :new
+    end
   end
 
   private
