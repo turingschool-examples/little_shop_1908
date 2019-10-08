@@ -3,5 +3,5 @@ class Review < ApplicationRecord
 
   validates_presence_of :title,
                         :rating,
-                        :review
+                        :content
 end

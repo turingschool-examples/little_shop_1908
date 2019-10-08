@@ -16,7 +16,7 @@ RSpec.describe 'Create new review', type: :feature do
     it 'I can add a review by filling out form' do
       title = "Great, durable @chain!"
       rating = 5
-      review = "I've been using this @chain for over 500 miles and it hasn't had any issues. Highly recommend."
+      content = "I've been using this @chain for over 500 miles and it hasn't had any issues. Highly recommend."
 
       visit "items/#{@chain.id}"
       click_on 'Add Review'
@@ -24,7 +24,7 @@ RSpec.describe 'Create new review', type: :feature do
       expect(current_path).to eq("/items/#{@chain.id}/reviews/new")
       fill_in :title, with: title
       fill_in :rating, with: rating
-      fill_in :review, with: review
+      fill_in :content, with: content
 
       click_button "Create Review"
 
@@ -33,25 +33,25 @@ RSpec.describe 'Create new review', type: :feature do
       expect(current_path).to eq("/items/#{@chain.id}")
       expect(this_review.title).to eq(title)
       expect(this_review.rating).to eq(rating)
-      expect(this_review.review).to eq(review)
+      expect(this_review.review).to eq(content)
 
       within "#review-#{this_review.id}" do
         expect(page).to have_content(title)
         expect(page).to have_content("Rating: #{rating} stars")
-        expect(page).to have_content(review)
+        expect(page).to have_content(content)
       end
     end
 
     it 'Tells me when I need to finish completing form' do
       title = "Great, durable @chain!"
-      review = "I've been using this @chain for over 500 miles and it hasn't had any issues. Highly recommend."
+      content = "I've been using this @chain for over 500 miles and it hasn't had any issues. Highly recommend."
 
       visit "items/#{@chain.id}"
       click_on 'Add Review'
 
       expect(current_path).to eq("/items/#{@chain.id}/reviews/new")
       fill_in :title, with: title
-      fill_in :review, with: review
+      fill_in :content, with: content
 
       click_button "Create Review"
       expect(page).to have_content("Please finish filling out form before submitting.")
@@ -60,7 +60,7 @@ RSpec.describe 'Create new review', type: :feature do
     it 'Tells me to rate between 1 and 5' do
       title = "Great, durable @chain!"
       rating = 6
-      review = "I've been using this @chain for over 500 miles and it hasn't had any issues. Highly recommend."
+      content = "I've been using this @chain for over 500 miles and it hasn't had any issues. Highly recommend."
 
       visit "items/#{@chain.id}"
       click_on 'Add Review'
@@ -68,7 +68,7 @@ RSpec.describe 'Create new review', type: :feature do
       expect(current_path).to eq("/items/#{@chain.id}/reviews/new")
       fill_in :title, with: title
       fill_in :rating, with: rating
-      fill_in :review, with: review
+      fill_in :content, with: content
 
       click_button "Create Review"
       expect(page).to have_content("Please pick a number between 1 and 5.")
