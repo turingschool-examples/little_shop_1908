@@ -6,6 +6,8 @@ RSpec.describe 'item show page', type: :feature do
     @chain = @bike_shop.items.create!(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
     @review_1 = @chain.reviews.create(title: "Awesome", content: "Really really awesome", rating: 5)
     @review_2 = @chain.reviews.create(title: "Not Great", content: "Stinks a lot", rating: 1)
+    @review_3 = @chain.reviews.create(title: "Mediocre", content: "What can I say? Gets the job done I guess.", rating: 3)
+    @review_4 = @chain.reviews.create(title: "Good", content: "Good product. Satisfied.", rating: 4)
     visit "/items/#{@chain.id}"
   end
   it 'shows item info' do
@@ -55,6 +57,36 @@ RSpec.describe 'item show page', type: :feature do
       expect(page).to have_content(review_3.title)
       expect(page).to have_content(review_3.content)
       expect(page).to have_content(review_3.rating)
+    end
+  end
+
+  it "shows reviews statistics" do
+    within "#review-top-three" do
+      expect(page).to have_content(@review_1.title)
+      expect(page).to have_content(@review_1.rating)
+      expect(page).to have_content(@review_4.title)
+      expect(page).to have_content(@review_4.rating)
+      expect(page).to have_content(@review_3.title)
+      expect(page).to have_content(@review_3.rating)
+      expect(page).to_not have_content(@review_2.title)
+      expect(page).to_not have_content(@review_2.rating)
+    end
+
+    within "#review-bottom-three" do
+      expect(page).to have_content(@review_2.title)
+      expect(page).to have_content(@review_2.rating)
+      expect(page).to have_content(@review_3.title)
+      expect(page).to have_content(@review_3.rating)
+      expect(page).to have_content(@review_4.title)
+      expect(page).to have_content(@review_4.rating)
+      expect(page).to_not have_content(@review_1.title)
+      expect(page).to_not have_content(@review_1.rating)
+    end
+
+    save_and_open_page
+
+    within "#review-average-rating" do
+      expect(page).to have_content("Average Rating: 3.25")
     end
   end
 end
