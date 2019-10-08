@@ -37,7 +37,7 @@ RSpec.describe "Review new page" do
       click_button ('Add Review')
       click_button ('Create Review')
 
-      expect(page).to have_content("Review could not be submitted:\n Please enter a title for your review")
+      expect(page).to have_content("Review not submitted: Required information is missing")
       expect(page).to have_button('Create Review')
     end
   end
