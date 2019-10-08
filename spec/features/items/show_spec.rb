@@ -83,10 +83,38 @@ RSpec.describe 'item show page', type: :feature do
       expect(page).to_not have_content(@review_1.rating)
     end
 
-    save_and_open_page
-
     within "#review-average-rating" do
       expect(page).to have_content("Average Rating: 3.25")
+    end
+  end
+
+  it "can edit a review" do
+    within "#review-#{@review_2.id}" do
+      click_link 'Edit Review'
+    end
+
+    expect(current_path).to eq("/items/#{@chain.id}/reviews/#{@review_2.id}/edit")
+
+    expect(find_field('Title').value).to eq 'Not Great'
+    expect(find_field('Content').value).to eq 'Stinks a lot'
+    expect(find_field('Rating').value).to eq "1"
+
+    fill_in "Title", with: "It's a little better"
+    fill_in "Content", with: "Really, it got better"
+    fill_in "Rating", with: 2
+
+    click_button 'Update Review'
+
+    expect(current_path).to eq("/items/#{@chain.id}")
+
+    within "#review-#{@review_2.id}" do
+      expect(page).to have_content("It's a little better")
+      expect(page).to have_content("Really, it got better")
+      expect(page).to have_content(2)
+
+      expect(page).to_not have_content("Not Great")
+      expect(page).to_not have_content("Stinks a lot")
+      expect(page).to_not have_content(1)
     end
   end
 end
