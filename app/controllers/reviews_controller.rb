@@ -14,6 +14,22 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def edit
+    @item = Item.find(params[:item_id])
+    @review = Review.find(params[:review_id])
+  end
+
+  def update
+    @item = Item.find(params[:item_id])
+    @review = Review.find(params[:review_id])
+    if @review.update(review_params)
+      redirect_to "/items/#{@item.id}"
+    else
+      flash[:notice] = "Review not submitted: Required information is missing"
+      render :edit
+    end
+  end
+
   private
     def review_params
       params.permit(:title,:content,:rating)
