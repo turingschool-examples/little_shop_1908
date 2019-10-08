@@ -36,8 +36,6 @@ RSpec.describe 'Create Item Reviews' do
     it 'I cannot create a new review without all fields in the form filled' do
       click_button 'Create Review'
 
-      # save_and_open_page
-
       expect(page).to have_content("Review not created: Required information missing.")
       expect(page).to have_button('Create Review')
     end
