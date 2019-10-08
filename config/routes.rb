@@ -18,5 +18,7 @@ Rails.application.routes.draw do
   post   "/merchants/:merchant_id/items",     to: "items#create"
   delete "/items/:id",                        to: "items#destroy"
 
-  delete "/reviews/:id", to: "reviews#destroy"
+  get    "/items/:item_id/reviews/new", to: "reviews#new"
+  post   "/items/:item_id/reviews",     to: "reviews#create"
+  delete "/reviews/:id",                to: "reviews#destroy"
 end
