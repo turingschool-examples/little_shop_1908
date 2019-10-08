@@ -117,4 +117,16 @@ RSpec.describe 'item show page', type: :feature do
       expect(page).to_not have_content(1)
     end
   end
+
+  it "can delete a review" do
+    within "#review-#{@review_2.id}" do
+      click_link 'Delete Review'
+    end
+
+    expect(current_path).to eq("/items/#{@chain.id}")
+
+    expect(page).to_not have_content(@review_2.title)
+    expect(page).to_not have_content(@review_2.content)
+    expect(page).to_not have_content(@review_2.rating)
+  end
 end
