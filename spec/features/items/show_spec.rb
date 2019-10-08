@@ -12,9 +12,6 @@ RSpec.describe 'item show page', type: :feature do
     end
 
     it 'shows item info' do
-      # bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
-      # @chain = bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
-
       visit "items/#{@chain.id}"
 
       expect(page).to have_link(@chain.merchant.name)
@@ -29,7 +26,7 @@ RSpec.describe 'item show page', type: :feature do
 
     it 'shows a list of reviews with title, content, and rating' do
       visit "items/#{@chain.id}"
-      
+
       expect(page).to have_content(@review_1.title)
       expect(page).to have_content(@review_2.title)
       expect(page).to have_content(@review_3.title)
