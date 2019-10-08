@@ -1,4 +1,4 @@
-class Item <ApplicationRecord
+class Item < ApplicationRecord
   belongs_to :merchant
   has_many :reviews
 
@@ -8,6 +8,5 @@ class Item <ApplicationRecord
                         :image,
                         :inventory
   validates_inclusion_of :active?, in: [true, false]
-
 
 end
