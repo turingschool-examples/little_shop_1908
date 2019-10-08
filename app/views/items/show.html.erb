@@ -14,6 +14,7 @@
       <% else %>
         <p style= "color:red">Inactive</p>
       <% end %>
+      <p><%= button_to 'Add Review', "/items/#{@item.id}/reviews/new", method: :get %></p>
       <% @item.reviews.each do |review| %>
       <section id = "review-<%= review.id %>">
         <p> <%= review.title %> </p>
