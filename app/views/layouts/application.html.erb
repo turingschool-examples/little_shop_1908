@@ -12,10 +12,10 @@
     <nav class = "topnav">
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
-      <% flash.each do |type, message| %>
-   <p><%= message %></p>
- <% end %>
     </nav>
+      <% flash.each do |type, message| %>
+    <p><%= message %></p>
+      <% end %>
     <%= yield %>
   </body>
 </html>
