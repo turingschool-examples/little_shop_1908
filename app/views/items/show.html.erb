@@ -27,4 +27,22 @@
       <p>Rating: <%= review.rating %></p>
     </section>
   <% end %>
+  <h2>Top 3 Reviews</h2>
+  <section id="review-top-three">
+    <% @item.top_three_reviews.each do |review|%>
+      <p>Title: <%= review.title %></p>
+      <p>Rating: <%= review.rating %></p>
+    <% end  %>
+  </section>
+  <h2>Bottom 3 Reviews</h2>
+  <section id="review-bottom-three">
+    <% @item.bottom_three_reviews.each do |review|%>
+      <p>Title: <%= review.title %></p>
+      <p>Rating: <%= review.rating %></p>
+    <% end  %>
+  </section>
+  <h2>Average Rating</h2>
+  <section id="review-average-rating">
+    <p>Average Rating: <%= @item.average_review_rating %></p>
+  </section>
 </center>
