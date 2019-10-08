@@ -25,12 +25,13 @@ RSpec.describe 'item show page', type: :feature do
   end
 
   it "shows reviews for an item" do
-    ratings = [@rating_1, @rating_2]
-    ratings.each do |rating|
-      within "#rating-#{rating.id}" do
-        expect(page).to have_content(rating.title)
-        expect(page).to have_content(rating.content)
-        expect(page).to have_content(rating.rating)
+    visit "/items/#{@chain.id}"
+    reviews = [@review_1, @review_2]
+    reviews.each do |review|
+      within "#review-#{review.id}" do
+        expect(page).to have_content(review.title)
+        expect(page).to have_content(review.content)
+        expect(page).to have_content(review.rating)
       end
     end
   end
