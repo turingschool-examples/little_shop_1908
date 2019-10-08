@@ -37,4 +37,18 @@ RSpec.describe 'item show page', type: :feature do
       expect(page).to have_content(5)
     end
   end
+
+  it 'shows a link to edit a review' do
+    review_1 = @chain.reviews.create(title: "first review", content: "content", rating: 4)
+
+    visit "/items/#{@chain.id}"
+
+    within "#review-#{review_1.id}" do
+      expect(page).to have_button("Edit Review")
+      
+      click_button "Edit Review"
+
+      expect(current_path).to eq("/items/#{@chain.id}/reviews/#{review_1.id}/edit")
+    end
+  end
 end
