@@ -7,10 +7,10 @@ RSpec.describe 'item show page', type: :feature do
     # make some reviews for @chain
     # @review_1 = @chain.reviews.create(title: "This stunk", content: "super smelly", rating: 1)
     # @review_2 = @chain.reviews.create(title: "This blew my mind", content: "goddawful", rating: 1)
-    visit "items/#{@chain.id}"
   end
 
   it 'shows item info' do
+    visit "/items/#{@chain.id}"
 
     expect(page).to have_link(@chain.merchant.name)
     expect(page).to have_content(@chain.name)
@@ -25,12 +25,23 @@ RSpec.describe 'item show page', type: :feature do
   it "shows reviews for an item" do
     ratings = [@rating_1, @rating_2]
     ratings.each do |rating|
-      within "#rating-#{rating.id}" do 
+      within "#rating-#{rating.id}" do
         expect(page).to have_content(rating.title)
         expect(page).to have_content(rating.content)
         expect(page).to have_content(rating.rating)
       end
     end
+
+  it 'has item name link' do
+    visit "/merchants/#{@bike_shop.id}/items"
+    click_link "Chain"
+
+    expect(current_path).to eq("/items/#{@chain.id}")
+
+    visit "/items"
+    click_link "Chain"
+
+    expect(current_path).to eq("/items/#{@chain.id}")
   end
 #   As a visitor,
 # When I visit an item's show page,
