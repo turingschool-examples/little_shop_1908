@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   post "/merchants/:merchant_id/items", to: "items#create"
   post "/items/:item_id", to: "reviews#create"
   delete "/items/:id", to: "items#destroy"
+  delete "/items/:item_id/reviews/:review_id/delete", to: "reviews#destroy"
 end
