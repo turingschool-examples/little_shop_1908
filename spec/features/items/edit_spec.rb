@@ -41,5 +41,40 @@ RSpec.describe "item edit" do
       expect(page).to_not have_content("They'll never pop!")
     end
 
+    describe 'invalid form inputs' do
+      it 'shows a flash message when form is not filled out' do
+        fill_in 'Name', with: nil
+        fill_in 'Price', with: nil
+        fill_in 'Description', with: nil
+        fill_in 'Image', with: nil
+        fill_in 'Inventory', with: nil
+
+        click_button 'Update Item'
+
+        expect(current_path).to eq("/items/#{@tire.id}/edit")
+        expect(page).to have_content("Name can't be blank")
+        expect(page).to have_content("Description can't be blank")
+        expect(page).to have_content("Price can't be blank")
+        expect(page).to have_content("Image can't be blank")
+        expect(page).to have_content("Inventory can't be blank")
+      end
+
+      it 'must have proper data types' do
+        fill_in 'Name', with: nil
+        fill_in 'Price', with: "7asdf"
+        fill_in 'Description', with: nil
+        fill_in 'Image', with: nil
+        fill_in 'Inventory', with: "hello"
+
+        click_button 'Update Item'
+
+        expect(current_path).to eq("/items/#{@tire.id}/edit")
+        expect(page).to have_content("Name can't be blank")
+        expect(page).to have_content("Price is not a number")
+        expect(page).to have_content("Description can't be blank")
+        expect(page).to have_content("Image can't be blank")
+        expect(page).to have_content("Inventory is not a number")
+      end
+    end
   end
 end

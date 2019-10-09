@@ -49,5 +49,18 @@ RSpec.describe "create merchant item" do
       expect(page).to_not have_content(new_item.description)
       expect(page).to have_content("Inventory: #{new_item.inventory}")
     end
+
+    it 'shows a flash message if it cannot make a new item' do
+      visit "/merchants/#{@brian.id}/items/new"
+
+      click_button "Create Item"
+      
+      expect(current_path).to eq("/merchants/#{@brian.id}/items/new")
+      expect(page).to have_content("Name can't be blank")
+      expect(page).to have_content("Description can't be blank")
+      expect(page).to have_content("Price can't be blank")
+      expect(page).to have_content("Inventory can't be blank")
+      expect(page).to have_content("Image can't be blank")
+    end
   end
 end
