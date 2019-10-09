@@ -45,7 +45,7 @@ RSpec.describe 'item show page', type: :feature do
 
     within "#review-#{review_1.id}" do
       expect(page).to have_button("Edit Review")
-      
+
       click_button "Edit Review"
 
       expect(current_path).to eq("/items/#{@chain.id}/reviews/#{review_1.id}/edit")
