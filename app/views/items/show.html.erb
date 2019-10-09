@@ -14,6 +14,21 @@
       <% else %>
         <p style= "color:red">Inactive</p>
       <% end %>
+      <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
+      <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
+    <section id = "review-stats">
+      <% if !@item.reviews.empty? %>
+        <p> <% @item.reviews.top.each do |review| %></p>
+          <p><%= review.title %></p>
+          <p><%= review.rating %></p>
+        <% end %>
+        <p> <% @item.reviews.bottom.each do |review| %></p>
+          <p><%= review.title %></p>
+          <p><%= review.rating %></p>
+        <% end %>
+        <p> <%= @item.reviews.avg_rating %></p>
+      <% end %>
+    </section>
       <p><%= button_to 'Add Review', "/items/#{@item.id}/reviews/new", method: :get %></p>
       <% @item.reviews.each do |review| %>
       <section id = "review-<%= review.id %>">
@@ -24,8 +39,6 @@
         <p> <%= button_to 'Delete Review', "/items/#{@item.id}/reviews/#{review.id}", method: :delete %></p>
       </section>
       <% end %>
-      <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
-      <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
     </section>
   </section>
 </center>
