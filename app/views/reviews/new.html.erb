@@ -2,11 +2,11 @@
 
 <center>
   <%= form_tag "/items/#{@item.id}/reviews", method: :post do %>
-    <%= text_field_tag :title, "Title"%>
+    <%= text_field_tag :title, nil, placeholder: "Title"%>
 
-    <%= text_area_tag :content, "Review Content" %>
+    <%= text_area_tag :content, nil, placeholder: "Review Content" %>
 
-    <%= number_field_tag :rating, "Rating", min: 1, max: 5, step: 1 %>
+    <%= number_field_tag :rating, nil, placeholder: "Rating", min: 1, max: 5, step: 1 %>
 
     <%= submit_tag 'Create Review' %>
   <% end %>
