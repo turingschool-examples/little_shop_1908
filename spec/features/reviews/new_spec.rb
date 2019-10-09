@@ -71,6 +71,6 @@ RSpec.describe 'Create new review', type: :feature do
       fill_in :content, with: content
 
       click_button "Create Review"
-      expect(page).to have_content("Please pick a number between 1 and 5.")
+      expect(page).to have_content("Please finish filling out form before submitting.")
     end
 end

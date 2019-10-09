@@ -9,7 +9,6 @@ class ReviewsController < ApplicationController
     @item = Item.find(params[:item_id])
     review = @item.reviews.new(review_params)
     if review.save
-      # review.save
       redirect_to "/items/#{@item.id}"
     else
       flash[:notice] = "Please finish filling out form before submitting."
