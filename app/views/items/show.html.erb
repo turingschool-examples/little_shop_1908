@@ -23,6 +23,7 @@
           </ul>
         </section>
         <% end %>
+      <p><%= link_to "Write Review", "/items/#{@item.id}/reviews/new" %></p>
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
     </section>
