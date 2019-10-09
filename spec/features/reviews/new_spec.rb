@@ -33,7 +33,7 @@ RSpec.describe "Review new page" do
       end
     end
 
-    it "Can't create a review without a title" do
+    it "Can't create a review without a title, content, a non-numerical rating, or a rating outside of 1 to 5" do
       click_button ('Add Review')
       click_button ('Create Review')
 
