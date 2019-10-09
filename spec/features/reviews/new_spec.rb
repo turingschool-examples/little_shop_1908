@@ -37,8 +37,13 @@ RSpec.describe "Review new page" do
       click_button ('Add Review')
       click_button ('Create Review')
 
-      expect(page).to have_content("Review not submitted: Required information is missing")
+      expect(page).to have_content("Title can't be blank, Content can't be blank, Rating can't be blank, and Rating is not a number")
       expect(page).to have_button('Create Review')
+
+      fill_in :rating, with: 7
+      click_button ('Create Review')
+
+      expect(page).to have_content("Title can't be blank, Content can't be blank, and Rating must be less than or equal to 5")
     end
   end
 end

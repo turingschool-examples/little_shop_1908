@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
     if review.save
       redirect_to "/items/#{@item.id}"
     else
-      flash[:notice] = "Review not submitted: Required information is missing"
+      flash[:notice] = review.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -25,7 +25,7 @@ class ReviewsController < ApplicationController
     if @review.update(review_params)
       redirect_to "/items/#{@item.id}"
     else
-      flash[:notice] = "Review not submitted: Required information is missing"
+      flash[:notice] = review.errors.full_messages.to_sentence
       render :edit
     end
   end
