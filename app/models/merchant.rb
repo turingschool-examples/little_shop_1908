@@ -7,4 +7,6 @@ class Merchant <ApplicationRecord
                         :state,
                         :zip
 
+validates_length_of :zip, :is => 5
+validates :zip, numericality: true
 end

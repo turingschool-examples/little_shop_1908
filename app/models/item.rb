@@ -9,6 +9,10 @@ class Item <ApplicationRecord
                         :inventory
   validates_inclusion_of :active?, :in => [true, false]
 
+  validates :price, numericality: {greater_than: 0}
+
+  # validate image link
+
   def top_three_reviews
     reviews.order(rating: :desc).limit(3)
   end

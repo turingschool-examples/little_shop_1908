@@ -23,5 +23,13 @@ RSpec.describe 'merchant show page', type: :feature do
       expect(current_path).to eq("/merchants/#{@bike_shop.id}/items")
     end
 
+    it 'can show flash message when trying to visit nonexistent merchant show page' do
+      visit '/merchants/2734027934'
+
+      expect(page).to have_content('Merchant does not exist. Redirecting to Merchant index page.')
+
+      expect(current_path).to eq('/merchants')
+    end
+
   end
 end

@@ -5,9 +5,14 @@ class ReviewsController <ApplicationController
   end
 
   def create
-    item = Item.find(params[:item_id])
-    item.reviews.create(review_params)
-    redirect_to "/items/#{item.id}"
+    @item = Item.find(params[:item_id])
+    review = @item.reviews.create(review_params)
+    if review.save
+      redirect_to "/items/#{@item.id}"
+    else
+      flash.now[:error] = review.errors.full_messages.to_sentence
+      render :new
+    end
   end
 
   def edit
@@ -16,10 +21,16 @@ class ReviewsController <ApplicationController
   end
 
   def update
-    item = Item.find(params[:item_id])
-    review = Review.find(params[:review_id])
-    review.update(review_params)
-    redirect_to "/items/#{item.id}"
+    @item = Item.find(params[:item_id])
+    @review = Review.find(params[:review_id])
+    @review.update(review_params)
+
+    if @review.save
+      redirect_to "/items/#{@item.id}"
+    else
+      flash.now[:error] = @review.errors.full_messages.to_sentence
+      render :edit
+    end
   end
 
   def destroy

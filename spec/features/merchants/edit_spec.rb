@@ -33,5 +33,17 @@ RSpec.describe "As a Visitor" do
       expect(page).to have_content("Brian's Super Cool Bike Shop")
       expect(page).to have_content("1234 New Bike Rd.\nDenver, CO 80204")
     end
+
+    it "cannot edit merchant if fields are blank" do
+      visit "/merchants/#{@bike_shop.id}/edit"
+
+      fill_in 'Name', with: ''
+
+      click_button 'Update Merchant'
+
+      expect(page).to have_content("Name can't be blank")
+
+      expect(page).to have_button('Update Merchant')
+    end
   end
 end
