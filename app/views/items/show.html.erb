@@ -16,11 +16,10 @@
       <% end %>
         <% @item.reviews.each do |review| %>
         <section id= "review-<%= review.id %>">
-          <ul>
-            <li> <%= review.title %></li>
-            <li> <%= review.content %></li>
-            <li> <%= review.rating %></li>
-          </ul>
+            <p>Review:</p>
+            <p> <%= review.title %></p>
+            <p> <%= review.content %></p>
+            <p>Rating:<%= review.rating %></p>
         </section>
         <% end %>
       <p><%= link_to "Write Review", "/items/#{@item.id}/reviews/new" %></p>

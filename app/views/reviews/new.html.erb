@@ -1,11 +1,11 @@
 <h1 align= "center">Write Review</h1>
 <center>
   <%= form_tag "/items/#{@item.id}/reviews", method: :post do %>
-    <%= text_field_tag :Title, "Title" %>
+    <%= text_field_tag :title, "Title" %>
 
-    <%= text_field_tag :Content, "Content" %>
+    <%= text_field_tag :content, "Content" %>
 
-    <%= text_field_tag :Rating, "Rating" %>
+    <%= text_field_tag :rating, "Rating" %>
 
     <%= submit_tag 'Submit Review' %>
   <% end %>
