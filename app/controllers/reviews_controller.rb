@@ -30,6 +30,12 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def destroy
+    review = Review.find(params[:review_id])
+    review.destroy
+    redirect_to "/items/#{params[:item_id]}"
+  end
+
   private
     def review_params
       params.permit(:title,:content,:rating)
