@@ -12,7 +12,7 @@
     <nav class = "topnav">
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
-      <p style="float: right">Cart: <%= @cart.total_count %></p> 
+      <p style="float: right">Cart: <%= cart.total_count %></p> 
     </nav>
     <p class='flash'><%= flash.notice %></p>
     <%= yield %>
