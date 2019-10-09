@@ -17,16 +17,13 @@
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
     <section id = "review-stats">
+      <h2>Helpful Reviews</h2>
       <% if !@item.reviews.empty? %>
-        <p> <% @item.reviews.top.each do |review| %></p>
+        <p> <% @item.reviews.best_and_worst.each do |review| %></p>
           <p><%= review.title %></p>
           <p><%= review.rating %></p>
         <% end %>
-        <p> <% @item.reviews.bottom.each do |review| %></p>
-          <p><%= review.title %></p>
-          <p><%= review.rating %></p>
-        <% end %>
-        <p> <%= @item.reviews.avg_rating %></p>
+        <p> Average User Rating:  <%= @item.reviews.avg_rating %></p>
       <% end %>
     </section>
       <p><%= button_to 'Add Review', "/items/#{@item.id}/reviews/new", method: :get %></p>
