@@ -115,3 +115,11 @@ form {
   padding: 20px;
   width: 60%;
 }
+
+#flash-confirm{
+  background-color: forestgreen;
+}
+
+#flash-notice{
+  background-color: lightgrey;
+}
