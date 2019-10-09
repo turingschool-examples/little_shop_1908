@@ -53,7 +53,7 @@ RSpec.describe 'item show page', type: :feature do
 
     fill_in "Title", with: "Great Product!"
     fill_in "Content", with: "Seriously really good product"
-    fill_in "Rating", with: 5
+    fill_in "rating", with: 5
 
     click_button "Create"
 
@@ -105,11 +105,11 @@ RSpec.describe 'item show page', type: :feature do
 
     expect(find_field('Title').value).to eq 'Not Great'
     expect(find_field('Content').value).to eq 'Stinks a lot'
-    expect(find_field('Rating').value).to eq "1"
+    expect(find_field('rating').value).to eq "1"
 
     fill_in "Title", with: "It's a little better"
     fill_in "Content", with: "Really, it got better"
-    fill_in "Rating", with: 2
+    fill_in "rating", with: 2
 
     click_button 'Update Review'
 
@@ -143,7 +143,7 @@ RSpec.describe 'item show page', type: :feature do
 
     click_button 'Create'
 
-    expect(page).to have_content("Title can't be blank, Content can't be blank, and Rating can't be blank")
+    expect(page).to have_content("Title can't be blank, Content can't be blank, Rating can't be blank, and Rating is not included in the list")
 
     expect(page).to have_button('Create')
   end
