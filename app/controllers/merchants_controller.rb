@@ -5,15 +5,26 @@ class MerchantsController <ApplicationController
   end
 
   def show
-    @merchant = Merchant.find(params[:id])
+    if Merchant.exists?(params[:id])
+      @merchant = Merchant.find(params[:id])
+    else
+      flash[:error] = 'Merchant does not exist. Redirecting to Merchant index page.'
+      redirect_to '/merchants'
+    end
   end
 
   def new
   end
 
   def create
-    Merchant.create(merchant_params)
-    redirect_to "/merchants"
+    merchant = Merchant.create(merchant_params)
+
+    if merchant.save
+      redirect_to "/merchants"
+    else
+      flash.now[:error] = merchant.errors.full_messages.to_sentence
+      render :new
+    end
   end
 
   def edit
@@ -21,9 +32,15 @@ class MerchantsController <ApplicationController
   end
 
   def update
-    merchant = Merchant.find(params[:id])
-    merchant.update(merchant_params)
-    redirect_to "/merchants/#{merchant.id}"
+    @merchant = Merchant.find(params[:id])
+    @merchant.update(merchant_params)
+
+    if @merchant.save
+      redirect_to "/merchants/#{@merchant.id}"
+    else
+      flash.now[:error] = @merchant.errors.full_messages.to_sentence
+      render :edit
+    end
   end
 
   def destroy
