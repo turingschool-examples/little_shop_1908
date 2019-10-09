@@ -9,6 +9,7 @@
     <%= text_field_tag :content %>
 
     <%= label_tag :rating %>:
+    <br /> 
     <%= number_field_tag :rating, nil, within: 1..5 %>
 
     <%= submit_tag 'Create Review' %>
