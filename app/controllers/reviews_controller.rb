@@ -7,11 +7,10 @@ class ReviewsController < ApplicationController
     @item = Item.find(params[:item_id])
 
     review = @item.reviews.new(reviews_params)
-    binding.pry
     if review.save
       redirect_to "/items/#{@item.id}"
     else
-      flash[:error] = "Review not created. Please fill in all fields"
+      flash.now[:error] = "Review not created. Please fill in all fields"
       render :new
     end
   end

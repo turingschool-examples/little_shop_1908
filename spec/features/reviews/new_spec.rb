@@ -40,7 +40,9 @@ RSpec.describe "review create page" do
         fill_in :content, with: "Off the chain."
 
         click_button "Submit Review"
-        expect(flash[:error]).to eq("Review not created. Please fill in all fields")
+        save_and_open_page
+        expect(page).to have_content("Review not created. Please fill in all fields")
+        expect(page).to have_button("Submit Review")
 
       end
     end
