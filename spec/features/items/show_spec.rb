@@ -22,6 +22,14 @@ RSpec.describe 'item show page', type: :feature do
     expect(page).to have_css("img[src*='#{@chain.image}']")
   end
 
+  it 'can show flash message when trying to visit nonexistent item show page' do
+    visit "/items/2389720"
+
+    expect(page).to have_content('Item does not exist. Redirecting to item index page.')
+
+    expect(current_path).to eq('/items')
+  end
+
   it "see a list of reviews for that item" do
 
 
@@ -128,5 +136,27 @@ RSpec.describe 'item show page', type: :feature do
     expect(page).to_not have_content(@review_2.title)
     expect(page).to_not have_content(@review_2.content)
     expect(page).to_not have_content(@review_2.rating)
+  end
+
+  it "cannot create review if fields are blank" do
+    visit "/items/#{@chain.id}/reviews/new"
+
+    click_button 'Create'
+
+    expect(page).to have_content("Title can't be blank, Content can't be blank, and Rating can't be blank")
+
+    expect(page).to have_button('Create')
+  end
+
+  it "cannot edit review if fields are blank" do
+    visit "/items/#{@chain.id}/reviews/#{@review_1.id}/edit"
+
+    fill_in 'Title', with: ''
+
+    click_button 'Update Review'
+
+    expect(page).to have_content("Title can't be blank")
+
+    expect(page).to have_button('Update Review')
   end
 end
