@@ -5,9 +5,14 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    item = Item.find(params[:id])
-    item.reviews.create(review_params)
-    redirect_to "/items/#{item.id}"
+    @item = Item.find(params[:id])
+    @review = @item.reviews.create(review_params)
+    if @review.save
+      redirect_to "/items/#{@item.id}"
+    else
+      flash[:error] = "Review not created. Please fill in all fields"
+      redirect_to "/items/#{@item.id}/reviews/new"
+    end
   end
 
   private
