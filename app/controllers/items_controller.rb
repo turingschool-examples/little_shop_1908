@@ -11,6 +11,7 @@ class ItemsController<ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @review_average = @item.review_average.round(1)
   end
 
   def new
