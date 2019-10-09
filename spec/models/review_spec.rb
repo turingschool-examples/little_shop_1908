@@ -5,6 +5,7 @@ describe Review, type: :model do
     it { should validate_presence_of :title }
     it { should validate_presence_of :rating }
     it { should validate_presence_of :content }
+    # https://github.com/thoughtbot/shoulda-matchers/blob/master/lib/shoulda/matchers/active_model/validate_numericality_of_matcher.rb
     it { should validate_numericality_of(:rating).only_integer }
     it do
       should validate_numericality_of(:rating).is_less_than(6)
