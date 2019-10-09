@@ -49,7 +49,6 @@ RSpec.describe 'item show page', type: :feature do
     review_8 = @chain.reviews.create(title: "SUPER :/", content: "not that great", rating: 1)
     review_9 = @chain.reviews.create(title: "NICE :/", content: "cool cool", rating: 3)
     visit "/items/#{@review_1.item.id}"
-    save_and_open_page
 
     expect(page).to have_content("Average rating: 2.9")
 
