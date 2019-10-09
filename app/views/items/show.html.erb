@@ -14,6 +14,21 @@
       <% else %>
         <p style= "color:red">Inactive</p>
       <% end %>
+      <p>Average rating: <%= @review_average %></p>
+      <p>Best Reviews</p>
+      <section id="best-review-stats">
+        <% @item.best_reviews.each do |review| %>
+          <p><%= review.title %>, Rating: <%= review.rating %></p>
+        <% end %>
+      </section>
+
+      <p>Worst Reviews</p>
+      <section id="worst-review-stats">
+        <% @item.worst_reviews.each do |review| %>
+          <p><%= review.title %>, Rating: <%= review.rating %></p>
+        <% end %>
+      </section>
+
       <p>Reviews</p>
         <% @item.reviews.each do |review| %>
           <section id="item-review-<%= review.id %>">
