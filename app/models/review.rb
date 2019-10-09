@@ -17,6 +17,15 @@ class Review < ApplicationRecord
     Review.order(rating: :desc).limit(3)
   end
 
+  def self.best_and_worst
+    if Review.all.count > 6
+      reviews_shown = Review.order(:rating).limit(3) + Review.order(rating: :desc).limit(3)
+    else
+      reviews_shown = Review.all
+    end
+    reviews_shown
+  end
+
   def self.avg_rating
     Review.average(:rating).round(2)
   end

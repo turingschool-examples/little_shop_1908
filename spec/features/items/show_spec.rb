@@ -51,7 +51,6 @@ RSpec.describe 'item show page', type: :feature do
   end
 
   it 'shows title and rating of top 3 reviews' do
-    save_and_open_page
     within "#review-stats" do
       expect(page).to have_content("first review")
       expect(page).to have_content("second review")
