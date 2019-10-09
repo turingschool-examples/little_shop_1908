@@ -61,19 +61,25 @@ RSpec.describe 'item show page', type: :feature do
     within "#review-stats" do
       within "#top-reviews" do
 
-        expect(page).to have_content("#{@review_3.title}, #{@review_3.rating}")
-        expect(page).to have_content("#{@review_6.title}, #{@review_6.rating}")
-        expect(page).to have_content("#{@review_7.title}, #{@review_7.rating}")
+        expect(page).to have_content("Title: #{@review_3.title}")
+        expect(page).to have_content("Rating: #{@review_3.rating}")
+        expect(page).to have_content("Title: #{@review_6.title}")
+        expect(page).to have_content("Rating: #{@review_6.rating}")
+        expect(page).to have_content("Title: #{@review_7.title}")
+        expect(page).to have_content("Rating: #{@review_7.rating}")
       end
       within "#bottom-reviews" do
 
-        expect(page).to have_content("#{@review_1.title}, #{@review_1.rating}")
-        expect(page).to have_content("#{@review_2.title}, #{@review_2.rating}")
-        expect(page).to have_content("#{@review_4.title}, #{@review_4.rating}")
+        expect(page).to have_content("Title: #{@review_1.title}")
+        expect(page).to have_content("Rating: #{@review_1.rating}")
+        expect(page).to have_content("Title: #{@review_2.title}")
+        expect(page).to have_content("Rating: #{@review_2.rating}")
+        expect(page).to have_content("Title: #{@review_4.title}")
+        expect(page).to have_content("Rating: #{@review_4.rating}")
       end
       within "#average-rating" do
 
-        expect(page).to have_content("Average Rating: 2.42")
+        expect(page).to have_content("Average Rating: 2.43")
       end
 
     end

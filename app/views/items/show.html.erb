@@ -18,6 +18,23 @@
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
     </section>
     <%= link_to "Review This Item", "/items/#{@item.id}/reviews/new" %>
+    <section id= "review-stats">
+      <article id= "top-reviews">
+        <% @item.top_three_reviews.each do |review| %>
+         <p>Title: <%= review.title %></p>
+         <p>Rating: <%= review.rating %></p>
+        <% end %>
+      </article>
+      <article id= "bottom-reviews">
+        <% @item.bottom_three_reviews.each do |review| %>
+         <p>Title: <%= review.title %></p>
+         <p>Rating: <%= review.rating %></p>
+        <% end %>
+      </article>
+      <article id= "average-rating">
+        <p>Average Rating: <%= @item.average_rating %></p>
+      </article>
+    </section>
     <% @item.reviews.each do |review| %>
       <section id = "review-<%= review.id%>">
         <p> <%= review.title %></p>
