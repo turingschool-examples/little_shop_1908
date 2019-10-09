@@ -82,4 +82,10 @@ RSpec.describe 'item show page', type: :feature do
     expect(page).to have_content("Average Review Rating: 2.8")
   end
 
+  it 'cannot view an item show page that does not exist' do
+    visit '/items/99999'
+
+    expect(page).to have_content('Item does not exist')
+    expect(current_path).to eq('/items')
+  end
 end
