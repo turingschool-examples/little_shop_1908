@@ -42,7 +42,7 @@ describe Item, type: :model do
     end
 
     it "can return the average rating of an item" do
-      expect(@chain.average_rating).to eq(2.42)
+      expect(@chain.average_rating).to eq(2.43)
     end
   end
 end
