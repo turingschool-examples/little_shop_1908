@@ -1,8 +1,8 @@
 class Cart
   attr_reader :contents
 
-  def initialize(items_hash)
-    @contents = items_hash ||= {}
+  def initialize(item_hash)
+    @contents = item_hash ||= Hash.new(0)
   end
 
   def add_item(item)

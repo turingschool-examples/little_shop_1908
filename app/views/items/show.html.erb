@@ -18,6 +18,9 @@
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
     </section>
   </section>
+  <section>
+    <%= button_to 'Add to Cart', "/cart/#{@item.id}", method: :patch %>
+  </section>
   <% if !@item.reviews.empty? %>
     <section>
       <h2>Reviews</h2>
