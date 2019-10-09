@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
     else
       @items = Item.all
     end
-    @cart = Cart.new(session[:cart])
+    # @cart = Cart.new(session[:cart])
   end
 
   def show
