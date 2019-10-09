@@ -14,14 +14,20 @@
       <% else %>
         <p style= "color:red">Inactive</p>
       <% end %>
-        <% @item.reviews.each do |review| %>
+
+      <section id= "stats-<%= @item.id %>">
+
+
+      </section>
+      <% @item.reviews.each do |review| %>
         <section id= "review-<%= review.id %>">
             <p>Review:</p>
             <p> <%= review.title %></p>
             <p> <%= review.content %></p>
             <p>Rating:<%= review.rating %></p>
         </section>
-        <% end %>
+      <% end %>
+
       <p><%= link_to "Write Review", "/items/#{@item.id}/reviews/new" %></p>
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
