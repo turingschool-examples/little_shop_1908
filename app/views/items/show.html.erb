@@ -16,19 +16,21 @@
       <% end %>
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
-    <section id = "review-stats">
-      <h2>Helpful Reviews</h2>
       <% if !@item.reviews.empty? %>
-        <p> <% @item.reviews.best_and_worst.each do |review| %></p>
-          <p><%= review.title %></p>
-          <p><%= review.rating %></p>
-        <% end %>
+        <section id = "review-stats">
+          <h2>Helpful Reviews</h2>
+          <hr>
+          <p> <% @item.reviews.best_and_worst.each do |review| %></p>
+            <p><%= review.title %></p>
+            <p>Rating: <%= review.rating %></p>
+            <hr>
+          <% end %>
         <p> Average User Rating:  <%= @item.reviews.avg_rating %></p>
-      <% end %>
-    </section>
+      </section>
+    <% end %>
       <p><%= button_to 'Add Review', "/items/#{@item.id}/reviews/new", method: :get %></p>
       <% @item.reviews.each do |review| %>
-      <section id = "review-<%= review.id %>">
+      <section class="review-box" id = "review-<%= review.id %>">
         <p> <%= review.title %> </p>
         <p> <%= review.content %> </p>
         <p>Rating: <%= review.rating %> </p>
