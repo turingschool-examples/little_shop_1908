@@ -7,7 +7,8 @@ class CartController < ApplicationController
     cart.add_item(item.id)
     session[:cart] = cart.contents
     quantity = cart.count_of(item.id)
-    flash[:notice] = "You now have #{quantity} #{pluralize("#{item.name}")} in your cart."
+    flash[:feedback] = "#{item.name} added to cart"
+    flash[:notice] = "You now have #{pluralize(quantity, "#{item.name}")} in your cart."
     redirect_to items_path
   end
 end

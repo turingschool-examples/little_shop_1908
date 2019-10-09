@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe 'From an items show Page' do
   describe 'I see a link to add item to cart'
     describe 'I click on the link, and routed to the item index page'
@@ -10,7 +12,7 @@ describe 'From an items show Page' do
         @pull_toy = @brian.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
         @dog_bone = @brian.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
       end
-      
+
         it 'I see the updated cart total, and a message saying Ive added an item to my cart' do
 
           visit "/items/#{@tire.id}"
