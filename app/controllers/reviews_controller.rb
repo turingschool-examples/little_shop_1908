@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
     if review.save
       redirect_to "/items/#{@item.id}"
     else
-      flash[:notice] = "Please finish filling out form before submitting."
+      flash.now[:notice] = "Please finish filling out form before submitting."
       render :new
     end
   end
