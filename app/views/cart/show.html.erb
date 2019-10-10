@@ -12,3 +12,5 @@
 <% end %>
 
 <h5>Grand Total: <%= number_to_currency(cart.grand_total) %></h5>
+
+<%= button_to 'Empty Cart', '/cart', method: :delete %>
