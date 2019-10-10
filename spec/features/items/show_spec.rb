@@ -49,10 +49,15 @@ RSpec.describe 'item show page', type: :feature do
       expect(page).to have_content("Top Reviews: #{@review_1.title} #{@review_1.rating}")
       expect(page).to have_content("Top Reviews: #{review_3.title} #{review_3.rating}")
       expect(page).to have_content("Top Reviews: #{review_4.title} #{review_4.rating}")
-      # expect(page).to have_content("Bottom Reviews: #{@review_2.title} #{@review_2.rating}")
-      # expect(page).to have_content("Bottom Reviews: #{review_5.title} #{review_5.rating}")
-      # expect(page).to have_content("Bottom Reviews: #{review_6.title} #{review_6.rating}")
+      expect(page).to have_content("Bottom Reviews: #{@review_2.title} #{@review_2.rating}")
+      expect(page).to have_content("Bottom Reviews: #{review_5.title} #{review_5.rating}")
+      expect(page).to have_content("Bottom Reviews: #{review_6.title} #{review_6.rating}")
       expect(page).to have_content("Average Review: 3")
     end
   end
+
+    it "see's an edit button for review" do
+
+      expect(page).to have_link "Edit Review"
+    end
 end
