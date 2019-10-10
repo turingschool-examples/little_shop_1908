@@ -22,6 +22,7 @@
         <h3>Reviews</h3>
         <% @item.reviews.each do |review|%>
         <h3><%= review.title %></h3>
+        <ul><%= link_to "Edit Review", "/items/#{@item.id}/edit" %></ul>
         <p><%= review.content %></p>
         <p><%= "Rating: #{review.rating}" %></p>
 
@@ -42,7 +43,7 @@
         <section id='bottom_three_reviews'>
           <h3>Bottom Three Reviews</h3>
           <% @item.reviews.bottom_three.each do |review| %>
-          <h3><%= review.title %></h3>
+          <h3><%= review.title %> </h3>
           <p><%= review.content %></p>
           <p><%= "Rating: #{review.rating}" %></p>
           <% end  %>
@@ -53,6 +54,7 @@
           <p><%= @item.reviews.total_average %></p>
         </section>
       </section>
+
 
 
     </section>
