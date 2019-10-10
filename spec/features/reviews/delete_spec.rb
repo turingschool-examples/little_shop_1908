@@ -17,10 +17,10 @@ describe 'On an items show page, I see a button next to each review to Delete' d
     it 'Im returned to the item show page and no longer see the review.' do
 
       visit "/items/#{@chain.id}"
-      expect(page).to have_content(@review_1.name)
+      expect(page).to have_content(@review_1.title)
       expect(page).to have_content(@review_1.content)
       expect(page).to have_content(@review_1.rating)
-      expect(page).to have_content(@review_2.name)
+      expect(page).to have_content(@review_2.title)
       expect(page).to have_content(@review_2.content)
       expect(page).to have_content(@review_2.rating)
 
@@ -33,10 +33,10 @@ describe 'On an items show page, I see a button next to each review to Delete' d
       end
 
       expect(current_path).to eq("/items/#{@chain.id}")
-      expect(page).to_not have_content(@review_1.name)
+      expect(page).to_not have_content(@review_1.title)
       expect(page).to_not have_content(@review_1.content)
       expect(page).to_not have_content(@review_1.rating)
-      expect(page).to_not have_content(@review_2.name)
+      expect(page).to_not have_content(@review_2.title)
       expect(page).to_not have_content(@review_2.content)
       expect(page).to_not have_content(@review_2.rating)
     end

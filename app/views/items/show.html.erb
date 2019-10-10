@@ -20,10 +20,13 @@
       <p><%= button_to "Add to cart", "/cart/#{@item.id}", method: :patch %></p>
 
       <div><% @item.reviews.each do |review|%>
-        <h2><%= review.title %></h2>
-        <p><%= review.content %></p>
-        <p><%= "Rating: #{review.rating}" %></p>
-        <p><%= link_to "Delete Review", "/items/#{@item.id}", method: :delete %></p><br>
+        <section id="review-<%= "#{review.id}" %>">
+          <h2><%= review.title %></h2>
+          <p><%= review.content %></p>
+          <p><%= "Rating: #{review.rating}" %></p>
+          <p><%= link_to "Delete Review", "/items/#{@item.id}/reviews/#{review.id}", method: :delete %></p><br>
+        </section>
+
         <% end %>
       </div>
 
