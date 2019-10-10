@@ -35,4 +35,24 @@ RSpec.describe 'item show page', type: :feature do
       expect(page).to have_content(1)
     end
   end
+
+  it "have an area for stats about reviews" do
+    review_3 = @chain.reviews.create!(title: "Durable", content: "Really strong chain.", rating: 5)
+    review_4 = @chain.reviews.create!(title: "Great!", content: "Easy to use. Works on my bike.", rating: 4)
+    review_5 = @chain.reviews.create!(title: "Worst!", content: "This item is the worst.", rating: 1)
+    review_6 = @chain.reviews.create!(title: "Meh", content: "Okay item but not the best item.", rating: 2)
+    review_7 = @chain.reviews.create!(title: "Mid review", content: "Okay.", rating: 3)
+
+    visit "/items/#{@chain.id}"
+
+    within "#stats-#{@chain.id}" do
+      expect(page).to have_content("Top Reviews: #{@review_1.title} #{@review_1.rating}")
+      expect(page).to have_content("Top Reviews: #{review_3.title} #{review_3.rating}")
+      expect(page).to have_content("Top Reviews: #{review_4.title} #{review_4.rating}")
+      # expect(page).to have_content("Bottom Reviews: #{@review_2.title} #{@review_2.rating}")
+      # expect(page).to have_content("Bottom Reviews: #{review_5.title} #{review_5.rating}")
+      # expect(page).to have_content("Bottom Reviews: #{review_6.title} #{review_6.rating}")
+      expect(page).to have_content("Average Review: 3")
+    end
+  end
 end

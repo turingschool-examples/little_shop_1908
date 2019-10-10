@@ -14,14 +14,26 @@
       <% else %>
         <p style= "color:red">Inactive</p>
       <% end %>
-        <% @item.reviews.each do |review| %>
+
+      <section id= "stats-<%= @item.id %>">
+      <% @item.reviews.top_reviews.each do |review| %>
+        <p>Top Reviews: <%= review.title %> <%= review.rating %></p>
+      <% end %>
+      <% @item.reviews.bottom_reviews.each do |review| %>
+        <p>Bottom Reviews: <%= review.title %> <%= review.rating %></p>
+      <% end %>
+      <p>Average Review: <%= @item.reviews.average_review %></p>
+    </section>
+
+      <% @item.reviews.each do |review| %>
         <section id= "review-<%= review.id %>">
             <p>Review:</p>
             <p> <%= review.title %></p>
             <p> <%= review.content %></p>
             <p>Rating:<%= review.rating %></p>
         </section>
-        <% end %>
+      <% end %>
+
       <p><%= link_to "Write Review", "/items/#{@item.id}/reviews/new" %></p>
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
