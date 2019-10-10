@@ -1,1 +1,14 @@
 <h1>Cart</h1>
+
+<% cart.contents.each do |item| %>
+  <section id="cart-<%= item.id %>">
+    <img src= <%= item.image %>>
+    <p>Name: <%= item.name %></p>
+    <p>Sold By: <%= link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
+    <p>Price: <%= number_to_currency(item.price) %></p>
+    <p>Count: <%= cart.item_count(item.id) %></p>
+    <p>Subtotal: <%= number_to_currency(cart.subtotal(item.id)) %></p>
+  </section>
+<% end %>
+
+<p>Grand Total: <%= number_to_currency(cart.grand_total) %></p>
