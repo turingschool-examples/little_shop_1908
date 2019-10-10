@@ -22,6 +22,8 @@ class ReviewsController < ApplicationController
     review = Review.find(params[:review_id])
     review.update(review_params)
 
+    flash.notice = "Review updated!"
+
     redirect_to "/items/#{review.item.id}"
   end
 

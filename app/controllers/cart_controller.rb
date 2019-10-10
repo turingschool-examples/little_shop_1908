@@ -6,7 +6,7 @@ class CartController < ApplicationController
     cart.add_item(item.id)
     session[:cart] = cart.contents
     quantity = cart.count_of(item.id)
-    flash.notice = "#{item.name} has been added to cart! You now have #{pluralize(quantity, "copy")} of #{item.name} in your cart."
+    flash.notice = "#{item.name} has been added to cart! You now have #{pluralize(quantity, item.name)} in your cart."
     redirect_to '/items'
   end
 
@@ -19,7 +19,6 @@ class CartController < ApplicationController
   end
 
   def destroy
-    # cookies.delete :_little_shop1906_starter_session
     session.clear
     redirect_to '/cart'
   end

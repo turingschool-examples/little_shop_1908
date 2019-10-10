@@ -28,6 +28,8 @@ RSpec.describe 'As a visitor' do
 
       expect(current_path).to eq("/items/#{@chain.id}")
 
+      expect(page).to have_content('Review updated!')
+
       expect(page).to have_content('Abominable chain!')
       expect(page).to have_content('Hell nah')
       expect(page).to have_content('1')

@@ -11,7 +11,7 @@ RSpec.describe 'From item show page', type: :feature do
   it 'I can add the item to cart' do
     click_button 'Add to Cart'
 
-    expect(page).to have_content("#{@chain.name} has been added to cart!")
+    expect(page).to have_content("#{@chain.name} has been added to cart! You now have 1 Chain in your cart.")
     expect(current_path).to eq('/items')
     expect(page).to have_link('Cart: 1')
   end
