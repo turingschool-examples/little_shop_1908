@@ -27,6 +27,7 @@ RSpec.describe 'as a visitor I can remove an item from the cart' do
       click_button "Remove Item from Cart"
     end
 
+    expect(current_path).to eq('/cart')
     expect(page).to_not have_content("Dog Bone")
     expect(page).to have_content("Chain")
     expect(page).to have_content("Pull Toy")
