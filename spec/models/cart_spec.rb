@@ -12,6 +12,11 @@ RSpec.describe Cart do
       cart = Cart.new({"1" => 2, "2" => 3})
       cart.add_item("2")
       expect(cart.total_count).to eq(6)
+
+      cart = Cart.new({})
+      cart.add_item("2")
+
+      expect(cart.total_count).to eq(1)
     end
 
     it "#contents can read the contents of the cart" do
