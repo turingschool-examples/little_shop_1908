@@ -23,7 +23,7 @@ RSpec.describe "Items Index Page" do
       expect(page).to have_link(@dog_bone.merchant.name)
     end
 
-    it "I can see a list of all of the items "do
+    it "I can see a list of all of the items" do
 
       visit '/items'
 
@@ -56,7 +56,30 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_content("Sold by: #{@brian.name}")
         expect(page).to have_css("img[src*='#{@dog_bone.image}']")
       end
+    end
 
+    it 'I see a link or button to add this item to my cart' do
+      visit '/items'
+
+      within "#item-#{@dog_bone.id}" do
+        click_button 'Add to cart'
+      end
+
+      expect(page).to have_content("Item added to cart")
+      
+      within ".cart_div" do
+        expect(page).to have_content("1")
+      end
+
+      within "#item-#{@pull_toy.id}" do
+        click_button 'Add to cart'
+      end
+
+      expect(page).to have_content("Item added to cart")
+
+      within ".cart_div" do
+        expect(page).to have_content("2")
+      end
     end
   end
 end
