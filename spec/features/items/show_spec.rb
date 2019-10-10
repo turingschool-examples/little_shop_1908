@@ -42,21 +42,21 @@ RSpec.describe 'item show page', type: :feature do
       expect(page).to have_content("Rating: #{@review_3.rating}")
     end
 
-    it 'shows top three review statistics' do
-      visit "items/#{@chain.id}"
-      within('#top_three_reviews') do
-
-        expect(page).to have_content(@review_3.title)
-        expect(page).to have_content(@review_4.title)
-        expect(page).to have_content(@review_5.title)
-        expect(page).to_not have_content(@review_1.title)
-        expect(page).to have_content("Rating: #{@review_3.rating}")
-        expect(page).to have_content("Rating: #{@review_4.rating}")
-        expect(page).to have_content("Rating: #{@review_5.rating}")
-        expect(page).to_not have_content("Rating: #{@review_1.rating}")
-        expect(page).to_not have_content("Rating: #{@review_2.rating}")
-      end
-    end
+    # it 'shows top three review statistics' do
+    #   visit "items/#{@chain.id}"
+    #   within("#top_three_reviews") do
+    #
+    #     expect(page).to have_content(@review_3.title)
+    #     expect(page).to have_content(@review_4.title)
+    #     expect(page).to have_content(@review_5.title)
+    #     expect(page).to_not have_content(@review_1.title)
+    #     expect(page).to have_content("Rating: #{@review_3.rating}")
+    #     expect(page).to have_content("Rating: #{@review_4.rating}")
+    #     expect(page).to have_content("Rating: #{@review_5.rating}")
+    #     expect(page).to_not have_content("Rating: #{@review_1.rating}")
+    #     expect(page).to_not have_content("Rating: #{@review_2.rating}")
+    #   end
+    # end
 
     # it 'shows bottom three review statistics' do
     #   visit "items/#{@chain.id}"

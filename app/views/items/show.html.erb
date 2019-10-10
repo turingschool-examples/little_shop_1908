@@ -27,9 +27,18 @@
       </div>
 
 
-      <div class="#top_three_reviews">
+      <section class='reviews-section'>
+        <section id="top_three_reviews">
+          <%= @item.reviews.each do |review| %>
 
-      </div>
+          <%# <% binding.pry %> %>
+          <% end %>
+
+
+
+        </section>
+      </section>
+
 
     </section>
   </section>
