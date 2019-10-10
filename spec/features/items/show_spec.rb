@@ -87,11 +87,11 @@ RSpec.describe 'item show page', type: :feature do
       end
     end
     #
-    # it 'shows the average rating of all reviews' do
-    #   visit "items/#{@chain.id}"
-    #   within('#average_rating') do
-    #
-    #     expect(page).to have_content(3)
-    #   end
-    # end
+    it 'shows the average rating of all reviews' do
+      visit "items/#{@chain.id}"
+      within('#average_rating') do
+
+        expect(page).to have_content(3)
+      end
+    end
 end

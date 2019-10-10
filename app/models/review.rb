@@ -18,4 +18,8 @@ class Review < ApplicationRecord
     def self.bottom_three
       order(:rating).limit(3)
     end
+
+    def self.total_average
+      average(:rating)
+    end
 end

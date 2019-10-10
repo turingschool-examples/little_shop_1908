@@ -18,8 +18,10 @@
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p><br>
       <p><%= link_to "Add Review", "/items/#{@item.id}/reviews/new" %></p>
 
-      <div><% @item.reviews.each do |review|%>
-        <h2><%= review.title %></h2>
+      <div>
+        <h3>Reviews</h3>
+        <% @item.reviews.each do |review|%>
+        <h3><%= review.title %></h3>
         <p><%= review.content %></p>
         <p><%= "Rating: #{review.rating}" %></p>
 
@@ -29,18 +31,20 @@
 
       <section class='reviews-section'>
         <section id="top_three_reviews">
+          <h3>Top Three Reviews</h3>
           <% @item.reviews.top_three.each do |review|%>
-          <%= review.title %>
-          <%= review.content %>
-          <%= "Rating: #{review.rating}" %>
+          <h3><%= review.title %></h3>
+          <p><%= review.content %></p>
+          <p><%= "Rating: #{review.rating}" %></p>
           <% end %>
         </section>
 
         <section id='bottom_three_reviews'>
+          <h3>Bottom Three Reviews</h3>
           <% @item.reviews.bottom_three.each do |review| %>
-          <%= review.title %>
-          <%= review.content %>
-          <%= "Rating: #{review.rating}" %>
+          <h3><%= review.title %></h3>
+          <p><%= review.content %></p>
+          <p><%= "Rating: #{review.rating}" %></p>
           <% end  %>
         </section>
       </section>
