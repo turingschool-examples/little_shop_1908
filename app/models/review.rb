@@ -9,14 +9,6 @@ class Review < ApplicationRecord
                                       less_than_or_equal_to: 5,
                                       greater_than_or_equal_to: 1
 
-  def self.top
-    Review.order(:rating).limit(3)
-  end
-
-  def self.bottom
-    Review.order(rating: :desc).limit(3)
-  end
-
   def self.best_and_worst
     if Review.all.count > 6
       reviews_shown = Review.order(:rating).limit(3) + Review.order(rating: :desc).limit(3)
