@@ -31,29 +31,32 @@ RSpec.describe 'cart show page' do
         expect(page).to have_content(@tire.name)
         expect(page).to have_css("img[src='#{@tire.image}']")
         expect(page).to have_content("Merchant: #{@tire.merchant.name}")
-        expect(page).to have_content("Price: #{@tire.price}")
+        expect(page).to have_content("Price: $100.00")
         expect(page).to have_content("Quantity: 2")
-        expect(page).to have_content("Subtotal: 200")
+        expect(page).to have_content("Subtotal: $200.00")
       end
 
       within "#item-#{@pull_toy.id}" do
         expect(page).to have_content(@pull_toy.name)
         expect(page).to have_css("img[src='#{@pull_toy.image}']")
         expect(page).to have_content("Merchant: #{@pull_toy.merchant.name}")
-        expect(page).to have_content("Price: #{@pull_toy.price}")
+        expect(page).to have_content("Price: $10.00")
         expect(page).to have_content("Quantity: 1")
-        expect(page).to have_content("Subtotal: 10")
+        expect(page).to have_content("Subtotal: $10.00")
       end
 
       within "#item-#{@dog_bone.id}" do
         expect(page).to have_content(@dog_bone.name)
         expect(page).to have_css("img[src='#{@dog_bone.image}']")
         expect(page).to have_content("Merchant: #{@dog_bone.merchant.name}")
-        expect(page).to have_content("Price: #{@dog_bone.price}")
+        expect(page).to have_content("Price: $21.00")
         expect(page).to have_content("Quantity: 1")
-        expect(page).to have_content("Subtotal: 21")
+        expect(page).to have_content("Subtotal: $21.00")
       end
-      
     end
+
+    it 'should show the total of all item subtotals' do
+      expect(page).to have_content("Grand Total: $231.00")
+    end 
   end
 end
