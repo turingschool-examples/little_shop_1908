@@ -26,4 +26,8 @@ class Cart
     items = Item.where(id: @contents.keys)
     items.sum { |item| item.price * count_of(item.id) }
   end
+
+  def empty_contents
+    @contents = Hash.new(0)
+  end
 end
