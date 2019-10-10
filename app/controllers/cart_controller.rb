@@ -10,4 +10,10 @@ class CartController < ApplicationController
     flash[:notice] = "Item added to cart"
     redirect_to '/items'
   end
+
+  def empty
+    cart.empty_cart
+    session[:cart] = cart.contents
+    redirect_to '/cart'
+  end
 end
