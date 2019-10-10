@@ -16,6 +16,8 @@
         <p style= "color:red">Inactive</p>
       <% end %>
 
+      <p><%= button_to 'Add Item to Cart', "/cart/#{@item.id}", method: :patch %></p>
+
       <p><%= "Average Review Rating: #{@item.reviews.average_rating}" %></p>
 
       <p><%= link_to 'Create Review', "/items/#{@item.id}/reviews/new" %></p>
