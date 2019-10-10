@@ -17,14 +17,17 @@
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p><br>
       <p><%= link_to "Add Review", "/items/#{@item.id}/reviews/new" %></p>
+      <p><%= button_to "Add to cart", "/cart/#{@item.id}", method: :patch %></p>
 
-      <div>
-        <h3>Reviews</h3>
+      <h3>Reviews</h3>
+      <div class="Reviews">
         <% @item.reviews.each do |review|%>
-        <h3><%= review.title %></h3>
-        <p><%= review.content %></p>
-        <p><%= "Rating: #{review.rating}" %></p>
-
+        <section id="review-<%= "#{review.id}" %>">
+          <h2><%= review.title %></h2>
+          <p><%= review.content %></p>
+          <p><%= "Rating: #{review.rating}" %></p>
+          <p><%= link_to "Delete Review", "/items/#{@item.id}/reviews/#{review.id}", method: :delete %></p><br>
+        </section>
         <% end %>
       </div>
 

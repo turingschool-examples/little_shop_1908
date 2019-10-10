@@ -33,6 +33,7 @@ img{
   width: 50%;
 }
 
+
  .grid-container{
  	display: grid;
  	grid-template-columns: repeat(5,1fr);
@@ -115,6 +116,16 @@ form {
   width: 60%;
 }
 
-/* #top_three_reviews{
+
+#flash-confirm{
+  background-color: forestgreen;
+}
+
+#flash-notice{
+  background-color: lightgrey;
+}
+
+#top_three_reviews{
   color: tomato;
-} */
+}
+
