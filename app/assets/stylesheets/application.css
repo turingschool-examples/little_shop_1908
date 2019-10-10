@@ -13,16 +13,44 @@
  *= require_tree .
  *= require_self
  */
+ * {
+   box-sizing: border-box;
+ }
 
  body {
- background-color: white;
+   background-color: white;
+   display: grid;
+   grid-template-columns: 1fr 2fr;
+   height: 100vh;
+   font-family: 'Questrial', sans-serif;
+   margin: 0;
+ }
+
+ .cart_div {
+   display: flex;
+   justify-content: center;
+   vertical-align: baseline;
+ }
+
+ .cart_div p {
+   margin: 8px 8px 0;
+   font-size: 1.4rem;
+ }
+
+ main {
+   height: 100vh;
+   background-color: #f2f2f2;
+ }
+
+ aside {
+   display: flex;
+   flex-direction: column;
  }
 
  h1 {
   text-align: center;
  	font-size: 40px;
  	color: #002244;
- 	font-family: "Marker Felt", fantasy;
  }
 
 ul{
@@ -31,6 +59,10 @@ ul{
 }
 img{
   width: 50%;
+}
+
+.cart_image {
+  fill: white;
 }
 
  .grid-container{
@@ -63,28 +95,31 @@ img{
 
  .topnav {
    overflow: hidden;
+   justify-content: center;
+   align-items: center;
    background-color: #002244;
  }
 
  .topnav a {
-   float: left;
    color: #f2f2f2;
+   padding: 10px 0;
    text-align: center;
-   padding: 14px 16px;
    text-decoration: none;
    font-size: 17px;
+   border-bottom: 3px solid transparent;
+   width: 200px;
  }
 
  .topnav a:hover {
-   background-color: #17BEBB;
-   color: black;
+   border-bottom: 3px solid tomato;
+   color: white;
  }
 
  .address{
    text-align: center;
  }
 
- input[type=text], select {
+ input[type=text], select, option {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -92,6 +127,10 @@ img{
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+select {
+  height: 40px;
 }
 
 input[type=submit] {
@@ -110,6 +149,7 @@ input[type=submit]:hover {
 }
 form {
   align-content: center;
+  margin: 20% auto 0;
   background-color: #f2f2f2;
   padding: 20px;
   width: 60%;

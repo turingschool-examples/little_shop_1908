@@ -7,7 +7,7 @@
   <%= text_field_tag :content, @review.content %>
 
   <%= label_tag :rating %>
-  <%= text_field_tag :rating, @review.rating %>
+  <%= select_tag :rating, options_for_select([1, 2, 3, 4, 5], @review.rating) %>
 
   <%= submit_tag 'Update Review' %>
 
