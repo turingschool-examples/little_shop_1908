@@ -9,6 +9,7 @@
         <p>Sold by: <%= item.merchant.name %></p>
         <p>Price: <%= number_to_currency(item.price) %> </p>
         <p>Quantity: <%= cart.contents[item.id.to_s] %></p>
+        <%= button_to '-', "/cart/#{item.id}/decrement", method: :patch %><%= button_to '+', "/cart/#{item.id}/increment", method: :patch %>
         <h4>Subtotal: <%=  number_to_currency(cart.subtotal(item.id, cart.contents[item.id.to_s])) %></h4>
         <%= button_to 'Remove Item from Cart', "/cart/#{item.id}", method: :delete%>
         <% end %>
