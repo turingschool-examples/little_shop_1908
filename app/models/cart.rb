@@ -10,7 +10,21 @@ class Cart
     @contents[item_id] += 1
   end
 
-  def total_items 
+  def total_items
     @contents.values.sum
+  end
+
+  def cart_items
+    items = Hash.new
+    @contents.each do |item_id, quantity|
+      items[Item.find(item_id)] = quantity
+    end
+    items
+  end
+
+  def grand_total
+    cart_items.sum do |item, quantity|
+     item.price * quantity
+    end
   end
 end
