@@ -22,4 +22,23 @@ RSpec.describe Cart, type: :model do
     end
   end
 
+  describe '#count_of' do
+    it 'returns the count of a specific item' do
+      cart = Cart.new({'1' => 2, '2' => 3})
+
+      expect(cart.count_of(1)).to eq(2)
+    end
+  end
+
+  describe '#subtotal' do
+    it 'returns the subtotal of a specific item' do
+      @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+
+
+      cart = Cart.new({"#{@tire.id}" => 2})
+
+      expect(cart.subtotal(@tire.id)).to eq(200)
+    end
+  end
 end
