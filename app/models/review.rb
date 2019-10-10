@@ -10,4 +10,17 @@ class Review < ApplicationRecord
                                     only_integer: true,
                                     less_than: 6,
                                     greater_than: 0
+
+    def self.top_three
+      order(rating: :desc).limit(3)
+    end
+
+    def self.bottom_three
+      order(:rating).limit(3)
+    end
+
+    def self.total_average
+      average(:rating)
+      # binding.pry
+    end
 end

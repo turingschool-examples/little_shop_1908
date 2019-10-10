@@ -116,6 +116,7 @@ form {
   width: 60%;
 }
 
+
 #flash-confirm{
   background-color: forestgreen;
 }
@@ -123,3 +124,8 @@ form {
 #flash-notice{
   background-color: lightgrey;
 }
+
+#top_three_reviews{
+  color: tomato;
+}
+

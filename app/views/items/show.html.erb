@@ -19,16 +19,44 @@
       <p><%= link_to "Add Review", "/items/#{@item.id}/reviews/new" %></p>
       <p><%= button_to "Add to cart", "/cart/#{@item.id}", method: :patch %></p>
 
-      <div><% @item.reviews.each do |review|%>
+      <h3>Reviews</h3>
+      <div class="Reviews">
+        <% @item.reviews.each do |review|%>
         <section id="review-<%= "#{review.id}" %>">
           <h2><%= review.title %></h2>
           <p><%= review.content %></p>
           <p><%= "Rating: #{review.rating}" %></p>
           <p><%= link_to "Delete Review", "/items/#{@item.id}/reviews/#{review.id}", method: :delete %></p><br>
         </section>
-
         <% end %>
       </div>
+
+
+      <section class='reviews-section'>
+        <section id="top_three_reviews">
+          <h3>Top Three Reviews</h3>
+          <% @item.reviews.top_three.each do |review|%>
+          <h3><%= review.title %></h3>
+          <p><%= review.content %></p>
+          <p><%= "Rating: #{review.rating}" %></p>
+          <% end %>
+        </section>
+
+        <section id='bottom_three_reviews'>
+          <h3>Bottom Three Reviews</h3>
+          <% @item.reviews.bottom_three.each do |review| %>
+          <h3><%= review.title %></h3>
+          <p><%= review.content %></p>
+          <p><%= "Rating: #{review.rating}" %></p>
+          <% end  %>
+        </section>
+
+        <section id='average_rating'>
+          <h3>Average Rating Of All Reviews</h3>
+          <p><%= @item.reviews.total_average %></p>
+        </section>
+      </section>
+
 
     </section>
   </section>
