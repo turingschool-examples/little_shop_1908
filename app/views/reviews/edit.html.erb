@@ -1,0 +1,12 @@
+<h1 align= "center">Edit Review</h1>
+<center>
+  <%= form_tag "/items/#{@item.id}/reviews", method: :patch do %>
+    <%= text_field_tag :title, "Title" %>
+
+    <%= text_field_tag :content, "Content" %>
+
+    <%= text_field_tag :rating, "Rating" %>
+
+    <%= submit_tag "Update Review" %>
+  <% end %>
+</center>

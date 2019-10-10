@@ -15,6 +15,19 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def edit
+    @item = Item.find(params[:id])
+    # @review = Review.find(params[:id])
+  end
+
+  def update
+    item = Item.find(params[:id])
+    # binding.pry
+    review = item.reviews.find_by(params[:id])
+    review.update(review_params)
+    redirect_to "/items/#{item.id}"
+  end
+
   private
 
   def review_params
