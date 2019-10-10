@@ -5,6 +5,7 @@
     <section class = "item-show-item">
       <img src= <%= @item.image %>>
     </section>
+
     <section style="text-align:left" class = "item-show-item">
       <p><%= @item.description %></p>
       <p>Price: <%= number_to_currency(@item.price) %> </p>
@@ -16,8 +17,10 @@
       <% end %>
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
+      <p><%= link_to "Review This Item", "/items/#{@item.id}/reviews/new" %></p>
+      <%= button_to "Add to Cart", "/cart/#{@item.id}", method: :patch %>
     </section>
-    <%= link_to "Review This Item", "/items/#{@item.id}/reviews/new" %>
+
     <section id= "review-stats">
       <article id= "top-reviews">
         <% @item.top_three_reviews.each do |review| %>
@@ -35,6 +38,7 @@
         <p>Average Rating: <%= @item.average_rating %></p>
       </article>
     </section>
+
     <% @item.reviews.each do |review| %>
       <section id = "review-<%= review.id%>">
         <p> <%= review.title %></p>
