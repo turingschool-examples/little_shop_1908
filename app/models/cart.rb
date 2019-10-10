@@ -33,4 +33,12 @@ class Cart
   def remove_item(item_id)
     @contents.delete(item_id)
   end
+
+  def increment_item_quantity(item_id)
+    @contents[item_id.to_s] = count_of(item_id) + 1
+  end
+
+  def decrement_item_quantity(item_id)
+    @contents[item_id.to_s] = count_of(item_id) - 1
+  end
 end
