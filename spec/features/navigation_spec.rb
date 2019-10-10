@@ -18,5 +18,15 @@ RSpec.describe 'Site Navigation' do
 
       expect(current_path).to eq('/merchants')
     end
+
+    it "I see a cart link that goes to the cart show page" do
+      visit '/items'
+
+      within 'nav' do
+        click_link "Cart (0)"
+      end
+
+      expect(current_path).to eq('/cart')
+    end
   end
 end
