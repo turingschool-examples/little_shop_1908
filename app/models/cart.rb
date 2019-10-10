@@ -11,6 +11,11 @@ class Cart
   end
 
   def add_item(item_id)
+    # item_id must be a string to reference @contents hash correctly
     @contents[item_id.to_s] += 1
+  end
+
+  def count_of(item_id)
+    @contents[item_id.to_s].to_i
   end
 end
