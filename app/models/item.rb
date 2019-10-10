@@ -21,4 +21,7 @@ class Item <ApplicationRecord
     reviews.average(:rating).round(2)
   end
 
+  def subtotal(item_id, quantity)
+    Item.find(item_id).price * quantity
+  end
 end
