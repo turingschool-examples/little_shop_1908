@@ -12,17 +12,31 @@ RSpec.describe 'As a visitor' do
 
     it 'shows all item information and total cost of the items in cart' do
       visit "items/#{@chain.id}"
+
+      expect(page).to have_link("Cart: 0")
       click_button 'Add to Cart'
+
+      expect(page).to have_link("Cart: 1")
       visit "items/#{@chain.id}"
       click_button 'Add to Cart'
+
+      expect(page).to have_link("Cart: 2")
       visit "items/#{@pull_toy.id}"
       click_button 'Add to Cart'
+
+      expect(page).to have_link("Cart: 3")
       visit "items/#{@dog_bone.id}"
       click_button 'Add to Cart'
+
+      expect(page).to have_link("Cart: 4")
       visit "items/#{@dog_bone.id}"
       click_button 'Add to Cart'
+
+      expect(page).to have_link("Cart: 5")
       visit "items/#{@dog_bone.id}"
       click_button 'Add to Cart'
+
+      expect(page).to have_link("Cart: 6")
       visit '/cart'
 
       expect(page).to have_content("Chain")
@@ -69,13 +83,14 @@ RSpec.describe 'As a visitor' do
       visit "items/#{@dog_bone.id}"
       click_button 'Add to Cart'
       visit '/cart'
+      
+      expect(page).to have_button("Empty Cart")
 
       click_button 'Empty Cart'
 
-      save_and_open_page
 
       expect(current_path).to eq('/cart')
-      expect(page).to have_content("Cart: 0")
+      expect(page).to have_link("Cart: 0")
       expect(page).to_not have_button("Empty Cart")
       expect(page).to_not have_content("Dog Bone")
       expect(page).to_not have_content("Pull Toy")

@@ -14,6 +14,10 @@ class Cart
     @contents.values.sum
   end
 
+  def count_of(id)
+    @contents[id.to_s].to_i
+  end
+
   def grand_total
     grand_total = 0
     @contents.each do |id, quantity|

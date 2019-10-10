@@ -13,6 +13,6 @@ RSpec.describe 'From item show page', type: :feature do
 
     expect(page).to have_content("#{@chain.name} has been added to cart!")
     expect(current_path).to eq('/items')
-    expect(page).to have_content('Cart: 1')
+    expect(page).to have_link('Cart: 1')
   end
 end
