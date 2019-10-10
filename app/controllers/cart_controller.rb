@@ -10,12 +10,12 @@ class CartController < ApplicationController
     redirect_to '/items'
   end
 
-  def show
-    @items = []
-    cart.contents.keys.each do |id|
-      @items << Item.find(id.to_i)
-    end
-    @items
+  def index
+    @items = Item.where(id: cart.all_items)
+    # cart.contents.keys.each do |id|
+    #   @items << Item.find(id.to_i)
+    # end
+    # @items
   end
 
   def destroy

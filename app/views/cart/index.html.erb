@@ -8,7 +8,7 @@
     <p>Sold by: <%= item.merchant.name %></p>
     <p>Price: <%= number_to_currency(item.price) %> </p>
     <p>Quantity: <%= cart.contents[item.id.to_s] %></p>
-    <h4>Subtotal: <%=  number_to_currency(item.subtotal(item.id, cart.contents[item.id.to_s])) %></h4>
+    <h4>Subtotal: <%=  number_to_currency(cart.subtotal(item.id, cart.contents[item.id.to_s])) %></h4>
     <% end %>
     <h2>Grand Total: <%= number_to_currency(cart.grand_total) %> </h2>
     <%= button_to 'Empty Cart', '/cart', method: :destroy %>
