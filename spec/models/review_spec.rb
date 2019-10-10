@@ -32,5 +32,9 @@ describe Review, type: :model do
     it 'can get top three reviews' do
       expect(@chain.reviews.top_three).to eq([@review_5, @review_4, @review_3])
     end
+
+    it 'can get bottom three reviews' do
+      expect(@chain.reviews.bottom_three).to eq([@review_1, @review_2, @review_3])
+    end
   end
 end
