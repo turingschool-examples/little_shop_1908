@@ -33,5 +33,21 @@ RSpec.describe "As a Visitor" do
       expect(page).to have_content("Brian's Super Cool Bike Shop")
       expect(page).to have_content("1234 New Bike Rd.\nDenver, CO 80204")
     end
+
+    it "Merchants cannot be edited to have missing information" do
+      meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+
+      visit "/merchants/#{meg.id}/edit"
+
+      fill_in :name, with: ""
+      fill_in :address, with: ""
+      fill_in :city, with: ""
+      fill_in :state, with: ""
+      fill_in :zip, with: ""
+
+      click_button 'Update Merchant'
+
+      expect(page).to have_content("Name can't be blank, Address can't be blank, City can't be blank, State can't be blank, and Zip can't be blank")
+    end
   end
 end
