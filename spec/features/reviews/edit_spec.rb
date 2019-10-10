@@ -17,7 +17,7 @@ describe "As a visitor" do
       expect(current_path).to eq("/items/#{@chain.id}/reviews/#{@review_1.id}/edit")
       fill_in :title, with: 'Bestest chain!'
       fill_in :content, with: 'It never brokened!'
-      fill_in :rating, with: '4'
+      select "4", from: :rating
       click_button 'Update Review'
 
       expect(current_path).to eq("/items/#{@chain.id}")
