@@ -51,6 +51,20 @@ RSpec.describe "As a Visitor" do
         expect(page).to have_content("They're a bit more expensive, and they kinda do pop sometimes, but whatevs.. this is retail.")
         expect(page).to_not have_content("They'll never pop!")
       end
+
+      it "Items cannot be edited to have missing information" do
+        visit "/items/#{@tire.id}/edit"
+
+        fill_in 'Name', with: ""
+        fill_in 'Price', with: ""
+        fill_in 'Description', with: ""
+        fill_in 'Image', with: ""
+        fill_in 'Inventory', with: ""
+
+        click_button 'Update Item'
+
+        expect(page).to have_content("Name can't be blank, Description can't be blank, Price can't be blank, Image can't be blank, and Inventory can't be blank")
+      end
     end
   end
 end
