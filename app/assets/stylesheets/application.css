@@ -85,7 +85,11 @@ img{
    text-align: center;
  }
 
- .cart-items{
+ .all-cart-items{
+
+ }
+
+ .cart-item{
 
  }
 
@@ -126,4 +130,12 @@ form {
 
 #flash-notice{
   background-color: lightgrey;
+}
+
+#cart-header{
+
+}
+
+#grand-total{
+
 }

@@ -23,8 +23,8 @@ describe 'When I visit cart show Page' do
 
       visit "/cart"
       expect(page).to have_content("Grand Total: 210")
-      
-      within ".cart-items" do
+
+      within ".all-cart-items" do
         expect(page).to have_link(@tire.name)
         expect(page).to have_link(@pull_toy.name)
       end

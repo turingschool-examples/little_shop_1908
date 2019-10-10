@@ -1,0 +1,23 @@
+<h1 id="cart-header">Your Cart</h1>
+  <section class="all-cart-items">
+    <ol>
+      <% grand_total = 0 %>
+      <% cart.contents.each |item_id, quantity| do  %>
+      <% item = Item.find(item_id) %>
+      <% subtotal = (item.price * quantity) %>
+      <% grand_total += subtotal %>
+      <li><%=link_to item.name, "/items/#{item_id}" %><br>
+        <section class="cart-item" id="cart-item<%= item_id %>">
+          <img src= <%= item.image %>>
+          <p>Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
+          <p>Price: <%= item.price %></p>
+          <p>Quantity: <%= quantity %></p>
+          <p>Subtotal: <%= subtotal %></p>
+        <% end %>
+        </section>
+      </li>
+    </ol>
+  </section><hr>
+  <section id="grand-total">
+    <p>Grand Total: </p>
+  </section>
