@@ -34,8 +34,14 @@
           <%= review.content %>
           <%= "Rating: #{review.rating}" %>
           <% end %>
+        </section>
 
-
+        <section id='bottom_three_reviews'>
+          <% @item.reviews.bottom_three.each do |review| %>
+          <%= review.title %>
+          <%= review.content %>
+          <%= "Rating: #{review.rating}" %>
+          <% end  %>
         </section>
       </section>
 

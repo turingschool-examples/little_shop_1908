@@ -16,6 +16,6 @@ class Review < ApplicationRecord
     end
 
     def self.bottom_three
-      order(rating: :desc).limit(3)
+      order(:rating).limit(3)
     end
 end
