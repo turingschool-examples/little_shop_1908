@@ -18,3 +18,5 @@ RSpec.describe Cart do
     end
   end
 end
+
+#add tests for subtotal, grand total 
