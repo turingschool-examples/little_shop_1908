@@ -1,16 +1,20 @@
 <h1>Cart Contents</h1>
 
-<% @items.each do |item| %>
-  <section id = 'item-<%= item.id %>'>
-  <p><%= item.name %></p>
-  <%= image_tag item.image %>
-  <p><%= "Merchant: #{item.merchant.name}" %></p>
-  <p><%= "Price: #{number_to_currency(item.price)}" %></p>
-  <p><%= "Quantity: #{cart.count_of(item.id)}" %></p>
-  <p><%= "Subtotal: #{number_to_currency(cart.subtotal(item.id))}" %></p>
-  </section>
+<% if @items.empty? %>
+  <h3>Your cart is empty</h3>
+<% else %>
+  <% @items.each do |item| %>
+    <section id = 'item-<%= item.id %>'>
+    <p><%= item.name %></p>
+    <%= image_tag item.image %>
+    <p><%= "Merchant: #{item.merchant.name}" %></p>
+    <p><%= "Price: #{number_to_currency(item.price)}" %></p>
+    <p><%= "Quantity: #{cart.count_of(item.id)}" %></p>
+    <p><%= "Subtotal: #{number_to_currency(cart.subtotal(item.id))}" %></p>
+    </section>
+  <% end %>
+  <h5>Grand Total: <%= number_to_currency(cart.grand_total) %></h5>
+
+  <%= button_to 'Empty Cart', '/cart', method: :delete %>
 <% end %>
 
-<h5>Grand Total: <%= number_to_currency(cart.grand_total) %></h5>
-
-<%= button_to 'Empty Cart', '/cart', method: :delete %>
