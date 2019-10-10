@@ -9,7 +9,7 @@ RSpec.describe 'merchant new page', type: :feature do
     address = '123 Kindalikeapizza Dr.'
     city = "Denver"
     state = "CO"
-    zip = 80204
+    zip = "80204"
 
     fill_in :name, with: name
     fill_in :address, with: address
