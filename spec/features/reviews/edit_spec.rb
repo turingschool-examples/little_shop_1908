@@ -58,5 +58,30 @@ RSpec.describe "review edit" do
       end
     end
 
+    it 'shows a flash message when fields are blank' do
+      visit "/reviews/#{@review_1.id}/edit"
+
+      fill_in :title, with: nil
+      fill_in :content, with: nil
+      fill_in :rating, with: nil
+
+      click_button 'Update Review'
+
+      expect(current_path).to eq("/reviews/#{@review_1.id}/edit")
+      expect(page).to have_content("Title can't be blank")
+      expect(page).to have_content("Content can't be blank")
+      expect(page).to have_content("Rating can't be blank")
+    end
+
+    it 'shows a flash message when fields are blank' do
+      visit "/reviews/#{@review_1.id}/edit"
+
+      fill_in :rating, with: "Not a number"
+
+      click_button 'Update Review'
+      
+      expect(current_path).to eq("/reviews/#{@review_1.id}/edit")
+      expect(page).to have_content("Rating is not a number")
+    end
   end
 end
