@@ -1,0 +1,19 @@
+<h1>Your Cart</h1>
+
+<section class="cart-section">
+  <% @items.each do |item, quantity| %>
+    <section id="item-cart-<%= item.id %>">
+      <%= image_tag(item.image) %>
+      <p>Name: <%= item.name %></p>
+      <p>Sold by: <%= item.merchant.name %></p>
+      <p>Price: $<%= item.price %></p>
+      <p>Quantity: <%= quantity %></p>
+      <p>Subtotal: $<%= item.price * quantity %></p>
+    </section>
+  <% end %>
+  <% if @items.empty? %>
+    <p>Your Cart is Empty</p>
+  <% else %>
+    <p>Grand total: $<%= cart.grand_total %></p>
+  <% end %>
+</section>
