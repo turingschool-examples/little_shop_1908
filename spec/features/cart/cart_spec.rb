@@ -13,12 +13,18 @@ RSpec.describe "Across all pages" do
       expect(page).to have_content("0")
     end
 
+
     visit "/items/#{@chain.id}"
     click_button "Add to Cart"
 
     within "#cart" do
       expect(page).to have_content("1")
     end
+    within "#flash" do
+      expect(page).to have_content("Item added to cart")
+    end
+    expect(current_path).to eq("/items")
+
 
     visit "/items/#{@shifter.id}"
     click_button "Add to Cart"
@@ -26,6 +32,11 @@ RSpec.describe "Across all pages" do
     within "#cart" do
       expect(page).to have_content("2")
     end
+    within "#flash" do
+      expect(page).to have_content("Item added to cart")
+    end
+    expect(current_path).to eq("/items")
+
 
     visit "/items/#{@chain.id}"
     click_button "Add to Cart"
@@ -33,10 +44,9 @@ RSpec.describe "Across all pages" do
     within "#cart" do
       expect(page).to have_content("3")
     end
+    within "#flash" do
+      expect(page).to have_content("Item added to cart")
+    end
+    expect(current_path).to eq("/items")
   end
 end
-
-# As a visitor
-# I see a cart indicator in my navigation bar
-# The cart indicator shows a count of items in my cart
-# I can see this cart indicator from any page in the application
