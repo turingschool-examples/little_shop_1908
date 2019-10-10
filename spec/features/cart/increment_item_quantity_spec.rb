@@ -32,7 +32,8 @@ RSpec.describe 'As a visitor I can change the item quantity on the cart index pa
       expect(page).to have_content("Quantity: 5")
     end
 
-    expect(page).to have_content('You have reached the inventory limit.')
+    expect(page).to have_content('You have reached the Chain inventory limit.')
+    save_and_open_page
   end
 
   it 'when I click the delete button it updates the cart and item quantity' do
@@ -48,7 +49,6 @@ RSpec.describe 'As a visitor I can change the item quantity on the cart index pa
       expect(page).to have_content("Quantity: 0")
     end
 
-    save_and_open_page
     expect(page).to have_content('There are no more Chains to remove.')
   end
 end

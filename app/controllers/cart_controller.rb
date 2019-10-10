@@ -28,7 +28,7 @@ class CartController < ApplicationController
     if cart.contents[params[:item_id]] < Item.find(params[:item_id]).inventory
       cart.increment_item_quantity(params[:item_id])
     else
-      flash.notice = "You have reached the inventory limit."
+      flash.notice = "You have reached the #{Item.find(params[:item_id]).name} inventory limit."
     end
     redirect_to '/cart'
   end
