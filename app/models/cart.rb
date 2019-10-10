@@ -30,4 +30,7 @@ class Cart
     grand_total = @contents.inject(0) { |sum, (id, quantity)| sum += subtotal(id, quantity) }
   end
 
+  def remove_item(item_id)
+    @contents.delete(item_id)
+  end
 end
