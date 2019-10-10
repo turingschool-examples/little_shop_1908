@@ -159,4 +159,24 @@ RSpec.describe 'item show page', type: :feature do
 
     expect(page).to have_button('Update Review')
   end
+
+  it "can show a link to add item to cart" do
+    click_link 'Add Item to Cart'
+
+    expect(page).to have_content("You now have 1 copy of #{@chain.name} in your cart.")
+
+    expect(current_path).to eq('/items')
+
+    expect(page).to have_link("Cart (1)")
+
+    visit "/items/#{@chain.id}"
+
+    click_link 'Add Item to Cart'
+
+    expect(page).to have_content("You now have 2 copies of #{@chain.name} in your cart.")
+
+    expect(current_path).to eq('/items')
+
+    expect(page).to have_link("Cart (2)")
+  end
 end
