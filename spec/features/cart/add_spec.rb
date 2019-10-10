@@ -16,18 +16,64 @@ describe 'From an items show Page' do
         it 'I see the updated cart total, and a message saying Ive added an item to my cart' do
 
           visit "/items/#{@tire.id}"
-
           within ".topnav" do
             expect(page).to have_content("Cart: 0")
           end
-
           click_on "Add to cart"
-
           expect(current_path).to eq("/items")
           expect(page).to have_content("#{@tire.name} added to cart")
-
+          expect(page).to have_content("You now have 1 Gatorskins in your cart.")
           within ".topnav" do
             expect(page).to have_content("Cart: 1")
           end
+
+          visit "/items/#{@pull_toy.id}"
+          within ".topnav" do
+            expect(page).to have_content("Cart: 1")
+          end
+          click_on "Add to cart"
+          expect(current_path).to eq("/items")
+          expect(page).to have_content("#{@pull_toy.name} added to cart")
+          expect(page).to have_content("You now have 1 Pull Toy in your cart.")
+          within ".topnav" do
+            expect(page).to have_content("Cart: 2")
+          end
+
+          visit "/items/#{@dog_bone.id}"
+          within ".topnav" do
+            expect(page).to have_content("Cart: 2")
+          end
+          click_on "Add to cart"
+          expect(current_path).to eq("/items")
+          expect(page).to have_content("#{@dog_bone.name} added to cart")
+          expect(page).to have_content("You now have 1 Dog Bone in your cart.")
+          within ".topnav" do
+            expect(page).to have_content("Cart: 3")
+          end
+
+          visit "/items/#{@tire.id}"
+          within ".topnav" do
+            expect(page).to have_content("Cart: 3")
+          end
+          click_on "Add to cart"
+          expect(current_path).to eq("/items")
+          expect(page).to have_content("#{@tire.name} added to cart")
+          expect(page).to have_content("You now have 2 Gatorskins in your cart.")
+          within ".topnav" do
+            expect(page).to have_content("Cart: 4")
+          end
+
+          visit "/items/#{@dog_bone.id}"
+          within ".topnav" do
+            expect(page).to have_content("Cart: 4")
+          end
+          click_on "Add to cart"
+          expect(current_path).to eq("/items")
+          expect(page).to have_content("#{@dog_bone.name} added to cart")
+          expect(page).to have_content("You now have 2 Dog Bones in your cart.")
+          within ".topnav" do
+            expect(page).to have_content("Cart: 5")
+          end
+
         end
 end

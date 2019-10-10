@@ -14,21 +14,22 @@ describe 'From any page on the site' do
     it 'I see a cart indicator with how many items are in my cart' do
 
       visit "/items/#{@tire.id}"
-
       within ".topnav" do
         expect(page).to have_content("Cart: 0")
       end
-
       click_on "Add to cart"
-      save_and_open_page
-      expect(current_path).to eq("/items")
-      expect(page).to have_content("#{@tire.name} added to cart")
 
+      visit "/items/#{@pull_toy.id}"
+      click_on "Add to cart"
+
+      visit "/items/#{@dog_bone.id}"
+      click_on "Add to cart"
+
+      expect(current_path).to eq("/items")
       within ".topnav" do
-        expect(page).to have_content("Cart: 1")
+        expect(page).to have_content("Cart: 3")
       end
 
       #Make test to verify all other pages display same values
-
     end
 end
