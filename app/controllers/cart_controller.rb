@@ -12,14 +12,10 @@ class CartController < ApplicationController
 
   def index
     @items = Item.where(id: cart.all_items)
-    # cart.contents.keys.each do |id|
-    #   @items << Item.find(id.to_i)
-    # end
-    # @items
   end
 
   def destroy
-    session.clear
+    session.delete :cart
     redirect_to '/cart'
   end
 end
