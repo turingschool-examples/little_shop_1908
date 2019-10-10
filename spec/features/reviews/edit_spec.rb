@@ -7,7 +7,7 @@ RSpec.describe "as a visitor" do
       tire = meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
       review = tire.reviews.create(title: "first review", content: "content", rating: 4)
 
-      visit "/items/#{tire.id}/reviews/#{review.id}/edit"
+      visit "/reviews/#{review.id}/edit"
 
       expect(find_field(:title).value).to eq(review.title)
       expect(find_field(:content).value).to eq(review.content)
@@ -30,6 +30,22 @@ RSpec.describe "as a visitor" do
         expect(page).to_not have_content("content")
         expect(page).to_not have_content(4)
       end
+    end
+
+    it "Reviews cannot be edited to have missing information" do
+      meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      tire = meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+      review = tire.reviews.create(title: "first review", content: "content", rating: 4)
+
+      visit "/reviews/#{review.id}/edit"
+
+      fill_in :title, with: ""
+      fill_in :content, with: ""
+      fill_in :rating, with: ""
+
+      click_button 'Update Review'
+
+      expect(page).to have_content("Title can't be blank, Content can't be blank, Rating can't be blank, and Rating is not a number")
     end
   end
 end

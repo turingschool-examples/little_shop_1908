@@ -1,6 +1,6 @@
 <h1>Edit review for <%= link_to "#{@item.name}", "/items/#{@item.id}" %> </h1>
 <center>
-  <%= form_tag "/items/#{@item.id}/reviews/#{@review.id}", method: :patch do %>
+  <%= form_tag "/reviews/#{@review.id}", method: :patch do %>
     <%= label_tag :title %>
     <%= text_field_tag :title, @review.title %>
 

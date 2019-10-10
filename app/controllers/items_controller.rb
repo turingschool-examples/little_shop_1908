@@ -10,7 +10,12 @@ class ItemsController<ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    if Item.exists?(params[:id])
+      @item = Item.find(params[:id])
+    else
+      flash[:notice] = "That page could not be found."
+      redirect_to "/items"
+    end
   end
 
   def new
@@ -18,19 +23,33 @@ class ItemsController<ApplicationController
   end
 
   def create
-    merchant = Merchant.find(params[:merchant_id])
-    merchant.items.create(item_params)
-    redirect_to "/merchants/#{merchant.id}/items"
+    @merchant = Merchant.find(params[:merchant_id])
+    item = @merchant.items.create(item_params)
+    if item.save
+      redirect_to "/merchants/#{@merchant.id}/items"
+    else
+      flash[:notice] = item.errors.full_messages.to_sentence
+      render :new
+    end
   end
 
   def edit
-    @item = Item.find(params[:id])
+    if Item.exists?(params[:id])
+      @item = Item.find(params[:id])
+    else
+      flash[:notice] = "That page could not be found."
+      redirect_to '/items'
+    end
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-    redirect_to "/items/#{item.id}"
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to "/items/#{@item.id}"
+    else
+      flash[:notice] = @item.errors.full_messages.to_sentence
+      render :edit
+    end
   end
 
   def destroy
