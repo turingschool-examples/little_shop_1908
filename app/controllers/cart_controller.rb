@@ -9,4 +9,8 @@ class CartController < ApplicationController
 
     redirect_to '/items'
   end
+
+  def show
+    @items = Item.where(id: session[:cart].keys)
+  end
 end
