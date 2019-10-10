@@ -8,13 +8,14 @@ RSpec.describe 'As a visitor' do
         @chain = bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
         visit "/items/#{@chain.id}"
       end
+      
       it 'leads to a new review form' do
 
         click_link 'Add new review'
 
         fill_in "title", with: "BEST EVER"
         fill_in "content", with: "SUPER BEST EVER"
-        fill_in "rating", with: "3"
+        select "3", from: :rating
 
         click_button "Add Review"
 
