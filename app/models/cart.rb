@@ -14,4 +14,16 @@ class Cart
     @contents.values.sum
   end
 
+  def count_of(item_id)
+    @contents[item_id.to_s]
+  end
+
+  def subtotal(item_id)
+    Item.find(item_id).price * count_of(item_id)
+  end
+
+  def grand_total
+    items = Item.where(id: @contents.keys)
+    items.sum { |item| item.price * count_of(item.id) }
+  end
 end

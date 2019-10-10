@@ -41,4 +41,17 @@ RSpec.describe Cart, type: :model do
       expect(cart.subtotal(@tire.id)).to eq(200)
     end
   end
+
+  describe '#grand_total' do
+    it 'returns the total of all item subtotals' do
+      @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+      @pull_toy = @meg.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
+
+
+      cart = Cart.new({"#{@tire.id}" => 2, "#{@pull_toy.id}" => 6})
+
+      expect(cart.grand_total).to eq(260)
+    end
+  end
 end
