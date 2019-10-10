@@ -7,4 +7,26 @@ class Cart
   def count
     @contents.values.sum
   end
+
+  def contents
+    @contents.map do |item_id, number_in_cart|
+      Item.find(item_id)
+    end
+  end
+
+  def item_count(item_id)
+    @contents[item_id.to_s]
+  end
+
+  def subtotal(item_id)
+    (Item.find(item_id).price) * @contents[item_id.to_s]
+  end
+
+  def grand_total
+    total = 0
+    @contents.each do |k, v|
+      total += subtotal(k)
+    end
+    total
+  end
 end
