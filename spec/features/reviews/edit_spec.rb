@@ -7,7 +7,7 @@ RSpec.describe "as a visitor" do
       tire = meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
       review = tire.reviews.create(title: "first review", content: "content", rating: 4)
 
-      visit "/items/#{tire.id}/reviews/#{review.id}/edit"
+      visit "/reviews/#{review.id}/edit"
 
       expect(find_field(:title).value).to eq(review.title)
       expect(find_field(:content).value).to eq(review.content)

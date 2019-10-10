@@ -15,23 +15,18 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    if Item.exists?(params[:item_id])
-      @item = Item.find(params[:item_id])
-      if Review.exists?(params[:review_id])
-        @review = Review.find(params[:review_id])
-      else
-        flash[:notice] = 'That review could not be found.'
-        redirect_to "/items/#{@item.id}"
-      end
-    else
-      flash[:notice] = 'That item could not be found.'
+    if Review.exists?(params[:id])
+      @review = Review.find(params[:id])
+      @item = Item.find(@review.item_id)
+    elsif
+      flash[:notice] = 'That review could not be found.'
       redirect_to '/items'
     end
   end
 
   def update
-    @item = Item.find(params[:item_id])
-    @review = Review.find(params[:review_id])
+    @review = Review.find(params[:id])
+    @item = Item.find(@review.item_id)
     if @review.update(review_params)
       redirect_to "/items/#{@item.id}"
     else
@@ -41,9 +36,9 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    review = Review.find(params[:review_id])
+    review = Review.find(params[:id])
     review.destroy
-    redirect_to "/items/#{params[:item_id]}"
+    redirect_to "/items/#{review.item_id}"
   end
 
   private
