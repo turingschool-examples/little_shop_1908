@@ -56,6 +56,13 @@ img{
  	grid-template-columns: repeat(2,1fr);
  }
 
+ .review-show-grid{
+  width: 60%;
+  display: grid;
+  border: solid;
+  border-radius: 12px;
+ }
+
  .item-show-item{
  	padding: 20px;
  	text-align: right;
