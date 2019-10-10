@@ -5,7 +5,12 @@ class MerchantsController <ApplicationController
   end
 
   def show
-    @merchant = Merchant.find(params[:id])
+    if Merchant.exists?(params[:id])
+      @merchant = Merchant.find(params[:id])
+    else
+      flash[:notice] = 'That page could not be found.'
+      redirect_to '/merchants'
+    end
   end
 
   def new
@@ -17,7 +22,12 @@ class MerchantsController <ApplicationController
   end
 
   def edit
-    @merchant = Merchant.find(params[:id])
+    if Merchant.exists?(params[:id])
+      @merchant = Merchant.find(params[:id])
+    else
+      flash[:notice] = 'That page could not be found.'
+      redirect_to '/merchants'
+    end
   end
 
   def update
