@@ -14,4 +14,10 @@ class CartController < ApplicationController
     end
     @items
   end
+
+  def destroy
+    # cookies.delete :_little_shop1906_starter_session
+    session.clear
+    redirect_to '/cart'
+  end
 end

@@ -55,5 +55,31 @@ RSpec.describe 'As a visitor' do
       expect(page).to have_content("Your cart is empty!")
       expect(page).to_not have_link("Empty Cart")
     end
+    it 'shows all item information and total cost of the items in cart' do
+      visit "items/#{@chain.id}"
+      click_button 'Add to Cart'
+      visit "items/#{@chain.id}"
+      click_button 'Add to Cart'
+      visit "items/#{@pull_toy.id}"
+      click_button 'Add to Cart'
+      visit "items/#{@dog_bone.id}"
+      click_button 'Add to Cart'
+      visit "items/#{@dog_bone.id}"
+      click_button 'Add to Cart'
+      visit "items/#{@dog_bone.id}"
+      click_button 'Add to Cart'
+      visit '/cart'
+
+      click_button 'Empty Cart'
+
+      save_and_open_page
+
+      expect(current_path).to eq('/cart')
+      expect(page).to have_content("Cart: 0")
+      expect(page).to_not have_button("Empty Cart")
+      expect(page).to_not have_content("Dog Bone")
+      expect(page).to_not have_content("Pull Toy")
+      expect(page).to_not have_content("Chain")
+    end
   end
 end
