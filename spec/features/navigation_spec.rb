@@ -1,22 +1,18 @@
-
 require 'rails_helper'
 
-RSpec.describe 'Site Navigation' do
-  describe 'As a Visitor' do
-    it "I see a nav bar with links to all pages" do
-      visit '/merchants'
+RSpec.describe 'site navigation' do
 
-      within 'nav' do
-        click_link 'All Items'
-      end
+  it "can see a nav bar with links to all pages" do
+    visit '/merchants'
 
-      expect(current_path).to eq('/items')
+    within('nav') { click_link 'All Items' }
+    expect(current_path).to eq('/items')
 
-      within 'nav' do
-        click_link 'All Merchants'
-      end
+    within('nav') { click_link 'All Merchants' }
+    expect(current_path).to eq('/merchants')
 
-      expect(current_path).to eq('/merchants')
-    end
+    within('nav') { click_link 'Cart (0)' }
+    expect(current_path).to eq('/cart')
   end
+
 end
