@@ -10,7 +10,12 @@ class ItemsController<ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    if Item.exists?(params[:id])
+      @item = Item.find(params[:id])
+    else
+      flash[:notice] = "That page could not be found."
+      redirect_to "/items"
+    end
   end
 
   def new
