@@ -85,6 +85,14 @@ img{
    text-align: center;
  }
 
+ .all-cart-items{
+
+ }
+
+ .cart-item{
+
+ }
+
  input[type=text], select {
   width: 100%;
   padding: 12px 20px;
@@ -125,7 +133,17 @@ form {
   background-color: lightgrey;
 }
 
+
+#cart-header{
+
+}
+
+#grand-total{
+
+}
+
 #top_three_reviews{
   color: tomato;
 }
+
 
