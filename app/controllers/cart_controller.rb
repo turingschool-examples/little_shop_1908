@@ -12,4 +12,10 @@ class CartController < ApplicationController
     @items = Item.where(id: cart.contents.keys)
   end
 
+  def destroy
+    cart.empty_contents
+    session[:cart] = Hash.new(0)
+    redirect_to '/cart'
+  end
+
 end
