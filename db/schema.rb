@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20191007215131) do
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "price"
+    t.float "price"
     t.string "image"
     t.boolean "active?", default: true
     t.integer "inventory"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20191007215131) do
     t.string "address"
     t.string "city"
     t.string "state"
-    t.integer "zip"
+    t.string "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

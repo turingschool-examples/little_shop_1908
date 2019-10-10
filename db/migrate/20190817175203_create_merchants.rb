@@ -5,7 +5,7 @@ class CreateMerchants < ActiveRecord::Migration[5.1]
       t.string :address
       t.string :city
       t.string :state
-      t.integer :zip
+      t.string :zip
 
       t.timestamps
     end
