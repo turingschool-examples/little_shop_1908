@@ -16,8 +16,7 @@ class ReviewsController <ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:item_id])
-    @review = Review.find(params[:review_id]) # why can't we find reviews by item?
+    @review = Review.find(params[:review_id])
   end
 
   def update
