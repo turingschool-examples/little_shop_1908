@@ -11,11 +11,7 @@ RSpec.describe Cart do
 
   describe "#add_item" do
     it "adds a item to its contents" do
-      # cart = Cart.new({
-      #   '1' => 2,  # two copies of item 1
-      #   '2' => 3,  # three copies of item 2
-      #   '3' => 4   # four copies of item 3
-      # })
+
       subject.add_item(1)
       subject.add_item(1)
       subject.add_item(1)
