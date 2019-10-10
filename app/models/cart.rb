@@ -27,4 +27,8 @@ class Cart
      item.price * quantity
     end
   end
+
+  def empty_cart
+    @contents = Hash.new(0)
+  end
 end

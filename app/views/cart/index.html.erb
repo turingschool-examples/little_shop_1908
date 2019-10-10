@@ -15,5 +15,6 @@
     <p>Your Cart is Empty</p>
   <% else %>
     <p>Grand total: $<%= cart.grand_total %></p>
+    <%= link_to "Empty Cart", '/cart/empty', method: :delete %>
   <% end %>
 </section>
