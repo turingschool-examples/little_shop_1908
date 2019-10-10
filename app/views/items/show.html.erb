@@ -16,9 +16,15 @@
       <% end %>
 
       <section id= "stats-<%= @item.id %>">
-
-
+        <!-- Top review -->
+        <%= binding.pry %>
+        <% @item.reviews.top_reviews do |review| %>
+        <% end %>
+        <!-- Bottom review -->
+        <!-- Average review -->
+        <p>Average Review: <%= @item.reviews.average_review %></p>
       </section>
+
       <% @item.reviews.each do |review| %>
         <section id= "review-<%= review.id %>">
             <p>Review:</p>

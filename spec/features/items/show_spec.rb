@@ -43,6 +43,8 @@ RSpec.describe 'item show page', type: :feature do
     review_6 = @chain.reviews.create!(title: "Meh", content: "Okay item but not the best item.", rating: 2)
     review_7 = @chain.reviews.create!(title: "Mid review", content: "Okay.", rating: 3)
 
+    visit "/items/#{@chain.id}"
+
     within "#stats-#{@chain.id}" do
       expect(page).to have_content("Top Reviews: #{@review_1.title} #{@review_1.rating}")
       expect(page).to have_content("Top Reviews: #{review_3.title} #{review_3.rating}")
