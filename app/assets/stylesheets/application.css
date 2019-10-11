@@ -124,6 +124,7 @@ form {
   width: 60%;
 }
 
+
 #flash-confirm{
   background-color: forestgreen;
 }
@@ -132,6 +133,7 @@ form {
   background-color: lightgrey;
 }
 
+
 #cart-header{
 
 }
@@ -139,3 +141,9 @@ form {
 #grand-total{
 
 }
+
+#top_three_reviews{
+  color: tomato;
+}
+
+
