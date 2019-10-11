@@ -20,10 +20,8 @@
         </li>
       <!--  -->
     </ol>
-        <% if @cart.contents != nil %>
-    <p><%= button_to("Empty cart", '/cart', method: :patch) do %></p>
-        <% end %>
-        <% end %>
+
+    <p><%= link_to_if(@cart.contents != nil, "Empty cart", '/cart', method: :patch) %></p>
       <% end %>
   </section><hr><br>
   <!--  -->
