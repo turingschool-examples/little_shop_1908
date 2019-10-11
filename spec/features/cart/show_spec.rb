@@ -89,17 +89,7 @@ RSpec.describe "Cart show page", type: :feature do
     end
 
     expect(page).to_not have_content(@chain.name)
-    expect(page).to_not have_css("img[src*='#{@chain.image}']")
-    expect(page).to_not have_content(@chain.merchant.name)
     expect(page).to_not have_content(@chain.price)
-    expect(page).to_not have_content("Count: 1")
     expect(page).to_not have_content("Subtotal: $50.00")
   end
 end
-
-# As a visitor
-# When I have items in my cart
-# And I visit my cart
-# Next to each item in my cart
-# I see a button or link to remove that item from my cart
-# - clicking this button will remove the item but not other items
