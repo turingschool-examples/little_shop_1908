@@ -18,28 +18,39 @@
  }
 
  body {
-   background-color: white;
    display: grid;
-   grid-template-columns: 1fr 2fr;
+   background-color: white;
    height: 100vh;
    font-family: 'Questrial', sans-serif;
+   grid-template-rows: 50px 1fr;
    margin: 0;
- }
+  }
 
- .cart_div {
-   display: flex;
-   justify-content: center;
-   vertical-align: baseline;
- }
+  header {
+    background: black;
+    text-align: center;
+  }
 
- .cart_div p {
-   margin: 8px 8px 0;
-   font-size: 1.4rem;
- }
+  header p {
+    color: white;
+  }
 
- main {
+  .cart_div {
+    display: flex;
+    justify-content: center;
+    vertical-align: baseline;
+  }
+  
+  .cart_div p {
+    margin: 8px 8px 0;
+    font-size: 1.4rem;
+  }
+  
+  main {
+   display: grid;
    height: 100vh;
    background-color: #f2f2f2;
+   grid-template-columns: 1fr 2fr;
  }
 
  aside {
