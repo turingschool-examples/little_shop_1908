@@ -1,11 +1,6 @@
 class CartController < ApplicationController
   include ActionView::Helpers::TextHelper
 
-  grand_total = 0
-  @cart.contents.each do |item_id, quantity|
-  item = Item.find(item_id)
-  subtotal = (item.price * quantity)
-  grand_total += subtotal
 
   def show
     @cart = cart
@@ -33,8 +28,3 @@ class CartController < ApplicationController
     redirect_to items_path
   end
 end
- grand_total = 0
- @cart.contents.each do |item_id, quantity|
- item = Item.find(item_id)
- subtotal = (item.price * quantity)
- grand_total += subtotal
