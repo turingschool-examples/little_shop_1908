@@ -91,9 +91,10 @@ describe 'When I visit cart show Page' do
         click_on "+"
         expect(page).to have_content("Quantity: 2")
         click_on "+"
+        expect(page).to have_content("Quantity: 3")
         click_on "+"
         expect(page).to have_content("Quantity: 3")
-        expect(page).to have_content("You cannot add more of that item")
       end
+      expect(page).to have_content("You cannot add more of that item")
     end
 end
