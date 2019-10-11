@@ -53,9 +53,26 @@ describe 'When I visit cart show Page' do
     it "Tells me when cart is empty, doesn't show link to empty cart" do
 
       visit '/cart'
-save_and_open_page
+
       expect(page).to have_content("Your cart is empty")
       expect(page).to have_no_link("Empty cart")
 
+    end
+
+    it "Lets me empty cart" do
+      visit "/items/#{@tire.id}"
+      click_on "Add to cart"
+      visit "/items/#{@tire.id}"
+      click_on "Add to cart"
+      visit "/items/#{@pull_toy.id}"
+      click_on "Add to cart"
+
+      visit "/cart"
+
+      click_on "Empty cart"
+      save_and_open_page
+      expect(current_path).to eq("/cart")
+      expect(page).to have_content("Your cart is empty")
+      expect(page).to have_no_link("Empty cart")
     end
 end
