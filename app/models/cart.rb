@@ -14,8 +14,4 @@ class Cart
     @contents[id.to_s] += 1
   end
 
-  def empty_cart
-    @contents = Hash.new(0)
-  end
-
 end

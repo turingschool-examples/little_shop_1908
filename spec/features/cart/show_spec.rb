@@ -67,7 +67,7 @@ describe 'When I visit cart show Page' do
       visit "/items/#{@pull_toy.id}"
       click_on "Add to cart"
 
-      visit "/cart"
+      visit '/cart'
 
       click_on "Empty cart"
       save_and_open_page

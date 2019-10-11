@@ -1,4 +1,4 @@
-<h1 id="cart-header">Your Cart</h1>
+<h1 id="cart-header">Your Cart</h1><hr>
   <section class="all-cart-items">
     <!--  -->
     <ol>
@@ -20,9 +20,8 @@
         </li>
       <!--  -->
     </ol>
-
-    <p><%= link_to_if(@cart.contents != nil, "Empty cart", '/cart', method: :patch) %></p>
-      <% end %>
+    <% end %>
+    <p><%= link_to("Empty cart", '/cart', method: :patch) if session[:cart] != nil %></p>
   </section><hr><br>
   <!--  -->
   <section id="grand-total">
