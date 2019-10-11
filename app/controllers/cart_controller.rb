@@ -20,6 +20,10 @@ class CartController < ApplicationController
     redirect_to items_path
   end
 
+  def increase
+    binding.pry
+  end
+
   def empty_cart
     session.delete(:cart)
     redirect_to '/cart'
