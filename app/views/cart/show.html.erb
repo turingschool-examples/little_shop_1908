@@ -14,7 +14,7 @@
             <img src= <%= item.image %>>
             <p>Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
             <p>Price: <%= item.price %></p>
-            <p>Quantity: <%= quantity %> <%= link_to("+", ) %></p>
+            <p>Quantity: <%= quantity %> <%= link_to("+", "/cart/#{item_id}", method: :patch) %></p>
             <p>Subtotal: <%= subtotal %></p>
           </section>
         </li>
