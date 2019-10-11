@@ -85,5 +85,32 @@ RSpec.describe 'cart show page' do
       expect(page).to have_css "#item-#{@pull_toy.id}"
       expect(page).to have_css "#item-#{@dog_bone.id}"
     end
+
+    it 'can increase the quanitity of an item by clicking a button' do
+      within "#item-#{@tire.id}" do
+        10.times do
+          click_link 'Increase Quantity (+1)'
+        end
+
+        expect(page).to have_content("Quantity: 12")
+
+        click_link 'Increase Quantity (+1)'
+        expect(page).to have_content("Quantity: 12")
+      end
+
+      expect(page).to have_content("You have reached the maximum inventory of #{@tire.name}")
+    end
+
+    it 'can decrease the quanitity of an item by clicking a button' do
+      within "#item-#{@tire.id}" do
+        click_link 'Decrease Quantity (-1)'
+        expect(page).to have_content("Quantity: 1")
+
+        click_link 'Decrease Quantity (-1)'
+      end
+
+      expect(page).to_not have_css("#item-#{@tire.id}")
+    end
+
   end
 end

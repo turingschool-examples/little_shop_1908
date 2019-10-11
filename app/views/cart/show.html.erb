@@ -11,6 +11,8 @@
     <p><%= "Price: #{number_to_currency(item.price)}" %></p>
     <p><%= "Quantity: #{cart.count_of(item.id)}" %></p>
     <p><%= "Subtotal: #{number_to_currency(cart.subtotal(item.id))}" %></p>
+    <%= link_to 'Increase Quantity (+1)', "/cart/#{item.id}?quantity=increase", method: :patch %>
+    <%= link_to 'Decrease Quantity (-1)', "/cart/#{item.id}?quantity=decrease", method: :patch %>
     <%= button_to 'Remove Item', "/cart/#{item.id}", method: :delete %>
     </section>
   <% end %>
@@ -18,4 +20,3 @@
 
   <%= button_to 'Empty Cart', '/cart', method: :delete %>
 <% end %>
-

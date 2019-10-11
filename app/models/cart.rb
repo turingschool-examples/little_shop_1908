@@ -10,6 +10,10 @@ class Cart
     @contents[item_id.to_s] += 1
   end
 
+  def decrease_quantity_of(item_id)
+    @contents[item_id.to_s] -= 1
+  end
+
   def total_count
     @contents.values.sum
   end
@@ -34,4 +38,13 @@ class Cart
   def remove_item(item_id)
     @contents.delete(item_id.to_s)
   end
+
+  def decrease_or_remove_item(item_id)
+    if count_of(item_id) > 1
+      decrease_quantity_of(item_id)
+    else
+      remove_item(item_id)
+    end
+  end
+
 end
