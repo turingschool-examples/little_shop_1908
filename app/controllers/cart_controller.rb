@@ -1,16 +1,8 @@
 class CartController < ApplicationController
   include ActionView::Helpers::TextHelper
 
-
   def show
     @cart = cart
-    @grand_total = 0
-
-    @cart.contents.each do |item_id, quantity|
-      item = Item.find(item_id)
-      subtotal = (item.price * quantity)
-      @grand_total += subtotal
-    end
 
     if @cart.contents.any? == false
       flash.now[:notice] = "Your cart is empty"
@@ -26,5 +18,9 @@ class CartController < ApplicationController
     flash[:confirm] = "#{item.name} added to cart"
     flash[:notice] = "You now have #{pluralize(quantity, "#{item.name}")} in your cart."
     redirect_to items_path
+  end
+
+  def empty_cart
+    @cart = cart.empty_cart
   end
 end
