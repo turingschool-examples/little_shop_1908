@@ -11,18 +11,20 @@ describe 'When I visit cart show Page' do
       @dog_bone = @brian.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
       # @cart = Cart.new(session[:cart])
 
+
+    end
+
+    it 'Each item shows its: Name, Price, Image, Selling Merchant, Quantity, Subtotal.' do
+
       visit "/items/#{@tire.id}"
       click_on "Add to cart"
       visit "/items/#{@tire.id}"
       click_on "Add to cart"
       visit "/items/#{@pull_toy.id}"
       click_on "Add to cart"
-    end
-
-    it 'Each item shows its: Name, Price, Image, Selling Merchant, Quantity, Subtotal.' do
 
       visit "/cart"
-      save_and_open_page
+
       expect(page).to have_content("Grand Total: 210")
 
       within ".all-cart-items" do
@@ -45,6 +47,15 @@ describe 'When I visit cart show Page' do
         expect(page).to have_content("Quantity: 1")
         expect(page).to have_content("Subtotal: 10")
       end
+
+    end
+
+    it "Tells me when cart is empty, doesn't show link to empty cart" do
+
+      visit '/cart'
+save_and_open_page
+      expect(page).to have_content("Your cart is empty")
+      expect(page).to have_no_link("Empty cart")
 
     end
 end
