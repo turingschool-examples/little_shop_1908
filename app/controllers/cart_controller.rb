@@ -21,7 +21,16 @@ class CartController < ApplicationController
   end
 
   def increase
-    binding.pry
+    item = Item.find(params[:item_id])
+
+    if item.inventory > cart.contents[item.id.to_s]
+      cart.add_item(item.id)
+      flash[:confirm] = "Additional #{item.name} added to cart"
+      redirect_to '/cart'
+    else 
+      flash[:notice] = "You cannot add more of that item"
+      redirect_to '/cart'
+    end
   end
 
   def empty_cart
