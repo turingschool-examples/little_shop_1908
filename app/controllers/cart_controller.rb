@@ -1,6 +1,6 @@
 class CartController < ApplicationController
   include ActionView::Helpers::TextHelper
-  
+
   def show
   end
 
@@ -13,5 +13,16 @@ class CartController < ApplicationController
     quantity = session[:cart][item_id_str]
     flash[:success] = "You now have #{pluralize(quantity, "copy")} of #{item.name} in your cart."
     redirect_to '/items'
+  end
+
+  def destroy
+    session[:cart].clear
+    redirect_to '/cart'
+  end
+
+  def remove_item
+    binding.pry
+    session[:cart][].delete # need item.id
+    redirect_to '/cart'
   end
 end
