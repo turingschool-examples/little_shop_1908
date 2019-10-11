@@ -21,8 +21,7 @@ class CartController < ApplicationController
   end
 
   def remove_item
-    binding.pry
-    session[:cart][].delete # need item.id
+    session[:cart].delete(params[:item_id])
     redirect_to '/cart'
   end
 end
