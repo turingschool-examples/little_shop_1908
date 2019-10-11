@@ -2,10 +2,26 @@ class CartController < ApplicationController
 
   def update
     item = Item.find(params[:item_id])
-    cart.add_item(item.id)
+
+    if params[:quantity] == 'decrease'
+      cart.decrease_or_remove_item(item.id)
+      flash[:success] = ["#{item.name} has been removed from your cart!"]
+    else
+      if cart.count_of(item.id) < item.inventory
+        cart.add_item(item.id)
+        flash[:success] = ["#{item.name} has been added to your cart!"]
+      else
+        flash[:error] = ["You have reached the maximum inventory of #{item.name}"]
+      end
+    end
+
     session[:cart] = cart.contents
-    flash[:success] = ["#{item.name} has been added to your cart!"]
-    redirect_to '/items'
+
+    if !params[:quantity]
+      redirect_to '/items'
+    else
+      redirect_to '/cart'
+    end
   end
 
   def show
