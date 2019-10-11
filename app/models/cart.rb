@@ -30,4 +30,8 @@ class Cart
   def empty_contents
     @contents = Hash.new(0)
   end
+
+  def remove_item(item_id)
+    @contents.delete(item_id.to_s)
+  end
 end

@@ -69,5 +69,21 @@ RSpec.describe 'cart show page' do
 
       within('nav') { expect(page).to have_content('Cart (0)') }
     end
+
+    it 'should display empty cart if there are not items' do
+      click_button 'Empty Cart'
+
+      expect(page).to have_content("Your cart is empty")
+    end
+
+    it 'shows a button to remove an item from the cart' do
+      within "#item-#{@tire.id}" do
+        click_button 'Remove Item'
+      end
+
+      expect(page).to_not have_css "#item-#{@tire.id}"
+      expect(page).to have_css "#item-#{@pull_toy.id}"
+      expect(page).to have_css "#item-#{@dog_bone.id}"
+    end
   end
 end

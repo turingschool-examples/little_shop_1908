@@ -13,8 +13,13 @@ class CartController < ApplicationController
   end
 
   def destroy
-    cart.empty_contents
-    session[:cart] = Hash.new(0)
+    if params[:item_id]
+      cart.remove_item(params[:item_id])
+      session[:cart].delete(:item_id)
+    else
+      cart.empty_contents
+      session[:cart] = Hash.new(0)
+    end
     redirect_to '/cart'
   end
 
