@@ -11,13 +11,18 @@ class CartController < ApplicationController
 
   def update
     item = Item.find(params[:item_id])
-    cart.add_item(item.id)
-    session[:cart] = cart.contents
-    quantity = cart.contents[item.id.to_s]
+    if item.inventory > cart.contents[item.id.to_s]
+      cart.add_item(item.id)
+      session[:cart] = cart.contents
+      quantity = cart.contents[item.id.to_s]
 
-    flash[:confirm] = "#{item.name} added to cart"
-    flash[:notice] = "You now have #{pluralize(quantity, "#{item.name}")} in your cart."
-    redirect_to items_path
+      flash[:confirm] = "#{item.name} added to cart"
+      flash[:notice] = "You now have #{pluralize(quantity, "#{item.name}")} in your cart."
+      redirect_to items_path
+    else
+      flash[:notice] = "You cannot add more of that item"
+      redirect_to "/items/#{item.id}"
+    end
   end
 
   def increase
@@ -27,7 +32,7 @@ class CartController < ApplicationController
       cart.add_item(item.id)
       flash[:confirm] = "Additional #{item.name} added to cart"
       redirect_to '/cart'
-    else 
+    else
       flash[:notice] = "You cannot add more of that item"
       redirect_to '/cart'
     end
