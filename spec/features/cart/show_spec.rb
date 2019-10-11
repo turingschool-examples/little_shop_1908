@@ -96,5 +96,10 @@ describe 'When I visit cart show Page' do
         expect(page).to have_content("Quantity: 3")
       end
       expect(page).to have_content("You cannot add more of that item")
+
+      visit "/items/#{@pull_toy.id}"
+      click_on "Add to cart"
+      expect(page).to have_content("You cannot add more of that item")
+      
     end
 end
