@@ -1,4 +1,7 @@
 <h1>Cart</h1>
+<% if @items.empty? %>
+  <p>Your cart is empty</p>
+<% end %>
 <% @items.each do |item| %>
   <p> <%= item.name %></p>
   <p> <%= item.merchant.name %></p>
