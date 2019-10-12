@@ -60,5 +60,29 @@ RSpec.describe "As a visitor" do
       expect(page).to have_content('Your cart is empty')
       expect(page).to have_content('Cart: 0')
     end
+
+    it 'I can remove individual items in my cart' do
+      visit "/items/#{@tire.id}"
+      click_button 'Add to Cart'
+
+      visit "/items/#{@tire.id}"
+      click_button 'Add to Cart'
+
+      visit "/items/#{@chain.id}"
+      click_button 'Add to Cart'
+
+      visit '/cart'
+
+      within ("#item-#{@tire.id}") do
+        expect(page).to have_button('Remove Item')
+        click_button 'Remove Item'
+      end
+
+      expect(current_path).to eq('/cart')
+
+      expect(page).to_not have_content(@tire.name)
+      expect(page).to_not have_css("img[src*='#{@tire.image}']")
+      expect(page).to have_content(@chain.name)
+    end
   end
 end

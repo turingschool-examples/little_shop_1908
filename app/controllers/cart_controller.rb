@@ -18,4 +18,9 @@ class CartController < ApplicationController
     session[:cart] = Hash.new(0)
     redirect_to '/cart'
   end
+
+  def remove
+    session[:cart].delete(params[:item_id])
+    redirect_to '/cart'
+  end
 end
