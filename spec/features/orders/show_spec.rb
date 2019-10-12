@@ -1,8 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'new order page', type: :feature do
-
-  before(:each) do
+RSpec.describe 'order show page', type: :feature do
+  before :each do
     @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
     @brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
 
@@ -24,9 +23,29 @@ RSpec.describe 'new order page', type: :feature do
     click_button 'Add Item to Cart'
 
     visit '/orders/new'
+
+    fill_in 'Name',    with: 'Joe Bob'
+    fill_in 'Address', with: '1331 17th Ave'
+    fill_in 'City',    with: 'Denver'
+    fill_in 'State',   with: 'Colorado'
+    fill_in 'zip',     with: '80202'
+
+    click_button 'Create Order'
+
+    @order = Order.last
   end
 
-  it 'can see the details of my cart' do
+  it 'displays shipping information' do
+    within '#shipping-info' do
+      expect(page).to have_content('Joe Bob')
+      expect(page).to have_content('1331 17th Ave')
+      expect(page).to have_content('Denver')
+      expect(page).to have_content('Colorado')
+      expect(page).to have_content('80202')
+    end
+  end
+
+  it 'displays item order information' do
     within "#item-#{@tire.id}" do
       expect(page).to have_content(@tire.name)
       expect(page).to have_content("Merchant: #{@tire.merchant.name}")
@@ -52,54 +71,13 @@ RSpec.describe 'new order page', type: :feature do
     end
 
     expect(page).to have_content("Grand Total: $231.00")
+    expect(page).to have_content("Order Date: #{@order.created_at.to_formatted_s(:long)}")
   end
 
-  it 'shows a form to enter shipping information' do
-    expect(page).to have_field('Name')
-    expect(page).to have_field('Address')
-    expect(page).to have_field('City')
-    expect(page).to have_field('State')
-    expect(page).to have_field('zip')
+  it 'cannot go to a order show page that does not exist' do
+    visit '/orders/109475'
 
-    expect(page).to have_button('Create Order')
-  end
-
-  it 'can fill a form with shipping information' do
-    fill_in 'Name',    with: 'Joe Bob'
-    fill_in 'Address', with: '1331 17th Ave'
-    fill_in 'City',    with: 'Denver'
-    fill_in 'State',   with: 'Colorado'
-    fill_in 'zip',     with: '80202'
-
-    click_button 'Create Order'
-
-    order = Order.last
-    user  = User.last
-
-    expect(current_path).to eq("/orders/#{order.id}")
-
-    expect(user.name).to eq('Joe Bob')
-    expect(user.address).to eq('1331 17th Ave')
-    expect(user.city).to eq('Denver')
-    expect(user.state).to eq('Colorado')
-    expect(user.zip).to eq('80202')
-  end
-
-  it 'displays flash message for incomplete shipping form' do
-    fill_in 'Name',    with: nil
-    fill_in 'Address', with: nil
-    fill_in 'City',    with: nil
-    fill_in 'State',   with: nil
-    fill_in 'zip',     with: nil
-
-    click_button 'Create Order'
-    
-    expect(current_path).to eq('/orders/new')
-    expect(page).to have_content("Name can't be blank")
-    expect(page).to have_content("Address can't be blank")
-    expect(page).to have_content("City can't be blank")
-    expect(page).to have_content("State can't be blank")
-    expect(page).to have_content("Zip can't be blank")
-
+    expect(current_path).to eq('/cart')
+    expect(page).to have_content('Order does not exist!')
   end
 end
