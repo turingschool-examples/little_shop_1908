@@ -12,11 +12,11 @@ class Cart
 
   def add_item(item_id)
     # item_id must be a string to reference @contents hash correctly
-    @contents[item_id] = @contents[item_id] + 1
+    @contents[item_id.to_s] = @contents[item_id.to_s] + 1
   end
 
   def count_of(item_id)
-    @contents[item_id].to_i ||= 0
+    @contents[item_id.to_s].to_i ||= 0
   end
 
   def subtotal(item_id)
@@ -24,5 +24,11 @@ class Cart
     price = item.price
     quantity = count_of(item_id)
     price * quantity
+  end
+
+  def grand_total
+    @contents.reduce(0) do |sum, (item_id, _)|
+      sum + subtotal(item_id)
+    end
   end
 end
