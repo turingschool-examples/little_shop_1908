@@ -38,6 +38,7 @@ RSpec.describe "cart show page" do
       expect(page).to have_content("Quantity: 2")
       expect(page).to have_content("Item Subtotal: $360.00")
       expect(page).to have_content("Grand Total: $410.00")
+      expect(page).to_not have_content("Your cart is empty")
     end
 
     it "shows an empty cart when no items are added" do
@@ -51,11 +52,7 @@ RSpec.describe "cart show page" do
       expect(page).to have_content("Your cart is empty")
       expect(page).to_not have_link("Empty cart")
       expect(page).to_not have_content("Gatorskins")
+
     end
-    # As a visitor
-    # When I add NO items to my cart yet
-    # And I visit my cart ("/cart")
-    # I see a message that my cart is empty
-    # I do NOT see the link to empty my cart
   end
 end
