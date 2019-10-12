@@ -41,10 +41,24 @@ RSpec.describe "As a visitor" do
     end
 
     it 'A message appears saying there are no items when the cart is empty' do
-
       visit '/cart'
 
       expect(page).to have_content('Your cart is empty')
+    end
+
+    it 'I can click a button to empty my cart' do
+      visit "/items/#{@tire.id}"
+
+      click_button 'Add to Cart'
+
+      visit '/cart'
+
+      click_button 'Empty Cart'
+
+      expect(current_path).to eq('/cart')
+
+      expect(page).to have_content('Your cart is empty')
+      expect(page).to have_content('Cart: 0')
     end
   end
 end

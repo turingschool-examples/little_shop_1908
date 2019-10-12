@@ -13,7 +13,7 @@ RSpec.describe "When a user adds items to their cart" do
 
     click_button 'Add to Cart'
 
-    expect(page).to have_content("You now 1 copy of #{@tire.name} in your cart.")
+    expect(page).to have_content("You now have 1 #{@tire.name} in your cart.")
   end
 
   it "the message correctly increments for multiple items" do
@@ -29,7 +29,7 @@ RSpec.describe "When a user adds items to their cart" do
 
     click_button 'Add to Cart'
 
-    expect(page).to have_content("You now 2 copies of #{@tire.name} in your cart")
+    expect(page).to have_content("You now have 2 #{@tire.name} in your cart")
   end
 
   it "displays total number of items in cart" do
