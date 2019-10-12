@@ -1,6 +1,10 @@
 class CartController < ApplicationController
   include ActionView::Helpers::TextHelper
 
+  def show
+
+  end
+
   def update
     item = Item.find(params[:item_id])
     cart.add_item(item.id)

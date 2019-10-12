@@ -1,0 +1,11 @@
+<h1>Your Cart</h1>
+<% cart.cart_items.each do |item| %>
+  <%= item.name %>
+  <img src= <%= item.image %>>
+  Sold by: <%= Merchant.find(item.merchant_id).name %>
+  Price: <%= item.price %>
+  Quantity: <%= cart.count_of(item.id) %>
+  Subtotal: <%= cart.subtotal(item.id) %>
+<% end %>
+<hr>
+<p>Grand Total: <%= cart.grand_total %> </p>

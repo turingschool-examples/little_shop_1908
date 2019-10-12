@@ -9,53 +9,47 @@ RSpec.describe "When a user adds items to their cart" do
 
   it "displays a confirmation message" do
 
-    visit '/items'
+    visit "/items/#{@tire.id}"
 
-    within("#item-#{@tire.id}") do
-      click_button 'Add to Cart'
-    end
+    click_button 'Add to Cart'
 
     expect(page).to have_content("You now 1 copy of #{@tire.name} in your cart.")
   end
 
-  it "the message correctly increments for multiple songs" do
-    visit '/items'
+  it "the message correctly increments for multiple items" do
+    visit "/items/#{@tire.id}"
 
-    within("#item-#{@tire.id}") do
-      click_button 'Add to Cart'
-    end
+    click_button 'Add to Cart'
 
-    within("#item-#{@chain.id}") do
-      click_button 'Add to Cart'
-    end
+    visit "/items/#{@chain.id}"
 
-    within("#item-#{@tire.id}") do
-      click_button 'Add to Cart'
-    end
+    click_button 'Add to Cart'
+
+    visit "/items/#{@tire.id}"
+
+    click_button 'Add to Cart'
 
     expect(page).to have_content("You now 2 copies of #{@tire.name} in your cart")
   end
 
   it "displays total number of items in cart" do
-    visit '/items'
+    visit "/items/#{@tire.id}"
 
     expect(page).to have_content("Cart: 0")
 
-    within("#item-#{@tire.id}") do
-      click_button 'Add to Cart'
-    end
+    click_button 'Add to Cart'
 
     expect(page).to have_content("Cart: 1")
 
-    within("#item-#{@chain.id}") do
-      click_button("Add to Cart")
-    end
+    visit "/items/#{@chain.id}"
+
+    click_button("Add to Cart")
 
     expect(page).to have_content("Cart: 2")
 
-    within("#item-#{@tire.id}") do
-      click_button("Add to Cart")
-    end
+    visit "/items/#{@tire.id}"
+
+    click_button("Add to Cart")
 
     expect(page).to have_content("Cart: 3")
   end
