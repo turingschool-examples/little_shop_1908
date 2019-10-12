@@ -9,13 +9,9 @@ describe 'When I visit cart show Page' do
       @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
       @pull_toy = @brian.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 3)
       @dog_bone = @brian.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
-      # @cart = Cart.new(session[:cart])
-
-
     end
 
     it 'Each item shows its: Name, Price, Image, Selling Merchant, Quantity, Subtotal.' do
-
       visit "/items/#{@tire.id}"
       click_on "Add to cart"
       visit "/items/#{@tire.id}"
@@ -24,7 +20,6 @@ describe 'When I visit cart show Page' do
       click_on "Add to cart"
 
       visit "/cart"
-
       expect(page).to have_content("Grand Total: 210")
 
       within ".all-cart-items" do
@@ -51,12 +46,10 @@ describe 'When I visit cart show Page' do
     end
 
     it "Tells me when cart is empty, doesn't show link to empty cart" do
-
       visit '/cart'
 
       expect(page).to have_content("Your cart is empty")
       expect(page).to have_no_link("Empty cart")
-
     end
 
     it "Lets me empty cart" do
@@ -68,7 +61,6 @@ describe 'When I visit cart show Page' do
       click_on "Add to cart"
 
       visit '/cart'
-
       click_on "Empty cart"
 
       expect(current_path).to eq("/cart")
@@ -85,7 +77,6 @@ describe 'When I visit cart show Page' do
       click_on "Add to cart"
 
       visit "/cart"
-
       within "#cart-item-#{@pull_toy.id}" do
         expect(page).to have_content("Quantity: 1")
         click_on "+"
@@ -100,7 +91,6 @@ describe 'When I visit cart show Page' do
       visit "/items/#{@pull_toy.id}"
       click_on "Add to cart"
       expect(page).to have_content("You cannot add more of that item")
-
     end
 
     it 'Can decrease item quantity and remove from cart' do
