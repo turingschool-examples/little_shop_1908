@@ -1,4 +1,4 @@
-class ItemsController<ApplicationController
+class ItemsController < ApplicationController
 
   def index
     if params[:merchant_id]
@@ -10,9 +10,9 @@ class ItemsController<ApplicationController
   end
 
   def show
+    @cart ||= Cart.new(session[:cart])
     @item = Item.find(params[:id])
     @reviews = @item.reviews
-
   end
 
   def new
