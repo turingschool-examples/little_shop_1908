@@ -33,7 +33,7 @@ describe "When a user adds an items to their cart" do
     click_button("Add Item")
 
     expect(current_path).to eq ('/items')
-    
+
     expect(page).to have_content "This item has been added to your cart!"
     expect(page).to have_content("Cart: 1")
 
