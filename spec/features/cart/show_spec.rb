@@ -112,5 +112,19 @@ RSpec.describe 'cart show page' do
       expect(page).to_not have_css("#item-#{@tire.id}")
     end
 
+    it 'shows a link to cart checkout if there are items in cart' do
+      within '#checkout' do
+        click_link 'Checkout'
+
+        expect(current_path).to eq('/orders/new')
+      end
+    end
+
+    it 'cannot see a link to cart checkout if cart is empty' do
+      click_button 'Empty Cart'
+
+      expect(page).to_not have_css('#checkout')
+    end
+
   end
 end
