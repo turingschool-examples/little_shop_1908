@@ -2,14 +2,21 @@
 <% if @items.empty? %>
   <p>Your cart is empty</p>
 <% end %>
-<% @items.each do |item| %>
-  <p> <%= item.name %></p>
-  <p> <%= item.merchant.name %></p>
-  <p> <%= item.price %></p>
-  <img src= <%= item.image %>>
 
-  <p> Quantity: <%= cart.count_of(item.id) %></p>
-  <p> Item Subtotal: <%= number_to_currency(cart.subtotal(item.id)) %></p>
-  <p> Grand Total: <%= number_to_currency(cart.grand_total) %></p>
+<section id="cart-table">
+<% @items.each do |item| %>
+  <section id= "item-<%=item.id%>">
+    <p> <%= item.name %></p>
+    <p> <%= item.merchant.name %></p>
+    <p> <%= item.price %></p>
+    <img src= <%= item.image %>>
+
+    <p> Quantity: <%= cart.count_of(item.id) %></p>
+    <p><%= button_to "Remove Item", "/cart/remove_item/#{item.id}", method: :delete %></p>
+    <p> Item Subtotal: <%= number_to_currency(cart.subtotal(item.id)) %></p>
+  </section>
 <% end %>
+</section>
+
+<p> Grand Total: <%= number_to_currency(cart.grand_total) %></p>
 <p><%= link_to "Empty Cart", "/cart/empty", method: :delete %></p>
