@@ -10,23 +10,32 @@ Merchant.destroy_all
 Item.destroy_all
 
 #merchants
-bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
-dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
+eric = Merchant.create(name: "Eric's Hawaiian Shirt Shop", address: '123 Aloha Rd.', city: 'Denver', state: 'CO', zip: 80203)
+leiya = Merchant.create(name: "Leiya's Flannel Shirt Shop", address: '56 Winter St.', city: 'Denver', state: 'CO', zip: 80210)
+hill = Merchant.create(name: "Hill's Cranberry Shop", address: '90 Tuesday St.', city: 'Denver', state: 'CO', zip: 80210)
 
-#bike_shop items
-tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
-chain = bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
+#eric items
+blue_legend = eric.items.create(name: "Pacific Legend Plumeria Hibiscus - Blue", description: "Authentic Hawaiian shirts made in Honolulu, Hawaii by Pacific Legend. Our shirts are made with 100% cotton, with a spread collar and cool, lightweight fabric. Short sleeve, collared shirt with full cut neckline. The quality of our shirt is demonstrated by our pattern matching pockets. Each pocket is specifically cut to match the print of the shirt. Buttons are made from genuine coconut shells. Machine washable but allow for shrinkage when choosing sizes. You’ll be in awe of how fun and colorful these shirts really are.", price: 25, image: "https://images-na.ssl-images-amazon.com/images/I/71fpS-ExLfL._UY879_.jpg", inventory: 25)
+navy_legend = eric.items.create(name: "Pacific Legend Plumeria Hibiscus - Navy", description: "Authentic Hawaiian shirts made in Honolulu, Hawaii by Pacific Legend. Our shirts are made with 100% cotton, with a spread collar and cool, lightweight fabric. Short sleeve, collared shirt with full cut neckline. The quality of our shirt is demonstrated by our pattern matching pockets. Each pocket is specifically cut to match the print of the shirt. Buttons are made from genuine coconut shells. Machine washable but allow for shrinkage when choosing sizes. You’ll be in awe of how fun and colorful these shirts really are.", price: 25, image: "https://images-na.ssl-images-amazon.com/images/I/71gZpFYnp-L._SY879._SX._UX._SY._UY_.jpg", inventory: 5)
+grey_quiksilver = eric.items.create(name: "Pacific Legend Plumeria Hibiscus - Navy", description: "Authentic Hawaiian shirts made in Honolulu, Hawaii by Pacific Legend. Our shirts are made with 100% cotton, with a spread collar and cool, lightweight fabric. Short sleeve, collared shirt with full cut neckline. The quality of our shirt is demonstrated by our pattern matching pockets. Each pocket is specifically cut to match the print of the shirt. Buttons are made from genuine coconut shells. Machine washable but allow for shrinkage when choosing sizes. You’ll be in awe of how fun and colorful these shirts really are.", price: 25, image: "https://cdni.llbean.net/is/image/wim/273137_671_41?hei=302&wid=265", inventory: 5)
 
-#dog_shop items
-pull_toy = dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
-dog_bone = dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
+#leiya items
+w_flannel_1 = leiya.items.create(name: "Black Stewart Tartan", description: "Scotch Plaid Flannel Shirt, Relaxed", price: 24, image: "https://cdni.llbean.net/is/image/wim/273137_7370_41?hei=302&wid=265", inventory: 32)
+w_flannel_2 = leiya.items.create(name: "Black Watch", description: "Scotch Plaid Flannel Shirt, Relaxed", price: 24, image: "https://cdni.llbean.net/is/image/wim/273137_671_41?hei=302&wid=265", inventory: 21)
 
-chain.reviews.create(title: "Best Chain!", content: "It never broke!", rating: 5)
-chain.reviews.create(title: "Wurst Chain", content: "It broke :(", rating: 5)
-chain.reviews.create(title: "Meh place", content: "They have meh bike stuff and I probably won't come back", rating: 5)
-chain.reviews.create(title: "Not too impressed", content: "v basic bike shop", rating: 2)
-dog_bone.reviews.create(title: "Okay place :/", content: "Brian's cool and all but just an okay selection of items", rating: 3)
-dog_bone.reviews.create(title: "COOL :/", content: "sometimes questionable", rating: 1)
-dog_bone.reviews.create(title: "NEAT :/", content: "lets go", rating: 1)
-tire.reviews.create(title: "SUPER :/", content: "not that great", rating: 1)
-tire.reviews.create(title: "NICE :/", content: "cool cool", rating: 3)
+#hill items 
+w_flannel_1.reviews.create(title: "Ok, didn't fit that great", content: "It never broke!", rating: 5)
+w_flannel_1.reviews.create(title: "Wurst Chain", content: "It broke :(", rating: 5)
+w_flannel_1.reviews.create(title: "Meh place", content: "They have meh bike stuff and I probably won't come back", rating: 5)
+w_flannel_1.reviews.create(title: "Not too impressed", content: "v basic bike shop", rating: 2)
+w_flannel_1.reviews.create(title: "Not too impressed", content: "v basic bike shop", rating: 2)
+
+w_flannel_2.reviews.create(title: "Okay place :/", content: "Brian's cool and all but just an okay selection of items", rating: 3)
+w_flannel_2.reviews.create(title: "COOL :/", content: "sometimes questionable", rating: 1)
+w_flannel_2.reviews.create(title: "NEAT :/", content: "lets go", rating: 1)
+w_flannel_2.reviews.create(title: "NEAT :/", content: "lets go", rating: 1)
+
+grey_quiksilver.reviews.create(title: "SUPER :/", content: "not that great", rating: 1)
+grey_quiksilver.reviews.create(title: "NICE :/", content: "cool cool", rating: 3)
+grey_quiksilver.reviews.create(title: "SUPER :/", content: "not that great", rating: 1)
+grey_quiksilver.reviews.create(title: "SUPER :/", content: "not that great", rating: 1)
