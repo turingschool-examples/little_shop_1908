@@ -100,6 +100,24 @@ describe 'When I visit cart show Page' do
       visit "/items/#{@pull_toy.id}"
       click_on "Add to cart"
       expect(page).to have_content("You cannot add more of that item")
-      
+
+    end
+
+    it 'Can decrease item quantity and remove from cart' do
+      visit "/items/#{@tire.id}"
+      click_on "Add to cart"
+      visit "/items/#{@tire.id}"
+      click_on "Add to cart"
+      visit "/items/#{@pull_toy.id}"
+      click_on "Add to cart"
+
+      visit '/cart'
+      within "#cart-item-#{@pull_toy.id}" do
+        expect(page).to have_content("Quantity: 1")
+        click_on "-"
+      end
+
+      expect(page).to_not have_css("#cart-item#{@pull_toy.id}")
+      expect(page).to have_content("#{@pull_toy.name} removed from cart")
     end
 end
