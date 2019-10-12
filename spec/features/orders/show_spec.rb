@@ -73,4 +73,11 @@ RSpec.describe 'order show page', type: :feature do
     expect(page).to have_content("Grand Total: $231.00")
     expect(page).to have_content("Order Date: #{@order.created_at.to_formatted_s(:long)}")
   end
+
+  it 'cannot go to a order show page that does not exist' do
+    visit '/orders/109475'
+
+    expect(current_path).to eq('/cart')
+    expect(page).to have_content('Order does not exist!')
+  end
 end
