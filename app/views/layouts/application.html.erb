@@ -12,7 +12,8 @@
     <nav class = "topnav">
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
-      <a id = "cart">Cart: <%= cart.total_count %></a>
+      <%= link_to "Cart: #{cart.total_count}", "/cart", id: "cart" %>
+      
     </nav>
 
     <% flash.each do |type, message| %>
