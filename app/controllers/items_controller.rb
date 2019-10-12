@@ -48,13 +48,14 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    Review.delete(Review.where(item_id: params[:id]))
     item = Item.find(params[:id])
     item.destroy
     redirect_to "/items"
   end
 
   private
-  
+
   def item_params
     params.permit(:name, :description, :price, :inventory, :image)
   end
