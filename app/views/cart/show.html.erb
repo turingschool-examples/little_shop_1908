@@ -1,0 +1,11 @@
+<h1>Cart</h1>
+<% @items.each do |item| %>
+  <p> <%= item.name %></p>
+  <p> <%= item.merchant.name %></p>
+  <p> <%= item.price %></p>
+  <img src= <%= item.image %>>
+
+  <p> Quantity: <%= cart.count_of(item.id) %></p>
+  <p> Item Subtotal: <%= number_to_currency(cart.subtotal(item.id)) %></p>
+  <p> Grand Total: <%= number_to_currency(cart.grand_total) %></p>
+<% end %>
