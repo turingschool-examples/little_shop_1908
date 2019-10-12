@@ -7,11 +7,30 @@ class CartController < ApplicationController
 
   def update
     item = Item.find(params[:item_id])
-    cart.add_item(item.id)
-    session[:cart] = cart.contents
-    quantity = cart.count_of(item.id)
-    flash[:notice] = "You now have #{pluralize(quantity, item.name)} in your cart."
-    redirect_to '/items'
+    if cart.count_of(item.id) < item.inventory
+      cart.add_item(item.id)
+      session[:cart] = cart.contents
+      quantity = cart.count_of(item.id)
+      flash[:notice] = "You now have #{pluralize(quantity, item.name)} in your cart."
+      redirect_to '/items'
+    else
+      flash[:notice] = "You cannot purchase any more of those; the merchant doesn't have that many."
+      redirect_to '/items'
+    end
+  end
+
+  def add
+    item = Item.find(params[:item_id])
+    if cart.count_of(item.id) < item.inventory
+      cart.add_item(item.id)
+      session[:cart] = cart.contents
+      quantity = cart.count_of(item.id)
+      flash[:notice] = "You now have #{pluralize(quantity, item.name)} in your cart."
+      redirect_to '/cart'
+    else
+      flash[:notice] = "You cannot purchase any more of those; the merchant doesn't have that many."
+      redirect_to '/cart'
+    end
   end
 
   def destroy
