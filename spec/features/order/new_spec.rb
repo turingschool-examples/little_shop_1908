@@ -23,14 +23,13 @@ RSpec.describe 'As a visitor' do
 
       visit "/cart"
 
-      save_and_open_page
       click_button 'Proceed to checkout'
     end
     it 'displays all order information' do
 
       expect(current_path).to eq('/orders/new')
 
-      within "items-#{@tire.id}" do
+      within "#item-#{@tire.id}" do
         expect(page).to have_content('Gatorskins')
         expect(page).to have_content("Sold by: Meg's Bike Shop")
         expect(page).to have_content('Price: $50.00')
@@ -38,7 +37,7 @@ RSpec.describe 'As a visitor' do
         expect(page).to have_content('Subtotal: $100.00')
       end
 
-      within "items-#{@chain.id}" do
+      within "#item-#{@chain.id}" do
         expect(page).to have_content('Chain')
         expect(page).to have_content("Sold by: Meg's Bike Shop")
         expect(page).to have_content('Price: $25.05')
@@ -46,7 +45,7 @@ RSpec.describe 'As a visitor' do
         expect(page).to have_content('Subtotal: $25.05')
       end
 
-      within "items-#{@shifter.id}" do
+      within "#item-#{@shifter.id}" do
         expect(page).to have_content('Shimano Shifters')
         expect(page).to have_content("Sold by: Meg's Bike Shop")
         expect(page).to have_content('Price: $50.00')
@@ -59,13 +58,13 @@ RSpec.describe 'As a visitor' do
 
     it 'provides a form for me to enter my shipping information' do
 
-      within "shipping_info" do
+      within "#shipping_info" do
         expect(page).to have_content('Please enter your shipping information:')
-        fill_in 'Name:', with: 'Richy Rich'
-        fill_in 'Address:', with: "102 Main Street"
-        fill_in 'City:', with: "New York"
-        fill_in 'State:', with: "New York"
-        fill_in 'Zip Code:', with: "10221"
+        fill_in 'Name', with: 'Richy Rich'
+        fill_in 'Address', with: "102 Main Street"
+        fill_in 'City', with: "New York"
+        fill_in 'State', with: "New York"
+        fill_in 'Zip code', with: "10221"
       end
     end
 
