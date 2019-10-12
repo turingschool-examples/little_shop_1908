@@ -10,18 +10,18 @@ class Cart
   end
 
   def cart_items
-    new_items = []
-    @contents.keys.each do |id|
-      new_items << Item.find(id)
+    new_items = Hash.new(0)
+    @contents.each do |id, quantity|
+      new_items[Item.find(id)] = quantity
     end
-     new_items
+    new_items
   end
 
-  def quantities
-    new_quantity = []
-    @contents.values.each do |value|
-      new_quantity << value
+  def grand_total
+    total = 0
+    cart_items.each do |item, quantity|
+      total += (item.price * quantity)
     end
-    new_quantity
+    total 
   end
 end

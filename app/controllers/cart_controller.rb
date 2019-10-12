@@ -12,7 +12,6 @@ class CartController < ApplicationController
 
   def index
     @items = cart.cart_items
-    @quantity = cart.quantities
   end
 
 end
