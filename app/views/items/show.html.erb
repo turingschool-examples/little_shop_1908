@@ -17,7 +17,7 @@
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p><br>
       <p><%= link_to "Add Review", "/items/#{@item.id}/reviews/new" %></p>
-      <p><%= button_to "Add to cart", "/cart/#{@item.id}", method: :patch %></p>
+      <p><%= button_to "Add to cart", "/cart/#{@item.id}", method: :post %></p>
 
       <h3>Reviews</h3>
       <div class="Reviews">
@@ -38,7 +38,6 @@
         </section>
         <% end %>
       </div>
-
 
       <section class='reviews-section'>
         <section id="top_three_reviews">
