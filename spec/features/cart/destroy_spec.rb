@@ -10,7 +10,19 @@ RSpec.describe 'Cart Show Page', type: :feature do
     @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
 
     visit "items/#{@chain.id}"
+    click_on "Add to cart"
 
+    visit "items/#{@tire.id}"
+    click_on "Add to cart"
+
+    visit '/cart'
   end
+
+  it 'there is a button Remove Item next to each item' do
+    within "#item-#{@chain.id}" do
+      click_button 'Remove Item'
+    end
+  end
+
 
 end
