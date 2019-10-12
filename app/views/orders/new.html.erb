@@ -1,1 +1,30 @@
 <h1>New Order</h1>
+
+<% @items.each do |item| %>
+  <section id = 'item-<%= item.id %>'>
+    <p><%= item.name %></p>
+    <p><%= "Merchant: #{item.merchant.name}" %></p>
+    <p><%= "Price: #{number_to_currency(item.price)}" %></p>
+    <p><%= "Quantity: #{cart.count_of(item.id)}" %></p>
+    <p><%= "Subtotal: #{number_to_currency(cart.subtotal(item.id))}" %></p>
+  </section>
+<% end %>
+
+<h5>Grand Total: <%= number_to_currency(cart.grand_total) %></h5>
+
+<h2>Shipping Information</h2>
+<center>
+  <%= form_tag '/orders', method: :post do %>
+    <%= text_field_tag :name, nil, placeholder: "Name" %>
+
+    <%= text_field_tag :address, nil, placeholder: "Address" %>
+
+    <%= text_field_tag :city, nil, placeholder: "City" %>
+
+    <%= text_field_tag :state, nil, placeholder: "State" %>
+
+    <%= text_field_tag :zip, nil, placeholder: "Zip Code" %>
+
+    <%= submit_tag 'Create Order' %>
+  <% end %>
+</center>
