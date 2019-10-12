@@ -10,6 +10,9 @@ class CartController < ApplicationController
   end
 
   def show
-    @items = Item.where(id: session[:cart].keys)
+    # binding.pry
+    cart_contents = session[:cart] ||= {}
+    find_items = cart_contents.keys
+    @items = Item.where(id: find_items)
   end
 end
