@@ -9,15 +9,13 @@
 
 <h2>Your order includes:</h2>
 <% @order.items.each do |item| %>
-<section id="item-<%= item.id %>">
-<p><%= item.name %></p>
-<p>Sold by: <%= item.merchant.name %></p>
-<p>Price: <%= number_to_currency(item.price) %></p>
-<p>Quantity: <%= item.order_item(@order.id).item_quantity %></p>
-<p>Subtotal: <%= number_to_currency(item.order_item(@order.id).item_subtotal) %></p>
+  <section id="item-<%= item.id %>">
+  <h3><%= item.name %></h3>
+  <p>Sold by: <%= item.merchant.name %></p>
+  <p>Price: <%= number_to_currency(item.price) %></p>
+  <p>Quantity: <%= item.order_item(@order.id).item_quantity %></p>
+  <p>Subtotal: <%= number_to_currency(item.order_item(@order.id).item_subtotal) %></p>
+  </section>
 <% end %>
-
-</section>
-
 <h3>Your order total: <%= number_to_currency(@order.grand_total) %></h3>
 <h3>Date order was placed: <%= @order.creation_date %></h3>

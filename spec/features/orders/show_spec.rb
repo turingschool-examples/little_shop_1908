@@ -10,9 +10,9 @@ RSpec.describe 'As a visitor' do
       items = { "#{@tire.id}" => 2, "#{@chain.id}" => 1, "#{@shifter.id}" => 3}
       cart = Cart.new(items)
       order = Order.create!(name: 'Richy Rich', address: '102 Main St', city: 'NY', state: 'New York', zip: '10221', grand_total: 275.05, creation_date: '10/22/2019')
-      item_order = @tire.item_orders.create(item_quantity: 2, item_subtotal: 100.00, order_id: order.id)
-      item_order = @chain.item_orders.create(item_quantity: 1, item_subtotal: 25.05, order_id: order.id)
-      item_order = @shifter.item_orders.create(item_quantity: 3, item_subtotal: 150.00, order_id: order.id)
+      @tire.item_orders.create(item_quantity: 2, item_subtotal: 100.00, order_id: order.id)
+      @chain.item_orders.create(item_quantity: 1, item_subtotal: 25.05, order_id: order.id)
+      @shifter.item_orders.create(item_quantity: 3, item_subtotal: 150.00, order_id: order.id)
 
 
       visit "/orders/#{order.id}"
@@ -50,7 +50,7 @@ RSpec.describe 'As a visitor' do
         expect(page).to have_content('Quantity: 3')
         expect(page).to have_content('Subtotal: $150.00')
       end
-
+      save_and_open_page
       expect(page).to have_content('Your order total: $275.05')
       expect(page).to have_content('Date order was placed: 10/22/2019')
     end

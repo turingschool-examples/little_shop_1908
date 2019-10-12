@@ -10,6 +10,10 @@ class OrdersController < ApplicationController
     info_hash[:creation_date] = Date.today.strftime("%m/%d/%Y")
     order = Order.create(info_hash)
 
+    cart.contents.each do |id, quantity|
+      order.item_orders.create(item_id: id, item_quantity: quantity, item_subtotal: cart.subtotal(id, quantity))
+    end
+
     redirect_to "/orders/#{order.id}"
   end
 
