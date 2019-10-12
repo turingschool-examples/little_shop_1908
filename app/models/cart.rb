@@ -47,4 +47,11 @@ class Cart
       @contents[item_id.to_s] += 1
     end
   end
+
+  def minus_one_item(item_id)
+    @contents[item_id.to_s] -= 1
+    if @contents[item_id.to_s] <= 0
+      delete_item(item_id.to_s)
+    end
+  end
 end

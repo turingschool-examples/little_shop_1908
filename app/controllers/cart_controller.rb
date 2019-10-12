@@ -39,4 +39,12 @@ class CartController < ApplicationController
 
     redirect_to '/cart'
   end
+
+  def decrement_item
+    cart.minus_one_item(params[:item_id])
+    item = Item.find(params[:item_id])
+    session[:cart] = cart.contents
+
+    redirect_to '/cart'
+  end
 end
