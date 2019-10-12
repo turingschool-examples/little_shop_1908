@@ -39,5 +39,12 @@ RSpec.describe "As a visitor" do
 
       expect(page).to have_content("Grand Total: #{@chain.price + (2*@tire.price)}")
     end
+
+    it 'A message appears saying there are no items when the cart is empty' do
+
+      visit '/cart'
+
+      expect(page).to have_content('Your cart is empty')
+    end
   end
 end
