@@ -21,12 +21,24 @@ RSpec.describe 'item delete', type: :feature do
       not_worth_it = @chain.reviews.create(title: 'Not worth it', content: 'Too expensive for what you get', rating: 2)
       meh = @chain.reviews.create(title: 'Meh.', content: 'Alright chain I guess', rating: 3)
 
-      expect(Review.all).to eq([great, not_worth_it, meh])
+      expect(Review.where(item_id: @chain.id)).to eq([great, not_worth_it, meh])
 
       visit "/items/#{@chain.id}"
       click_link "Delete Item"
 
-      expect(Review.all).to eq([])
+      expect(Review.where(item_id: @chain.id)).to eq([])
+    end
+
+    it 'cannot delete an item that has been ordered' do
+      user = User.create(name: 'Kyle Pine', address: '123 Main Street', city: 'Greenville', state: 'NC', zip: '29583')
+      order = user.orders.create(grand_total: 100)
+      order.item_orders.create(item_id: @chain.id, item_quantity: 2, subtotal: 50)
+
+      visit "/items/#{@chain.id}"
+      click_link "Delete Item"
+
+      expect(current_path).to eq("/items/#{@chain.id}")
+      expect(page).to have_content('Item has been ordered and cannot be deleted')
     end
 
   end
