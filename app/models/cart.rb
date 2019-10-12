@@ -14,4 +14,9 @@ class Cart
     @contents[id.to_s] += 1
   end
 
+  def decrease_item(id)
+    @contents[id.to_s] -= 1
+    @contents.delete_if {|item_id, quantity| quantity <= 0}
+  end
+
 end
