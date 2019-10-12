@@ -13,7 +13,7 @@ RSpec.describe Order do
 
   describe "relationships" do
     it { should have_many :item_orders }
-    it { should have_many :items }
+    it { should have_many(:items).through(:item_orders) }
   end
 
   describe 'attributes' do
