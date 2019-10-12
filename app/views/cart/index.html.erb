@@ -17,5 +17,5 @@
     <h2>Grand Total: <%= number_to_currency(cart.grand_total) %> </h2>
     <%= button_to 'Empty Cart', '/cart', method: :destroy %>
 
-    <%= button_to 'Proceed to checkout', 'orders/new', method: :get %>
+    <%= button_to 'Proceed to checkout', '/orders/new', method: :get %>
 <% end %>
