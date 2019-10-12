@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/cart', to: 'cart#index'
   delete '/cart/empty', to: 'cart#empty'
+  delete '/cart/:item_id', to: 'cart#delete_item'
   get "/merchants", to: "merchants#index"
   get "/merchants/new", to: "merchants#new"
   get "/merchants/:id", to: "merchants#show"
