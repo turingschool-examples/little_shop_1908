@@ -11,12 +11,8 @@ class CartController < ApplicationController
   end
 
   def index
-    # <%= binding.pry %>
-
-    # @items = Item.where(:id session[:cart])
-
-
     @items = cart.cart_items
+    @quantity = cart.quantities
   end
 
 end

@@ -33,11 +33,11 @@ describe "Visit cart show page" do
     expect(page).to have_content("Brian's Bike Shop")
 
 
-    # expect(page).to have_content(Chain Qty: 2)
-    # expect(page).to have_content(Subtotal: 100)
-    # expect(page).to have_content(Shifter Qty: 1)
-    # expect(page).to have_content(Subtotal: 180)
-    # expect(page).to have_content(Total Amount: 280)
+    expect(page).to have_content("Qty: 2")
+    expect(page).to have_content("Subtotal: 100")
+    expect(page).to have_content("Qty: 1")
+    expect(page).to have_content("Subtotal: 180")
+    expect(page).to have_content("Total Amount: 280")
 
   end
 end

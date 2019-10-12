@@ -9,9 +9,20 @@
 - a subtotal (price multiplied by quantity)
 I also see a grand total of what everything in my cart will cost -->
 <% @items.each do |item|  %>
-  <p>  <%= item.name %> </p>
-  <img src= <%= item.image %> >
-  <p>  <%= item.merchant.name %> </p>
-  <p>  <%= item.price %> </p>
-  <p> <%= quantity %> </p>
+  <p><%= item.name %></p>
+  <img src=<%= item.image %> >
+  <p><%= item.merchant.name %></p>
+  <p><%= item.price %></p>
 <% end %>
+<% @quantity.each do |quantity| %>
+  <p>Qty: <%= quantity %></p>
+<% end %>
+
+<% @items.each do |item| %>
+    <% @quantity.each do |quantity| %>
+        <% total = item.price * quantity %>
+      <p>Subtotal: <%= total %></p>
+    <% end %>
+<% end %>
+
+<p><% Total: %></p>

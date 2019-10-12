@@ -9,12 +9,19 @@ class Cart
     @contents.values.sum
   end
 
-  # def cart_items
-  #   array_thing = []
-  #   @contents.keys.each do |id|
-  #     array_thing << Item.find(id)
-  #   end
-  #   array_thing
-  # end
+  def cart_items
+    new_items = []
+    @contents.keys.each do |id|
+      new_items << Item.find(id)
+    end
+     new_items
+  end
 
+  def quantities
+    new_quantity = []
+    @contents.values.each do |value|
+      new_quantity << value
+    end
+    new_quantity
+  end
 end
