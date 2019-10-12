@@ -17,6 +17,6 @@
     </section>
   <% end %>
   <h5>Grand Total: <%= number_to_currency(cart.grand_total) %></h5>
-
+  <p id='checkout'><%= link_to 'Checkout', '/orders/new' %></p>
   <%= button_to 'Empty Cart', '/cart', method: :delete %>
 <% end %>
