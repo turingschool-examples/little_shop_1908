@@ -49,4 +49,13 @@ RSpec.describe "Across all pages" do
     end
     expect(current_path).to eq("/items")
   end
+
+  it "cart indicator links to cart show page" do
+    visit '/merchants'
+    cart = Cart.new({})
+    within '.topnav' do
+      click_link "Cart: 0"
+    end
+    expect(current_path).to eq("/cart")
+  end
 end

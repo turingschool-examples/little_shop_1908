@@ -31,4 +31,8 @@ class Cart
       sum + subtotal(item_id)
     end
   end
+
+  def empty_cart
+    @contents = {}
+  end
 end

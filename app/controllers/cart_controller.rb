@@ -13,4 +13,12 @@ class CartController < ApplicationController
     cart_contents = session[:cart] ||= {}
     @items = Item.where(id: cart_contents.keys)
   end
+
+  def empty
+    cart.empty_cart
+    session[:cart] = cart.contents
+
+    redirect_to '/cart'
+  end
+
 end
