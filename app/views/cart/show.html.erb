@@ -11,7 +11,8 @@
     <p> <%= item.price %></p>
     <img src= <%= item.image %>>
 
-    <p> Quantity: <%= cart.count_of(item.id) %></p>
+    <p> Quantity: <%= cart.count_of(item.id) %>
+    <%= button_to "+", "/cart/increment_item/#{item.id}", method: :patch %></p>
     <p><%= button_to "Remove Item", "/cart/remove_item/#{item.id}", method: :delete %></p>
     <p> Item Subtotal: <%= number_to_currency(cart.subtotal(item.id)) %></p>
   </section>

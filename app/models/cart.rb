@@ -39,4 +39,12 @@ class Cart
   def delete_item(item_id)
     @contents.delete(item_id.to_s)
   end
+
+  def plus_one_item(item_id)
+    item_limit = Item.select(:inventory).find(item_id)
+    item_limit = item_limit.inventory
+    if @contents[item_id.to_s] < item_limit
+      @contents[item_id.to_s] += 1
+    end
+  end
 end

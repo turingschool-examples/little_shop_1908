@@ -1,4 +1,5 @@
 class CartController < ApplicationController
+  include ActionView::Helpers::TextHelper
 
   def update_cart
     item = Item.find(params[:item_id])
@@ -23,6 +24,17 @@ class CartController < ApplicationController
 
   def remove_item
     cart.delete_item(params[:item_id])
+    session[:cart] = cart.contents
+
+    redirect_to '/cart'
+  end
+
+  def increment_item
+    cart.plus_one_item(params[:item_id])
+    item = Item.find(params[:item_id])
+    if cart.contents == session[:cart]
+      flash[:cart_inventory_error] = "Only #{pluralize(item.inventory, item.name) } in stock"
+    end
     session[:cart] = cart.contents
 
     redirect_to '/cart'
