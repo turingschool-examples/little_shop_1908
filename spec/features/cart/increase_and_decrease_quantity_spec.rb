@@ -40,5 +40,25 @@ RSpec.describe "As a user" do
 
       expect(page).to have_content("You cannot purchase any more of those; the merchant doesn't have that many.")
     end
+
+    it "I see a button that I can click to decrease quantity of an item by one" do
+      visit '/cart'
+      within "#item-#{@tire.id}" do
+        click_button '-'
+
+        expect(page).to have_content("Quantity: 1")
+      end
+    end
+
+    it "I see a button that I can click to decrease quantity of an item by one" do
+      visit '/cart'
+
+      within "#item-#{@tire.id}" do
+        click_button '-'
+        click_button '-'
+      end
+      
+      expect(page).to_not have_css("#item-#{@tire.id}")
+    end
   end
 end
