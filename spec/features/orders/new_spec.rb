@@ -85,4 +85,21 @@ RSpec.describe 'new order page', type: :feature do
     expect(user.zip).to eq('80202')
   end
 
+  it 'displays flash message for incomplete shipping form' do
+    fill_in 'Name',    with: nil
+    fill_in 'Address', with: nil
+    fill_in 'City',    with: nil
+    fill_in 'State',   with: nil
+    fill_in 'zip',     with: nil
+
+    click_button 'Create Order'
+    
+    expect(current_path).to eq('/orders/new')
+    expect(page).to have_content("Name can't be blank")
+    expect(page).to have_content("Address can't be blank")
+    expect(page).to have_content("City can't be blank")
+    expect(page).to have_content("State can't be blank")
+    expect(page).to have_content("Zip can't be blank")
+
+  end
 end
