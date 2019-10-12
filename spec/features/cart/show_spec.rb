@@ -22,7 +22,6 @@ describe 'When I visit cart show Page' do
     it 'Each item shows its: Name, Price, Image, Selling Merchant, Quantity, Subtotal.' do
 
       visit "/cart"
-      save_and_open_page
       expect(page).to have_content("Grand Total: 210")
 
       within ".all-cart-items" do

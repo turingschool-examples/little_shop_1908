@@ -20,17 +20,17 @@ RSpec.describe 'As a visitor', type: :feature do
         visit "items/#{@chain.id}"
       end
 
-      it 'there is a link to edit each review' do
-        within "#review-#{@review_1.id}" do
-          expect(page).to have_link('Edit Review')
-        end
-      end
+      # it 'there is a link to edit each review' do
+      #   within "#review-#{@review_1.id}" do
+      #     expect(page).to have_link('Edit Review')
+      #   end
+      # end
 
-      it 'can click on edit review' do
-        within "#review-#{@review_1.id}" do
-          click_link('Edit Review')
-        end
-      end
+      # it 'can click on edit review' do
+      #   within "#review-#{@review_1.id}" do
+      #     click_link('Edit Review')
+      #   end
+      # end
 
     end
   end
