@@ -33,6 +33,7 @@ img{
   width: 50%;
 }
 
+
  .grid-container{
  	display: grid;
  	grid-template-columns: repeat(5,1fr);
@@ -84,6 +85,14 @@ img{
    text-align: center;
  }
 
+ .all-cart-items{
+
+ }
+
+ .cart-item{
+
+ }
+
  input[type=text], select {
   width: 100%;
   padding: 12px 20px;
@@ -115,6 +124,26 @@ form {
   width: 60%;
 }
 
-/* #top_three_reviews{
+
+#flash-confirm{
+  background-color: forestgreen;
+}
+
+#flash-notice{
+  background-color: lightgrey;
+}
+
+
+#cart-header{
+
+}
+
+#grand-total{
+
+}
+
+#top_three_reviews{
   color: tomato;
-} */
+}
+
+
