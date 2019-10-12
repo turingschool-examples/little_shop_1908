@@ -33,6 +33,19 @@ class CartController < ApplicationController
     end
   end
 
+  def subtract
+    item = Item.find(params[:item_id])
+    if cart.count_of(item.id) > 1
+      cart.subtract_item(item.id)
+      session[:cart] = cart.contents
+      quantity = cart.count_of(item.id)
+      flash[:notice] = "You now have #{pluralize(quantity, item.name)} in your cart."
+      redirect_to '/cart'
+    else
+      remove
+    end
+  end
+
   def destroy
     session[:cart] = Hash.new(0)
     redirect_to '/cart'

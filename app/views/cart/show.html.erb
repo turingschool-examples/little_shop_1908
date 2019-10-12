@@ -8,7 +8,8 @@
       Price: <%= item.price %>
       Quantity: <%= cart.count_of(item.id) %>
       Subtotal: <%= cart.subtotal(item.id) %>
-      <%= button_to '+', "/cart/#{item.id}", method: :put %>
+      <%= button_to '+', "/cart/#{item.id}/add", method: :patch %>
+      <%= button_to '-', "/cart/#{item.id}/subtract", method: :patch %>
       <%= button_to 'Remove Item', "/cart/#{item.id}", method: :delete %>
     </section>
   <% end %>
