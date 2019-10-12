@@ -64,4 +64,25 @@ RSpec.describe 'new order page', type: :feature do
     expect(page).to have_button('Create Order')
   end
 
+  it 'can fill a form with shipping information' do
+    fill_in 'Name',    with: 'Joe Bob'
+    fill_in 'Address', with: '1331 17th Ave'
+    fill_in 'City',    with: 'Denver'
+    fill_in 'State',   with: 'Colorado'
+    fill_in 'zip',     with: '80202'
+
+    click_button 'Create Order'
+
+    order = Order.last
+    user  = User.last
+
+    expect(current_path).to eq("/orders/#{order.id}")
+
+    expect(user.name).to eq('Joe Bob')
+    expect(user.address).to eq('1331 17th Ave')
+    expect(user.city).to eq('Denver')
+    expect(user.state).to eq('Colorado')
+    expect(user.zip).to eq('80202')
+  end
+
 end
