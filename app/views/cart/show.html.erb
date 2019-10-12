@@ -4,4 +4,7 @@
   <p> <%= item.merchant.name %></p>
   <p> <%= item.price %></p>
   <img src= <%= item.image %>>
+
+  <p> Quantity: <%= cart.count_of(item.id.to_s) %></p>
+  <p> Item Subtotal: <%= number_to_currency(cart.subtotal(item.id.to_s)) %></p>
 <% end %>

@@ -16,6 +16,13 @@ class Cart
   end
 
   def count_of(item_id)
-    @contents[item_id].to_i
+    @contents[item_id].to_i ||= 0
+  end
+
+  def subtotal(item_id)
+    item = Item.find(item_id)
+    price = item.price
+    quantity = count_of(item_id)
+    price * quantity
   end
 end

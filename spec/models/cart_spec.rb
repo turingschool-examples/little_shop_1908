@@ -32,6 +32,7 @@ RSpec.describe Cart do
 
       cart.add_item("2")
       expect(cart.count_of("2")).to eq(4)
+      expect(cart.count_of("5")).to eq(0)
     end
 
     it "#subtotal can calculate the subtotal of item by its id" do
@@ -41,8 +42,10 @@ RSpec.describe Cart do
 
       cart = Cart.new({chain.id => 1, shifter.id => 1})
       expect(cart.subtotal(chain.id)).to eq(50)
+      expect(cart.subtotal(shifter.id)).to eq(180)
       cart.add_item(chain.id)
       expect(cart.subtotal(chain.id)).to eq(100)
+      expect(cart.subtotal(shifter.id)).to eq(180)
     end
   end
 end
