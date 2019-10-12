@@ -9,6 +9,7 @@
       <p>Price: $<%= item.price %></p>
       <p>Quantity: <%= quantity %></p>
       <p>Subtotal: $<%= item.price * quantity %></p>
+      <%= button_to 'Remove From Cart', "/cart/#{item.id}", method: :delete %>
     </section>
   <% end %>
   <% if @items.empty? %>
