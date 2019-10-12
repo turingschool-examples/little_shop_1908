@@ -38,6 +38,18 @@ class CartController < ApplicationController
     end
   end
 
+  def decrease
+    item = Item.find(params[:item_id])
+    cart.decrease_item(item.id)
+
+    if cart.contents[item.id.to_s] > 0
+      flash[:confirm] = "One #{item.name} removed from cart"
+    else
+      flash[:confirm] = "#{item.name} removed from cart"
+    end
+    redirect_to '/cart'
+  end
+
   def empty_cart
     session.delete(:cart)
     redirect_to '/cart'
