@@ -25,4 +25,6 @@ Rails.application.routes.draw do
   get "/merchants/:merchant_id/items", to: "items#index"
   get "/merchants/:merchant_id/items/new", to: "items#new"
   post "/merchants/:merchant_id/items", to: "items#create"
+
+  patch '/cart/:item_id', to: 'cart#update'
 end

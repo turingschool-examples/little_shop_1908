@@ -18,6 +18,7 @@
       <% else %>
         <p>Inactive</p>
       <% end %>
+      <%= button_to 'Add to Cart', "/cart/#{item.id}", method: :patch %>
     </section>
     <% end %>
 </section>
