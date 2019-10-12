@@ -8,13 +8,22 @@ class OrdersController < ApplicationController
     info_hash = order_params
     info_hash[:grand_total] = cart.grand_total
     info_hash[:creation_date] = Date.today.strftime("%m/%d/%Y")
-    order = Order.create(info_hash)
+    order = Order.new(info_hash)
 
-    cart.contents.each do |id, quantity|
-      order.item_orders.create(item_id: id, item_quantity: quantity, item_subtotal: cart.subtotal(id, quantity))
+    if order.save
+      cart.contents.each do |id, quantity|
+        order.item_orders.create(item_id: id, item_quantity: quantity, item_subtotal: cart.subtotal(id, quantity))
+      end
+
+      session.delete :cart
+      redirect_to "/orders/#{order.id}"
+
+    else
+      flash.notice = "Please fill out all of the fields."
+      redirect_to "/orders/new"
     end
 
-    redirect_to "/orders/#{order.id}"
+
   end
 
   def show
