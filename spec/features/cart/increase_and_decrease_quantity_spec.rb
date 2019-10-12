@@ -32,7 +32,13 @@ RSpec.describe "As a user" do
     end
 
     it "I can't increase my cart quantity past the item's inventory size" do
-      
+      visit '/cart'
+      within "#item-#{@tire.id}" do
+        click_button '+'
+        click_button '+'
+      end
+
+      expect(page).to have_content("You cannot purchase any more of those; the merchant doesn't have that many.")
     end
   end
 end
