@@ -32,5 +32,17 @@ RSpec.describe "As a visitor" do
       expect(current_path).to eq("/merchants/#{@bike_shop.id}")
       expect(page).to have_content("Cannot delete, this merchant has orders in progress.")
     end
+
+    it 'I can delete a merchant that has items in the cart but not ordered' do
+      visit "/items/#{@chain.id}"
+      click_button 'Add to Cart'
+      visit "/merchants/#{@bike_shop.id}"
+
+      click_on "Delete Merchant"
+
+      expect(current_path).to eq('/merchants')
+      expect(page).to have_link('Cart: 0')
+      expect(page).to_not have_content("Brian's Bike Shop")
+    end
   end
 end
