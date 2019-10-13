@@ -10,6 +10,8 @@
       <p>Sold By: <%= link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
       <p>Price: <%= number_to_currency(item.price) %></p>
       <p>Count: <%= cart.item_count(item.id) %></p>
+      <%= link_to '+', "/cart/add/#{item.id}", method: :patch unless cart.inventory_limit?(item.id)  %>
+      <%= link_to '-', "/cart/subtract/#{item.id}", method: :patch %>
       <p>Subtotal: <%= number_to_currency(cart.subtotal(item.id)) %></p>
       <%= link_to 'Delete Item', "/cart/remove_item/#{item.id}", method: :patch %>
     </section>
