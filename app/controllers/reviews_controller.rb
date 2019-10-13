@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to "/items/#{@item.id}"
     else
-      flash[:error] = "Review not created. Please fill in all fields"
+      flash[:error] = "Review not created. Please fill in all fields correctly."
       redirect_to "/items/#{@item.id}/reviews/new"
     end
   end
@@ -32,7 +32,6 @@ class ReviewsController < ApplicationController
     review = Review.find(params[:id])
     review.destroy
     redirect_to "/items/#{item.id}"
-
   end
 
   private
