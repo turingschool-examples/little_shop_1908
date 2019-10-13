@@ -8,7 +8,7 @@
 
 <section id='stats'>
   <h3>Merchant Statistics:</h3>
-  <p>Total items sold: <%= @merchant.items.length %></p>
+  <p>Number of items sold by <%= @merchant.name %>: <%= @merchant.items.length %></p>
   <p>Average item price: <%= number_to_currency(@merchant.average_item_price) %></p>
   <p>Cities where merchant has sold: <%= @merchant.distinct_cities.join(", ") %></p>
 </section>
