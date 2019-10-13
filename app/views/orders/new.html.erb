@@ -1,1 +1,22 @@
 <h1>Checkout Page</h1>
+<% cart.cart_items.each do |item| %>
+  <section class = "grid-item" id= 'item-<%=item.id%>'>
+    <%= item.name %>
+    Sold by: <%= Merchant.find(item.merchant_id).name %>
+    Price: $<%= item.price %>
+    Quantity: <%= cart.count_of(item.id) %>
+    Subtotal: $<%= cart.subtotal(item.id) %>
+  </section>
+<% end %>
+<p>Grand Total: $<%= cart.grand_total %></p>
+
+<center>
+  <%= form_tag 'cart/new_order', method: :post do %>
+    <%= text_field_tag :name, 'Name' %>
+    <%= text_field_tag :address, 'Address' %>
+    <%= text_field_tag :city, 'City' %>
+    <%= text_field_tag :state, 'State' %>
+    <%= text_field_tag :zip, 'Zip' %>
+    <%= submit_tag 'Create Order' %>
+  <% end %>
+</center>  
