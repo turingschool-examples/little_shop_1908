@@ -1,13 +1,5 @@
 <h1>Cart</h1>
 
-<!-- Each item in my cart shows the following information:
-- the name of the item
-- the item image
-- the merchant I'm buying this item from
-- the price of the item
-- my desired quantity of the item
-- a subtotal (price multiplied by quantity)
-I also see a grand total of what everything in my cart will cost -->
 <% @items.each do |item, quantity|  %>
   <p><%= item.name %></p>
   <img src=<%= item.image %> >

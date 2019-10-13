@@ -3,8 +3,13 @@ class Merchant < ApplicationRecord
 
   validates_presence_of :name,
                         :address,
-                        :city,
-                        :state,
-                        :zip
+                        :city
+  validates :city, format: { with: /\A[a-zA-Z]+\z/ }
+  validates_presence_of :state
+  validates :state, format: { with: /\A[a-zA-Z]+\z/ }
+  validates :states, length: { in: 2..15 }
+  validates_presence_of :zip
+  validates :zip, numericality: true
+  validates :zip, length: { is: 5 }
 
 end
