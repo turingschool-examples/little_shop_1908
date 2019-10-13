@@ -30,4 +30,6 @@ Rails.application.routes.draw do
   patch "/cart/:item_id/decrease", to: "cart#decrease"
   delete "/cart/:item_id", to: "cart#destroy"
 
+  get '/orders/new', to: 'orders#new'
+
 end
