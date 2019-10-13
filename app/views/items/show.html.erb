@@ -22,19 +22,17 @@
       <h3>Reviews</h3>
       <div class="Reviews">
         <% @item.reviews.each do |review|%>
-<<<<<<< HEAD
+
         <section id="review-<%= review.id %>">
           <h3><%= review.title %></h3>
           <ul><%= link_to "Edit Review", "/reviews/#{review.id}/edit" %></ul>
           <p><%= review.content %></p>
           <p><%= "Rating: #{review.rating}" %></p>
-=======
-        <section id="review-<%= "#{review.id}" %>">
+
           <h2><%= review.title %></h2>
           <p><%= review.content %></p>
           <p><%= "Rating: #{review.rating}" %></p>
           <p><%= link_to "Delete Review", "/items/#{@item.id}/reviews/#{review.id}", method: :delete %></p><br>
->>>>>>> d88a6b60cfb313405352a1b1419ad40ac69ef746
         </section>
         <% end %>
       </div>
