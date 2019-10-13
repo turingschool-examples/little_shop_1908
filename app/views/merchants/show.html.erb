@@ -4,5 +4,11 @@
 
 <ul><%= link_to "All #{@merchant.name} Items", "/merchants/#{@merchant.id}/items" %></ul>
 <ul><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit" %></ul>
-<ul><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete %>
-</ul>
+<ul><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete %></ul>
+
+<section id='stats'>
+  <h3>Merchant Statistics:</h3>
+  <p>Total items sold: <%= @merchant.items.length %></p>
+  <p>Average item price: <%= number_to_currency(@merchant.average_item_price) %></p>
+  <p>Cities where merchant has sold: <%= @merchant.distinct_cities.join(", ") %></p>
+</section>
