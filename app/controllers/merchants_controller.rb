@@ -35,6 +35,12 @@ class MerchantsController <ApplicationController
       flash.notice = 'Cannot delete, this merchant has orders in progress.'
       redirect_to "/merchants/#{params[:id]}"
     else
+      Item.where(merchant_id: params[:id]).each do |item|
+        if cart.contents.has_key?(item.id.to_s)
+          cart.contents.delete(item.id.to_s)
+          session[:cart] = cart.contents
+        end
+      end
       Item.delete(Item.where(merchant_id: params[:id]))
       Merchant.destroy(params[:id])
       redirect_to '/merchants'
@@ -42,7 +48,6 @@ class MerchantsController <ApplicationController
   end
 
   private
-
   def merchant_params
     params.permit(:name,:address,:city,:state,:zip)
   end
