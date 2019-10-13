@@ -5,5 +5,8 @@ class OrdersController < ApplicationController
     @items = Item.where(id: cart_contents.keys)
   end
 
+  def create
+  end
+
 
 end

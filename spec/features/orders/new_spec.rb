@@ -42,7 +42,7 @@ RSpec.describe "On the Checkout Page (aka New Order page)" do
       fill_in :address, with: "5555 Neverwhere Ln"
       fill_in :city, with: "Loveland"
       fill_in :state, with: "CO"
-      fill_in :zip, with: 80004
+      fill_in :zip, with: "80004"
 
       click_button "Create Order"
     end
