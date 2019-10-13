@@ -47,6 +47,23 @@ RSpec.describe "As a Visitor" do
         expect(page).to have_content("They're a bit more expensive, and they kinda do pop sometimes, but whatevs.. this is retail.")
         expect(page).to_not have_content("They'll never pop!")
       end
+
+      it 'I see a flash message when I try to edit or update without all fields filled out' do
+        visit "/items/#{@tire.id}"
+
+        click_on "Edit Item"
+
+        fill_in 'Name', with: " "
+        fill_in 'Price', with: " "
+        fill_in 'Description', with: " "
+        fill_in 'Image', with: " "
+        fill_in 'Inventory', with: " "
+
+        click_on 'Update Item'
+
+        expect(current_path).to eq("/items/#{@tire.id}/edit")
+        expect(page).to have_content("Name can't be blank, Description can't be blank, Price can't be blank, Image can't be blank, and Inventory can't be blank")
+      end
     end
   end
 end
