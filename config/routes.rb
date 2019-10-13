@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post "/merchants/:merchant_id/items", to: "items#create"
   delete "/items/:id", to: "items#destroy"
 
+  get "/reviews/:id/edit", to: "reviews#edit"
   get "/items/:item_id/reviews/new", to: "reviews#new"
   post "/items/:item_id", to: "reviews#create"
   delete "/items/:item_id/reviews/:review_id", to: "reviews#destroy"
@@ -27,5 +28,6 @@ Rails.application.routes.draw do
   delete "/cart", to: "cart#empty_cart"
   patch "/cart/:item_id/increase", to: "cart#increase"
   patch "/cart/:item_id/decrease", to: "cart#decrease"
+  delete "/cart/:item_id", to: "cart#destroy"
 
 end

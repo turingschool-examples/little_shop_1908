@@ -16,21 +16,22 @@ RSpec.describe 'As a visitor', type: :feature do
         @review_3 = @chain.reviews.create(title: 'John', content: "I don't know why I bought a chain, I don't even use my bike", rating: 3)
         @review_4 = @chain.reviews.create(title: 'Evette', content: "Great chain! Used it to make an amazing collar for my pug Larry.", rating: 4)
         @review_5 = @chain.reviews.create(title: 'Meg', content: "I made this chain, it's great. Wish I could git it a 55/5", rating: 5)
+
+        visit "items/#{@chain.id}"
       end
 
-      it 'I can see populated reviews' do
-        visit "/items/#{@chain.id}"
+      # it 'there is a link to edit each review' do
+      #   within "#review-#{@review_1.id}" do
+      #     expect(page).to have_link('Edit Review')
+      #   end
+      # end
 
-        expect(page).to have_link('Edit Review')
+      # it 'can click on edit review' do
+      #   within "#review-#{@review_1.id}" do
+      #     click_link('Edit Review')
+      #   end
+      # end
 
-        click_on 'Edit Review'
-
-        expect(current_path).to eq("/items/#{@chain.id}/#{@review_1.id}/edit")
-        expect(page).to have_link('Chain')
-        expect(find_field('title').value).to eq('Leiya')
-        expect(find_field('content').value).to eq('Awful chain, Meeg lied to me!')
-        expect(find_field('rating').value).to eq(1)
-      end
     end
   end
 end

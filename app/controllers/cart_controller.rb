@@ -6,6 +6,7 @@ class CartController < ApplicationController
 
     if @cart.contents.any? == false
       flash.now[:notice] = "Your cart is empty"
+      # require 'pry'; binding.pry
     end
   end
 
@@ -52,6 +53,11 @@ class CartController < ApplicationController
 
   def empty_cart
     session.delete(:cart)
+    redirect_to '/cart'
+  end
+
+  def destroy
+    session[:cart].delete(params[:item_id])
     redirect_to '/cart'
   end
 end
