@@ -35,9 +35,19 @@ class ItemsController<ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    Review.delete(Review.where("item_id = #{item.id}"))
-    item.destroy
-    redirect_to "/items"
+    item_present = ItemOrder.pluck(:item_id).include?(item.id)
+    if item_present
+      flash.notice = 'Cannot delete, this item has orders in progress.'
+      redirect_to "/items/#{params[:id]}"
+    else
+      if cart.contents.has_key?(item.id.to_s)
+        cart.contents.delete(item.id.to_s)
+        session[:cart] = cart.contents
+      end
+      Review.delete(Review.where("item_id = #{item.id}"))
+      item.destroy
+      redirect_to "/items"
+    end
   end
 
   private
