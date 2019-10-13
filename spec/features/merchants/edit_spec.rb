@@ -33,5 +33,21 @@ RSpec.describe "As a Visitor" do
       expect(page).to have_content("Brian's Super Cool Bike Shop")
       expect(page).to have_content("1234 New Bike Rd.\nDenver, CO 80204")
     end
+
+    it 'I cannot update a merchant without filling out all the form fields' do
+      visit "/merchants/#{@bike_shop.id}"
+      click_link "Update Merchant"
+
+      fill_in 'Name', with: " "
+      fill_in 'Address', with: " "
+      fill_in 'City', with: " "
+      fill_in 'State', with: ""
+      fill_in 'Zip', with: " "
+
+      click_button "Update Merchant"
+
+      expect(current_path).to eq("/merchants/#{@bike_shop.id}/edit")
+      expect(page).to have_content("Name can't be blank, Address can't be blank, City can't be blank, State can't be blank, and Zip can't be blank")
+    end
   end
 end
