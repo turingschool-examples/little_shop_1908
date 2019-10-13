@@ -14,9 +14,7 @@ RSpec.describe 'Order Creation' do
 
       visit "/items/#{@chain.id}"
       click_button 'Add to Cart'
-    end
 
-    it 'when I complete all info on the new order page and click Create Order, I redirect to order show page' do
       visit '/cart/new_order'
 
       fill_in :name, with: "Sam"
@@ -26,6 +24,9 @@ RSpec.describe 'Order Creation' do
       fill_in :zip, with: "80122"
 
       click_button 'Create Order'
+    end
+
+    it 'when I complete all info on the new order page and click Create Order, I redirect to order show page' do
 
       expect(current_path).to eq("/order/#{Order.first.id}")
 
@@ -52,6 +53,10 @@ RSpec.describe 'Order Creation' do
       end
 
       expect(page).to have_content('Grand Total: $250')
+    end
+
+    it 'when I create a new order, the cart is emptied' do
+      expect(page).to have_content("Cart: 0")
     end
   end
 end
