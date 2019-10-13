@@ -50,7 +50,7 @@ RSpec.describe 'As a visitor' do
         expect(page).to have_content('Quantity: 3')
         expect(page).to have_content('Subtotal: $150.00')
       end
-      save_and_open_page
+    
       expect(page).to have_content('Your order total: $275.05')
       expect(page).to have_content('Date order was placed: 10/22/2019')
     end
