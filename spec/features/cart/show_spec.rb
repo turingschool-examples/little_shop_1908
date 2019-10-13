@@ -84,5 +84,21 @@ RSpec.describe "As a visitor" do
       expect(page).to_not have_css("img[src*='#{@tire.image}']")
       expect(page).to have_content(@chain.name)
     end
+
+    it 'I see a button to checkout' do
+      visit "/items/#{@tire.id}"
+      click_button 'Add to Cart'
+
+      visit "/items/#{@chain.id}"
+      click_button 'Add to Cart'
+
+      visit '/cart'
+
+      expect(page).to have_button('Checkout')
+
+      click_button 'Checkout'
+
+      expect(current_path).to eq('/cart/new_order')
+    end
   end
 end
