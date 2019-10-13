@@ -5,6 +5,7 @@
       <% grand_total = 0 %>
       <!--  -->
       <% @cart.contents.each do |item_id, quantity| %>
+
         <% item = Item.find(item_id) %>
         <% subtotal = (item.price * quantity) %>
         <% grand_total += subtotal %>
@@ -16,6 +17,11 @@
             <p>Price: <%= item.price %></p>
             <p>Quantity: <%= quantity %> <%= link_to("+", "/cart/#{item_id}/increase", method: :patch) %> <%= link_to("-", "/cart/#{item_id}/decrease", method: :patch) %></p>
             <p>Subtotal: <%= subtotal %></p>
+          <% x = item_id.to_i %>
+            <section id= "item-<%=x%>">
+              <%# <% binding.pry %> %>
+              <%= button_to 'Remove Item', "/cart/#{item.id}", method: :delete %>
+            </section>
           </section>
         </li>
       <!--  -->
