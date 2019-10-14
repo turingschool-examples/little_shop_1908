@@ -14,7 +14,33 @@
  *= require_self
  */
 
- body {
+ h1 {
+   text-align: center;
+ }
+
+ img {
+   width: 75%;
+ }
+
+img.center {
+  display: block;
+  margin: 0 auto;
+}
+
+ .card {
+  margin: auto;
+  float: none;
+}
+
+.active {
+  color: green;
+}
+
+.inactive {
+  color: red;
+}
+
+ /* body {
  background-color: white;
  }
 
@@ -113,4 +139,4 @@ form {
   background-color: #f2f2f2;
   padding: 20px;
   width: 60%;
-}
+} */
