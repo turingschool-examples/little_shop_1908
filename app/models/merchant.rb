@@ -6,5 +6,4 @@ class Merchant < ApplicationRecord
                         :city,
                         :state,
                         :zip
-
 end
