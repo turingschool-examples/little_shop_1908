@@ -11,7 +11,8 @@
       <p>Price: <%= item.price %></p>
       <p>Qty: <%= quantity %></p>
       <p>Subtotal: <%= item.price * quantity %></p>
-      <%= button_to "+1", "/cart/#{item.id}", method: :patch %>
+      <%= button_to "+1", "/cart/#{item.id}/increment", method: :patch %>
+      <%= button_to "-1", "/cart/#{item.id}/decrement", method: :patch %>
       <%= button_to "Delete Item", "/cart/#{item.id}", method: :put %>
     </section>
   <% end %>
