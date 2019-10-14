@@ -1,0 +1,34 @@
+<h1>New Order</h1>
+
+<% cart.all_items.each do |item| %>
+  <section id="checkout-<%= item.id %>">
+    <img src= <%= item.image %>>
+    <p>Name: <%= item.name %></p>
+    <p>Sold By: <%= link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
+    <p>Price: <%= number_to_currency(item.price) %></p>
+    <p>Count: <%= cart.item_count(item.id) %></p>
+    <p>Subtotal: <%= number_to_currency(cart.subtotal(item.id)) %></p>
+  </section>
+<% end %>
+<p>Grand Total: <%= number_to_currency(cart.grand_total) %></p>
+
+<center>
+  <%= form_tag "/orders/:order_id", method: :post do %>
+    <%= label_tag :customer_name %>
+    <%= text_field_tag :customer_name %>
+
+    <%= label_tag :customer_address %>
+    <%= text_field_tag :customer_address %>
+
+    <%= label_tag :customer_city %>
+    <%= text_field_tag :customer_city %>
+
+    <%= label_tag :customer_state %>
+    <%= text_field_tag :customer_state %>
+
+    <%= label_tag :customer_zip %>
+    <%= text_field_tag :customer_zip %>
+
+    <%= submit_tag 'Create Order' %>
+  <% end %>
+</center>

@@ -1,4 +1,6 @@
 class Cart
+  attr_reader :contents
+
   def initialize(initial_contents)
     @contents = initial_contents || Hash.new(0)
     @contents.default = 0
@@ -8,7 +10,7 @@ class Cart
     @contents.values.sum
   end
 
-  def contents
+  def all_items
     @contents.map do |item_id, _number_in_cart|
       Item.find(item_id)
     end
@@ -22,7 +24,7 @@ class Cart
     Item.find(item_id).price * @contents[item_id.to_s]
   end
 
-  def grand_total
+  def grand_total # refactor w/ inject, reduce
     total = 0
     @contents.each do |k, _v|
       total += subtotal(k)

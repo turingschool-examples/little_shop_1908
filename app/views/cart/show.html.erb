@@ -1,9 +1,9 @@
 <h1>Cart</h1>
 
-<% if cart.contents.empty? %>
+<% if cart.all_items.empty? %>
   <p>Your cart is currently empty</p>
 <% else %>
-  <% cart.contents.each do |item| %>
+  <% cart.all_items.each do |item| %>
     <section id="cart-<%= item.id %>">
       <img src= <%= item.image %>>
       <p>Name: <%= item.name %></p>
@@ -17,5 +17,6 @@
     </section>
   <% end %>
   <p>Grand Total: <%= number_to_currency(cart.grand_total) %></p>
+  <%= link_to 'Checkout', '/checkout'%>
   <%= link_to 'Empty Cart', "/cart", method: :delete %>
 <% end %>
