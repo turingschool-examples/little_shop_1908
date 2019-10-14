@@ -1,9 +1,18 @@
 <h1 id="order-header">Your Order</h1><hr>
+  <section id="order-info">
+    <h2>Order info</h2>
+    <p>Name: <%= "#{@order.name}" %></p>
+    <p>Address: <%= "#{@order.address}" %></p>
+    <p>City: <%= "#{@order.city}" %></p>
+    <p>State: <%= "#{@order.state}" %></p>
+    <p>Zip: <%= "#{@order.zip}" %></p>
+    <p>Created: <%= "#{@order.created_at}" %></p>
+  </section>
   <section class="all-order-items">
     <!--  -->
     <ol>
-      <% grand_total = 0 %>
       <!-- need to move this into controller -->
+      <% grand_total = 0 %>
       <% @cart.contents.each do |item_id, quantity| %>
         <% item = Item.find(item_id) %>
         <% subtotal = (item.price * quantity) %>
@@ -25,20 +34,3 @@
   <section id="grand-total">
     <p>Grand Total: <%= grand_total %></p>
   </section>
-
-  <h1 align= "center">Create Order</h1>
-  <center>
-    <%= form_tag "/orders", method: :post do |f| %>
-      <%= text_field_tag :name, nil, placeholder: 'Name' %>
-
-      <%= text_field_tag :address, nil, placeholder: 'Address' %>
-
-      <%= text_field_tag :city, nil, placeholder: 'City' %>
-
-      <%= text_field_tag :state, nil, placeholder: 'State' %>
-
-      <%= text_field_tag :zip, nil, placeholder: 'Zip' %>
-
-      <%= submit_tag 'Create Order' %>
-    <% end %>
-  </center>

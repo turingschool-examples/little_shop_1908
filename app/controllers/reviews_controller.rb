@@ -1,7 +1,6 @@
 class ReviewsController < ApplicationController
 
   def new
-    # binding.pry
     @item = Item.find(params[:item_id])
   end
 

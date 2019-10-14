@@ -3,7 +3,6 @@ class CartController < ApplicationController
 
   def show
     @cart = cart
-
     if @cart.contents.any? == false
       flash.now[:notice] = "Your cart is empty"
       # require 'pry'; binding.pry
@@ -32,11 +31,10 @@ class CartController < ApplicationController
     if item.inventory > cart.contents[item.id.to_s]
       cart.add_item(item.id)
       flash[:confirm] = "Additional #{item.name} added to cart"
-      redirect_to '/cart'
     else
       flash[:notice] = "You cannot add more of that item"
-      redirect_to '/cart'
     end
+    redirect_to '/cart'
   end
 
   def decrease
