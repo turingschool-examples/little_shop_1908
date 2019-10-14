@@ -39,7 +39,6 @@ RSpec.describe 'merchant show page', type: :feature do
       @shifter.item_orders.create(item_quantity: 3, item_subtotal: 225.00, order_id: order_3.id)
 
       visit "/merchants/#{@bike_shop.id}"
-      # save_and_open_page
 
       within '#stats' do
         expect(page).to have_content('Merchant Statistics:')

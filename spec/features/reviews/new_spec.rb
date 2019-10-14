@@ -28,9 +28,9 @@ RSpec.describe 'Create Item Reviews' do
       expect(page).to have_content(title)
       expect(page).to have_content(content)
       expect(page).to have_content(rating)
-      expect(new_review.title).to eq(title)
-      expect(new_review.content).to eq(content)
-      expect(new_review.rating).to eq(rating)
+      expect(new_review.title).to eq('Okay')
+      expect(new_review.content).to eq('Could be better')
+      expect(new_review.rating).to eq(3)
     end
 
     it 'I cannot create a new review without all fields in the form filled' do
