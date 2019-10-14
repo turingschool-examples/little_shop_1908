@@ -1,4 +1,8 @@
 class ItemOrder < ApplicationRecord
-  belongs_to :items
-  belongs_to :orders
+  belongs_to :item
+  belongs_to :order
+
+  def subtotal
+    price * quantity
+  end
 end
