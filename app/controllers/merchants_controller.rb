@@ -5,7 +5,12 @@ class MerchantsController <ApplicationController
   end
 
   def show
-    @merchant = Merchant.find(params[:id])
+    if Merchant.exists?(id: params[:id])
+      @merchant = Merchant.find(params[:id])
+    else
+      flash.notice = 'This merchant does not exist. Please select an existing merchant.'
+      redirect_to '/merchants'
+    end
   end
 
   def new

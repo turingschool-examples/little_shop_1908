@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get "/merchants/:merchant_id/items/new", to: "items#new"
   post "/merchants/:merchant_id/items", to: "items#create"
   delete "/items/:id", to: "items#destroy"
+  get '/merchants/:merchant_id/items/:item_id', to: 'items#show'
 
   get "/items/:item_id/reviews/new", to: "reviews#new"
   post "/items/:item_id", to: "reviews#create"
@@ -36,4 +37,5 @@ Rails.application.routes.draw do
   get '/orders/new', to: 'orders#new'
   post '/orders', to: 'orders#create'
   get '/orders/:order_id', to: 'orders#show'
+
 end
