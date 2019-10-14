@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'As a visitor' do
   describe 'when I click create order' do
     it 'I am taken to the order show page and it displays order information' do
-      bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: "80203")
       @tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 50.00, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
       @chain = bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 25.05, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
       @shifter = bike_shop.items.create(name: "Shimano Shifters", description: "It'll always shift!", active?: false, price: 50.00, image: "https://images-na.ssl-images-amazon.com/images/I/4142WWbN64L._SX466_.jpg", inventory: 4)
@@ -50,7 +50,7 @@ RSpec.describe 'As a visitor' do
         expect(page).to have_content('Quantity: 3')
         expect(page).to have_content('Subtotal: $150.00')
       end
-    
+
       expect(page).to have_content('Your order total: $275.05')
       expect(page).to have_content('Date order was placed: 10/22/2019')
     end

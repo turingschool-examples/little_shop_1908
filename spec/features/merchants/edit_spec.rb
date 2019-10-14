@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "As a Visitor" do
   describe "After visiting a merchants show page and clicking on updating that merchant" do
     before :each do
-      @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 11234)
+      @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: "11234")
     end
     it 'I can see prepopulated info on that user in the edit form' do
       visit "/merchants/#{@bike_shop.id}"
@@ -25,7 +25,7 @@ RSpec.describe "As a Visitor" do
       fill_in 'Address', with: "1234 New Bike Rd."
       fill_in 'City', with: "Denver"
       fill_in 'State', with: "CO"
-      fill_in 'Zip', with: 80204
+      fill_in 'Zip', with: "80204"
 
       click_button "Update Merchant"
 
