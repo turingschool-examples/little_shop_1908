@@ -21,7 +21,6 @@ describe 'When I checkout from Cart' do
     it 'Shows me the details of my cart' do
 
       visit "/orders/new"
-      save_and_open_page
 
       within ".all-order-items" do
         expect(page).to have_link(@tire.name)
@@ -31,7 +30,7 @@ describe 'When I checkout from Cart' do
       within "#grand-total" do
         expect(page).to have_content("Grand Total: 210")
       end
-      
+
       within "#order-item-#{@tire.id}" do
         expect(page).to have_link(@tire.merchant.name)
         expect(page).to have_content(@tire.price)
@@ -87,7 +86,7 @@ describe 'When I checkout from Cart' do
       fill_in :zip, with: zip
 
       click_button "Create Order"
-      save_and_open_page
+
       expect(page).to have_content("Please fill in all forms before submitting order")
       expect(current_path).to eq("/orders/new")
     end
