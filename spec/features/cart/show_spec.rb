@@ -127,4 +127,17 @@ RSpec.describe 'Cart show page', type: :feature do
     expect(page).to_not have_content(@chain.description)
     expect(page).to_not have_content(@chain.price)
   end
+
+  it 'can go to checkout page' do
+    visit "/items/#{@chain.id}"
+    click_link 'Add Item to Cart'
+
+    visit '/cart'
+
+    click_link 'Checkout'
+
+    expect(current_path).to eq('/checkout')
+
+    expect(page).to have_content('New Order')
+  end
 end
