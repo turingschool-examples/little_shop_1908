@@ -14,4 +14,9 @@ class CartController < ApplicationController
     @items = cart.cart_items
   end
 
+  def destroy
+    session[:cart] = Hash.new(0)
+    redirect_to '/cart'
+  end
+
 end
