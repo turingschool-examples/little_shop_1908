@@ -84,5 +84,21 @@ RSpec.describe 'As a visitor' do
       expect(current_path).to eq("/orders/#{order.id}")
     end
 
+    it 'I cannot create the order when I dont fill out all the fields' do
+      within "#shipping_info" do
+        expect(page).to have_content('Please enter your shipping information:')
+        fill_in 'Name', with: 'Richy Rich'
+        fill_in 'Address', with: "102 Main Street"
+        fill_in 'City', with: "New York"
+        fill_in 'State', with: ""
+        fill_in 'Zip', with: ""
+        click_button 'Create Order'
+      end
+
+
+      expect(page).to have_content('Please fill out all of the fields.')
+      expect(current_path).to eq("/orders/new")
+    end
+
   end
 end
