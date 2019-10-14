@@ -10,7 +10,7 @@
       <p>Price: <%= number_to_currency(@item.price) %> </p>
       <p>Inventory: <%= @item.inventory %> </p>
       <% if @item.active? %>
-        <%=button_to "Add Item", "/cart/#{@item.id}", method: :patch %>
+        <%=button_to "Add Item", "/cart/#{@item.id}", method: :post %>
         <p style= "color:green">Active</p>
       <% else %>
         <p style= "color:red">Inactive</p>

@@ -22,6 +22,7 @@ class Cart
     cart_items.each do |item, quantity|
       total += (item.price * quantity)
     end
-    total 
+    total
   end
+
 end

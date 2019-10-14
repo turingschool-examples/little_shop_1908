@@ -24,7 +24,8 @@ Rails.application.routes.draw do
   patch "/items/:item_id/reviews/:id", to: "reviews#update"
   delete "/items/:item_id/reviews/:id", to: "reviews#destroy"
 
-  patch "/cart/:item_id", to: "cart#update"
+  post "/cart/:item_id", to: "cart#update"
+  patch "/cart/:item_id", to: "cart#increment"
   get "/cart", to: "cart#index"
   delete "/cart", to:"cart#destroy"
   put "/cart/:item_id", to: "cart#remove"
