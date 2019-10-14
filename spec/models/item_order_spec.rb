@@ -13,7 +13,7 @@ RSpec.describe ItemOrder do
 
   describe 'attributes' do
     it 'has attributes' do
-      bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: "80203")
       tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 50, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
       chain = bike_shop.items.create(name: "Chain", description: "Great chain!", price: 25.05, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
       pump = bike_shop.items.create(name: "Pump", description: "Best pump on the market!", price: 50, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
@@ -28,6 +28,6 @@ RSpec.describe ItemOrder do
       expect(item_order_2.item_subtotal).to eq(25.05)
       expect(item_order_3.item_quantity).to eq(3)
       expect(item_order_3.item_subtotal).to eq(150)
-    end 
+    end
   end
 end
