@@ -27,7 +27,7 @@
   </section>
 
   <h1 align= "center">Create Order</h1>
-  <center>
+  <center class="new-form">
     <%= form_tag "/orders", method: :post do |f| %>
       <%= text_field_tag :name, nil, placeholder: 'Name' %>
 
