@@ -12,23 +12,23 @@
     <% end %>
     <p> Grand Total: <%= number_to_currency(cart.grand_total) %></p>
   </section>
-  
+
   <center>
     <%= form_tag "/orders", method: :post do %>
     <%= label_tag :name, "Name" %>
-    <%= text_field_tag :name %>
+    <%= text_field_tag :name, nil, placeholder: "Name"  %>
 
     <%= label_tag :address, "Address" %>
-    <%= text_field_tag :address %>
+    <%= text_field_tag :address, nil, placeholder: "Address" %>
 
     <%= label_tag :city, "City" %>
-    <%= text_field_tag :city %>
+    <%= text_field_tag :city, nil, placeholder: "City" %>
 
     <%= label_tag :state, "State" %>
-    <%= text_field_tag :state %>
+    <%= text_field_tag :state, nil, placeholder: "State" %>
 
     <%= label_tag :zip, "Zip" %>
-    <%= text_field_tag :zip %>
+    <%= text_field_tag :zip, nil, placeholder: "Zip" %>
 
     <%= submit_tag "Create Order" %>
   <% end %>
