@@ -14,15 +14,15 @@ RSpec.describe 'As a visitor' do
     it 'I can see the prepopulated fields of that review' do
       expect(current_path).to eq("/reviews/#{@review_1.id}/edit")
       expect(page).to have_link('Chain')
-      expect(find_field('Title').value).to eq('Worst chain!')
-      expect(find_field('Content').value).to eq('NEVER buy this chain.')
-      expect(find_field('Rating').value).to eq('1')
+      expect(find_field(:title).value).to eq('Worst chain!')
+      expect(find_field(:content).value).to eq('NEVER buy this chain.')
+      expect(find_field(:rating).value).to eq('1')
     end
 
     it 'I can change and update the review with the form' do
-      fill_in 'Title', with: 'Abominable chain!'
-      fill_in 'Content', with: 'Hell nah.'
-      fill_in 'Rating', with: '1'
+      fill_in :title, with: 'Abominable chain!'
+      fill_in :content, with: 'Hell nah.'
+      fill_in :rating, with: '1'
 
       click_button 'Update Review'
 

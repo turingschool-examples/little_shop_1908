@@ -12,14 +12,12 @@ class Merchant <ApplicationRecord
       return
     else
       items.average(:price).round(2)
-    end 
+    end
   end
 
   def distinct_cities
-    order_ids = items.map do |item|
-      ItemOrder.where(item_id: item.id).pluck(:order_id)
-    end.flatten
-
-    Order.where(id: order_ids).pluck(:city).uniq
+    ItemOrder.left_outer_joins(:order).where(item_id: items).pluck(:city).uniq
   end
+
+
 end

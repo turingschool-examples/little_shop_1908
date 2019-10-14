@@ -8,14 +8,14 @@
     <%= label_tag :description %>:
     <%= text_field_tag :description %>
 
-    <%= label_tag :price %>:
-    <%= text_field_tag :price %>
-
     <%= label_tag :image %>:
     <%= text_field_tag :image %>
 
+    <%= label_tag :price %>:
+    <%= number_field_tag :price, nil, min:0, step:0.01 %>
+
     <%= label_tag :inventory %>:
-    <%= text_field_tag :inventory %>
+    <%= number_field_tag :inventory, nil, min:1 %>
 
     <%= submit_tag 'Create Item' %>
   <% end %>
