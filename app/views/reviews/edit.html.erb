@@ -3,10 +3,13 @@
 <center>
   <%= form_tag "/reviews/#{@review.id}", method: :patch do |f| %>
 
+    <%= label_tag :title %>
     <%= text_field_tag :title, "#{@review.title}" %>
 
+    <%= label_tag :content %>
     <%= text_field_tag :content, "#{@review.content}" %>
 
+    <%= label_tag :rating %>
     <%= text_field_tag :rating, "#{@review.rating}"%>
 
     <%= submit_tag 'Update Review' %>

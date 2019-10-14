@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   delete "/items/:id", to: "items#destroy"
 
   get "/reviews/:id/edit", to: "reviews#edit"
+  patch "/reviews/:id", to: "reviews#update"
   get "/items/:item_id/reviews/new", to: "reviews#new"
   post "/items/:item_id", to: "reviews#create"
   delete "/items/:item_id/reviews/:review_id", to: "reviews#destroy"

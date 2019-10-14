@@ -30,12 +30,24 @@ RSpec.describe 'As a visitor', type: :feature do
         end
       end
 
-      # it 'can click on edit review' do
-      #   within "#review-#{@review_1.id}" do
-      #     click_on 'Edit Review'
-      #   end
-      # end 
+      it 'can click on edit review and update' do
+        within "#review-#{@review_1.id}" do
+          click_on 'Edit Review'
+        end
 
+        expect(current_path).to eq("/reviews/#{@review_1.id}/edit")
+
+        fill_in 'Title', with: 'new title'
+        fill_in 'Content', with: 'new comment'
+        fill_in 'Rating', with: 4
+
+        click_on 'Update Review'
+
+        expect(current_path).to eq("/items/#{@chain.id}")
+        expect(page).to have_content('new title')
+        expect(page).to have_content('new comment')
+        expect(page).to have_content(4)
+      end
     end
   end
 end
