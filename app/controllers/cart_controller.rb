@@ -34,4 +34,15 @@ class CartController < ApplicationController
     end
     redirect_to '/cart'
   end
+
+  def decrement
+    if session[:cart][params[:item_id]] > 0
+      session[:cart][params[:item_id]] -= 1
+      if session[:cart][params[:item_id]] == 0
+       session[:cart].delete(params[:item_id])
+      end
+    end
+    redirect_to '/cart'
+  end
+
 end
