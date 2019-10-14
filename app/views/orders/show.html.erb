@@ -2,8 +2,8 @@
   <section id="order-info">
     <h2>Order info</h2>
     <p>Name: <%= "#{@order.name}" %></p>
-    <p>Address: <%= "#{@order.address}" %></p>
-    <p>City: <%= "#{@order.city}" %>, State: <%= "#{@order.state}" %>, Zip: <%= "#{@order.zip}" %></p>
+    <p>Address:<br> <%= "#{@order.address}" %></p>
+    <p><%= "#{@order.city}" %>, <%= "#{@order.state}" %> <%= "#{@order.zip}" %></p>
     <p>Created: <%= "#{@order.created_at.to_date}" %></p>
   </section>
   <!--  -->
