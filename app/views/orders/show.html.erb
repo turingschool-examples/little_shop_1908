@@ -9,14 +9,9 @@
     <p>Created: <%= "#{@order.created_at}" %></p>
   </section>
   <section class="all-order-items">
-    <!--  -->
     <ol>
-      <!-- need to move this into controller -->
-      <% grand_total = 0 %>
       <% @cart.contents.each do |item_id, quantity| %>
         <% item = Item.find(item_id) %>
-        <% grand_total += @cart.subtotal(item_id) %>
-        <!--  -->
         <li><%= link_to item.name, "/items/#{item_id}" %><br>
           <section class="order-item" id="order-item-<%= item_id %>">
             <p>Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
@@ -25,11 +20,10 @@
             <p>Subtotal: <%= @cart.subtotal(item_id) %></p>
           </section>
         </li>
-      <!--  -->
       <% end %>
     </ol>
   </section><hr><br>
   <!--  -->
   <section id="grand-total">
-    <p>Grand Total: <%= grand_total %></p>
+    <p>Grand Total: <%= @cart.grand_total %></p>
   </section>

@@ -26,8 +26,7 @@ class Cart
 
   def grand_total
     total = 0
-    @contents.each_key do |item_id|
-      total += subtotal(item_id)
-    end
+    @contents.each_key {|item_id| total += subtotal(item_id)}
+    total
   end
 end
