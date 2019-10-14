@@ -12,6 +12,6 @@ class Item <ApplicationRecord
   validates_inclusion_of :active?, :in => [true, false]
 
   def has_item_orders?
-    ItemOrder.where(item_id: id).any?
+    !item_orders.empty?
   end
 end
