@@ -22,4 +22,16 @@ RSpec.describe Cart do
       expect(subject.contents).to eq({'1' => 5, '2' => 4, '3' => 6})
     end
   end
+
+  describe "#decrease_item" do
+    it "reduces an item from its contents" do
+      subject.decrease_item(1)
+      subject.decrease_item(1)
+      subject.decrease_item(2)
+      subject.decrease_item(3)
+
+      expect(subject.contents).to eq({'2' => 2, '3' => 3})
+
+    end
+  end
 end
