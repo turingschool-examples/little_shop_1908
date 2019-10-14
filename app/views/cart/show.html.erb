@@ -9,7 +9,7 @@
           <section class="cart-item" id="cart-item-<%= item_id %>">
             <img src=<%= item.image %>>
             <p>Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
-            <p>Price: <%= item.price %></p>
+            <p>Price: <%= number_to_currency(item.price) %></p>
             <p>Quantity: <%= quantity %> <%= link_to("+", "/cart/#{item_id}/increase", method: :patch) %> <%= link_to("-", "/cart/#{item_id}/decrease", method: :patch) %></p>
             <p>Subtotal: <%= @cart.subtotal(item_id) %></p>
             <%= button_to 'Remove Item', "/cart/#{item.id}", method: :delete %>

@@ -21,6 +21,5 @@ class Review < ApplicationRecord
 
     def self.total_average
       average(:rating)
-      # binding.pry
     end
 end
