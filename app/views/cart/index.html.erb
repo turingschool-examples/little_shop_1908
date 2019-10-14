@@ -12,4 +12,5 @@
     <p>Subtotal: <%= item.price * quantity %></p>
   <% end %>
   <p>Total Amount: <%= cart.grand_total %></p>
+  <%= link_to "Empty Cart", '/cart', method: :delete %>
 <% end %>
