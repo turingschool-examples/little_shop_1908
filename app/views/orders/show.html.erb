@@ -3,10 +3,8 @@
     <h2>Order info</h2>
     <p>Name: <%= "#{@order.name}" %></p>
     <p>Address: <%= "#{@order.address}" %></p>
-    <p>City: <%= "#{@order.city}" %></p>
-    <p>State: <%= "#{@order.state}" %></p>
-    <p>Zip: <%= "#{@order.zip}" %></p>
-    <p>Created: <%= "#{@order.created_at}" %></p>
+    <p>City: <%= "#{@order.city}" %>, State: <%= "#{@order.state}" %>, Zip: <%= "#{@order.zip}" %></p>
+    <p>Created: <%= "#{@order.created_at.to_date}" %></p>
   </section>
   <!--  -->
   <section class="all-order-items">

@@ -38,7 +38,7 @@ describe 'When I checkout from Cart' do
     it 'Shows me the details of my new order' do
       visit "/orders/#{@new_order.id}"
       expect(page).to have_content("Grand Total: 210")
-      expect(page).to have_content("#{@new_order.created_at}")
+      expect(page).to have_content("#{@new_order.created_at.to_date}")
       expect(page).to have_content("#{@new_order.name}")
       expect(page).to have_content("#{@new_order.address}")
       expect(page).to have_content("#{@new_order.city}")
