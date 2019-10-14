@@ -17,5 +17,6 @@
     </section>
   <% end %>
   <p>Total Amount: <%= cart.grand_total %></p>
+  <%= button_to "Checkout", '/order', method: :post %>
   <%= link_to "Empty Cart", '/cart', method: :delete %>
 <% end %>

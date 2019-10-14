@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "cart page" do
+describe "cart page", type: :feature do
   it "can empty cart" do
 
     @bike_shop = Merchant.create!(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)

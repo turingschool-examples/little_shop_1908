@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Cart page" do
+describe "Cart page", type: :feature do
   it "can decrement the count of items" do
 
     @bike_shop = Merchant.create!(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
