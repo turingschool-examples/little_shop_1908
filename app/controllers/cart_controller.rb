@@ -3,7 +3,6 @@ class CartController < ApplicationController
 
   def show
     @cart = cart
-
     if @cart.contents.any? == false
       flash.now[:notice] = "Your cart is empty"
     end
