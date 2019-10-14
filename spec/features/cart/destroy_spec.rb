@@ -19,9 +19,16 @@ RSpec.describe 'Cart Show Page', type: :feature do
   end
 
   it 'there is a button Remove Item next to each item' do
+    expect(page).to have_content("#{@chain.name}")
+    expect(page).to have_content("#{@tire.name}")
+
     within "#item-#{@chain.id}" do
       click_button 'Remove Item'
     end
+
+    expect(current_path).to eq('/cart')
+    expect(page).to have_content("#{@tire.name}")
+    expect(page).to_not have_content("#{@chain.name}")
   end
 
 
