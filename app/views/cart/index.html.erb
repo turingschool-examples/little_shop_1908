@@ -4,12 +4,15 @@
   <h2>"Your cart is empty"</h2>
 <% else %>
   <% @items.each do |item, quantity|  %>
-    <p><%= item.name %></p>
-    <img src=<%= item.image %> >
-    <p>Vendor: <%= item.merchant.name %></p>
-    <p>Price: <%= item.price %></p>
-    <p>Qty: <%= quantity %></p>
-    <p>Subtotal: <%= item.price * quantity %></p>
+    <section id= "cart-<%= item.id %>">
+      <p><%= item.name %></p>
+      <img src=<%= item.image %> >
+      <p>Vendor: <%= item.merchant.name %></p>
+      <p>Price: <%= item.price %></p>
+      <p>Qty: <%= quantity %></p>
+      <p>Subtotal: <%= item.price * quantity %></p>
+      <%= button_to "Delete Item", "/cart/#{item.id}", method: :put %>
+    </section>
   <% end %>
   <p>Total Amount: <%= cart.grand_total %></p>
   <%= link_to "Empty Cart", '/cart', method: :delete %>
