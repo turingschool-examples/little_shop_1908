@@ -5,9 +5,14 @@ class OrdersController < ApplicationController
 
   def create
     order = Order.create((order_params).merge(grand_total: cart.grand_total))
-    order.generate_item_orders(cart)
-    session[:cart] = Hash.new(0)
-    redirect_to "/order/#{order.id}"
+    if order.save
+      order.generate_item_orders(cart)
+      session[:cart] = Hash.new(0)
+      redirect_to "/order/#{order.id}"
+    else
+      flash.now[:notice] = order.errors.full_messages.to_sentence
+      render :new
+    end
   end
 
   def show

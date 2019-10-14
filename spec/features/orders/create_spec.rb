@@ -16,7 +16,9 @@ RSpec.describe 'Order Creation' do
       click_button 'Add to Cart'
 
       visit '/cart/new_order'
+    end
 
+    it 'when I complete all info on the new order page and click Create Order, I redirect to order show page' do
       fill_in :name, with: "Sam"
       fill_in :address, with: "123 Main St."
       fill_in :city, with: "Anytown"
@@ -24,9 +26,6 @@ RSpec.describe 'Order Creation' do
       fill_in :zip, with: "80122"
 
       click_button 'Create Order'
-    end
-
-    it 'when I complete all info on the new order page and click Create Order, I redirect to order show page' do
 
       expect(current_path).to eq("/order/#{Order.first.id}")
 
@@ -56,7 +55,27 @@ RSpec.describe 'Order Creation' do
     end
 
     it 'when I create a new order, the cart is emptied' do
+      fill_in :name, with: "Sam"
+      fill_in :address, with: "123 Main St."
+      fill_in :city, with: "Anytown"
+      fill_in :state, with: "MZ"
+      fill_in :zip, with: "80122"
+
+      click_button 'Create Order'
+
       expect(page).to have_content("Cart: 0")
+    end
+
+    it "I get an error message when I submit a form that is incomplete" do
+      fill_in :name, with: ""
+      fill_in :address, with: ""
+      fill_in :city, with: ""
+      fill_in :state, with: ""
+      fill_in :zip, with: ""
+
+      click_button 'Create Order'
+
+      expect(page).to have_content("Name can't be blank, Address can't be blank, City can't be blank, State can't be blank, and Zip can't be blank")
     end
   end
 end
