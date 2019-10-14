@@ -19,4 +19,9 @@ class CartController < ApplicationController
     redirect_to '/cart'
   end
 
+  def remove
+    session[:cart].has_key?(params[:item_id])
+    session[:cart].delete(params[:item_id])
+    redirect_to '/cart'
+  end
 end
