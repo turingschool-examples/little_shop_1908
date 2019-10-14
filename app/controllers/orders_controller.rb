@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
       redirect_to "/orders/#{order.id}"
     else
       flash.now[:incomplete_order] = "Please fill in all fields to complete your order"
-      new
+      @items = Item.where(id: session[:cart].keys)
       render :new
     end
   end
