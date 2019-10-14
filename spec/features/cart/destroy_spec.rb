@@ -22,7 +22,7 @@ RSpec.describe 'Cart Show Page', type: :feature do
     expect(page).to have_content("#{@chain.name}")
     expect(page).to have_content("#{@tire.name}")
 
-    within "#item-#{@chain.id}" do
+    within "#cart-item-#{@chain.id}" do
       click_button 'Remove Item'
     end
 
