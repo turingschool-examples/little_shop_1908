@@ -25,19 +25,19 @@ RSpec.describe "As a visitor" do
       expect(page).to have_content(@tire.name)
       expect(page).to have_css("img[src*='#{@tire.image}']")
       expect(page).to have_content("Sold by: #{@meg.name}")
-      expect(page).to have_content("Price: #{@tire.price}")
+      expect(page).to have_content("Price: $#{@tire.price}")
       expect(page).to have_content("Quantity: 2")
-      expect(page).to have_content("Subtotal: #{2*@tire.price}")
+      expect(page).to have_content("Subtotal: $#{2*@tire.price}")
 
 
       expect(page).to have_content(@chain.name)
       expect(page).to have_css("img[src*='#{@chain.image}']")
       expect(page).to have_content("Sold by: #{@meg.name}")
-      expect(page).to have_content("Price: #{@chain.price}")
+      expect(page).to have_content("Price: $#{@chain.price}")
       expect(page).to have_content("Quantity: 1")
-      expect(page).to have_content("Subtotal: #{@chain.price}")
+      expect(page).to have_content("Subtotal: $#{@chain.price}")
 
-      expect(page).to have_content("Grand Total: #{@chain.price + (2*@tire.price)}")
+      expect(page).to have_content("Grand Total: $#{@chain.price + (2*@tire.price)}")
     end
 
     it 'A message appears saying there are no items when the cart is empty' do
