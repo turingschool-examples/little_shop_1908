@@ -26,7 +26,12 @@ class CartController < ApplicationController
   end
 
   def increment
-    session[:cart][params[:item_id]] += 1
+    item = Item.find(params[:item_id])
+    if session[:cart][params[:item_id]] < item.inventory
+       session[:cart][params[:item_id]] += 1
+    else
+      flash[:error] = "Item all out"
+    end
     redirect_to '/cart'
   end
 end
