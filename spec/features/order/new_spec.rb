@@ -60,7 +60,7 @@ describe 'When I checkout from Cart' do
 
       click_button "Create Order"
       new_order = Order.last
-      
+
       expect(new_order.name).to eq(name)
       expect(new_order.address).to eq(address)
       expect(new_order.city).to eq(city)
@@ -73,14 +73,14 @@ describe 'When I checkout from Cart' do
       visit '/orders/new'
 
       name = "Guy Fawkes"
-      address = '123 Independence ln'
       city = "Denver"
       state = "CO"
+      zip = 80204
 
       fill_in :name, with: name
-      fill_in :address, with: address
       fill_in :city, with: city
       fill_in :state, with: state
+      fill_in :zip, with: zip
 
       click_button "Create Order"
 
