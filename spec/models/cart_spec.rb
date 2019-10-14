@@ -47,5 +47,27 @@ RSpec.describe Cart do
 
       expect(cart.contents["#{chain.id}"]).to eq(1)
     end
+
+    describe "#add_item" do
+      it "can add an item to the cart" do
+        meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+        tire = meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+        cart = Cart.new({})
+        cart.add_item(tire.id)
+
+        expect(cart.contents.keys.include?(tire.id.to_s)).to eq(true)
+      end
+
+    end
+
+    describe "#count_of" do
+      it "it can count how many of a specific item are in the cart" do
+        cart = Cart.new({"2" => 3, "41" => 17})
+
+        expect(cart.count_of(2)).to eq(3)
+        expect(cart.count_of(41)).to eq(17)
+      end
+
+    end
   end
 end
