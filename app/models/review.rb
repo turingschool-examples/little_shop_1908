@@ -14,11 +14,11 @@ class Review < ApplicationRecord
   end
 
   def self.bottom
-    Review.order(:rating).limit(3)
+    Review.order(:rating).limit(3).to_a
   end
 
   def self.top
-    Review.order(rating: :desc).limit(3)
+    Review.order(rating: :desc).limit(3).to_a
   end
 
 end
