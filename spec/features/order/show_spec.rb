@@ -16,12 +16,34 @@ describe 'When I checkout from Cart' do
       click_on "Add to cart"
       visit "/items/#{@pull_toy.id}"
       click_on "Add to cart"
+
+      visit '/orders/new'
+
+      name = "Guy Fawkes"
+      address = '123 Independence ln'
+      city = "Denver"
+      state = "CO"
+      zip = 80204
+
+      fill_in :name, with: name
+      fill_in :address, with: address
+      fill_in :city, with: city
+      fill_in :state, with: state
+      fill_in :zip, with: zip
+
+      click_button "Create Order"
+      @new_order = Order.last
     end
 
-    it 'Shows me the details of my cart' do
-
-      visit "/orders/new"
+    it 'Shows me the details of my new order' do
+      visit "/orders/#{@new_order.id}"
       expect(page).to have_content("Grand Total: 210")
+      expect(page).to have_content("#{@new_order.created_at}")
+      expect(page).to have_content("#{@new_order.name}")
+      expect(page).to have_content("#{@new_order.address}")
+      expect(page).to have_content("#{@new_order.city}")
+      expect(page).to have_content("#{@new_order.state}")
+      expect(page).to have_content("#{@new_order.zip}")
 
       within ".all-order-items" do
         expect(page).to have_link(@tire.name)
@@ -41,51 +63,6 @@ describe 'When I checkout from Cart' do
         expect(page).to have_content("Quantity: 1")
         expect(page).to have_content("Subtotal: 10")
       end
-    end
-
-    it 'I can create a new order' do
-      visit '/orders/new'
-
-      name = "Guy Fawkes"
-      address = '123 Independence ln'
-      city = "Denver"
-      state = "CO"
-      zip = 80204
-
-      fill_in :name, with: name
-      fill_in :address, with: address
-      fill_in :city, with: city
-      fill_in :state, with: state
-      fill_in :zip, with: zip
-
-      click_button "Create Order"
-      new_order = Order.last
-      
-      expect(new_order.name).to eq(name)
-      expect(new_order.address).to eq(address)
-      expect(new_order.city).to eq(city)
-      expect(new_order.state).to eq(state)
-      expect(new_order.zip).to eq(zip)
-      expect(current_path).to eq("/orders/#{new_order.id}")
-    end
-
-    it 'I cant submit an incomplete form' do
-      visit '/orders/new'
-
-      name = "Guy Fawkes"
-      address = '123 Independence ln'
-      city = "Denver"
-      state = "CO"
-
-      fill_in :name, with: name
-      fill_in :address, with: address
-      fill_in :city, with: city
-      fill_in :state, with: state
-
-      click_button "Create Order"
-
-      expect(page).to have_content("Please fill in all forms before submitting order")
-      expect(current_path).to eq("/orders/new")
     end
 
 end
