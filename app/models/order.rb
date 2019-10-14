@@ -8,4 +8,8 @@ class Order < ApplicationRecord
   has_many :items, through: :item_orders
 
   belongs_to :user
+
+  def self.distinct_cities
+    joins(:user).distinct.pluck(:city)
+  end
 end
