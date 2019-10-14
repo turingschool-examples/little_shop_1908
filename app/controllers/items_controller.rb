@@ -2,15 +2,30 @@ class ItemsController<ApplicationController
 
   def index
     if params[:merchant_id]
-      @merchant = Merchant.find(params[:merchant_id])
-      @items = @merchant.items
+      if Merchant.exists?(id: params[:merchant_id])
+        @merchant = Merchant.find(params[:merchant_id])
+        @items = @merchant.items
+      else
+        flash.notice = 'This merchant does not exist. Please select an existing merchant.'
+        redirect_to '/merchants'
+      end
     else
       @items = Item.all
     end
   end
 
   def show
-    @item = Item.find(params[:id])
+    if Item.exists?(id: params[:id])
+      @item = Item.find(params[:id])
+    else
+      if params[:merchant_id]
+        flash.notice = 'This item does not exist. Please select an existing item.'
+        redirect_to "/merchants/#{params[:merchant_id]}/items"
+      else
+        flash.notice = 'This item does not exist. Please select an existing item.'
+        redirect_to "/items"
+      end
+    end
   end
 
   def new

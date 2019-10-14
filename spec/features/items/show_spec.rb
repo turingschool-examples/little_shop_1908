@@ -27,6 +27,13 @@ RSpec.describe 'item show page', type: :feature do
     expect(page).to have_content('Reviews')
   end
 
+  it 'shows a flash message that the item does not exist if I type an unknown id in the url' do
+    visit '/items/35466'
+
+    expect(current_path).to eq('/items')
+    expect(page).to have_content('This item does not exist. Please select an existing item.')
+  end
+
   it 'shows list of review for that item' do
     within "#review-#{@review_2.id}" do
       expect(page).to have_content("Awesome chain!")
@@ -89,7 +96,7 @@ RSpec.describe 'item show page', type: :feature do
       expect(page).to have_content('Rating: 2')
       expect(page).to have_content('Rating: 3')
     end
-    
+
     expect(page).to have_content('Average Rating: 3.33')
   end
 end

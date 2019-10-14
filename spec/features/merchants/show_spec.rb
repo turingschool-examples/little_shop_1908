@@ -23,6 +23,13 @@ RSpec.describe 'merchant show page', type: :feature do
       expect(current_path).to eq("/merchants/#{@bike_shop.id}/items")
     end
 
+    it 'shows a flash message that the merchant does not exist if I type an unknown id in the url' do
+      visit '/merchants/506'
+
+      expect(current_path).to eq('/merchants')
+      expect(page).to have_content('This merchant does not exist. Please select an existing merchant.')
+    end
+
     it 'I see merchant statistics ' do
       @tire = @bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 50.00, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
       @chain = @bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 25.05, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)

@@ -39,5 +39,20 @@ RSpec.describe "Merchant Items Index Page" do
         expect(page).to have_content("Inventory: #{@shifter.inventory}")
       end
     end
+
+    it 'shows a flash message that the merchant does not exist if I type an unknown id in the url' do
+      visit '/merchants/35466/items'
+
+      expect(current_path).to eq('/merchants')
+      expect(page).to have_content('This merchant does not exist. Please select an existing merchant.')
+    end
+
+    it 'shows a flash message that the item for this merchant does not exist if I type an unknown id in the url' do
+      visit "/merchants/#{@meg.id}/items/2458295"
+
+      expect(current_path).to eq("/merchants/#{@meg.id}/items")
+      expect(page).to have_content('This item does not exist. Please select an existing item.')
+    end
   end
+
 end
