@@ -33,11 +33,21 @@ RSpec.describe 'item delete', type: :feature do
       cart = Cart.new(items)
       order = Order.create!(name: 'Richy Rich', address: '102 Main St', city: 'NY', state: 'New York', zip: '10221', grand_total: 25.05, creation_date: '10/22/2019')
       @chain.item_orders.create(item_quantity: 1, item_subtotal: 25.05, order_id: order.id)
-      
+
       visit "/items/#{@chain.id}"
       click_on "Delete Item"
 
       expect(page).to have_content('Cannot delete, this item has orders in progress.')
+    end
+
+    it 'takes the item out of the cart when I destroy an item' do
+      visit "/items/#{@chain.id}"
+      click_button 'Add to Cart'
+
+      visit "/items/#{@chain.id}"
+      click_link "Delete Item"
+
+      expect(page).to have_link('Cart: 0')
     end
   end
 end
