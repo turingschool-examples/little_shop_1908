@@ -1,17 +1,36 @@
-<h1>Create New Item For <%=link_to @merchant.name, "/merchants/#{@merchant.id}" %></h1>
+<h1 class="mt-4 mb-2">Create New Item For <%=link_to @merchant.name, "/merchants/#{@merchant.id}" %></h1>
 
-<center>
   <%= form_tag "/merchants/#{@merchant.id}/items", method: :post do %>
-    <%= text_field_tag :name, nil, placeholder: "Name" %>
+    <section class='form-group form-width'>
+      <p>
+        <%= label_tag :name %>
+        <%= text_field_tag :name, nil, class: 'form-control' %>
+      </p>
 
-    <%= text_field_tag :description, nil, placeholder: "Description" %>
+      <p>
+        <%= label_tag :description %>
+        <%= text_area_tag :description, nil, class: 'form-control' %>
+      </p>
 
-    <%= text_field_tag :price, nil, placeholder: "Price" %>
+      <p>
+        <%= label_tag :price %>
+        <%= number_field_tag :price, nil, class: 'form-control', step: 0.01 %>
+      </p>
 
-    <%= text_field_tag :image, nil, placeholder: "Image" %>
+      <p>
+        <%= label_tag :image %>
+        <%= text_field_tag :image, nil, class: 'form-control' %>
+      </p>
 
-    <%= text_field_tag :inventory, nil, placeholder: "Inventory" %>
+      <p>
+        <%= label_tag :inventory %>
+        <%= number_field_tag :inventory, nil, class: 'form-control' %>
+      </p>
 
-    <%= submit_tag 'Create Item' %>
+      <br>
+
+      <p>
+        <%= submit_tag 'Create Item', class: 'btn btn-primary' %>
+      </p>
+    </section>
   <% end %>
-</center>
