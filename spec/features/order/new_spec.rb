@@ -90,5 +90,4 @@ describe 'When I checkout from Cart' do
       expect(page).to have_content("Please fill in all forms before submitting order")
       expect(current_path).to eq("/orders/new")
     end
-
 end

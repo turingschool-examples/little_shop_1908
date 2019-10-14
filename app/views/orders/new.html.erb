@@ -1,20 +1,15 @@
 <h1 id="order-header">Your Order</h1><hr>
   <section class="all-order-items">
-    <!--  -->
     <ol>
-      <% grand_total = 0 %>
-      <!-- need to move this into controller -->
       <% @cart.contents.each do |item_id, quantity| %>
         <% item = Item.find(item_id) %>
-        <% subtotal = (item.price * quantity) %>
-        <% grand_total += subtotal %>
         <!--  -->
         <li><%= link_to item.name, "/items/#{item_id}" %><br>
           <section class="order-item" id="order-item-<%= item_id %>">
             <p>Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
-            <p>Price: <%= item.price %></p>
+            <p>Price: <%= number_to_currency(item.price) %></p>
             <p>Quantity: <%= quantity %></p>
-            <p>Subtotal: <%= subtotal %></p>
+            <p>Subtotal: <%= @cart.subtotal(item_id) %></p>
           </section>
         </li>
       <!--  -->
@@ -23,11 +18,11 @@
   </section><hr><br>
   <!--  -->
   <section id="grand-total">
-    <p>Grand Total: <%= grand_total %></p>
+    <p>Grand Total: <%= @cart.grand_total %></p>
   </section>
 
   <h1 align= "center">Create Order</h1>
-  <center>
+  <center class="new-form">
     <%= form_tag "/orders", method: :post do |f| %>
       <%= text_field_tag :name, nil, placeholder: 'Name' %>
 

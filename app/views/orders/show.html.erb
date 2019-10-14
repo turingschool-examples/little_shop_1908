@@ -2,35 +2,27 @@
   <section id="order-info">
     <h2>Order info</h2>
     <p>Name: <%= "#{@order.name}" %></p>
-    <p>Address: <%= "#{@order.address}" %></p>
-    <p>City: <%= "#{@order.city}" %></p>
-    <p>State: <%= "#{@order.state}" %></p>
-    <p>Zip: <%= "#{@order.zip}" %></p>
-    <p>Created: <%= "#{@order.created_at}" %></p>
+    <p>Address:<br> <%= "#{@order.address}" %></p>
+    <p><%= "#{@order.city}" %>, <%= "#{@order.state}" %> <%= "#{@order.zip}" %></p>
+    <p>Created: <%= "#{@order.created_at.to_date}" %></p>
   </section>
+  <!--  -->
   <section class="all-order-items">
-    <!--  -->
     <ol>
-      <!-- need to move this into controller -->
-      <% grand_total = 0 %>
       <% @cart.contents.each do |item_id, quantity| %>
         <% item = Item.find(item_id) %>
-        <% subtotal = (item.price * quantity) %>
-        <% grand_total += subtotal %>
-        <!--  -->
         <li><%= link_to item.name, "/items/#{item_id}" %><br>
           <section class="order-item" id="order-item-<%= item_id %>">
             <p>Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
-            <p>Price: <%= item.price %></p>
+            <p>Price: <%= number_to_currency(item.price) %></p>
             <p>Quantity: <%= quantity %></p>
-            <p>Subtotal: <%= subtotal %></p>
+            <p>Subtotal: <%= @cart.subtotal(item_id) %></p>
           </section>
         </li>
-      <!--  -->
       <% end %>
     </ol>
   </section><hr><br>
   <!--  -->
   <section id="grand-total">
-    <p>Grand Total: <%= grand_total %></p>
+    <p>Grand Total: <%= @cart.grand_total %></p>
   </section>

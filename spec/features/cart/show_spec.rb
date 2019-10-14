@@ -102,12 +102,20 @@ describe 'When I visit cart show Page' do
       click_on "Add to cart"
 
       visit '/cart'
-      within "#cart-item-#{@pull_toy.id}" do
+      within "#cart-item-#{@tire.id}" do
+        expect(page).to have_content("Quantity: 2")
+        click_on "-"
+      end
+
+      expect(page).to have_content("One #{@tire.name} removed from cart")
+      expect(page).to have_content("Quantity: 1")
+
+      within "#cart-item-#{@tire.id}" do
         expect(page).to have_content("Quantity: 1")
         click_on "-"
       end
 
-      expect(page).to_not have_css("#cart-item#{@pull_toy.id}")
-      expect(page).to have_content("#{@pull_toy.name} removed from cart")
+      expect(page).to_not have_css("#cart-item#{@tire.id}")
+      expect(page).to have_content("#{@tire.name} removed from cart")
     end
 end
