@@ -28,7 +28,6 @@ describe "Visit cart show page" do
     expect(page).to have_content("Qty: 2")
     expect(page).to have_content("Subtotal: 100")
 
-
     expect(page).to have_content('Shifter')
     expect(page).to have_css("img[src='#{@shifter.image}']")
     expect(page).to have_content('180')
@@ -36,8 +35,15 @@ describe "Visit cart show page" do
     expect(page).to have_content("Qty: 1")
     expect(page).to have_content("Subtotal: 180")
 
-
     expect(page).to have_content("Total Amount: 280")
+  end
 
+  it "see's not items in cart" do
+
+    visit '/cart'
+
+    expect(page).to have_content("Your cart is empty")
+    expect(page).to_not have_content('Chain')
+    expect(page).to_not have_content("Subtotal")
   end
 end
