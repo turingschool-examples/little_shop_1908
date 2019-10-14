@@ -21,6 +21,7 @@ describe 'When I checkout from Cart' do
     it 'Shows me the details of my cart' do
 
       visit "/orders/new"
+      save_and_open_page
       expect(page).to have_content("Grand Total: 210")
 
       within ".all-order-items" do
@@ -83,7 +84,7 @@ describe 'When I checkout from Cart' do
       fill_in :zip, with: zip
 
       click_button "Create Order"
-
+      save_and_open_page
       expect(page).to have_content("Please fill in all forms before submitting order")
       expect(current_path).to eq("/orders/new")
     end

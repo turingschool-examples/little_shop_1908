@@ -1,20 +1,19 @@
-<h1 id="cart-header">Your Cart</h1><hr>
-  <section class="all-cart-items">
+<h1 id="order-header">Your Cart</h1><hr>
+  <section class="all-order-items">
     <!--  -->
     <ol>
       <% grand_total = 0 %>
-      <!--  -->
+      <!-- need to move this into controller -->
       <% @cart.contents.each do |item_id, quantity| %>
         <% item = Item.find(item_id) %>
         <% subtotal = (item.price * quantity) %>
         <% grand_total += subtotal %>
         <!--  -->
         <li><%= link_to item.name, "/items/#{item_id}" %><br>
-          <section class="cart-item" id="cart-item-<%= item_id %>">
-            <img src= <%= item.image %>>
+          <section class="order-item" id="order-item-<%= item_id %>">
             <p>Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
             <p>Price: <%= item.price %></p>
-            <p>Quantity: <%= quantity %> <%= link_to("+", "/cart/#{item_id}/increase", method: :patch) %> <%= link_to("-", "/cart/#{item_id}/decrease", method: :patch) %></p>
+            <p>Quantity: <%= quantity %></p>
             <p>Subtotal: <%= subtotal %></p>
           </section>
         </li>
@@ -25,5 +24,21 @@
   <!--  -->
   <section id="grand-total">
     <p>Grand Total: <%= grand_total %></p>
-    <p><%= link_to("Empty cart", '/cart', method: :delete) if session[:cart] != nil %></p>
   </section>
+
+  <h1 align= "center">Create Order</h1>
+  <center>
+    <%= form_tag "/orders", method: :post do |f| %>
+      <%= text_field_tag :name, "Name" %>
+
+      <%= text_field_tag :address, "Address" %>
+
+      <%= text_field_tag :city, "City" %>
+
+      <%= text_field_tag :state, "State" %>
+
+      <%= text_field_tag :zip, "Zip" %>
+
+      <%= submit_tag 'Create Order' %>
+    <% end %>
+  </center>
