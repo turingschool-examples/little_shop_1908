@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191007223131) do
+ActiveRecord::Schema.define(version: 20191013173909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "item_orders", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "order_id"
+    t.integer "quantity"
+    t.integer "subtotal"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_item_orders_on_item_id"
+    t.index ["order_id"], name: "index_item_orders_on_order_id"
+  end
 
   create_table "items", force: :cascade do |t|
     t.string "name"
@@ -38,6 +49,17 @@ ActiveRecord::Schema.define(version: 20191007223131) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.integer "grand_total"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.string "title"
     t.string "content"
@@ -48,6 +70,8 @@ ActiveRecord::Schema.define(version: 20191007223131) do
     t.index ["item_id"], name: "index_reviews_on_item_id"
   end
 
+  add_foreign_key "item_orders", "items"
+  add_foreign_key "item_orders", "orders"
   add_foreign_key "items", "merchants"
   add_foreign_key "reviews", "items"
 end

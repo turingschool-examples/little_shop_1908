@@ -11,7 +11,7 @@
 <p>Grand Total: $<%= cart.grand_total %></p>
 
 <center>
-  <%= form_tag 'cart/new_order', method: :post do %>
+  <%= form_tag '/order', method: :post do %>
     <%= text_field_tag :name, 'Name' %>
     <%= text_field_tag :address, 'Address' %>
     <%= text_field_tag :city, 'City' %>
@@ -19,4 +19,4 @@
     <%= text_field_tag :zip, 'Zip' %>
     <%= submit_tag 'Create Order' %>
   <% end %>
-</center>  
+</center>
