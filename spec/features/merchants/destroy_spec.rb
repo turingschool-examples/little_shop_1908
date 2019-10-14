@@ -42,6 +42,7 @@ RSpec.describe "As a visitor" do
     it "I can delete that merchant and all their items are deleted as well" do
       bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       chain = bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
+      review_1 = chain.reviews.create(title: "This stunk", content: "super smelly", rating: 1)
 
       visit "/merchants/#{bike_shop.id}"
       click_on "Delete Merchant"
@@ -50,7 +51,9 @@ RSpec.describe "As a visitor" do
       expect(page).to_not have_content("Brian's Bike Shop")
 
       visit "/items"
+
       expect(page).to_not have_content("Chain")
+
     end
   end
 end
