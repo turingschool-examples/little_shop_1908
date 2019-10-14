@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @cart = cart
     new_order = Order.new(order_params)
     if new_order.save
       cart.contents.each do |item_id, quantity|

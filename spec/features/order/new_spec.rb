@@ -22,13 +22,16 @@ describe 'When I checkout from Cart' do
 
       visit "/orders/new"
       save_and_open_page
-      expect(page).to have_content("Grand Total: 210")
 
       within ".all-order-items" do
         expect(page).to have_link(@tire.name)
         expect(page).to have_link(@pull_toy.name)
       end
 
+      within "#grand-total" do
+        expect(page).to have_content("Grand Total: 210")
+      end
+      
       within "#order-item-#{@tire.id}" do
         expect(page).to have_link(@tire.merchant.name)
         expect(page).to have_content(@tire.price)
