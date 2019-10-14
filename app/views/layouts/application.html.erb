@@ -14,10 +14,12 @@
       <%= link_to "All Items", "/items"%>
       <%= link_to  "Cart:  #{cart.total_count} ", "/cart"%>
     </nav>
+    <header>
+      <% flash.each do |type, message| %>
+      <center class="flash-message"> <br> <%= message %><center>
+        <% end %>
+    </header>
 
-    <% flash.each do |type, message| %>
-      <center> <br> <%= message %><center>
-    <% end %>
 
     <%= yield %>
   </body>

@@ -1,22 +1,32 @@
 <h1>Your Cart</h1>
 <% if !cart.contents.empty? %>
-  <% cart.cart_items.each do |item| %>
-    <section class = "grid-item" id= 'item-<%=item.id%>'>
-      <%= item.name %>
-      <img src= <%= item.image %>>
-      Sold by: <%= Merchant.find(item.merchant_id).name %>
-      Price: <%= item.price %>
-      Quantity: <%= cart.count_of(item.id) %>
-      Subtotal: <%= cart.subtotal(item.id) %>
-      <%= button_to '+', "/cart/#{item.id}/add", method: :patch %>
-      <%= button_to '-', "/cart/#{item.id}/subtract", method: :patch %>
-      <%= button_to 'Remove Item', "/cart/#{item.id}", method: :delete %>
-    </section>
-  <% end %>
+  <section class="grid-container">
+    <% cart.cart_items.each do |item| %>
+      <section class = "grid-item" id= 'item-<%=item.id%>'>
+        <p><%= item.name %></p>
+        <img src= <%= item.image %>>
+        <p>Sold by: <%= Merchant.find(item.merchant_id).name %></p>
+        <p>Price: $<%= item.price %></p>
+        <p>Quantity: <%= cart.count_of(item.id) %></p>
+        <p>Subtotal: $<%= cart.subtotal(item.id) %></p>
+        <section id="cart-buttons">
+          <div>
+            <%= button_to '+', "/cart/#{item.id}/add", method: :patch %>
+            <%= button_to '-', "/cart/#{item.id}/subtract", method: :patch %>
+          </div>
+          <%= button_to 'Remove Item', "/cart/#{item.id}", method: :delete %>
+        </section>
+      </section>
+    <% end %>
+  </section>
   <hr>
-  <p>Grand Total: <%= cart.grand_total %> </p>
-  <%= button_to 'Checkout', '/cart/new_order', method: :get %>
-  <%= button_to 'Empty Cart', '/cart', method: :delete %>
+  <center>
+    <p>Grand Total: $<%= cart.grand_total %> </p>
+    <%= button_to 'Checkout', '/cart/new_order', method: :get %>
+    <%= button_to 'Empty Cart', '/cart', method: :delete %>
+  </center>
 <% else %>
-  <h3>Your cart is empty</h3>
+  <center>
+    <h3>Your cart is empty</h3>
+  </center>
 <% end %>

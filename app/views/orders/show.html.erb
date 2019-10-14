@@ -7,15 +7,17 @@
   <%= @order.zip %>
 </p>
 <hr>
-<% @item_orders.each do |item_order| %>
-  <section id = "item-<%=item_order.item_id%>">
-    <p><%= item_order.current_item.name %></p>
-    <p><%= item_order.current_item.merchant.name %></p>
-    <p>Price: $<%= item_order.current_item.price %></p>
-    <p>Quantity: <%= item_order.quantity %></p>
-    <p>Subtotal: $<%= item_order.subtotal %></p>
-    <hr>
-  </section>
-<% end %>
+<section class="grid-container">
+  <% @item_orders.each do |item_order| %>
+    <section class="grid-item" id = "item-<%=item_order.item_id%>">
+      <p><%= item_order.current_item.name %></p>
+      <p><%= item_order.current_item.merchant.name %></p>
+      <p>Price: $<%= item_order.current_item.price %></p>
+      <p>Quantity: <%= item_order.quantity %></p>
+      <p>Subtotal: $<%= item_order.subtotal %></p>
+    </section>
+  <% end %>
+</section>
+<hr>
 <p>Grand Total: $<%= @order.grand_total %></p>
-<p> <%= @order.created_at %></p>
+<p>Ordered on: <%= @order.created_at.strftime('%B %d, %Y') %></p>
