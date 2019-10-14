@@ -29,7 +29,6 @@ RSpec.describe 'item show page', type: :feature do
 
     it 'shows a list of reviews with title, content, and rating' do
       visit "items/#{@chain.id}"
-      # save_and_open_page
 
       expect(page).to have_content(@review_1.title)
       expect(page).to have_content(@review_2.title)

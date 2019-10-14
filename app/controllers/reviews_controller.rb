@@ -19,8 +19,14 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
-    @item = Item.find(params[:id])
-  end 
+    @item = Item.find(@review.item_id)
+  end
+
+  def update
+    review = Review.find(params[:id])
+    review.update(review_params)
+    redirect_to "/items/#{review.item.id}"
+  end
 
   def destroy
     review = Review.find(params[:review_id])

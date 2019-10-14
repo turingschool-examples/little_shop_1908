@@ -32,4 +32,12 @@
   <section id="grand-total">
     <p>Grand Total: <%= grand_total %></p>
     <p><%= link_to("Empty cart", '/cart', method: :delete) if session[:cart] != nil %></p>
+
+    <section id='checkout'>
+      <% if @cart.contents.length > 0 %>
+      <h4>
+        <%= link_to 'Checkout', '/orders/new' %>
+        <% end %>
+      </h4>
+    </section>
   </section>
