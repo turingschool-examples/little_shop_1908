@@ -19,7 +19,7 @@
     </section>
   <% end %>
   <p> Grand Total: <%= number_to_currency(cart.grand_total) %></p>
-  <p> Date of Order: <%= @order.created_at %></p>
+  <p> Date of Order: <%= @order.created_at.strftime("%D") %></p>
 </section>
 
 

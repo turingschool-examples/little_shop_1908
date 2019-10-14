@@ -6,10 +6,16 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = Order.create(order_params)
-    make_item_orders(order)
+    order = Order.new(order_params)
 
-    redirect_to "/orders/#{order.id}"
+    if order.save
+      make_item_orders(order)
+      redirect_to "/orders/#{order.id}"
+    else
+      flash.now[:incomplete_order] = "Please fill in all fields to complete your order"
+      @items = Item.where(id: session[:cart].keys)
+      render :new
+    end
   end
 
   def show
