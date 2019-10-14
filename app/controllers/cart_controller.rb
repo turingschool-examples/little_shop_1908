@@ -5,7 +5,6 @@ class CartController < ApplicationController
     @cart = cart
     if @cart.contents.any? == false
       flash.now[:notice] = "Your cart is empty"
-      # require 'pry'; binding.pry
     end
   end
 

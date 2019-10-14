@@ -19,4 +19,8 @@ class Cart
     @contents.delete_if {|item_id, quantity| quantity <= 0}
   end
 
+  def subtotal(id)
+    item = Item.find(id)
+    @contents[id.to_s] * item.price
+  end
 end

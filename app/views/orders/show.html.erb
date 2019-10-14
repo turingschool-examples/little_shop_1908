@@ -15,15 +15,14 @@
       <% grand_total = 0 %>
       <% @cart.contents.each do |item_id, quantity| %>
         <% item = Item.find(item_id) %>
-        <% subtotal = (item.price * quantity) %>
-        <% grand_total += subtotal %>
+        <% grand_total += @cart.subtotal(item_id) %>
         <!--  -->
         <li><%= link_to item.name, "/items/#{item_id}" %><br>
           <section class="order-item" id="order-item-<%= item_id %>">
             <p>Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
             <p>Price: <%= item.price %></p>
             <p>Quantity: <%= quantity %></p>
-            <p>Subtotal: <%= subtotal %></p>
+            <p>Subtotal: <%= @cart.subtotal(item_id) %></p>
           </section>
         </li>
       <!--  -->
