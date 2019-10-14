@@ -7,6 +7,7 @@ class ReviewsController < ApplicationController
   def create
     @item = Item.find(params[:item_id])
     review = @item.reviews.new(review_params)
+
     if review.save
       redirect_to "/items/#{@item.id}"
     else
