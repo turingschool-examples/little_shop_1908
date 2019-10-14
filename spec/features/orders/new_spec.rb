@@ -94,7 +94,9 @@ RSpec.describe "On the Checkout Page (aka New Order page)" do
       expect(page).to have_content("Subtotal: $360.00")
 
       expect(page).to have_content("Grand Total: $410.00")
-      expect(page).to have_content("Date of Order: #{order.created_at}")
+
+      date_actual = order.created_at.strftime("%D")
+      expect(page).to have_content("Date of Order: #{date_actual}")
 
     end
   end
