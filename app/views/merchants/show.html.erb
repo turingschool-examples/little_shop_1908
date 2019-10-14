@@ -9,7 +9,7 @@
     <p>Items sold in these cities:</p>
     <ul>
       <% @merchant.orders.distinct_cities.each do |city| %>
-        <li><%= city %></li>
+        <li><%= city[0] %>, <%= city[1] %></li>
       <% end %>
     </ul>
   <% else %>
