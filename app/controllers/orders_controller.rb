@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    # binding.pry
+    @cart = cart
     @order = Order.find(params[:order_id])
   end
 
@@ -19,8 +19,8 @@ class OrdersController < ApplicationController
       end
     redirect_to "/orders/#{new_order.id}"
     else
-      flash.now[:notice] = "Please fill in all forms before submitting order"
-      render :new
+      flash[:notice] = "Please fill in all forms before submitting order"
+      redirect_to "/orders/new"
     end
   end
 
