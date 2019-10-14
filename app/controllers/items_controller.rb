@@ -53,9 +53,15 @@ class ItemsController<ApplicationController
   end
 
   def destroy
-    Review.delete(Review.where(item_id: params[:id]))
-    Item.destroy(params[:id])
-    redirect_to "/items"
+    item = Item.find(params[:id])
+    if item.has_item_orders?
+      flash[:notice] = "This item cannot be deleted because it has pending orders."
+      redirect_to "/items/#{item.id}"
+    else
+      Review.delete(Review.where(item_id: params[:id]))
+      Item.destroy(params[:id])
+      redirect_to "/items"
+    end
   end
 
   private

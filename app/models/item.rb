@@ -11,4 +11,7 @@ class Item <ApplicationRecord
                         :inventory
   validates_inclusion_of :active?, :in => [true, false]
 
+  def has_item_orders?
+    ItemOrder.where(item_id: id).any?
+  end
 end
