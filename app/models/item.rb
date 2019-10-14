@@ -16,7 +16,7 @@ class Item < ApplicationRecord
   validates_numericality_of :inventory, only_integer: true
   validates_numericality_of :inventory, greater_than: 0
 
-  def self.total_items
+  def self.total_count
     count
   end
 
