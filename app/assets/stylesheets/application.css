@@ -40,6 +40,12 @@ img.center {
   color: red;
 }
 
+.form-width {
+  width: 50%;
+  margin: 0 auto;
+}
+
+
  /* body {
  background-color: white;
  }
