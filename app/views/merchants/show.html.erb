@@ -5,9 +5,13 @@
 <section id = 'statistics'>
   <p><%= "Total Items: #{@merchant.items.total_count}" %></p>
   <p><%= "Average Item Price: #{number_to_currency(@merchant.items.average_price)}" %></p>
-  <p>Items sold in these cities:</p>
-  <% @merchant.orders.distinct_cities.each do |city| %>
-    <p><%= city %></p>
+  <% if !@merchant.orders.empty? %>
+    <p>Items sold in these cities:</p>
+    <% @merchant.orders.distinct_cities.each do |city| %>
+      <p><%= city %></p>
+    <% end %>
+  <% else %>
+    <p>No items have been sold 🥺</p>
   <% end %>
 </section>
 
