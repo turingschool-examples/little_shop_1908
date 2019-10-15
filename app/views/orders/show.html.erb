@@ -1,22 +1,30 @@
-<h1>Order</h1>
-<h2>Shipping Information</h2>
-<section id = 'shipping-info' >
-  <p>Name: <%= @item_orders.first.order.user.name %></p>
-  <p>Address: <%= @item_orders.first.order.user.address %></p>
-  <p>City: <%= @item_orders.first.order.user.city %></p>
-  <p>State: <%= @item_orders.first.order.user.state %></p>
-  <p>Zip: <%= @item_orders.first.order.user.zip %></p>
+<h1 class="mt-4 mb-3">Order</h1>
+<hr />
+<h2 class='text-center'>Shipping Information</h2>
+<section id='shipping-info'>
+  <h6 class='text-center'><%= @item_orders.first.order.user.name %><br />
+    <%= @item_orders.first.order.user.address %><br />
+    <%= @item_orders.first.order.user.city %>,
+    <%= @item_orders.first.order.user.state %>
+    <%= @item_orders.first.order.user.zip %></h6>
 </section>
 
-<% @item_orders.each do |item_order| %>
-  <section id = 'item-<%= item_order.item_id %>'>
-    <p><%= item_order.item.name %></p>
-    <p><%= "Merchant: #{item_order.item.merchant.name}" %></p>
-    <p><%= "Price: #{number_to_currency(item_order.item.price)}" %></p>
-    <p><%= "Quantity: #{item_order.item_quantity}" %></p>
-    <p><%= "Subtotal: #{number_to_currency(item_order.subtotal)}" %></p>
+<section class='container-fluid row justify-content-center'>
+  <section class='card card-body bg-light m-3 p-4'>
+  <h3 class='text-center'>Items</h3>
+    <section class='container-fluid justify-content-center'>
+      <% @item_orders.each do |item_order| %>
+        <section class='card card-body bg-light m-3 p-4' id='item-<%= item_order.item_id %>'>
+          <h5><%= item_order.item.name %></h5>
+          <p><%= "Merchant: #{item_order.item.merchant.name}" %></p>
+          <p><%= "Price: #{number_to_currency(item_order.item.price)}" %></p>
+          <p><%= "Quantity: #{item_order.item_quantity}" %></p>
+          <p><%= "Subtotal: #{number_to_currency(item_order.subtotal)}" %></p>
+        </section>
+      <% end %>
+    </section>
   </section>
-<% end %>
+</section>
 
-<h5>Grand Total: <%= number_to_currency(@item_orders.first.order.grand_total) %></h5>
-<h5>Order Date: <%= @item_orders.first.order.created_at.to_formatted_s(:long)   %></h5>
+<h5 class='text-center'>Grand Total: <%= number_to_currency(@item_orders.first.order.grand_total) %></h5>
+<h5 class='text-center'>Order Date: <%= @item_orders.first.order.created_at.strftime("%m/%d/%Y") %></h5>

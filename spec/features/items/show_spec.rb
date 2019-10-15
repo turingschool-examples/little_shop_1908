@@ -82,6 +82,13 @@ RSpec.describe 'item show page', type: :feature do
     expect(page).to have_content("Average Review Rating: 2.8")
   end
 
+  it 'shows no average review rating if no reviews' do
+    @tire.reviews.destroy_all
+    visit "/items/#{@tire.id}"
+
+    expect(page).to have_content('No Average Review Rating (No reviews have been made)')
+  end
+
   it 'cannot view an item show page that does not exist' do
     visit '/items/99999'
 
