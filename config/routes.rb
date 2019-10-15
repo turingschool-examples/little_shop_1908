@@ -24,11 +24,13 @@ Rails.application.routes.draw do
   patch "/items/:item_id/reviews/:id", to: "reviews#update"
   delete "/items/:item_id/reviews/:id", to: "reviews#destroy"
 
-  post "/cart/:item_id", to: "cart#update"
+  post "/cart/:item_id", to: "cart#create"
   patch "/cart/:item_id/increment", to: "cart#increment"
   patch "/cart/:item_id/decrement", to: "cart#decrement"
   get "/cart", to: "cart#index"
-  delete "/cart", to:"cart#destroy"
+  delete "/cart", to:"cart#empty"
   put "/cart/:item_id", to: "cart#remove"
+
+  get '/orders/new', to: 'orders#new'
 
 end

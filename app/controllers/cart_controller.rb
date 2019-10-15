@@ -1,6 +1,6 @@
 class CartController < ApplicationController
 
-  def update
+  def create
     item = Item.find(params[:item_id])
     item_id_str = item.id.to_s
     session[:cart] ||= Hash.new(0)
@@ -14,7 +14,7 @@ class CartController < ApplicationController
     @items = cart.cart_items
   end
 
-  def destroy
+  def empty
     session[:cart] = Hash.new(0)
     redirect_to '/cart'
   end

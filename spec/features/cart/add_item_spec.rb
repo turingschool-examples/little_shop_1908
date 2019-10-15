@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Cart indicator in nav bar" do
+describe "Cart indicator in nav bar", type: :feature do
   it "can see cart indicator and count on every page" do
 
     @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
@@ -11,7 +11,7 @@ describe "Cart indicator in nav bar" do
     expect(page).to have_content("Cart: 0")
 
     visit '/merchants'
-    
+
     expect(page).to have_content("Cart: 0")
 
     visit "/merchants/#{@bike_shop.id}/items"
