@@ -53,5 +53,24 @@ RSpec.describe 'merchant show page', type: :feature do
 
       expect(page).to_not have_link('Delete Merchant')
     end
+
+    it 'can show merchant statistics' do
+      @chain = @bike_shop.items.create!(name: 'Chain', description: "It'll never break!", price: 50, image: 'https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588', inventory: 2)
+      @tire = @bike_shop.items.create!(name: 'Tire', description: 'This is a tire.', price: 30, image: 'https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588', inventory: 7)
+
+      order_1 = Order.create!(customer_name: "Joe Schmo", customer_address: "123 Random Dr", customer_city: "Denver", customer_state: "CO", customer_zip: 80128)
+      order_2 = Order.create!(customer_name: "Sally Fields", customer_address: "468 Chestnut Ave", customer_city: "Denver", customer_state: "CO", customer_zip: 80128)
+      order_3 = Order.create!(customer_name: "Bob Smith", customer_address: "728 Test Dr", customer_city: "Orlando", customer_state: "FL", customer_zip: 32738)
+
+      ItemOrder.create!(item_id: @chain.id, order_id: order_1.id, price: 50.00, quantity: 1)
+      ItemOrder.create!(item_id: @chain.id, order_id: order_2.id, price: 50.00, quantity: 1)
+      ItemOrder.create!(item_id: @tire.id, order_id: order_3.id, price: 30.00, quantity: 1)
+
+      visit "/merchants/#{@bike_shop.id}"
+
+      expect(page).to have_content('Count of Items: 2')
+      expect(page).to have_content('Average Price of Items: $40.00')
+      expect(page).to have_content('Distinct Cities Where Items Have Been Ordered: Denver and Orlando')
+    end
   end
 end
