@@ -15,7 +15,7 @@
         <p style= "color:red">Inactive</p>
       <% end %>
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
-      <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
+      <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete unless @item.ordered? %></p>
       <p><%= link_to "Add Item to Cart", "/cart/#{@item.id}", method: :patch unless cart.inventory_limit?(@item.id) %></p>
     </section>
   </section>

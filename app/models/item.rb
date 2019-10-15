@@ -26,4 +26,8 @@ class Item <ApplicationRecord
   def average_review_rating
     reviews.average(:rating)
   end
+
+  def ordered?
+    !orders.empty?
+  end
 end
