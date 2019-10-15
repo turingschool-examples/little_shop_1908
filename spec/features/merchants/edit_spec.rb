@@ -33,5 +33,68 @@ RSpec.describe "As a Visitor" do
       expect(page).to have_content("Brian's Super Cool Bike Shop")
       expect(page).to have_content("1234 New Bike Rd.\nDenver, CO 80204")
     end
+
+    it "I'm told what fields I'm missing from my update form" do
+      visit "/merchants/#{@bike_shop.id}"
+      click_on "Update Merchant"
+
+      fill_in 'Name', with: ""
+      fill_in 'Address', with: "1234 New Bike Rd."
+      fill_in 'City', with: "Denver"
+      fill_in 'State', with: "CO"
+      fill_in 'Zip', with: 80204
+
+      click_button "Update Merchant"
+
+      expect(page).to have_content("You must fill in a name")
+
+      visit "/merchants/#{@bike_shop.id}"
+      click_on "Update Merchant"
+
+      fill_in 'Name', with: "Brian's Super Cool Bike Shop"
+      fill_in 'Address', with: ""
+      fill_in 'City', with: "Denver"
+      fill_in 'State', with: "CO"
+      fill_in 'Zip', with: 80204
+
+      click_button "Update Merchant"
+      expect(page).to have_content("You must fill in an address")
+
+      visit "/merchants/#{@bike_shop.id}"
+      click_on "Update Merchant"
+
+      fill_in 'Name', with: "Brian's Super Cool Bike Shop"
+      fill_in 'Address', with: "1234 New Bike Rd."
+      fill_in 'City', with: ""
+      fill_in 'State', with: "CO"
+      fill_in 'Zip', with: 80204
+
+      click_button "Update Merchant"
+      expect(page).to have_content("You must fill in a city")
+
+      visit "/merchants/#{@bike_shop.id}"
+      click_on "Update Merchant"
+
+      fill_in 'Name', with: "Brian's Super Cool Bike Shop"
+      fill_in 'Address', with: "1234 New Bike Rd."
+      fill_in 'City', with: "Denver"
+      fill_in 'State', with: ""
+      fill_in 'Zip', with: 80204
+
+      click_button "Update Merchant"
+      expect(page).to have_content("You must fill in a state")
+
+      visit "/merchants/#{@bike_shop.id}"
+      click_on "Update Merchant"
+
+      fill_in 'Name', with: "Brian's Super Cool Bike Shop"
+      fill_in 'Address', with: "1234 New Bike Rd."
+      fill_in 'City', with: "Denver"
+      fill_in 'State', with: "CO"
+      fill_in 'Zip', with: ""
+
+      click_button "Update Merchant"
+      expect(page).to have_content("You must fill in a zip code")
+    end
   end
 end

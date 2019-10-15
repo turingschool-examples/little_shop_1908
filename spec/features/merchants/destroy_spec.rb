@@ -13,18 +13,20 @@ RSpec.describe "As a visitor" do
       expect(page).to_not have_content("Brian's Bike Shop")
     end
 
-    it "I can delete a merchant that has items" do
-      bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
-      chain = bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
+    describe "I can delete a merchant that has items" do
+      it "That merchants items are also deleted" do
+        bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+        chain = bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
 
-      visit "merchants/#{bike_shop.id}"
-      click_on "Delete Merchant"
+        visit "merchants/#{bike_shop.id}"
+        click_on "Delete Merchant"
 
-      expect(current_path).to eq('/merchants')
-      expect(page).to_not have_content("Brian's Bike Shop")
-      visit "/items"
-      expect(page).to_not have_content(chain.name)
-      expect(page).to_not have_content(chain.description)
+        expect(current_path).to eq('/merchants')
+        expect(page).to_not have_content("Brian's Bike Shop")
+        visit "/items"
+        expect(page).to_not have_content(chain.name)
+        expect(page).to_not have_content(chain.description)
+      end
     end
 
     it "I cannot delete a merchant that has items in an order" do
@@ -38,7 +40,6 @@ RSpec.describe "As a visitor" do
       within '#checkout' do
         click_on "Checkout"
       end
-
       expect(current_path).to eq('/orders/new')
 
       name = "Guy Fawkes"
@@ -52,7 +53,6 @@ RSpec.describe "As a visitor" do
       fill_in :city, with: city
       fill_in :state, with: state
       fill_in :zip, with: zip
-
       click_button "Create Order"
 
       visit "/merchants/#{bike_shop.id}"
