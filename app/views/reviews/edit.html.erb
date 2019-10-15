@@ -1,4 +1,3 @@
 <h1> Edit <%= link_to @item.name, "/items/#{@item.id}" %>s review</h1>
 
-<!-- Use Partial Here -->
-<%= render partial: "form", locals: {title_value: "#{@review.title}", content_value: "#{@review.content}", rating_value: "#{@review.rating}", method: :patch, path: "/reviews/#{@review.id}", button_text: 'Update Review'} %>
+<%= render partial: "form", locals: {value: true, method: :patch, path: "/reviews/#{@review.id}", button_text: 'Update Review'} %>
