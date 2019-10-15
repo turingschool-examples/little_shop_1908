@@ -105,24 +105,14 @@ RSpec.describe 'item show page', type: :feature do
 
     click_link 'Highest Rating'
 
-    expect(page.find('li:nth-child(1)')).to have_content("Awesome chain!")
-    expect(page.find('li:nth-child(2)')).to have_content("Best chain EVER!")
-    expect(page.find('li:nth-child(3)')).to have_content("Pretty Good")
-    expect(page.find('li:nth-child(4)')).to have_content("Okay")
-    expect(page.find('li:nth-child(5)')).to have_content("Meh")
-    expect(page.find('li:nth-child(6)')).to have_content("Worst chain!")
+    expect(page.body) =~ /"Awesome chain!".*"Best chain EVER!".*"Pretty Good".*"Okay".*"Meh".*"Worst chain!"/
   end
 
   it 'I can see the reviews sorted by lowest ratings' do
     expect(page).to have_content('Sort by:')
-    
+
     click_link 'Lowest Rating'
 
-    expect(page.find('li:nth-child(1)')).to have_content("Worst chain!")
-    expect(page.find('li:nth-child(2)')).to have_content("Meh")
-    expect(page.find('li:nth-child(3)')).to have_content("Okay")
-    expect(page.find('li:nth-child(4)')).to have_content("Okay")
-    expect(page.find('li:nth-child(5)')).to have_content("Pretty Good")
-    expect(page.find('li:nth-child(6)')).to have_content("Awesome chain!")
+    expect(page.body) =~ /"Worst chain!".*"Meh".*"Okay".*"Pretty Good".*"Best chain EVER!".*"Awesome chain!"/
   end
 end

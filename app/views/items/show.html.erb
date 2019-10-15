@@ -23,17 +23,19 @@
   </section>
   <% if !@item.reviews.empty? %>
     <section>
-
       <h2>Reviews</h2>
-      <% @item.reviews.each do |review| %>
-        <section id = "review-<%= review.id %>">
-          <h3><%= review.title %></h3>
-          <p><%= review.content %></p>
-          <p>Rating: <%= review.rating %></p>
-          <%= link_to 'Edit Review', "/reviews/#{review.id}/edit" %>
-          <%= link_to 'Delete Review', "/reviews/#{review.id}", method: :delete %>
-        </section>
-      <% end %>
+        <h3>Sort by: </h3>
+          <%= link_to 'Highest Rating', "/items/#{@item.id}?sort=highest" %>
+          <%= link_to 'Lowest Rating', "/items/#{@item.id}?sort=lowest" %>
+          <% @reviews.each do |review| %>
+            <section id = "review-<%= review.id %>">
+              <ul><%= review.title %></ul>
+              <p><%= review.content %></p>
+              <p>Rating: <%= review.rating %></p>
+              <%= link_to 'Edit Review', "/reviews/#{review.id}/edit" %>
+              <%= link_to 'Delete Review', "/reviews/#{review.id}", method: :delete %>
+            </section>
+          <% end %>
     </section>
     <section>
       <h2>Review Statistics</h2>
