@@ -1,22 +1,28 @@
-<h1><%= @merchant.name %></h1>
-<p class="address"><%= @merchant.address %></p>
-<p class="address"><%= @merchant.city %>, <%= @merchant.state %> <%= @merchant.zip %></p>
+<h1 class="mt-4 mb-3"><%= @merchant.name %></h1>
+<h6 class="address text-center">
+<%= @merchant.address %><br>
+<%= @merchant.city %>, <%= @merchant.state %> <%= @merchant.zip %>
+</h6>
 
-<section id = 'statistics'>
-  <p><%= "Total Items: #{@merchant.items.total_count}" %></p>
-  <p><%= "Average Item Price: #{number_to_currency(@merchant.items.average_price)}" %></p>
-  <% if !@merchant.orders.empty? %>
-    <p>Items sold in these cities:</p>
-    <ul>
-      <% @merchant.orders.distinct_cities.each do |city| %>
-        <li><%= city[0] %>, <%= city[1] %></li>
-      <% end %>
-    </ul>
-  <% else %>
-    <p>No items have been sold 🥺</p>
-  <% end %>
+<section class="container-fluid row justify-content-center">
+  <section class="card card-body bg-light m-3 p-4 col-md-3" id = 'statistics'>
+    <p><%= "Total Items: #{@merchant.items.total_count}" %></p>
+    <p><%= "Average Item Price: #{number_to_currency(@merchant.items.average_price)}" %></p>
+    <% if !@merchant.orders.empty? %>
+      <p>Items sold in these cities:</p>
+      <ul>
+        <% @merchant.orders.distinct_cities.each do |city| %>
+          <li><%= city[0] %>, <%= city[1] %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No items have been sold 🥺</p>
+    <% end %>
+  </section>
 </section>
 
-<ul><%= link_to "All #{@merchant.name} Items", "/merchants/#{@merchant.id}/items" %></ul>
-<ul><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit" %></ul>
-<ul><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete %></ul>
+<section class='container-fluid justify-content-center d-flex'>
+  <ul class='align-self-center'><%= link_to "All #{@merchant.name} Items", "/merchants/#{@merchant.id}/items", class: 'btn btn-secondary' %></ul>
+  <ul class='align-self-center'><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit", class: 'btn btn-primary' %></ul>
+  <ul class='align-self-center'><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete, class: 'btn btn-danger' %></ul>
+</section>
