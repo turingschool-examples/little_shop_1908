@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
     if order.save
       order.generate_item_orders(cart)
       session[:cart] = Hash.new(0)
+      flash[:notice] = "Order created! Your order lookup code is #{order.verification}"
       redirect_to "/order/#{order.id}"
     else
       flash.now[:notice] = order.errors.full_messages.to_sentence
