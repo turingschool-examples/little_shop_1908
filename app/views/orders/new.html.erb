@@ -1,10 +1,20 @@
 <h1 align= "center">Order</h1>
 
 <section>
-  
+  <% @items.each do |item, quantity|  %>
+    <section id= "cart-<%= item.id %>">
+      <p><%= item.name %></p>
+      <p>Vendor: <%= item.merchant.name %></p>
+      <p>Price: <%= item.price %></p>
+      <p>Qty: <%= quantity %></p>
+      <p>Subtotal: <%= item.price * quantity %></p>
+    </section>
+  <% end %>
+  <p>Total Amount: <%= cart.grand_total %></p>
 </section>
 
 <center>
+  <p>Shipping Information</p>
   <%= form_tag "/order", method: :post do %>
     <%= text_field_tag :name, "Name" %>
 

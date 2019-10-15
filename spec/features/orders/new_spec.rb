@@ -31,6 +31,6 @@ describe "New order page" do
     fill_in :state, with: 'California'
     fill_in :zip, with: '90210'
 
-    expect(page).to have_content('Create Order')
+    expect(page).to have_button('Create Order')
   end
 end
