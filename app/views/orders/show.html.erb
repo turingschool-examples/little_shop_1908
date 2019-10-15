@@ -1,0 +1,19 @@
+<h1>Order Summary</h1>
+
+<p>Customer Info</p>
+<p><%= customer.name %></p>
+<p><%= customer.address %></p>
+<p><%= customer.city %></p>
+<p><%= customer.state %></p>
+<p><%= customer.zip %></p>
+
+<p>Order Information</p>
+<%= @order.date %>
+<% @order.items.each do |item| %>
+  <%= item.name %>
+  <%= item.merchant.name %>
+  <p>Price: <%= item.price %></p>
+  <p>Qty: <%= item.find_quantity(@order) %></p>
+  <p>Subtotal: <%= item.item_subtotal(@order) %></p>
+<% end  %>
+<p>Total Amount: <%= @order.total_amount %></p>

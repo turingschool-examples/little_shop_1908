@@ -47,12 +47,17 @@ ActiveRecord::Schema.define(version: 20191015165035) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.decimal "total_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|
     t.string "title"
     t.string "content"
     t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "item_id"
     t.index ["item_id"], name: "index_reviews_on_item_id"
   end
