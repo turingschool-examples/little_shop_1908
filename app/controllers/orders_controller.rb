@@ -21,6 +21,17 @@ class OrdersController < ApplicationController
     @item_orders = ItemOrder.where(order_id: params[:id])
   end
 
+  def verified
+    @order = Order.where(verification: params[:search])
+    binding.pry
+    if !@order.exists?
+      flash[:notice] = "Could not find an order for that verification code."
+      redirect_to '/merchants'
+    else
+      @item_orders = @order.item_orders
+    end
+  end
+
   private
     def order_params
       params.permit(:name, :address, :city, :state, :zip)
