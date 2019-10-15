@@ -46,7 +46,7 @@ class ItemsController < ApplicationController
 
   def update
     item = Item.find(params[:id])
-    
+
     if item.update(item_params)
       redirect_to "/items/#{item.id}"
     elsif item_params[:name] == ""
@@ -69,8 +69,10 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
+
     if item.orders == []
       Item.destroy(params[:id])
+      cart.contents.delete(item.id.to_s)
       redirect_to "/items"
     else
       flash[:alert] = "You cannot delete an item with open orders"
