@@ -33,7 +33,7 @@ class Item <ApplicationRecord
     elsif sort == 'highest'
       @reviews = reviews.order(rating: :desc, created_at: :desc)
     elsif sort == 'lowest'
-      @reviews = reviews.order(:rating, created_at: :desc)
+      @reviews = reviews.order(:rating, :created_at)
     end
   end
 end
