@@ -19,8 +19,25 @@ class ItemsController < ApplicationController
 
   def create
     merchant = Merchant.find(params[:merchant_id])
-    merchant.items.create(item_params)
-    redirect_to "/merchants/#{merchant.id}/items"
+    item = merchant.items.new(item_params)
+    if item.save
+      redirect_to "/merchants/#{merchant.id}/items"
+    elsif item_params[:name] == ""
+      flash[:message] = "You must fill in a name"
+      redirect_to "/merchants/#{merchant.id}/items/new"
+    elsif item_params[:description] == ""
+      flash[:message] = "You must fill in a description"
+      redirect_to "/merchants/#{merchant.id}/items/new"
+    elsif item_params[:price] == ""
+      flash[:message] = "You must fill in a price"
+      redirect_to "/merchants/#{merchant.id}/items/new"
+    elsif item_params[:image] == ""
+      flash[:message] = "You must fill in an image source"
+      redirect_to "/merchants/#{merchant.id}/items/new"
+    elsif item_params[:inventory] == ""
+      flash[:message] = "You must fill in an inventory amount"
+      redirect_to "/merchants/#{merchant.id}/items/new"
+    end
   end
 
   def edit
@@ -35,7 +52,6 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    binding.pry
     if item.orders == []
       Item.destroy(params[:id])
       redirect_to "/items"
