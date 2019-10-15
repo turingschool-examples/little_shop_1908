@@ -52,8 +52,8 @@ RSpec.describe "As a Visitor" do
 
           visit "/items/#{@tire.id}"
           click_on "Edit Item"
-
-          # fill_in 'Name', with: "GatorSkins"
+          save_and_open_page
+          fill_in 'Name', with: ""
           fill_in 'Price', with: 110
           fill_in 'Description', with: "They're a bit more expensive, and they kinda do pop sometimes, but whatevs.. this is retail."
           fill_in 'Image', with: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588"
@@ -64,7 +64,7 @@ RSpec.describe "As a Visitor" do
 
           fill_in 'Name', with: "GatorSkins 2.0"
           fill_in 'Price', with: 110
-          # fill_in 'Description', with: "They're a bit more expensive, and they kinda do pop sometimes, but whatevs.. this is retail."
+          fill_in 'Description', with: ""
           fill_in 'Image', with: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588"
           fill_in 'Inventory', with: 11
 
@@ -72,7 +72,7 @@ RSpec.describe "As a Visitor" do
           expect(page).to have_content("You must fill in a description")
 
           fill_in 'Name', with: "GatorSkins 2.0"
-          # fill_in 'Price', with: 110
+          fill_in 'Price', with: ""
           fill_in 'Description', with: "They're a bit more expensive, and they kinda do pop sometimes, but whatevs.. this is retail."
           fill_in 'Image', with: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588"
           fill_in 'Inventory', with: 11
@@ -83,7 +83,7 @@ RSpec.describe "As a Visitor" do
           fill_in 'Name', with: "GatorSkins 2.0"
           fill_in 'Price', with: 110
           fill_in 'Description', with: "They're a bit more expensive, and they kinda do pop sometimes, but whatevs.. this is retail."
-          # fill_in 'Image', with: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588"
+          fill_in 'Image', with: ""
           fill_in 'Inventory', with: 11
 
           click_button "Update Item"
@@ -93,11 +93,11 @@ RSpec.describe "As a Visitor" do
           fill_in 'Price', with: 110
           fill_in 'Description', with: "They're a bit more expensive, and they kinda do pop sometimes, but whatevs.. this is retail."
           fill_in 'Image', with: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588"
-          # fill_in 'Inventory', with: 11
+          fill_in 'Inventory', with: ""
 
           click_button "Update Item"
           expect(page).to have_content("You must fill in an inventory amount")
-          expect(current_path).to eq("/items/#{@tire.id}")
+          expect(current_path).to eq("/items/#{@tire.id}/edit")
       end
     end
   end
