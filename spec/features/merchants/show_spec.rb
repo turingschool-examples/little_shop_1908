@@ -37,7 +37,9 @@ RSpec.describe 'merchant show page', type: :feature do
 
     visit "/merchants/#{@bike_shop.id}"
 
-    expect(page).to have_content("Total Items: 2")
+    within '#statistics' do
+      expect(page).to have_content("Total Items: 2")
+    end
   end
 
   it 'can see the average price of all their items' do
@@ -46,7 +48,9 @@ RSpec.describe 'merchant show page', type: :feature do
 
     visit "/merchants/#{@bike_shop.id}"
 
-    expect(page).to have_content("Average Item Price: $66.67")
+    within '#statistics' do
+      expect(page).to have_content("Average Item Price: $66.67")
+    end
   end
 
   it 'can show a list of distinct cities where their items have been ordered' do
@@ -74,7 +78,9 @@ RSpec.describe 'merchant show page', type: :feature do
     visit "/merchants/#{@meg.id}"
 
     within '#statistics' do
-      expect(page).to have_content("Items sold in these cities:\nGreenville\nRedville")
+      expect(page).to have_content('Items sold in these cities:')
+      expect(page).to have_content('Greenville, NC')
+      expect(page).to have_content('Redville, SC')
     end
   end
 

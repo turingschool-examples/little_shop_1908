@@ -30,13 +30,24 @@
       </div>
     </nav>
 
-    <% flash.each do |type, messages| %>
-      <% messages.each do |message| %>
-        <p><%= message %></p>
+    <section class="container">
+      <% flash.each do |type, messages| %>
+        <% messages.each do |message| %>
+          <% if type == 'error' %>
+            <article class="alert alert-danger mt-3 pb-0">
+              <p><%= message %></p>
+            </article>
+          <% else %>
+            <article class="alert alert-success mt-3 pb-0">
+              <p><%= message %></p>
+            </article>
+          <% end %>
+        <% end %>
       <% end %>
-    <% end %>
+    </section>
+
     <section class='container-fluid'>
-      <%= yield %> 
+      <%= yield %>
     </section>
   </body>
 </html>
