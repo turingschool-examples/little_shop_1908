@@ -93,13 +93,26 @@ RSpec.describe 'new order page', type: :feature do
     fill_in 'zip',     with: nil
 
     click_button 'Create Order'
-    
+
     expect(current_path).to eq('/orders/new')
     expect(page).to have_content("Name can't be blank")
     expect(page).to have_content("Address can't be blank")
     expect(page).to have_content("City can't be blank")
     expect(page).to have_content("State can't be blank")
     expect(page).to have_content("Zip can't be blank")
+  end
 
+  it 'empties the cart after an order is made' do
+    fill_in 'Name',    with: 'Joe Bob'
+    fill_in 'Address', with: '1331 17th Ave'
+    fill_in 'City',    with: 'Denver'
+    fill_in 'State',   with: 'Colorado'
+    fill_in 'zip',     with: '80202'
+
+    click_button 'Create Order'
+
+    within 'nav' do
+      expect(page).to have_link('Cart (0)')
+    end
   end
 end
