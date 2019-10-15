@@ -56,8 +56,6 @@ RSpec.describe 'merchant show page', type: :feature do
 
           visit "/merchants/#{@bike_shop.id}"
 
-          save_and_open_page
-
           expect(page).to have_content("Satisfied Customers In: Denver, Boston, and Cambridge")
         end
       end
