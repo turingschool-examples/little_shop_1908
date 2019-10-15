@@ -1,56 +1,74 @@
-<h1><%= @item.name %></h1>
-<p align="center">Sold by: <%=link_to @item.merchant.name, "/merchants/#{@item.merchant.id}" %> </p>
-<center>
-  <section class = "item-show-grid">
-    <article class = "item-show-item">
-      <img src= <%= @item.image %>>
-    </article>
-    <article style="text-align:left" class = "item-show-item">
-      <p><%= @item.description %></p>
-      <p>Price: <%= number_to_currency(@item.price) %> </p>
-      <p>Inventory: <%= @item.inventory %> </p>
+<h1 class='mt-4 mb-3'><%= @item.name %></h1>
+<h6 class='text-center'>Sold by: <%= link_to @item.merchant.name, "/merchants/#{@item.merchant.id}" %> </h6>
 
-      <% if @item.active? %>
-        <p style= "color:green">Active</p>
-      <% else %>
-        <p style= "color:red">Inactive</p>
+<section class='justify-content-center item-container card card-body bg-light m-3 p-4'>
+
+  <article class='img-container'>
+    <img src= <%= @item.image %>>
+  </article>
+  <article style="text-align:left" class='text-container'>
+    <p><%= @item.description %></p>
+    <p>Price: <%= number_to_currency(@item.price) %> </p>
+    <p>Inventory: <%= @item.inventory %> </p>
+
+    <% if @item.active? %>
+      <p class='active'>Active</p>
+    <% else %>
+      <p class='inactive'>Inactive</p>
+    <% end %>
+
+    <p><%= "Average Review Rating: #{@item.reviews.average_rating.round(2)}" %></p>
+
+    <p><%= button_to 'Add Item to Cart', "/cart/#{@item.id}", method: :patch, class: 'btn btn-success' %></p>
+  </article>
+</section>
+
+<section class='container-fluid justify-content-center d-flex'>
+  <ul><%= link_to 'Create Review', "/items/#{@item.id}/reviews/new", class: 'btn btn-secondary' %></ul>
+  <ul><%= link_to "Edit Item", "/items/#{@item.id}/edit", class: 'btn btn-primary' %></ul>
+  <ul><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete, class: 'btn btn-danger' %></ul>
+</section>
+
+<section class='container-fluid row justify-content-center'>
+  <section class='card card-body bg-light m-3 p-4 col-md-5.5'>
+    <h3 class='text-center'>Top Three Reviews</h3>
+    <section class='container-fluid row justify-content-center item-container'>
+      <% @item.reviews.top_three.each do |review| %>
+        <section class='card card-body bg-light m-3 p-4 col-md-3' id= 'top-review-<%= review.id %>'>
+          <h6><%= review.title %></h6>
+          <p>Rating: <%= review.rating %></p>
+        </section>
       <% end %>
-
-      <p><%= button_to 'Add Item to Cart', "/cart/#{@item.id}", method: :patch %></p>
-
-      <p><%= "Average Review Rating: #{@item.reviews.average_rating}" %></p>
-
-      <p><%= link_to 'Create Review', "/items/#{@item.id}/reviews/new" %></p>
-      <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
-      <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
-    </article>
+    </section>
   </section>
 
-  <h3>Reviews</h3>
-  <% @item.reviews.each do |review| %>
-    <section id= 'review-<%= review.id %>'>
-      <p><%= review.title %></p>
-      <p><%= review.content %></p>
-      <p>Rating: <%= review.rating %></p>
-      <p><%= link_to 'Edit Review', "/reviews/#{review.id}/edit" %></p>
-      <p><%= link_to 'Delete Review', "/reviews/#{review.id}", method: :delete %></p>
+  <section class='card card-body bg-light m-3 p-4 col-md-5.5'>
+    <h3 class='text-center'>Bottom Three Reviews</h3>
+    <section class='container-fluid row justify-content-center item-container'>
+      <% @item.reviews.bottom_three.each do |review| %>
+        <section class='card card-body bg-light m-3 p-4 col-md-3' id= 'bottom-review-<%= review.id %>'>
+          <h6><%= review.title %></h6>
+          <p>Rating: <%= review.rating %></p>
+        </section>
+      <% end %>
     </section>
-  <% end %>
+  </section>
+</section>
 
-  <h3>Top Three Reviews</h3>
-  <% @item.reviews.top_three.each do |review| %>
-    <section id= 'top-review-<%= review.id %>'>
-      <p><%= review.title %></p>
-      <p>Rating: <%= review.rating %></p>
+<section class='container-fluid row justify-content-center'>
+  <section class='card card-body bg-light m-3 p-4'>
+  <h3 class='text-center'>Reviews</h3>
+    <section class='container-fluid justify-content-center'>
+      <% @item.reviews.each do |review| %>
+        <section class='card card-body bg-light m-3 p-4' id= 'review-<%= review.id %>'>
+          <h6><%= review.title %></h6>
+          <p><%= review.content %></p>
+          <p>Rating: <%= review.rating %></p>
+          <p><%= link_to 'Edit Review', "/reviews/#{review.id}/edit", class: 'btn btn-outline-primary' %></p>
+          <p><%= link_to 'Delete Review', "/reviews/#{review.id}", method: :delete, class: 'btn btn-outline-danger' %></p>
+        </section>
+      <% end %>
     </section>
-  <% end %>
+  </section>
+</section>
 
-  <h3>Bottom Three Reviews</h3>
-  <% @item.reviews.bottom_three.each do |review| %>
-    <section id= 'bottom-review-<%= review.id %>'>
-      <p><%= review.title %></p>
-      <p>Rating: <%= review.rating %></p>
-    </section>
-  <% end %>
-
-</center>
