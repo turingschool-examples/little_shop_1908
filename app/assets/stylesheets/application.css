@@ -33,7 +33,6 @@ img{
   width: 50%;
 }
 
-
  .grid-container{
  	display: grid;
  	grid-template-columns: repeat(5,1fr);
@@ -57,9 +56,19 @@ img{
  	grid-template-columns: repeat(2,1fr);
  }
 
+/* image */
  .item-show-item{
  	padding: 20px;
  	text-align: right;
+ }
+
+ .reviews{
+
+ }
+
+/* Stats */
+ .reviews-section{
+
  }
 
  .topnav {
@@ -85,6 +94,10 @@ img{
    text-align: center;
  }
 
+ .cart-header{
+
+ }
+
  .all-cart-items{
 
  }
@@ -93,9 +106,27 @@ img{
 
  }
 
- .new-form{
-   
+ .grand-total{
+
  }
+
+ .form{
+
+ }
+
+ .all-order-items{
+
+ }
+
+ .order-item{
+
+ }
+
+ .order-header{
+
+ }
+
+
 
  input[type=text], select {
   width: 100%;
