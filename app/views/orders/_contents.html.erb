@@ -1,0 +1,15 @@
+<section class="all-order-items">
+  <ol>
+    <% @cart.contents.each do |item_id, quantity| %>
+      <% item = Item.find(item_id) %>
+      <li><%= link_to item.name, "/items/#{item_id}" %><br>
+        <section class="order-item" id="order-item-<%= item_id %>">
+          <p>Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
+          <p>Price: <%= number_to_currency(item.price) %></p>
+          <p>Quantity: <%= quantity %></p>
+          <p>Subtotal: <%= @cart.subtotal(item_id) %></p>
+        </section>
+      </li>
+    <% end %>
+  </ol>
+</section><hr><br>

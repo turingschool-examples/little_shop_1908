@@ -1,39 +1,11 @@
 <h1 id="order-header">Your Order</h1><hr>
-  <section class="all-order-items">
-    <ol>
-      <% @cart.contents.each do |item_id, quantity| %>
-        <% item = Item.find(item_id) %>
-        <!--  -->
-        <li><%= link_to item.name, "/items/#{item_id}" %><br>
-          <section class="order-item" id="order-item-<%= item_id %>">
-            <p>Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
-            <p>Price: <%= number_to_currency(item.price) %></p>
-            <p>Quantity: <%= quantity %></p>
-            <p>Subtotal: <%= @cart.subtotal(item_id) %></p>
-          </section>
-        </li>
-      <!--  -->
-      <% end %>
-    </ol>
-  </section><hr><br>
-  <!--  -->
+
+  <%= render partial: 'contents' %>
+
   <section id="grand-total">
     <p>Grand Total: <%= @cart.grand_total %></p>
   </section>
 
   <h1 align= "center">Create Order</h1>
-  <center class="new-form">
-    <%= form_tag "/orders", method: :post do |f| %>
-      <%= text_field_tag :name, nil, placeholder: 'Name' %>
 
-      <%= text_field_tag :address, nil, placeholder: 'Address' %>
-
-      <%= text_field_tag :city, nil, placeholder: 'City' %>
-
-      <%= text_field_tag :state, nil, placeholder: 'State' %>
-
-      <%= text_field_tag :zip, nil, placeholder: 'Zip' %>
-
-      <%= submit_tag 'Create Order' %>
-    <% end %>
-  </center>
+  <%= render partial: "/merchants/form", locals: {value: false, path: "/orders", method: :post, button_text: 'Create Order'} %>

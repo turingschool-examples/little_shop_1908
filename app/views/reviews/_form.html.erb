@@ -1,0 +1,15 @@
+<section class="form">
+  <%= form_tag path, method: method do |f| %>
+
+    <%= label_tag :title %>
+    <%= text_field_tag :title, value ? ("#{@review.title}") : (nil) %>
+
+    <%= label_tag :content %>
+    <%= text_field_tag :content, value ? ("#{@review.content}") : (nil) %>
+
+    <%= label_tag :rating %>
+    <%= text_field_tag :rating, value ? ("#{@review.rating}") : (nil) %>
+
+    <%= submit_tag button_text %>
+  <% end %>
+</section>

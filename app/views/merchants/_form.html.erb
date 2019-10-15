@@ -1,0 +1,21 @@
+<!-- Use Partial Here -->
+<section class="form">
+  <%= form_tag path, method: method do %>
+    <%= label_tag :name %>
+    <%= text_field_tag :name, value ? ("#{@merchant.name}") : (nil) %>
+
+    <%= label_tag :address %>
+    <%= text_field_tag :address, value ? ("#{@merchant.address}") : (nil) %>
+
+    <%= label_tag :city %>
+    <%= text_field_tag :city, value ? ("#{@merchant.city}") : (nil) %>
+
+    <%= label_tag :state %>
+    <%= text_field_tag :state, value ? ("#{@merchant.state}") : (nil) %>
+
+    <%= label_tag :zip %>
+    <%= text_field_tag :zip, value ? ("#{@merchant.zip}") : (nil) %>
+
+    <%= submit_tag button_text %>
+  <% end %>
+</section>

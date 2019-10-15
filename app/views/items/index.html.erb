@@ -14,9 +14,9 @@
       <p>Price: <%= number_to_currency(item.price) %> </p>
       <p>Inventory: <%= item.inventory %> </p>
       <% if item.active? %>
-        <p>Active</p>
+      <p style="color:green">Active</p>
       <% else %>
-        <p>Inactive</p>
+      <p style="color:red">Inactive</p>
       <% end %>
     </section>
     <% end %>
