@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = Order.create((order_params).merge(grand_total: cart.grand_total))
+    order = Order.create((order_params).merge(grand_total: cart.grand_total).merge(verification: Order.generate_code))
     if order.save
       order.generate_item_orders(cart)
       session[:cart] = Hash.new(0)
