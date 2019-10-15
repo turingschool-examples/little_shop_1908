@@ -126,8 +126,6 @@ img{
 
  }
 
-
-
  input[type=text], select {
   width: 100%;
   padding: 12px 20px;
@@ -159,7 +157,6 @@ form {
   width: 60%;
 }
 
-
 #flash-confirm{
   background-color: forestgreen;
 }
@@ -168,6 +165,13 @@ form {
   background-color: lightgrey;
 }
 
+#flash-message{
+
+}
+
+#flash-alert{
+
+}
 
 #cart-header{
 
