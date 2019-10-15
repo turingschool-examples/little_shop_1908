@@ -1,9 +1,9 @@
-<h1 align = "center">Merchants</h1>
-<p align="center"><%= link_to "New Merchant", "/merchants/new" %></p>
-<section class = "grid-container">
+<h1 class='mt-4 mb-2'>Merchants</h1>
+<section class="container-fluid row justify-content-center">
   <% @merchants.each do |merchant|%>
-    <section class = "grid-item">
-      <h2><%=link_to merchant.name, "/merchants/#{merchant.id}"%></h2>
+    <section class='card card-body bg-light m-3 p-4 col-md-3'>
+      <h2 class='text-center'><%= link_to merchant.name, "/merchants/#{merchant.id}" %></h2>
     </section>
   <% end %>
 </section>
+<p align="center"><%= link_to "New Merchant", "/merchants/new", class: 'btn btn-primary mt-3' %></p>
