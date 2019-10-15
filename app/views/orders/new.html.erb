@@ -1,1 +1,21 @@
-<h1>Order</h1>
+<h1 align= "center">Order</h1>
+
+<section>
+  
+</section>
+
+<center>
+  <%= form_tag "/order", method: :post do %>
+    <%= text_field_tag :name, "Name" %>
+
+    <%= text_field_tag :address, "Address" %>
+
+    <%= text_field_tag :city, "City" %>
+
+    <%= text_field_tag :state, "State" %>
+
+    <%= text_field_tag :zip, "Zip" %>
+
+    <%= submit_tag 'Create Order' %>
+  <% end %>
+</center>
