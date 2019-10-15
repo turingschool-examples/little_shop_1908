@@ -6,7 +6,7 @@
     <p><%= "#{@order.city}" %>, <%= "#{@order.state}" %> <%= "#{@order.zip}" %></p>
     <p>Created: <%= "#{@order.created_at.to_date}" %></p>
   </section>
-  <!--  -->
+  <!-- Use Partial Here -->
   <section class="all-order-items">
     <ol>
       <% @cart.contents.each do |item_id, quantity| %>

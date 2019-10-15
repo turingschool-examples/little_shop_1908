@@ -1,5 +1,6 @@
 <h1>Create New Review For <%=link_to @item.name, "/items/#{@item.id}" %></h1>
 
+<!-- Use Partial Here -->
 <center class="new-form">
   <%= form_tag "/items/#{@item.id}", method: :post do %>
     <%= text_field_tag :title, nil, placeholder: "Title"%>

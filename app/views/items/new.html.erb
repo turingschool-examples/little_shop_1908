@@ -1,5 +1,6 @@
 <h1>Create New Item For <%=link_to @merchant.name, "/merchants/#{@merchant.id}" %></h1>
 
+<!-- Use Partial Here -->
 <center class="new-form">
   <%= form_tag "/merchants/#{@merchant.id}/items", method: :post do %>
     <%= text_field_tag :name, nil, placeholder: "Name"%>

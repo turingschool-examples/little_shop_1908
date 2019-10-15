@@ -1,5 +1,6 @@
 <h1> Edit <%= link_to @item.name, "/items/#{@item.id}" %></h1>
 
+<!-- Use Partial Here -->
 <center>
   <%= form_tag "/reviews/#{@review.id}", method: :patch do |f| %>
 

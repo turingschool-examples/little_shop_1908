@@ -1,6 +1,7 @@
 <h1 id="order-header">Your Order</h1><hr>
   <section class="all-order-items">
     <ol>
+      <!-- Use Partial here -->
       <% @cart.contents.each do |item_id, quantity| %>
         <% item = Item.find(item_id) %>
         <!--  -->
