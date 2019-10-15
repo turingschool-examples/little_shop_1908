@@ -12,19 +12,40 @@
 
 <h5>Grand Total: <%= number_to_currency(cart.grand_total) %></h5>
 
-<h2>Shipping Information</h2>
-<center>
-  <%= form_tag '/orders', method: :post do %>
-    <%= text_field_tag :name, nil, placeholder: "Name" %>
+<h1>Shipping Information</h1>
+<%= form_tag "/orders", method: :post do %>
+  <section class='form-group form-width'>
+    <p>
+      <%= label_tag :name %>
+      <%= text_field_tag :name, nil, class: 'form-control' %>
+    </p>
 
-    <%= text_field_tag :address, nil, placeholder: "Address" %>
+    <p>
+      <%= label_tag :address %>
+      <%= text_area_tag :address, nil, class: 'form-control' %>
+    </p>
 
-    <%= text_field_tag :city, nil, placeholder: "City" %>
+    <p>
+      <%= label_tag :city %>
+      <%= text_field_tag :city, nil, class: 'form-control' %>
+    </p>
 
-    <%= text_field_tag :state, nil, placeholder: "State" %>
+    <p>
+      <%= label_tag :state %>
+      <%= text_field_tag :state, nil, class: 'form-control' %>
+    </p>
 
-    <%= text_field_tag :zip, nil, placeholder: "Zip Code" %>
+    <p>
+      <%= label_tag :zip %>
+      <%= text_field_tag :zip, nil, class: 'form-control' %>
+    </p>
 
-    <%= submit_tag 'Create Order' %>
-  <% end %>
-</center>
+    <br>
+
+    <p>
+      <%= submit_tag 'Create Order', class: 'btn btn-primary' %>
+    </p>
+  </section>
+<% end %>
+
+
