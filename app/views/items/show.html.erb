@@ -15,9 +15,9 @@
         <p style= "color:red">Inactive</p>
       <% end %>
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
-      <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p><br>
+      <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
       <p><%= link_to "Add Review", "/items/#{@item.id}/reviews/new" %></p>
-      <p><%= button_to "Add to cart", "/cart/#{@item.id}", method: :post %></p>
+      <p><%= button_to "Add to cart", "/cart/#{@item.id}", method: :post %></p><br><hr>
 
       <h3>Reviews</h3>
       <div class="Reviews">
@@ -34,7 +34,7 @@
           <p><%= "Rating: #{review.rating}" %></p>
           <p><%= link_to "Delete Review", "/items/#{@item.id}/reviews/#{review.id}", method: :delete %></p><br>
         </section>
-        <% end %>  
+        <% end %>
       </div>
 
       <section class='reviews-section'>
