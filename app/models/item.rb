@@ -1,4 +1,4 @@
-class Item <ApplicationRecord
+class Item < ApplicationRecord
   belongs_to :merchant
   has_many :reviews, dependent: :destroy
   has_many :item_orders
@@ -9,11 +9,10 @@ class Item <ApplicationRecord
                         :price,
                         :image,
                         :inventory
-  validates_inclusion_of :active?, :in => [true, false]
 
-  validates :price, numericality: {greater_than: 0}
-
-  # validate image link
+  validates_inclusion_of :active?, in: [true, false]
+  validates :price, numericality: { greater_than: 0 }
+  validates :inventory, numericality: { greater_than_or_equal_to: 0 }
 
   def top_three_reviews
     reviews.order(rating: :desc).limit(3)
