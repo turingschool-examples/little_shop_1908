@@ -74,6 +74,5 @@ describe 'From an items show Page' do
           within ".topnav" do
             expect(page).to have_content("Cart: 5")
           end
-
         end
 end

@@ -27,9 +27,16 @@ class MerchantsController < ApplicationController
   end
 
   def destroy
-    # Item.delete(Item.where(merchant_id: params[:id]))
-    Merchant.destroy(params[:id])
-    redirect_to '/merchants'
+    merchant = Merchant.find(params[:id])
+
+    if merchant.items.all? {|item| item.orders == []}
+      merchant.items.each {|item| cart.contents.delete(item.id.to_s)}
+      merchant.destroy
+      redirect_to '/merchants'
+    else
+      flash[:alert] = "You cannot delete a merchant with open orders"
+      redirect_to "/merchants/#{merchant.id}"
+    end
   end
 
   private
