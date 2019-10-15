@@ -52,7 +52,7 @@ RSpec.describe "As a Visitor" do
 
           visit "/items/#{@tire.id}"
           click_on "Edit Item"
-          save_and_open_page
+
           fill_in 'Name', with: ""
           fill_in 'Price', with: 110
           fill_in 'Description', with: "They're a bit more expensive, and they kinda do pop sometimes, but whatevs.. this is retail."
