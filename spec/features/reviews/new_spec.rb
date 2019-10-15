@@ -30,16 +30,11 @@ RSpec.describe 'Create new review', type: :feature do
 
       this_review = Review.last
 
+      expect(@chain.reviews).to eq([this_review])
       expect(current_path).to eq("/items/#{@chain.id}")
       expect(this_review.title).to eq(title)
       expect(this_review.rating).to eq(rating)
       expect(this_review.content).to eq(content)
-
-      # within "#review-#{this_review.id}" do
-      #   expect(page).to have_content(title)
-      #   expect(page).to have_content("Rating: #{rating} stars")
-      #   expect(page).to have_content(content)
-      # end
     end
 
     it 'Tells me when I need to finish completing form' do
