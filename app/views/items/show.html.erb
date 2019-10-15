@@ -23,6 +23,7 @@
   </section>
   <% if !@item.reviews.empty? %>
     <section>
+
       <h2>Reviews</h2>
       <% @item.reviews.each do |review| %>
         <section id = "review-<%= review.id %>">
