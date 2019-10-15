@@ -45,12 +45,12 @@ describe Item, type: :model do
     end
 
     it 'can get the number of items' do
-      expect(@meg.items.total_count).to eq(1)
+      expect(@meg.items.total_count).to eq(2)
       expect(@brian.items.total_count).to eq(2)
     end
 
     it 'can calculate the average price of items' do
-      expect(@meg.items.average_price).to eq(100)
+      expect(@meg.items.average_price).to eq(75)
       expect(@brian.items.average_price).to eq(15)
     end
 
