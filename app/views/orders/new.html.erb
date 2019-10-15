@@ -1,24 +1,10 @@
 <h1 id="order-header">Your Order</h1><hr>
 
   <%= render partial: 'contents' %>
-  
+
   <section id="grand-total">
     <p>Grand Total: <%= @cart.grand_total %></p>
   </section>
 
   <h1 align= "center">Create Order</h1>
-  <center class="new-form">
-    <%= form_tag "/orders", method: :post do |f| %>
-      <%= text_field_tag :name, nil, placeholder: 'Name' %>
-
-      <%= text_field_tag :address, nil, placeholder: 'Address' %>
-
-      <%= text_field_tag :city, nil, placeholder: 'City' %>
-
-      <%= text_field_tag :state, nil, placeholder: 'State' %>
-
-      <%= text_field_tag :zip, nil, placeholder: 'Zip' %>
-
-      <%= submit_tag 'Create Order' %>
-    <% end %>
-  </center>
+  <%= render partial: "/merchants/form", locals: {value: false, path: "/orders", method: :post, button_text: 'Create Order'} %>
