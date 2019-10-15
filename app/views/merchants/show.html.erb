@@ -4,5 +4,8 @@
 
 <ul><%= link_to "All #{@merchant.name} Items", "/merchants/#{@merchant.id}/items" %></ul>
 <ul><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit" %></ul>
-<ul><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete %>
+<%# <% # <% if !Item.merchant_id.include?(@merchants.items_id) %> %>
+<%# if !item_order.include?(@merchants.items_id) %> %>
+    <ul><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete %>
+<% end %>
 </ul>
