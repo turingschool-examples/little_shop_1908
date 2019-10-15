@@ -32,5 +32,6 @@ Rails.application.routes.draw do
   put "/cart/:item_id", to: "cart#remove"
 
   get '/orders/new', to: 'orders#new'
-
+  post '/orders', to: 'orders#create'
+  get "/orders/:id", to: 'orders#show'
 end
