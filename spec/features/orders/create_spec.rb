@@ -1,13 +1,4 @@
 require 'rails_helper'
-# - My name and address (shipping information)
-# - Details of the order:
-# - the name of the item
-# - the merchant I'm buying this item from
-# - the price of the item
-# - my desired quantity of the item
-# - a subtotal (price multiplied by quantity)
-# - a grand total of what everything in my cart will cost
-# - the date when the order was created
 
 describe "Order creation" do
   it "can see details of order" do

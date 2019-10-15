@@ -18,7 +18,6 @@ class OrdersController < ApplicationController
   end
 
   private
-
   def customer_info
     params.permit(:name, :address, :city, :state, :zip)
   end
