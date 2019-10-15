@@ -68,7 +68,7 @@ describe Merchant, type: :model do
       @order_3 = Order.create(name: "Sam", address: "345 Way", city: "Boston", state: "MA", zip: "10101", grand_total: 200)
       @order_3.generate_item_orders(cart)
 
-      expect(@bike_shop.all_cities).to eq(["Denver", "Boston"])
+      expect(@bike_shop.all_cities.sort).to eq(["Boston", "Denver"])
     end
   end
 end
