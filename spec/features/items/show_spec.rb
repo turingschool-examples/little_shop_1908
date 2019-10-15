@@ -179,4 +179,24 @@ RSpec.describe 'item show page', type: :feature do
 
     expect(page).to have_link("Cart (2)")
   end
+
+  it "cannot delete item if it has been ordered" do
+    click_link 'Add Item to Cart'
+
+    visit '/cart'
+
+    click_link 'Checkout'
+
+    fill_in 'Customer name', with: 'Joe'
+    fill_in 'Customer address', with: '123 Test Drive'
+    fill_in 'Customer city', with: 'Denver'
+    fill_in 'Customer state', with: 'CO'
+    fill_in 'Customer zip', with: 80128
+
+    click_button 'Create Order'
+
+    visit "/items/#{@chain.id}"
+
+    expect(page).to_not have_link('Delete Item')
+  end
 end
