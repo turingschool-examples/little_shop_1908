@@ -7,7 +7,8 @@ class Order < ApplicationRecord
                         :city,
                         :state,
                         :zip,
-                        :grand_total
+                        :grand_total,
+                        :verification
 
   def generate_item_orders(cart)
     cart.cart_items.each do |item|
@@ -17,5 +18,13 @@ class Order < ApplicationRecord
                         subtotal: (cart.count_of(item.id) * item.price)
                       )
     end
+  end
+
+  def self.generate_code
+    number = SecureRandom.hex(5)
+    until !Order.pluck(:verification).include?(number)
+      number = SecureRandom.hex(5)
+    end
+    number
   end
 end
