@@ -19,4 +19,20 @@ class Merchant <ApplicationRecord
     end
     arr.include?(false)
   end
+
+  def count_of_items
+    items.count
+  end
+
+  def average_price
+    items.average(:price)
+  end
+
+  def distinct_cities
+    cities_arr = []
+    items.each do |item|
+      cities_arr << item.orders.distinct.pluck(:customer_city)
+    end
+    cities_arr.flatten
+  end
 end
