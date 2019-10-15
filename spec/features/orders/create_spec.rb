@@ -27,7 +27,7 @@ RSpec.describe 'Order Creation' do
 
       click_button 'Create Order'
 
-      expect(current_path).to eq("/order/#{Order.first.id}")
+      expect(current_path).to eq("/order/#{Order.last.id}")
 
       expect(page).to have_content('Sam')
       expect(page).to have_content('123 Main St')
@@ -52,6 +52,7 @@ RSpec.describe 'Order Creation' do
       end
 
       expect(page).to have_content('Grand Total: $250')
+      expect(page).to have_content("Order created! Your order lookup code is #{Order.last.verification}")
     end
 
     it 'when I create a new order, the cart is emptied' do
