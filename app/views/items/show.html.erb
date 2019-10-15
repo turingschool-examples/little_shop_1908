@@ -17,7 +17,11 @@
       <p class='inactive'>Inactive</p>
     <% end %>
 
-    <p><%= "Average Review Rating: #{@item.reviews.average_rating.round(2)}" %></p>
+    <% if !@item.reviews.empty? %>
+      <p><%= "Average Review Rating: #{@item.reviews.average_rating.round(2)}" %></p>
+    <% else %>
+      <p>No Average Review Rating (No reviews have been made)</p>
+    <% end %>
 
     <p><%= button_to 'Add Item to Cart', "/cart/#{@item.id}", method: :patch, class: 'btn btn-success' %></p>
   </article>
@@ -71,4 +75,3 @@
     </section>
   </section>
 </section>
-
