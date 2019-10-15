@@ -34,8 +34,15 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    Item.destroy(params[:id])
-    redirect_to "/items"
+    item = Item.find(params[:id])
+    binding.pry
+    if item.orders == []
+      Item.destroy(params[:id])
+      redirect_to "/items"
+    else
+      flash[:alert] = "You cannot delete an item with open orders"
+      redirect_to "/items/#{item.id}"
+    end
   end
 
   private
