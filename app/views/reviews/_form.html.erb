@@ -2,13 +2,13 @@
   <%= form_tag path, method: method do |f| %>
 
     <%= label_tag :title %>
-    <%= text_field_tag :title, "#{review.title}" %>
+    <%= text_field_tag :title, title_value %>
 
     <%= label_tag :content %>
-    <%= text_field_tag :content, "#{review.content}" %>
+    <%= text_field_tag :content, content_value %>
 
     <%= label_tag :rating %>
-    <%= text_field_tag :rating, "#{review.rating}"%>
+    <%= text_field_tag :rating, rating_value %>
 
     <%= submit_tag button_text %>
   <% end %>

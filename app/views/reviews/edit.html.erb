@@ -1,18 +1,4 @@
-<h1> Edit <%= link_to @item.name, "/items/#{@item.id}" %></h1>
+<h1> Edit <%= link_to @item.name, "/items/#{@item.id}" %>s review</h1>
 
 <!-- Use Partial Here -->
-<center>
-  <%= form_tag "/reviews/#{@review.id}", method: :patch do |f| %>
-
-    <%= label_tag :title %>
-    <%= text_field_tag :title, "#{@review.title}" %>
-
-    <%= label_tag :content %>
-    <%= text_field_tag :content, "#{@review.content}" %>
-
-    <%= label_tag :rating %>
-    <%= text_field_tag :rating, "#{@review.rating}"%>
-
-    <%= submit_tag 'Update Review' %>
-  <% end %>
-</center>
+<%= render partial: "form", locals: {title_value: "#{@review.title}", content_value: "#{@review.content}", rating_value: "#{@review.rating}", method: :patch, path: "/reviews/#{@review.id}", button_text: 'Update Review'} %>
