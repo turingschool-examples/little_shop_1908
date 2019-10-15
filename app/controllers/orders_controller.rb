@@ -5,12 +5,17 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = Order.create(total_amount: cart.grand_total)
-    session[:customer] = customer_info
-    cart.contents.each do |item_id, quantity|
-      order.item_orders.create(item_id: item_id.to_i, quantity: quantity)
+    if !customer_info.values.include?("")
+      order = Order.create(total_amount: cart.grand_total)
+      session[:customer] = customer_info
+      cart.contents.each do |item_id, quantity|
+        order.item_orders.create(item_id: item_id.to_i, quantity: quantity)
+      end
+      redirect_to "/orders/#{order.id}"
+    else
+      flash[:error] = "Must fill in all fields"
+      redirect_to "/orders/new"
     end
-    redirect_to "/orders/#{order.id}"
   end
 
   def show
