@@ -1,6 +1,5 @@
 <% if @merchant %>
   <h1 class="mt-4 mb-2"><%= link_to @merchant.name, "/merchants/#{@merchant.id}"%><span> Items</span></h1>
-  <p align="center"><%= link_to "Add New Item", "/merchants/#{@merchant.id}/items/new" %></p>
 <% else %>
   <h1 class="mt-4 mb-2">All Items</h1>
 <% end %>
@@ -21,3 +20,7 @@
     </section>
   <% end %>
 </section>
+
+<% if @merchant %>
+  <p align="center"><%= link_to "Add New Item", "/merchants/#{@merchant.id}/items/new", class: 'btn btn-primary mt-3' %></p>
+<% end %>
