@@ -7,9 +7,11 @@
   <p><%= "Average Item Price: #{number_to_currency(@merchant.items.average_price)}" %></p>
   <% if !@merchant.orders.empty? %>
     <p>Items sold in these cities:</p>
-    <% @merchant.orders.distinct_cities.each do |city| %>
-      <p><%= city %></p>
-    <% end %>
+    <ul>
+      <% @merchant.orders.distinct_cities.each do |city| %>
+        <li><%= city[0] %>, <%= city[1] %></li>
+      <% end %>
+    </ul>
   <% else %>
     <p>No items have been sold 🥺</p>
   <% end %>

@@ -28,7 +28,7 @@ RSpec.describe Order, type: :model do
       user_1 = User.create(name: 'Kyle Pine', address: '123 Main Street', city: 'Greenville', state: 'NC', zip: '29583')
       order_1 = user_1.orders.create(grand_total: 100)
       order_1.item_orders.create(item_id: @tire.id, item_quantity: 2, subtotal: 50)
-      
+
       user_2 = User.create(name: 'Steve Spruce', address: '456 2nd Street', city: 'Redville', state: 'SC', zip: '29444')
       order_2 = user_2.orders.create(grand_total: 40)
       order_2.item_orders.create(item_id: @pull_toy.id, item_quantity: 2, subtotal: 20)
@@ -40,7 +40,7 @@ RSpec.describe Order, type: :model do
       order_3.item_orders.create(item_id: @dog_bone.id, item_quantity: 1, subtotal: 20)
 
 
-      expect(Order.distinct_cities).to eq(['Greenville', 'Redville'])
+      expect(Order.distinct_cities).to eq([['Greenville', 'NC'], ['Redville', 'SC']])
     end
   end
 end

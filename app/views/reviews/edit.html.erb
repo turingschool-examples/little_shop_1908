@@ -1,16 +1,24 @@
-<h1>Edit Review for <%=link_to @review.item.name, "/items/#{@review.item_id}" %></h1>
+<h1 class="mt-4 mb-3">Edit Review for <%=link_to @review.item.name, "/items/#{@review.item_id}" %></h1>
 
-<center>
-  <%= form_tag "/reviews/#{@review.id}", method: :patch  do %>
-    <%= label_tag :title %>
-    <%= text_field_tag :title, @review.title %>
+  <%= form_tag "/reviews/#{@review.id}", method: :patch do %>
+    <section class='form-group form-width'>
+      <p>
+        <%= label_tag :title %>
+        <%= text_field_tag :title, @review.title, class: 'form-control' %>
+      </p>
 
-    <%= label_tag :content %>
-    <%= text_area_tag :content, @review.content %>
+      <p>
+        <%= label_tag 'Review Content' %>
+        <%= text_area_tag :content, @review.content, class: 'form-control' %>
+      </p>
 
-    <%= label_tag :rating %>
-    <%= number_field_tag :rating, @review.rating, min: 1, max: 5, step: 1 %>
+      <p>
+        <%= label_tag :rating %>
+        <%= number_field_tag :rating, @review.rating, class: 'form-control' %>
+      </p>
 
-    <%= submit_tag 'Update Review' %>
+      <p>
+        <%= submit_tag 'Update Review', class: 'btn btn-primary mt-3' %>
+      </p>
+    </section>
   <% end %>
-</center>

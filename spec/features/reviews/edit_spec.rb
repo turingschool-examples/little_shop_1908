@@ -30,7 +30,7 @@ RSpec.describe "review edit" do
       expect(current_path).to eq("/reviews/#{@review_1.id}/edit")
       expect(page).to have_link(@chain.name)
       expect(find_field('Title').value).to eq "It'll never break!"
-      expect(find_field('Content').value).to eq 'Great chain!'
+      expect(find_field('content').value).to eq 'Great chain!'
       expect(find_field('Rating').value).to eq '5'
     end
 
@@ -79,7 +79,7 @@ RSpec.describe "review edit" do
       fill_in :rating, with: "Not a number"
 
       click_button 'Update Review'
-      
+
       expect(current_path).to eq("/reviews/#{@review_1.id}/edit")
       expect(page).to have_content("Rating is not a number")
     end

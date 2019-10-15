@@ -1,13 +1,24 @@
-<h1>Create New Review for <%=link_to @item.name, "/items/#{@item.id}" %></h1>
+<h1 class="mt-4 mb-3">Create New Review for <%=link_to @item.name, "/items/#{@item.id}" %></h1>
 
-<center>
   <%= form_tag "/items/#{@item.id}/reviews", method: :post do %>
-    <%= text_field_tag :title, nil, placeholder: "Title"%>
+    <section class='form-group form-width'>
+      <p>
+        <%= label_tag :title %>
+        <%= text_field_tag :title, nil, class: 'form-control' %>
+      </p>
 
-    <%= text_area_tag :content, nil, placeholder: "Review Content" %>
+      <p>
+        <%= label_tag 'Review Content' %>
+        <%= text_area_tag :content, nil, class: 'form-control' %>
+      </p>
 
-    <%= number_field_tag :rating, nil, placeholder: "Rating", min: 1, max: 5, step: 1 %>
+      <p>
+        <%= label_tag :rating %>
+        <%= number_field_tag :rating, nil, class: 'form-control' %>
+      </p>
 
-    <%= submit_tag 'Create Review' %>
+      <p>
+        <%= submit_tag 'Create Review', class: 'btn btn-primary mt-3' %>
+      </p>
+    </section>
   <% end %>
-</center>

@@ -10,6 +10,6 @@ class Order < ApplicationRecord
   belongs_to :user
 
   def self.distinct_cities
-    joins(:user).distinct.pluck(:city)
+    joins(:user).distinct.pluck(:city, :state)
   end
 end
