@@ -62,8 +62,8 @@ describe "Visit cart show page" do
 
     visit "/cart"
 
-    click_button "Checkout"
-    expect(current_path).to eq('/order')
+    click_link "Checkout"
+    expect(current_path).to eq('/orders/new')
     expect(page).to have_content("Order")
   end
  end
