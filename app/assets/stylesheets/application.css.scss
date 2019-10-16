@@ -40,6 +40,10 @@ img{
  	grid-template-columns: repeat(5,1fr);
  	grid-template-rows: auto;
  	grid-gap: 30px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
  }
 
  .grid-item{
@@ -48,7 +52,25 @@ img{
   border: solid;
  	border-radius: 12px;
   border-color: #002244;
- 	text-align: center
+ 	text-align: center;
+  height: 150px;
+  width: 300px;
+ }
+
+ .index-grid-container{
+   display: grid;
+   grid-template-columns: repeat(5,1fr);
+   grid-template-rows: auto;
+   grid-gap: 30px;
+ }
+
+ .index-grid-item{
+   background-color: #17BEBB;
+   padding: 20px;
+   border: solid;
+   border-radius: 12px;
+   border-color: #002244;
+   text-align: center;
  }
  .item-show-grid{
   width: 60%;
@@ -61,6 +83,17 @@ img{
  .item-show-item{
  	padding: 20px;
  	text-align: right;
+ }
+
+ .review{
+  background-color: #17BEBB;
+  padding: 20px;
+  border: solid;
+  border-radius: 12px;
+  border-color: #002244;
+  text-align: center;
+  height: 150px;
+  width: 300px;
  }
 
  .topnav {
@@ -84,6 +117,10 @@ img{
 
  .address{
    text-align: center;
+ }
+
+ #search_button{
+  background-color: #002244;
  }
 
  input[type=text], select {

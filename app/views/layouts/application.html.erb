@@ -13,10 +13,10 @@
       <%= link_to 'Home', '/' %>
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
-      <div id= "search_button" class = "topnav" style="background-color:#002244;">
-        <%= form_tag('/orders/search', method: 'get' ) do %>
+      <div class = "topnav" style="background-color:#002244;">
+          <p><%= form_tag('/orders/search', method: 'get' ) do %></p>
           <%= search_field_tag 'search', params[:search], class: 'form-control', placeholder: 'Order Verification Number'  %>
-          <%= submit_tag "Submit", class: 'btn btn-default', :name => nil %>
+          <%= submit_tag "Search", class: 'btn btn-default', :name => nil %>
         <% end %>
       < /div>
       <p style="color:black; position:absolute; top:0; right:0; padding:0.2px 10px;"><%= link_to "Cart: #{cart.total_count}", '/cart' %></p>
