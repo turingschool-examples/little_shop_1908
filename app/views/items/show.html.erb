@@ -40,7 +40,9 @@
 
       <p><%= link_to "Write Review", "/items/#{@item.id}/reviews/new" %></p>
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
-      <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
+        <% if @item.item_orders.empty? %>
+          <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
+        <% end %>
     </section>
   </section>
 </center>
