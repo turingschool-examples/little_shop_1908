@@ -15,7 +15,7 @@
  */
 
  body {
- background-color: white;
+ background-color: darksalmon;
  }
 
  h1 {
@@ -41,7 +41,7 @@ img{
  }
 
  .grid-item{
- 	background-color: darksalmon;
+ 	background-color: #848586;
  	padding: 20px;
   border: solid;
  	border-radius: 12px;
@@ -66,6 +66,8 @@ img{
    overflow: hidden;
    background-color: #002244;
    color: white;
+   display: inline-block;
+   width: 100%
  }
 
  .topnav a {
@@ -116,6 +118,22 @@ img{
 
  #cart-buttons div {
    display: flex;
+ }
+
+ #search-bar {
+
+ }
+
+ #search-bar form {
+   background-color: #002244;
+   float: right;
+ }
+
+ #search-bar input {
+   background-color: #848586;
+   margin-left: 10px;
+   width: 20%;
+
  }
 
  input[type=text], select {
