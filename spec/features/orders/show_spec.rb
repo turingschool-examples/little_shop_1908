@@ -80,4 +80,10 @@ RSpec.describe 'order show page', type: :feature do
     expect(current_path).to eq('/cart')
     expect(page).to have_content('Order does not exist!')
   end
+
+  it 'can see the order verification code' do
+    visit "/orders/#{@order.id}"
+
+    expect(page).to have_content("Order Number: #{@order.verification_code}")
+  end
 end
