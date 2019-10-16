@@ -1,0 +1,28 @@
+<h1>Update Order</h1>
+
+<center>
+  <%= form_tag "/verified_order/#{@order.id}", method: :patch do %>
+    <%= text_field_tag :name, "#{@order.name}" %>
+    <%= text_field_tag :address, "#{@order.address}" %>
+    <%= text_field_tag :city, "#{@order.city}" %>
+    <%= text_field_tag :state, "#{@order.state}" %>
+    <%= text_field_tag :zip, "#{@order.zip}" %>
+    <%= submit_tag 'Update Shipping Information' %>
+  <% end %>
+</center>
+
+<section class="grid-container">
+  <% @order.item_orders.each do |item_order| %>
+    <section class = "grid-item" id= 'item-<%=item_order.current_item.id%>'>
+      <%= item_order.current_item.name %>
+      Sold by: <%= item_order.current_item.merchant.name %>
+      Price: $<%= item_order.current_item.price %>
+      Quantity: <%= item_order.quantity %>
+      Subtotal: $<%= item_order.subtotal %>
+      <%= button_to 'Remove Item', "/verified_order/#{item_order.id}", method: :delete %>
+    </section>
+  <% end %>
+</section>
+<p>Grand Total: $<%= @order.grand_total %></p>
+
+<%= button_to 'Delete Order', "/verified_order/#{@order.id}", method: :delete %>

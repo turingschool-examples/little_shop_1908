@@ -37,5 +37,6 @@ Rails.application.routes.draw do
   get '/order/:id', to: 'orders#show'
   post '/order', to: 'orders#create'
 
-  get '/verified_order/:search', to: 'orders#verified'
+  get '/verified_order', to: 'orders#verified_order'
+  get '/verified_order/:id/edit', to: 'orders#edit'
 end
