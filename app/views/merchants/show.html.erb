@@ -9,7 +9,7 @@
 
 <section id = "merchant-stats">
   <p>Number of Items: <%= @merchant.number_of_items %></p>
-  <p>Average Price: $<%= @merchant.avg_price %></p>
+  <p>Average Price: <%= number_to_currency(@merchant.avg_price) %></p>
   <p>
     Satisfied Customers In: <%= @merchant.all_cities.to_sentence %>
   </p>

@@ -3,12 +3,12 @@
   <section class="grid-container">
     <% cart.cart_items.each do |item| %>
       <section class = "grid-item" id= 'item-<%=item.id%>'>
-        <p><%= item.name %></p>
+        <p><%= link_to item.name, "/items/#{item.id}" %></p>
         <img src= <%= item.image %>>
-        <p>Sold by: <%= Merchant.find(item.merchant_id).name %></p>
-        <p>Price: $<%= item.price %></p>
+        <p>Sold by: <%= link_to Merchant.find(item.merchant_id).name, "/merchants/#{item.merchant_id}" %></p>
+        <p>Price: <%= number_to_currency(item.price) %></p>
         <p>Quantity: <%= cart.count_of(item.id) %></p>
-        <p>Subtotal: $<%= cart.subtotal(item.id) %></p>
+        <p>Subtotal: <%= number_to_currency(cart.subtotal(item.id)) %></p>
         <section id="cart-buttons">
           <div>
             <%= button_to '+', "/cart/#{item.id}/add", method: :patch %>
@@ -21,7 +21,7 @@
   </section>
   <hr>
   <center>
-    <p>Grand Total: $<%= cart.grand_total %> </p>
+    <h2>Grand Total: <%= number_to_currency(cart.grand_total) %> </h2>
     <%= button_to 'Checkout', '/cart/new_order', method: :get %>
     <%= button_to 'Empty Cart', '/cart', method: :delete %>
   </center>

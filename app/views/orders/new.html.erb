@@ -1,14 +1,16 @@
 <h1>Checkout Page</h1>
-<% cart.cart_items.each do |item| %>
-  <section class = "grid-item" id= 'item-<%=item.id%>'>
-    <%= item.name %>
-    Sold by: <%= Merchant.find(item.merchant_id).name %>
-    Price: $<%= item.price %>
-    Quantity: <%= cart.count_of(item.id) %>
-    Subtotal: $<%= cart.subtotal(item.id) %>
-  </section>
-<% end %>
-<p>Grand Total: $<%= cart.grand_total %></p>
+<section class="grid-container">
+  <% cart.cart_items.each do |item| %>
+    <section class = "grid-item" id= 'item-<%=item.id%>'>
+      <h4> <%= link_to item.name, "/items/#{item.id}" %> </h4>
+      <p> Sold by: <%= link_to Merchant.find(item.merchant_id).name, "/merchants/#{item.merchant_id}" %> </p>
+      <p> Price: <%= number_to_currency(item.price) %> </p>
+      <p> Quantity: <%= cart.count_of(item.id) %> </p>
+      <p> Subtotal: <%= number_to_currency(cart.subtotal(item.id)) %> </p>
+    </section>
+  <% end %>
+</section>
+<h2 align="center">Grand Total: <%= number_to_currency(cart.grand_total) %></h2>
 
 <center>
   <%= form_tag '/order', method: :post do %>
