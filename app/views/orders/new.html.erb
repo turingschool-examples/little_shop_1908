@@ -3,17 +3,18 @@
 <section class="grid-container">
   <% cart.cart_items.each do |item| %>
     <section class = "grid-item" id= 'item-<%=item.id%>'>
-      <%= item.name %>
-      <p>Sold by: <%= Merchant.find(item.merchant_id).name %></p>
-      <p>Price: $<%= item.price %></p>
-      <p>Quantity: <%= cart.count_of(item.id) %></p>
-      <p>Subtotal: $<%= cart.subtotal(item.id) %></p>
+      <h4> <%= link_to item.name, "/items/#{item.id}" %> </h4>
+      <p> Sold by: <%= link_to Merchant.find(item.merchant_id).name, "/merchants/#{item.merchant_id}" %> </p>
+      <p> Price: <%= number_to_currency(item.price) %> </p>
+      <p> Quantity: <%= cart.count_of(item.id) %> </p>
+      <p> Subtotal: <%= number_to_currency(cart.subtotal(item.id)) %> </p>
     </section>
   <% end %>
 </section>
 <hr>
-<center>Grand Total: $<%= cart.grand_total %></center>
+<h2 align="center">Grand Total: <%= number_to_currency(cart.grand_total) %></h2>
 <hr>
+
 
 <center>
   <%= form_tag '/order', method: :post do %>
