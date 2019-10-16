@@ -33,9 +33,14 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    ItemOrder.delete(ItemOrder.where(order_id: params[:id]))
-    Order.destroy(params[:id])
-    redirect_to '/items'
+    if params[:item_id]
+      ItemOrder.delete(ItemOrder.where(order_id: params[:order_id], item_id: params[:item_id]))
+      redirect_to "/orders/#{params[:order_id]}"
+    else
+      ItemOrder.delete(ItemOrder.where(order_id: params[:id]))
+      Order.destroy(params[:id])
+      redirect_to '/items'
+    end
   end
 
   private
