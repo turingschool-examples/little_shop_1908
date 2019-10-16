@@ -123,5 +123,17 @@ RSpec.describe 'order show page', type: :feature do
 
       expect(current_path).to eq('/items')
     end
+
+    it 'can click a link to delete the order' do
+      visit '/'
+      fill_in 'Order Code/Number', with: '4856752493'
+      click_button 'Search'
+
+      click_button('Delete Order')
+
+      expect(Order.all).to eq([])
+      expect(ItemOrder.where(order_id: @order_1.id)).to eq([])
+      expect(current_path).to eq('/items')
+    end
   end
 end
