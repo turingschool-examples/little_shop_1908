@@ -9,10 +9,13 @@
   </head>
 
   <body>
-    <nav class = "topnav">
+    <nav class="topnav">
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
       <%= link_to "Cart: #{cart.total_count}", "/cart" %>
+      <nav class="topnav-right">
+        <%= link_to("Empty cart", '/cart', method: :delete) if session[:cart] != nil %>
+      </nav>
     </nav>
 
     <div class="flash">

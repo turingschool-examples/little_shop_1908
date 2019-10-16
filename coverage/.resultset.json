@@ -1710,11 +1710,23 @@
       "/Users/jonpatterson/turing/mod2/projects/little_shop_1908/app/models/merchant.rb": [
         1,
         1,
+        1,
+        1,
         null,
         1,
         null,
         null,
         null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        14,
+        null,
+        null,
+        1,
+        14,
         null,
         null
       ],
@@ -2178,6 +2190,6 @@
         null
       ]
     },
-    "timestamp": 1571175193
+    "timestamp": 1571253980
   }
 }
