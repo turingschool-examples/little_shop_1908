@@ -124,6 +124,7 @@ RSpec.describe 'As a visitor' do
       click_link 'Delete Item'
     end
 
+    expect(page).to have_content('Your order total: $175.05')
     expect(page).to_not have_css("#item-#{@tire.id}")
   end
 

@@ -70,7 +70,12 @@ class OrdersController < ApplicationController
 
   def destroy_item
     item_order = ItemOrder.where(["order_id = ? AND item_id = ?", "#{params[:order_id]}", "#{params[:item_id]}"])
+    subtotal = item_order.first.item_subtotal
     ItemOrder.destroy(item_order.first.id)
+
+    order = Order.find(params[:order_id])
+    new_grand_total = order.grand_total - subtotal
+    order.update_attributes(:grand_total => new_grand_total)
 
     redirect_to "/orders/#{params[:order_id]}"
   end

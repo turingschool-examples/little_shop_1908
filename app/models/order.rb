@@ -14,4 +14,5 @@ class Order < ApplicationRecord
     @codes ||= {}
   end
 
+
 end
