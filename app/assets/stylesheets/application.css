@@ -116,6 +116,14 @@ img{
    align-items: center;
  }
 
+ #cart-buttons input {
+   background-color: #848586;
+ }
+
+ #cart-buttons form {
+   background-color: #002244;
+ }
+
  #cart-buttons div {
    display: flex;
  }
