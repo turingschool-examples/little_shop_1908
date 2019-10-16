@@ -91,13 +91,6 @@ RSpec.describe 'order show page', type: :feature do
     end
   end
 
-  # I can use that verification code to search for an order through the nav bar.
-  # If an order is found, I am redirected to a verified order page ('/verified_order')
-  # On that verified order page, I can:
-  # - click a link to delete the order
-  # - update the shipping address for an order
-  # - remove items from the order
-
   describe 'verified order show page' do
     before :each do
       @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
