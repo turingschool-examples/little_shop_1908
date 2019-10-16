@@ -32,6 +32,12 @@ class OrdersController < ApplicationController
     end
   end
 
+  def destroy
+    ItemOrder.delete(ItemOrder.where(order_id: params[:id]))
+    Order.destroy(params[:id])
+    redirect_to '/items'
+  end
+
   private
     def user_params
       params.permit(:name, :address, :city, :state, :zip)
