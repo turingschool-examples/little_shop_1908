@@ -23,6 +23,6 @@ class Merchant <ApplicationRecord
   end
 
   def all_cities
-    orders.pluck(:city).uniq
+    orders.pluck(:city).uniq.sort
   end
 end
