@@ -9,4 +9,10 @@ class Order < ApplicationRecord
                         :zip,
                         :grand_total,
                         :creation_date
-end 
+
+  def self.codes
+    @codes ||= {}
+  end
+
+
+end

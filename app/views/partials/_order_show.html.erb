@@ -1,0 +1,24 @@
+<h1>Your Order Information:</h1>
+
+<section id="ship_to" >
+<h2>Ship to:</h2>
+<p>  <%= @order.name %>  </p>
+<p>  <%= @order.address %>  </p>
+<p>  <%= @order.city %>, <%= @order.state %>, <%= @order.zip %>   </p>
+</section>
+
+<h2>Your order includes:</h2>
+<% @order.items.each do |item| %>
+  <section id="item-<%= item.id %>">
+  <h3><%= item.name %></h3>
+  <p>Sold by: <%= item.merchant.name %></p>
+  <p>Price: <%= number_to_currency(item.price) %></p>
+  <p>Quantity: <%= item.order_item(@order.id).item_quantity %></p>
+  <p>Subtotal: <%= number_to_currency(item.order_item(@order.id).item_subtotal) %></p>
+  <% if current_page?("/orders/#{@order.id}/verified_order") %>
+  <%= link_to 'Delete Item', "/orders/#{@order.id}/items/#{item.id}", method: :delete %>
+  <% end %>
+  </section>
+<% end %>
+<h3>Your order total: <%= number_to_currency(@order.grand_total) %></h3>
+<h3>Date order was placed: <%= @order.creation_date %></h3>

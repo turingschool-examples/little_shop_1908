@@ -1,0 +1,4 @@
+<%= render partial: 'partials/order_show' %>
+
+<%= link_to 'Delete Order', "/orders/#{@order.id}", method: :delete %>
+<%= link_to 'Edit Order', "/orders/#{@order.id}/edit" %>
