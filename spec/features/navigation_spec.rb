@@ -6,13 +6,13 @@ RSpec.describe 'Site Navigation' do
     it "I see a nav bar with links to all pages" do
       visit '/merchants'
 
-      within 'nav' do
+      within '.topnav' do
         click_link 'All Items'
       end
 
       expect(current_path).to eq('/items')
 
-      within 'nav' do
+      within '.topnav' do
         click_link 'All Merchants'
       end
 

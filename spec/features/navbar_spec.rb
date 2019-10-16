@@ -30,6 +30,11 @@ describe 'From any page on the site' do
         expect(page).to have_content("Cart: 3")
       end
 
+      within ".topnav" do
+        click_link "Empty cart"
+        expect(page).to have_content("Cart: 0")
+      end
+
       #Make test to verify all other pages display same values
     end
 end
