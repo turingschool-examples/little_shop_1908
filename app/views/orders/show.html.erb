@@ -20,6 +20,9 @@
           <p><%= "Price: #{number_to_currency(item_order.item.price)}" %></p>
           <p><%= "Quantity: #{item_order.item_quantity}" %></p>
           <p><%= "Subtotal: #{number_to_currency(item_order.subtotal)}" %></p>
+          <% if current_page?('/verified_order') %>
+            
+          <% end %>
         </section>
       <% end %>
     </section>
