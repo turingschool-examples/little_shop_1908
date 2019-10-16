@@ -1,89 +1,127 @@
 require 'rails_helper'
 
 RSpec.describe 'order show page', type: :feature do
-  before :each do
-    @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
-    @brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
 
-    @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+  describe 'regular order show page' do
 
-    @pull_toy = @brian.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
-    @dog_bone = @brian.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
+    before :each do
+      @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      @brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
 
-    visit "/items/#{@tire.id}"
-    click_button 'Add Item to Cart'
+      @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
 
-    visit "/items/#{@pull_toy.id}"
-    click_button 'Add Item to Cart'
+      @pull_toy = @brian.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
+      @dog_bone = @brian.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
 
-    visit "/items/#{@dog_bone.id}"
-    click_button 'Add Item to Cart'
+      visit "/items/#{@tire.id}"
+      click_button 'Add Item to Cart'
 
-    visit "/items/#{@tire.id}"
-    click_button 'Add Item to Cart'
+      visit "/items/#{@pull_toy.id}"
+      click_button 'Add Item to Cart'
 
-    visit '/orders/new'
+      visit "/items/#{@dog_bone.id}"
+      click_button 'Add Item to Cart'
 
-    fill_in 'Name',    with: 'Joe Bob'
-    fill_in 'Address', with: '1331 17th Ave'
-    fill_in 'City',    with: 'Denver'
-    fill_in 'State',   with: 'Colorado'
-    fill_in 'zip',     with: '80202'
+      visit "/items/#{@tire.id}"
+      click_button 'Add Item to Cart'
 
-    click_button 'Create Order'
+      visit '/orders/new'
 
-    @order = Order.last
-  end
+      fill_in 'Name',    with: 'Joe Bob'
+      fill_in 'Address', with: '1331 17th Ave'
+      fill_in 'City',    with: 'Denver'
+      fill_in 'State',   with: 'Colorado'
+      fill_in 'zip',     with: '80202'
 
-  it 'displays shipping information' do
-    within '#shipping-info' do
-      expect(page).to have_content('Joe Bob')
-      expect(page).to have_content('1331 17th Ave')
-      expect(page).to have_content('Denver')
-      expect(page).to have_content('Colorado')
-      expect(page).to have_content('80202')
+      click_button 'Create Order'
+
+      @order = Order.last
+    end
+
+    it 'displays shipping information' do
+      within '#shipping-info' do
+        expect(page).to have_content('Joe Bob')
+        expect(page).to have_content('1331 17th Ave')
+        expect(page).to have_content('Denver')
+        expect(page).to have_content('Colorado')
+        expect(page).to have_content('80202')
+      end
+    end
+
+    it 'displays item order information' do
+      within "#item-#{@tire.id}" do
+        expect(page).to have_content(@tire.name)
+        expect(page).to have_content("Merchant: #{@tire.merchant.name}")
+        expect(page).to have_content("Price: $100.00")
+        expect(page).to have_content("Quantity: 2")
+        expect(page).to have_content("Subtotal: $200.00")
+      end
+
+      within "#item-#{@pull_toy.id}" do
+        expect(page).to have_content(@pull_toy.name)
+        expect(page).to have_content("Merchant: #{@pull_toy.merchant.name}")
+        expect(page).to have_content("Price: $10.00")
+        expect(page).to have_content("Quantity: 1")
+        expect(page).to have_content("Subtotal: $10.00")
+      end
+
+      within "#item-#{@dog_bone.id}" do
+        expect(page).to have_content(@dog_bone.name)
+        expect(page).to have_content("Merchant: #{@dog_bone.merchant.name}")
+        expect(page).to have_content("Price: $21.00")
+        expect(page).to have_content("Quantity: 1")
+        expect(page).to have_content("Subtotal: $21.00")
+      end
+
+      expect(page).to have_content("Grand Total: $231.00")
+      expect(page).to have_content("Order Date: #{@order.created_at.strftime("%m/%d/%Y")}")
+    end
+
+    it 'cannot go to a order show page that does not exist' do
+      visit '/orders/109475'
+
+      expect(current_path).to eq('/cart')
+      expect(page).to have_content('Order does not exist!')
+    end
+
+    it 'can see the order verification code' do
+      visit "/orders/#{@order.id}"
+
+      expect(page).to have_content("Order Number: #{@order.verification_code}")
     end
   end
 
-  it 'displays item order information' do
-    within "#item-#{@tire.id}" do
-      expect(page).to have_content(@tire.name)
-      expect(page).to have_content("Merchant: #{@tire.merchant.name}")
-      expect(page).to have_content("Price: $100.00")
-      expect(page).to have_content("Quantity: 2")
-      expect(page).to have_content("Subtotal: $200.00")
+  # I can use that verification code to search for an order through the nav bar.
+  # If an order is found, I am redirected to a verified order page ('/verified_order')
+  # On that verified order page, I can:
+  # - click a link to delete the order
+  # - update the shipping address for an order
+  # - remove items from the order
+
+  describe 'verified order show page' do
+    before :each do
+      @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+
+      @user_1 = User.create(name: 'Kyle Pine', address: '123 Main Street', city: 'Greenville', state: 'NC', zip: '29583')
+      @order_1 = @user_1.orders.create(grand_total: 100, verification_code: '4856752493')
+      @order_1.item_orders.create(item_id: @tire.id, item_quantity: 2, subtotal: 50)
     end
 
-    within "#item-#{@pull_toy.id}" do
-      expect(page).to have_content(@pull_toy.name)
-      expect(page).to have_content("Merchant: #{@pull_toy.merchant.name}")
-      expect(page).to have_content("Price: $10.00")
-      expect(page).to have_content("Quantity: 1")
-      expect(page).to have_content("Subtotal: $10.00")
+    it 'can search for an order and is taken to verified order page if found' do
+      visit '/'
+      fill_in 'Order Code/Number', with: '4856752493'
+      click_button 'Search'
+
+      expect(current_path).to eq('/verified_order')
     end
 
-    within "#item-#{@dog_bone.id}" do
-      expect(page).to have_content(@dog_bone.name)
-      expect(page).to have_content("Merchant: #{@dog_bone.merchant.name}")
-      expect(page).to have_content("Price: $21.00")
-      expect(page).to have_content("Quantity: 1")
-      expect(page).to have_content("Subtotal: $21.00")
+    it 'can search for an order and is taken to items index if not found' do
+      visit '/merchants/1'
+      fill_in 'Order Code/Number', with: 'hello'
+      click_button 'Search'
+
+      expect(current_path).to eq('/items')
     end
-
-    expect(page).to have_content("Grand Total: $231.00")
-    expect(page).to have_content("Order Date: #{@order.created_at.strftime("%m/%d/%Y")}")
-  end
-
-  it 'cannot go to a order show page that does not exist' do
-    visit '/orders/109475'
-
-    expect(current_path).to eq('/cart')
-    expect(page).to have_content('Order does not exist!')
-  end
-
-  it 'can see the order verification code' do
-    visit "/orders/#{@order.id}"
-
-    expect(page).to have_content("Order Number: #{@order.verification_code}")
   end
 end
