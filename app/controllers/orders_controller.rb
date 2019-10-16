@@ -5,10 +5,20 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @item_orders = ItemOrder.where(order_id: params[:id])
-    if @item_orders.empty?
-      flash[:error] = ['Order does not exist!']
-      redirect_to '/cart'
+    if params[:search]
+      if order = Order.find_by(verification_code: params[:search])
+        @item_orders = order.item_orders
+        render :show
+      else
+        flash[:error] = ['Order does not exist!']
+        redirect_to '/items'
+      end
+    else
+      @item_orders = ItemOrder.where(order_id: params[:id])
+      if @item_orders.empty?
+        flash[:error] = ['Order does not exist!']
+        redirect_to '/cart'
+      end
     end
   end
 
