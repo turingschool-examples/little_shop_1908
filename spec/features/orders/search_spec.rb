@@ -40,7 +40,7 @@ RSpec.describe 'As a visitor' do
 
       fill_in 'Order Verification Number', with: Order.codes.key(order.id)
 
-      click_button 'Submit'
+      click_button 'Search'
 
 
       expect(current_path).to eq("/orders/#{order.id}/verified_order")

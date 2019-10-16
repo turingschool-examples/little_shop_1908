@@ -22,36 +22,36 @@
     <%= button_to 'Add to Cart', "/cart/#{@item.id}", method: :patch %>
   </section>
   <% if !@item.reviews.empty? %>
-    <section>
+    <section class='review-container'>
       <h2>Reviews</h2>
-        <h3>Sort by: </h3>
+        <h5>Sort by: </h5>
           <%= link_to 'Highest Rating', "/items/#{@item.id}?sort=highest" %>
           <%= link_to 'Lowest Rating', "/items/#{@item.id}?sort=lowest" %>
           <% @reviews.each do |review| %>
             <section id = "review-<%= review.id %>" class='review'>
-              <ul><%= review.title %></ul>
+              <b><%= review.title %></b>
               <p><%= review.content %></p>
               <p>Rating: <%= review.rating %></p>
-              <%= link_to 'Edit Review', "/reviews/#{review.id}/edit" %>
-              <%= link_to 'Delete Review', "/reviews/#{review.id}", method: :delete %>
             </section>
+            <%= link_to 'Edit Review', "/reviews/#{review.id}/edit" %>
+            <%= link_to 'Delete Review', "/reviews/#{review.id}", method: :delete %>
           <% end %>
     </section>
-    <section>
-      <h2>Review Statistics</h2>
-      <h3>Top 3 Reviews</h3>
-      <section id='top3'>
+    <h4>Review Statistics</h4>
+    <section class= 'container-fluid justify-content-center row'>
+      <section class= 'col-md-5.5' id='top3' style= 'display:inline;'>
+        <h5>Top 3 Reviews</h5>
         <% @item.top_three_reviews.each do |review| %>
           <p><%= review.title %> Rating: <%= review.rating %></p>
         <% end %>
       </section>
-      <h3>Bottom 3 Reviews</h3>
-      <section id='bottom3'>
+      <section class= 'col-md-5.5' id='bottom3' style= 'display:inline;'>
+        <h5>Bottom 3 Reviews</h5>
         <% @item.bottom_three_reviews.each do |review| %>
           <p><%= review.title %> Rating: <%= review.rating %></p>
         <% end %>
       </section>
-      <h3>Average Rating: <%= @item.average_rating %></h3>
+      <h5>Average Rating: <%= @item.average_rating %></h5>
     </section>
   <% end  %>
 
