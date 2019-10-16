@@ -36,4 +36,6 @@ Rails.application.routes.draw do
   delete '/orders/:id', to: 'orders#destroy'
 
   get '/verified_order', to: 'orders#show'
+
+  patch '/users/:id', to: 'users#update'
 end
