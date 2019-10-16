@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
       order = Order.create(total_amount: cart.grand_total)
       session[:customer] = customer_info
       cart.contents.each do |item_id, quantity|
-        order.item_orders.create(item_id: item_id.to_i, quantity: quantity)
+        order.item_orders.create(item_id: item_id.to_i, quantity: quantity, city: session[:customer][:city])
       end
       redirect_to "/orders/#{order.id}"
     else
