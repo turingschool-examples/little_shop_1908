@@ -5,6 +5,7 @@ RSpec.describe "As a Visitor" do
     before :each do
       @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 11234)
     end
+
     it 'I can see prepopulated info on that user in the edit form' do
       visit "/merchants/#{@bike_shop.id}"
       click_on "Update Merchant"
@@ -32,6 +33,23 @@ RSpec.describe "As a Visitor" do
       expect(current_path).to eq("/merchants/#{@bike_shop.id}")
       expect(page).to have_content("Brian's Super Cool Bike Shop")
       expect(page).to have_content("1234 New Bike Rd.\nDenver, CO 80204")
+    end
+
+    it "cannot edit a new merchant with missing fields " do
+      visit "/merchants/#{@bike_shop.id}"
+      click_on "Update Merchant"
+
+      fill_in 'Name', with: ""
+      fill_in 'Address', with: ""
+      fill_in 'City', with: "Denver"
+      fill_in 'State', with: "CO"
+      fill_in 'Zip', with: 80204
+
+      click_on "Update Merchant"
+
+      expect(current_path).to eq("/merchants/#{@bike_shop.id}/edit")
+      expect(page).to have_content("Name can't be blank")
+      expect(page).to have_content("Address can't be blank")
     end
   end
 end
