@@ -48,8 +48,13 @@ class OrdersController < ApplicationController
   end
 
   def update
+    info_hash = order_params
     order = Order.find(params[:order_id])
-    order.update(order_params)
+    info_hash[:grand_total] = order.grand_total
+    info_hash[:creation_date] = order.creation_date
+    order.update(info_hash)
+
+
 
     redirect_to "/orders/#{order.id}"
   end
