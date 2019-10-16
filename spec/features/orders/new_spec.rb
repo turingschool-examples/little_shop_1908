@@ -115,4 +115,29 @@ RSpec.describe 'new order page', type: :feature do
       expect(page).to have_link('Cart (0)')
     end
   end
+
+  # As a visitor
+  # When I check out
+  # I see a flash message with a randomly generated, 10 digit verification code associated with that order
+  #
+  # I can use that verification code to search for an order through the nav bar.
+  # If an order is found, I am redirected to a verified order page ('/verified_order')
+  # On that verified order page, I can:
+  # - click a link to delete the order
+  # - update the shipping address for an order
+  # - remove items from the order
+
+  it 'displays a flash message with verification code on order creation' do
+    fill_in 'Name',    with: 'Joe Bob'
+    fill_in 'Address', with: '1331 17th Ave'
+    fill_in 'City',    with: 'Denver'
+    fill_in 'State',   with: 'Colorado'
+    fill_in 'zip',     with: '80202'
+
+    click_button 'Create Order'
+
+    verification_code = Order.last.verification_code
+    expect(verification_code.length).to eq(10)
+    expect(page).to have_content("Order Verification Code: #{verification_code}")
+  end
 end
