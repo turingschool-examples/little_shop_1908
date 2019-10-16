@@ -41,22 +41,22 @@ RSpec.describe 'merchant show page', type: :feature do
           cart = Cart.new({})
           cart.add_item(@tire.id)
           cart.add_item(@tire.id)
-          @order_1 = Order.create(name: "Bob", address: "123 Street", city: "Denver", state: "CO", zip: "80232", grand_total: 250)
+          @order_1 = Order.create(name: "Bob", address: "123 Street", city: "Denver", state: "CO", zip: "80232", grand_total: 250, verification: Order.generate_code)
           @order_1.generate_item_orders(cart)
           cart = Cart.new({})
           cart.add_item(@tire.id)
           cart.add_item(@chain.id)
           cart.add_item(@chain.id)
-          @order_2 = Order.create(name: "Joe", address: "234 Drive", city: "Boston", state: "MA", zip: "10101", grand_total: 200)
+          @order_2 = Order.create(name: "Joe", address: "234 Drive", city: "Boston", state: "MA", zip: "10101", grand_total: 200, verification: Order.generate_code)
           @order_2.generate_item_orders(cart)
           cart = Cart.new({})
           cart.add_item(@chain.id)
-          @order_3 = Order.create(name: "Sam", address: "345 Way", city: "Cambridge", state: "MA", zip: "10101", grand_total: 200)
+          @order_3 = Order.create(name: "Sam", address: "345 Way", city: "Cambridge", state: "MA", zip: "10101", grand_total: 200, verification: Order.generate_code)
           @order_3.generate_item_orders(cart)
 
           visit "/merchants/#{@bike_shop.id}"
 
-          expect(page).to have_content("Satisfied Customers In: Denver, Boston, and Cambridge")
+          expect(page).to have_content("Satisfied Customers In: Boston, Cambridge, and Denver")
         end
       end
     end

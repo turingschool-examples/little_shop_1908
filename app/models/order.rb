@@ -7,7 +7,8 @@ class Order < ApplicationRecord
                         :city,
                         :state,
                         :zip,
-                        :grand_total
+                        :grand_total,
+                        :verification
 
   def generate_item_orders(cart)
     cart.cart_items.each do |item|
@@ -18,4 +19,21 @@ class Order < ApplicationRecord
                       )
     end
   end
+
+  def self.generate_code
+    number = "0"
+    until !Order.pluck(:verification).include?(number) && number.length == 10
+      number = SecureRandom.hex(5)
+    end
+    number
+  end
+
+  def self.search(search)
+    if search
+      order = Order.find_by(verification: search)
+    else
+      nil
+    end
+  end
+
 end

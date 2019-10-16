@@ -13,6 +13,10 @@
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
       <%= link_to  "Cart:  #{cart.total_count} ", "/cart"%>
+      <%= form_tag("/verified_order", method: :get) do %>
+        <%= text_field_tag(:search, params[:search]) %>
+        <%= submit_tag 'Search' %>
+      <% end %>
     </nav>
     <header>
       <% flash.each do |type, message| %>

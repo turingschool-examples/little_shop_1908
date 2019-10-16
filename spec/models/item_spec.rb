@@ -25,7 +25,7 @@ describe Item, type: :model do
 
       cart = Cart.new({})
       cart.add_item(chain.id)
-      order = Order.create(name: "Bob", address: "123 Street", city: "Denver", state: "CO", zip: "80232", grand_total: 250)
+      order = Order.create(name: "Bob", address: "123 Street", city: "Denver", state: "CO", zip: "80232", grand_total: 250, verification: Order.generate_code)
       order.generate_item_orders(cart)
 
 

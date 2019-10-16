@@ -8,6 +8,7 @@ describe Order, type: :model do
     it { should validate_presence_of :state }
     it { should validate_presence_of :zip }
     it { should validate_presence_of :grand_total }
+    it { should validate_presence_of :verification}
   end
 
   describe "relationships" do
@@ -26,7 +27,7 @@ describe Order, type: :model do
       cart.add_item(@tire.id)
       cart.add_item(@chain.id)
 
-      order = Order.create(name: "Bob", address: "123 Street", city: "Denver", state: "CO", zip: "80232", grand_total: 250)
+      order = Order.create(name: "Bob", address: "123 Street", city: "Denver", state: "CO", zip: "80232", grand_total: 250, verification: Order.generate_code)
 
       order.generate_item_orders(cart)
 
@@ -39,6 +40,13 @@ describe Order, type: :model do
       expect(ItemOrder.last.item_id).to eq(@chain.id)
       expect(ItemOrder.last.quantity).to eq(1)
       expect(ItemOrder.last.subtotal).to eq(50)
+    end
+  end
+
+  describe 'generate_code' do
+    it "can generate a random ten digit number that hasn't been used yet" do
+      ex_verification = Order.generate_code
+      expect(ex_verification.length).to eq(10)
     end
   end
 end
