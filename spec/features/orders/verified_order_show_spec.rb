@@ -34,7 +34,7 @@ RSpec.describe 'As a visitor' do
 
     fill_in 'Order Verification Number', with: Order.codes.key(@order.id)
 
-    click_button 'Submit'
+    click_button 'Search'
   end
   it 'displays all order information with links to delete items, delete the order, and edit the order' do
     within "#ship_to" do
@@ -84,7 +84,7 @@ RSpec.describe 'As a visitor' do
 
     fill_in 'Order Verification Number', with: Order.codes.key(@order.id)
 
-    click_button 'Submit'
+    click_button 'Search'
 
     expect(page).to have_content('Order not found. Please try again.')
     expect(current_path).to eq('/')
