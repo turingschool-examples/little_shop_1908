@@ -40,7 +40,7 @@ describe Item, type: :model do
 
       user_1 = User.create(name: 'Kyle Pine', address: '123 Main Street', city: 'Greenville', state: 'NC', zip: '29583')
       user_2 = User.create(name: 'Steve Spruce', address: '456 2nd Street', city: 'Redville', state: 'SC', zip: '29444')
-      order_1 = user_1.orders.create(grand_total: 100)
+      order_1 = user_1.orders.create(grand_total: 100, verification_code: '3856758493')
       order_1.item_orders.create(item_id: @tire.id, item_quantity: 2, subtotal: 50)
     end
 

@@ -27,7 +27,7 @@ RSpec.describe "merchant delete" do
 
   it 'cannot be deleted if merchant has orders' do
     user = User.create(name: 'Kyle Pine', address: '123 Main Street', city: 'Greenville', state: 'NC', zip: '29583')
-    order = user.orders.create(grand_total: 100)
+    order = user.orders.create(grand_total: 100, verification_code: '3850758493')
     order.item_orders.create(item_id: @chain.id, item_quantity: 2, subtotal: 50)
 
     visit "/merchants/#{@bike_shop.id}"
@@ -36,5 +36,5 @@ RSpec.describe "merchant delete" do
     expect(current_path).to eq("/merchants/#{@bike_shop.id}")
     expect(page).to have_content('Merchant has orders and cannot be deleted')
   end
-  
+
 end

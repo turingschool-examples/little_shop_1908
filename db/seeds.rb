@@ -109,22 +109,22 @@ kyle = User.create(
   address: '763 Chesterfield Street',
   city: 'Jacksonville',
   state: 'FL',
-  zip: 38342
+  zip: '38342'
 )
 cynthia = User.create(
   name: 'Cynthia Hall',
   address: '9247 E 42nd Avenue',
   city: 'Tucson',
   state: 'AZ',
-  zip: 85701
+  zip: '85701'
 )
 
 #---------------------------- Orders ----------------------------#
-order_1 = kyle.orders.create(grand_total: rose.price + dahlia.price * 2)
+order_1 = kyle.orders.create!(grand_total: (rose.price + dahlia.price * 2), verification_code: '7593830921')
 order_1.item_orders.create(item_id: dahlia.id, item_quantity: 2, subtotal: dahlia.price * 2)
 order_1.item_orders.create(item_id: rose.id, item_quantity: 1, subtotal: rose.price)
 
-order_2 = cynthia.orders.create(grand_total: plumeria.price + rose.price * 3 + hibiscus.price)
+order_2 = cynthia.orders.create!(grand_total: (plumeria.price + rose.price * 3 + hibiscus.price), verification_code: '2859017482')
 order_2.item_orders.create(item_id: plumeria.id, item_quantity: 1, subtotal: plumeria.price)
 order_2.item_orders.create(item_id: rose.id, item_quantity: 3, subtotal: rose.price * 3)
 order_2.item_orders.create(item_id: hibiscus.id, item_quantity: 1, subtotal: hibiscus.price)

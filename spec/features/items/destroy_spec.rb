@@ -31,7 +31,7 @@ RSpec.describe 'item delete', type: :feature do
 
     it 'cannot delete an item that has been ordered' do
       user = User.create(name: 'Kyle Pine', address: '123 Main Street', city: 'Greenville', state: 'NC', zip: '29583')
-      order = user.orders.create(grand_total: 100)
+      order = user.orders.create(grand_total: 100, verification_code: '3856758493')
       order.item_orders.create(item_id: @chain.id, item_quantity: 2, subtotal: 50)
 
       visit "/items/#{@chain.id}"
