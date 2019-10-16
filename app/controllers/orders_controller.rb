@@ -18,16 +18,17 @@ class OrdersController < ApplicationController
   end
 
   def show
-    if params.include?(:search)
-      order = Order.search(params[:search])
-      if order
-        @order = order
-      else
-        flash[:error] = 'Order not found'
-        redirect_to '/items'
-      end
+    @order = Order.find(params[:order_id])
+  end
+
+  def verified_order
+    order = Order.search(params[:search])
+
+    if order
+      @order = order
     else
-      @order = Order.find(params[:order_id])
+      flash[:error] = 'Order not found'
+      redirect_to '/items'
     end
   end
 
