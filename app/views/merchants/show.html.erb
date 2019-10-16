@@ -21,8 +21,26 @@
   </section>
 </section>
 
-<section class='container-fluid justify-content-center d-flex'>
+<section class='container-fluid justify-content-center d-flex mt-3'>
   <p class='ml-2 mr-2'><%= link_to "All #{@merchant.name} Items", "/merchants/#{@merchant.id}/items", class: 'btn btn-secondary' %></p>
   <p class='ml-2 mr-2'><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit", class: 'btn btn-primary' %></p>
   <p class='ml-2 mr-2'><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete, class: 'btn btn-danger' %></p>
 </section>
+
+<% if !@merchant.items.empty? %>
+<hr class="m-4">
+<h3 class='text-center'>Top Rated Items</h3>
+  <section class='container-fluid justify-content-center d-flex'>
+    <% @merchant.items.top_three.each do |item| %>
+      <section class="card card-body bg-light m-3 p-4 col-md-3 top-three-items" id='item-<%=item.id%>'>
+        <h3 class="text-center"> <%=link_to item.name, "/items/#{item.id}" %> </h3>
+        <img class="center mt-4 mb-4" src= <%= item.image %>>
+        <% if !item.reviews.empty? %>
+          <p class='text-center'><%= "Average Review Rating: #{item.reviews.average_rating.round(2)}" %></p>
+        <% else %>
+          <p class='text-center'>No Average Review Rating (No reviews have been made)</p>
+        <% end %>
+      </section>
+    <% end %>
+  </section>
+<% end %>

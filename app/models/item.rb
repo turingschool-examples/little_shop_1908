@@ -24,4 +24,11 @@ class Item < ApplicationRecord
     average(:price)
   end
 
+  def self.top_three
+    joins(:reviews)
+      .group('items.id')
+      .order('avg(reviews.rating) DESC')
+      .limit(3)
+  end
+
 end
