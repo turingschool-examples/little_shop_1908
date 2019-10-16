@@ -15,11 +15,11 @@
   <% @order.item_orders.each do |item_order| %>
     <section class = "grid-item" id= 'item-<%=item_order.current_item.id%>'>
       <%= item_order.current_item.name %>
-      Sold by: <%= item_order.current_item.merchant.name %>
-      Price: $<%= item_order.current_item.price %>
-      Quantity: <%= item_order.quantity %>
-      Subtotal: $<%= item_order.subtotal %>
-      <%= button_to 'Remove Item', "/verified_order/#{item_order.id}", method: :delete %>
+      <p>Sold by: <%= item_order.current_item.merchant.name %></p>
+      <p>Price: $<%= item_order.current_item.price %></p>
+      <p>Quantity: <%= item_order.quantity %></p>
+      <p>Subtotal: $<%= item_order.subtotal %></p>
+      <%= button_to 'Remove Item', "/verified_order/#{@order.id}/#{item_order.id}", method: :delete %>
     </section>
   <% end %>
 </section>
