@@ -6,3 +6,13 @@
 <ul><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit" %></ul>
 <ul><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete %>
 </ul>
+
+<section id = "merchant-stats">
+  <h3> <%= "Items: #{@merchant.items.count}" %> </h3>
+  <h3> <%= "Average Item Price: #{ @merchant.average_item_price}" %> </h3>
+  <h3> <%= "Cities where items have been ordered:" %> </h3>
+   <% @merchant.cities.each do |city|%>
+  <h3> <%= city %> </h3>
+  <% end %>
+</section>
+</ul>
