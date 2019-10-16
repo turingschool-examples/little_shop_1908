@@ -1,0 +1,24 @@
+<h1>Update Order</h1>
+
+<section id="shipping_info" >
+  <h3>Please enter your shipping information:</h3>
+  <%= form_tag "/orders/#{@order.id}", method: :patch do %>
+    <%= label_tag :name %>:
+    <%= text_field_tag :name, "#{@order.name}" %>
+
+    <%= label_tag :address %>:
+    <%= text_field_tag :address, "#{@order.address}" %>
+
+    <%= label_tag :city %>:
+    <%= text_field_tag :city, "#{@order.city}" %>
+
+    <%= label_tag :state %>:
+    <%= text_field_tag :state, "#{@order.state}" %>
+
+    <%= label_tag :zip %>:
+    <%= text_field_tag :zip, "#{@order.zip}" %>
+
+
+    <%= submit_tag 'Update Order' %>
+  <% end %>
+</section>

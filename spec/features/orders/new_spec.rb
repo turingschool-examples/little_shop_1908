@@ -100,5 +100,19 @@ RSpec.describe 'As a visitor' do
       expect(current_path).to eq("/orders/new")
     end
 
+    it 'I see a flash message with a verification code when I check out' do
+      fill_in 'Name', with: 'Richy Rich'
+      fill_in 'Address', with: "102 Main Street"
+      fill_in 'City', with: "New York"
+      fill_in 'State', with: "New York"
+      fill_in 'Zip', with: "10221"
+      click_button 'Create Order'
+
+      order = Order.last
+      expect(current_path).to eq("/orders/#{order.id}")
+
+      expect(page.text).to match(/Your order has been placed! Verification code: \d{10}/)
+    end
+
   end
 end
