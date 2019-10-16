@@ -10,9 +10,9 @@
 
   <body>
     <nav class = "topnav">
-      <%= link_to "All Merchants", "/merchants"%>
-      <%= link_to "All Items", "/items"%>
-      <p id='cart'>Cart: <%= cart.total_count %></p>
+      <a href="/merchants"><p>All Merchants</p></a>
+      <a href="/items"><p>All Items</p></a>
+      <a href="/cart"><p id='cart'>Cart: <%= cart.total_count %></p></a>
     </nav>
     <% flash.each do |type, message| %>
       <p><%= message %></p>
