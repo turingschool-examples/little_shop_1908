@@ -26,3 +26,5 @@ dog_bone = dog_shop.items.create(name: "Dog Bone", description: "They'll love it
 review_1 = chain.reviews.create(title: 'Leiya', content: 'Awful chain, Meg lied to me!', rating: 1)
 review_2 = chain.reviews.create(title: 'Josh', content: " It wasn't that bad.", rating: 3)
 review_3 = chain.reviews.create(title: 'Evette', content: " Great chain! Used it to make an amazing collar for my pug Larry.", rating: 5)
+review_4 = chain.reviews.create(title: 'Jake', content: "Alright chain. Used it to bike for a few months", rating: 4)
+review_5 = chain.reviews.create(title: 'Jon', content: "Decent chain! It's alright I guess", rating: 2)
