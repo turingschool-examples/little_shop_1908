@@ -20,6 +20,6 @@ class Merchant <ApplicationRecord
   end
 
   def highest_rated_items
-   (items.sort_by {|item| item.average_rating})[0..2]
+    rated_items = items.select { |item| item.reviews.empty? == false }.sort_by { |item| item.average_rating}.reverse
   end
 end

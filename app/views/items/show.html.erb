@@ -28,7 +28,7 @@
           <%= link_to 'Highest Rating', "/items/#{@item.id}?sort=highest" %>
           <%= link_to 'Lowest Rating', "/items/#{@item.id}?sort=lowest" %>
           <% @reviews.each do |review| %>
-            <section id = "review-<%= review.id %>">
+            <section id = "review-<%= review.id %>" class='review'>
               <ul><%= review.title %></ul>
               <p><%= review.content %></p>
               <p>Rating: <%= review.rating %></p>
