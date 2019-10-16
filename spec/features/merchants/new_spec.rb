@@ -30,5 +30,68 @@ RSpec.describe 'merchant new page', type: :feature do
       expect(new_merchant.zip).to eq(zip)
     end
 
+    it "I'm told what fields I'm missing from my create form" do
+      visit "/merchants/new"
+      click_on "Create Merchant"
+
+      fill_in 'Name', with: ""
+      fill_in 'Address', with: "1234 New Bike Rd."
+      fill_in 'City', with: "Denver"
+      fill_in 'State', with: "CO"
+      fill_in 'Zip', with: 80204
+
+      click_button "Create Merchant"
+
+      expect(page).to have_content("You must fill in a name")
+
+      visit "/merchants/new"
+      click_on "Create Merchant"
+
+      fill_in 'Name', with: "Brian's Super Cool Bike Shop"
+      fill_in 'Address', with: ""
+      fill_in 'City', with: "Denver"
+      fill_in 'State', with: "CO"
+      fill_in 'Zip', with: 80204
+
+      click_button "Create Merchant"
+      expect(page).to have_content("You must fill in an address")
+
+      visit "/merchants/new"
+      click_on "Create Merchant"
+
+      fill_in 'Name', with: "Brian's Super Cool Bike Shop"
+      fill_in 'Address', with: "1234 New Bike Rd."
+      fill_in 'City', with: ""
+      fill_in 'State', with: "CO"
+      fill_in 'Zip', with: 80204
+
+      click_button "Create Merchant"
+      expect(page).to have_content("You must fill in a city")
+
+      visit "/merchants/new"
+      click_on "Create Merchant"
+
+      fill_in 'Name', with: "Brian's Super Cool Bike Shop"
+      fill_in 'Address', with: "1234 New Bike Rd."
+      fill_in 'City', with: "Denver"
+      fill_in 'State', with: ""
+      fill_in 'Zip', with: 80204
+
+      click_button "Create Merchant"
+      expect(page).to have_content("You must fill in a state")
+
+      visit "/merchants/new"
+      click_on "Create Merchant"
+
+      fill_in 'Name', with: "Brian's Super Cool Bike Shop"
+      fill_in 'Address', with: "1234 New Bike Rd."
+      fill_in 'City', with: "Denver"
+      fill_in 'State', with: "CO"
+      fill_in 'Zip', with: ""
+
+      click_button "Create Merchant"
+      expect(page).to have_content("You must fill in a zip code")
+    end
+
   end
 end
