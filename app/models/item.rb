@@ -27,5 +27,13 @@ class Item <ApplicationRecord
     item_orders.where("order_id = #{order_id.to_s} and item_id = #{self.id}").first
   end
 
-
+  def sort_reviews(sort)
+    if sort.nil?
+      @reviews = reviews
+    elsif sort == 'highest'
+      @reviews = reviews.order(rating: :desc, created_at: :desc)
+    elsif sort == 'lowest'
+      @reviews = reviews.order(:rating, :created_at)
+    end
+  end
 end

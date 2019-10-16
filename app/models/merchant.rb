@@ -19,5 +19,7 @@ class Merchant <ApplicationRecord
     ItemOrder.left_outer_joins(:order).where(item_id: items).pluck(:city).uniq
   end
 
-
+  def highest_rated_items
+    rated_items = items.select { |item| item.reviews.empty? == false }.sort_by { |item| item.average_rating}.reverse
+  end
 end

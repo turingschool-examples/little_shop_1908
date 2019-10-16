@@ -17,6 +17,7 @@ class ItemsController<ApplicationController
   def show
     if Item.exists?(id: params[:id])
       @item = Item.find(params[:id])
+      @reviews = @item.sort_reviews(params[:sort])
     else
       if params[:merchant_id]
         flash.notice = 'This item does not exist. Please select an existing item.'

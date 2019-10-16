@@ -99,4 +99,30 @@ RSpec.describe 'item show page', type: :feature do
 
     expect(page).to have_content('Average Rating: 3.33')
   end
+
+  it 'I can see the reviews sorted by highest ratings' do
+    expect(page).to have_content('Sort by:')
+
+    click_link 'Highest Rating'
+
+    expect(page.find_all('.review')[0]).to have_content("Best chain EVER!")
+    expect(page.find_all('.review')[1]).to have_content("Awesome chain!")
+    expect(page.find_all('.review')[2]).to have_content("Pretty Good")
+    expect(page.find_all('.review')[3]).to have_content("Okay")
+    expect(page.find_all('.review')[4]).to have_content("Meh")
+    expect(page.find_all('.review')[5]).to have_content("Worst chain!")
+  end
+
+  it 'I can see the reviews sorted by lowest ratings' do
+    expect(page).to have_content('Sort by:')
+
+    click_link 'Lowest Rating'
+
+    expect(page.find_all('.review')[0]).to have_content("Worst chain!")
+    expect(page.find_all('.review')[1]).to have_content("Meh")
+    expect(page.find_all('.review')[2]).to have_content("Okay")
+    expect(page.find_all('.review')[3]).to have_content("Pretty Good")
+    expect(page.find_all('.review')[4]).to have_content("Awesome chain!")
+    expect(page.find_all('.review')[5]).to have_content("Best chain EVER!")
+  end
 end

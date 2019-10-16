@@ -2,6 +2,15 @@
 <p class="address"><%= @merchant.address %></p>
 <p class="address"><%= @merchant.city %>, <%= @merchant.state %> <%= @merchant.zip %></p>
 
+<% if @merchant.highest_rated_items.length >= 3 %>
+  <section id='topitems'>
+    <h3>Top 3 Items:</h3>
+    <h4 class='item'> <%= link_to "#{@merchant.highest_rated_items.first.name}", "/items/#{@merchant.highest_rated_items.first.id}" %></h4>
+    <h4 class='item'> <%= link_to "#{@merchant.highest_rated_items[1].name}", "/items/#{@merchant.highest_rated_items[1].id}" %></h4>
+    <h4 class='item'> <%= link_to "#{@merchant.highest_rated_items[2].name}", "/items/#{@merchant.highest_rated_items[2].id}" %></h4>
+  </section>
+<% end %>
+
 <ul><%= link_to "All #{@merchant.name} Items", "/merchants/#{@merchant.id}/items" %></ul>
 <ul><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit" %></ul>
 <ul><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete %></ul>
