@@ -50,6 +50,22 @@ RSpec.describe "As a Visitor" do
         expect(page).to have_content("They're a bit more expensive, and they kinda do pop sometimes, but whatevs.. this is retail.")
         expect(page).to_not have_content("They'll never pop!")
       end
+      it 'I cannot change and update item with incomplete form' do
+
+        visit "/items/#{@tire.id}"
+
+        click_on "Edit Item"
+
+        fill_in 'Name', with: "GatorSkins"
+        fill_in 'Price', with: ""
+        fill_in 'Description', with: "They're a bit more expensive, and they kinda do pop sometimes, but whatevs.. this is retail."
+        fill_in 'Image', with: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588"
+        fill_in 'Inventory', with: ""
+
+        click_button "Update Item"
+        expect(page).to have_content "Price can't be blank"
+        expect(page).to have_content "Inventory can't be blank"
+      end
     end
   end
 end
