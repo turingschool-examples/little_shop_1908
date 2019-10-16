@@ -5,7 +5,7 @@
 <section id = "stats-#{@merchant}">
   <p>Item Count: <%= @merchant.items.count %></p>
   <p>Average Item Price: <%= @merchant.items.average(:price) %></p>
-  <p>Cities With Order: <%=  %></p>
+  <p>Cities With Order: <%= @merchant.item_orders.pluck(:city).uniq.join(', ') %></p>
 </section>
 
 
