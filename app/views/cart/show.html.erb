@@ -1,10 +1,8 @@
 <h1 id="cart-header">Your Cart</h1><hr>
   <section class="all-cart-items">
-    <!--  -->
     <ol>
       <% @cart.contents.each do |item_id, quantity| %>
         <% item = Item.find(item_id) %>
-        <!--  -->
         <li><%= link_to item.name, "/items/#{item_id}" %><br>
           <section class="cart-item" id="cart-item-<%= item_id %>">
             <img src=<%= item.image %>>
@@ -19,15 +17,13 @@
     </ol>
   </section><hr><br>
   <!--  -->
-  <section id="grand-total">
+  <section class="grand-total" id="grand-total">
     <p>Grand Total: <%= @cart.grand_total %></p>
     <p><%= link_to("Empty cart", '/cart', method: :delete) if session[:cart] != nil %></p>
 
     <section id='checkout'>
       <% if @cart.contents.length > 0 %>
-      <h4>
-        <%= link_to 'Checkout', '/orders/new' %>
+      <h4><%= link_to 'Checkout', '/orders/new' %></h4>
         <% end %>
-      </h4>
     </section>
   </section>

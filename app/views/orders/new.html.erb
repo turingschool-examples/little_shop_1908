@@ -1,11 +1,11 @@
-<h1 id="order-header">Your Order</h1><hr>
+<h1 class="order-header">Your Order</h1><hr>
 
   <%= render partial: 'contents' %>
 
-  <section id="grand-total">
+  <section class="grand-total" id="grand-total">
     <p>Grand Total: <%= @cart.grand_total %></p>
   </section>
 
-  <h1 align= "center">Create Order</h1>
+  <h1 align="center">Create Order</h1>
 
   <%= render partial: "/merchants/form", locals: {value: false, path: "/orders", method: :post, button_text: 'Create Order'} %>
