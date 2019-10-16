@@ -33,6 +33,11 @@ RSpec.describe "As a visitor" do
       click_button 'Add to Cart'
       visit '/cart'
       click_button 'Checkout'
+      fill_in :name, with: "Sam"
+      fill_in :address, with: "123 Main St."
+      fill_in :city, with: "Anytown"
+      fill_in :state, with: "MZ"
+      fill_in :zip, with: "80122"
       click_button 'Create Order'
       visit "/merchants/#{@bike_shop.id}"
       click_link 'Delete Merchant'

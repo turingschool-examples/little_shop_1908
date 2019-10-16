@@ -36,6 +36,11 @@ RSpec.describe 'item delete', type: :feature do
       click_button 'Add to Cart'
       visit '/cart'
       click_button 'Checkout'
+      fill_in :name, with: "Sam"
+      fill_in :address, with: "123 Main St."
+      fill_in :city, with: "Anytown"
+      fill_in :state, with: "MZ"
+      fill_in :zip, with: "80122"
       click_button 'Create Order'
       visit "/items/#{chain.id}"
       click_link 'Delete Item'
