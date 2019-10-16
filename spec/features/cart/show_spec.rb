@@ -61,8 +61,10 @@ describe 'When I visit cart show Page' do
       click_on "Add to cart"
 
       visit '/cart'
-      click_on "Empty cart"
-
+      within ".grand-total" do
+        click_on "Empty cart"
+      end
+      
       expect(current_path).to eq("/cart")
       expect(page).to have_content("Your cart is empty")
       expect(page).to have_no_link("Empty cart")

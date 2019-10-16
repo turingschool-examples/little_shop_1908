@@ -40,20 +40,24 @@
       <section class='reviews-section'>
         <section id="top_three_reviews">
           <h3>Top Three Reviews</h3>
-          <% @item.reviews.top_three.each do |review|%>
-          <h3><%= review.title %></h3>
-          <p><%= review.content %></p>
-          <p><%= "Rating: #{review.rating}" %></p>
+          <% if @item.reviews.length > 4 %>
+            <% @item.reviews.top_three.each do |review|%>
+            <h3><%= review.title %></h3>
+            <p><%= review.content %></p>
+            <p><%= "Rating: #{review.rating}" %></p>
+            <% end %>
           <% end %>
         </section>
 
         <section id='bottom_three_reviews'>
           <h3>Bottom Three Reviews</h3>
-          <% @item.reviews.bottom_three.each do |review| %>
-          <h3><%= review.title %> </h3>
-          <p><%= review.content %></p>
-          <p><%= "Rating: #{review.rating}" %></p>
-          <% end  %>
+          <% if @item.reviews.length > 4 %>
+            <% @item.reviews.bottom_three.each do |review| %>
+            <h3><%= review.title %> </h3>
+            <p><%= review.content %></p>
+            <p><%= "Rating: #{review.rating}" %></p>
+            <% end  %>
+          <% end %>
         </section>
 
         <section id='average_rating'>
