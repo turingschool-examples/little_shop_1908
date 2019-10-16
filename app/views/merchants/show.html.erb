@@ -4,5 +4,6 @@
 
 <ul><%= link_to "All #{@merchant.name} Items", "/merchants/#{@merchant.id}/items" %></ul>
 <ul><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit" %></ul>
-<ul><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete %>
-</ul>
+<% if @merchant.item_orders.empty? %>
+  <%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete %>
+<% end  %>
