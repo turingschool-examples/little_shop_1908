@@ -135,5 +135,22 @@ RSpec.describe 'order show page', type: :feature do
       expect(ItemOrder.where(order_id: @order_1.id)).to eq([])
       expect(current_path).to eq('/items')
     end
+
+    it 'can update the shipping address for an order' do
+      visit '/'
+      fill_in 'Order Code/Number', with: '4856752493'
+      click_button 'Search'
+
+      fill_in 'Name',    with: 'Joe Bob'
+      fill_in 'Address', with: '1331 17th Ave'
+      fill_in 'City',    with: 'Denver'
+      fill_in 'State',   with: 'CO'
+      fill_in 'zip',     with: '80202'
+
+      click_button 'Update Shipping Info'
+
+      expect(current_path).to eq("/orders/#{@order_1.id}")
+      expect(page).to have_content("Joe Bob 1331 17th Ave Denver, CO 80202")
+    end
   end
 end
