@@ -57,6 +57,15 @@ rose = Item.create(
   inventory: 8,
   merchant_id: florist.id
 )
+lily = Item.create(
+  name: 'Oriental Stargazer Lily',
+  description: 'Stargazer lilies are very fragrant and are probably the best known of all lilies. These florist quality lilies have outward facing bowl shaped blooms, producing 6-8 flowers per stem. They are sturdy and long-lasting, growing into impressive plants.',
+  price: 22.46,
+  image: 'https://images.pexels.com/photos/374134/pexels-photo-374134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+  active?: true,
+  inventory: 17,
+  merchant_id: florist.id
+)
 hibiscus = Item.create(
   name: 'Pink Tropical Hibiscus Tree',
   description: 'Adding a tropical feel to your garden or landscape has never been easier. The pink tropical hibiscus tree is a low-maintenance dwarf tree, reaching only 6-8 feet in height. Its breathtaking blooms occur year-round',
@@ -74,6 +83,24 @@ olive = Item.create(
   active?: false,
   inventory: 4,
   merchant_id: pine_oakio.id
+)
+maple = Item.create(
+  name: 'Japanese Maple Tree',
+  description: "The Japanese Maple Tree is a garden designer's favorite because of its texture, deep red leaf color, size, and cascading habit. It has been in production for over 300 years, a selection from the Kobayashi Nursery of old. This lovely cascading maple covers itself in finely cut, delicate leaves.",
+  price: 71.95,
+  image: 'https://images.pexels.com/photos/715134/pexels-photo-715134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+  active?: false,
+  inventory: 6,
+  merchant_id: pine_oakio.id
+)
+tulip = Item.create(
+  name: 'Tulip Bulbs - La Courtine Variety',
+  description: 'These jumbo, late-blooming tulips will fill your garden with brilliant spring color. Their golden yellow petals are adorned with fire engine red stripes and feathering. The colors are bold, yet La Courtine has a remarkable elegance.',
+  price: 9.50,
+  image: 'https://images.pexels.com/photos/1060876/pexels-photo-1060876.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+  active?: true,
+  inventory: 22,
+  merchant_id: florist.id
 )
 
 #---------------------------- Users ----------------------------#
@@ -207,6 +234,19 @@ rose.reviews.create([
   }
 ])
 
+lily.reviews.create([
+  {
+    title: 'Simply gorgeous',
+    content: 'Love the pink and red freckles',
+    rating: 5
+  },
+  {
+    title: 'Easy to grow',
+    content: 'Grow easily and are a striking addition to the garden',
+    rating: 4
+  }
+])
+
 hibiscus.reviews.create([
   {
     title: 'Very tropical',
@@ -265,5 +305,31 @@ olive.reviews.create([
     title: 'Awful shade of green',
     content: 'Leaves are not olive green at all',
     rating: 2
+  }
+])
+
+maple.reviews.create([
+  {
+    title: 'Beautiful tree',
+    content: 'Leaves are strikingly red all year round',
+    rating: 5
+  },
+  {
+    title: 'Grows too slowly',
+    content: 'Very nice tree, but grows extremely slowly',
+    rating: 3
+  }
+])
+
+tulip.reviews.create([
+  {
+    title: 'Wonderful contrast',
+    content: 'The red and yellow is quite striking',
+    rating: 4
+  },
+  {
+    title: 'Never sprouted',
+    content: "Don't waste your time and money",
+    rating: 1
   }
 ])
