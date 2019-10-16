@@ -15,7 +15,8 @@
  */
 
  body {
- background-color: white;
+ background-color: lavenderblush;
+ color: maroon;
  }
 
  h1 {
@@ -30,7 +31,11 @@ ul{
   text-align: center;
 }
 img{
-  width: 50%;
+  width: 80%;
+  max-width: 165px;
+  max-height: 165px;
+  /* float: right; */
+  padding: 20px;
 }
 
  .grid-container{
@@ -107,7 +112,12 @@ img{
  }
 
  .cart-item{
+   margin: auto;
+   padding: 15px;
+ }
 
+ .link_to.cart-item{
+   font-weight: bold
  }
 
  .grand-total{
@@ -119,7 +129,7 @@ img{
  }
 
  .all-order-items{
-
+   text-align: left;
  }
 
  .order-item{
@@ -131,7 +141,7 @@ img{
  }
 
  .welcome{
-   
+
  }
 
  input[type=text], select {
@@ -165,6 +175,11 @@ form {
   width: 60%;
 }
 
+.button_to{
+  width: 100px;
+}
+
+
 #flash-confirm{
   background-color: forestgreen;
 }
@@ -186,9 +201,29 @@ form {
 }
 
 #grand-total{
-
+  font-weight: bold;
 }
 
 #top_three_reviews{
-  color: tomato;
+  color: forestgreen;
+}
+
+/* unvisited link */
+a:link {
+  color: red;
+}
+
+/* visited link */
+a:visited {
+  color: green;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: blue;
 }

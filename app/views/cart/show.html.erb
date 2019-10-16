@@ -3,7 +3,7 @@
     <ol>
       <% @cart.contents.each do |item_id, quantity| %>
         <% item = Item.find(item_id) %>
-        <li><%= link_to item.name, "/items/#{item_id}" %><br>
+        <li class="cart-item"><%= link_to item.name, "/items/#{item_id}" %><br>
           <section class="cart-item" id="cart-item-<%= item_id %>">
             <img src=<%= item.image %>>
             <p>Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
