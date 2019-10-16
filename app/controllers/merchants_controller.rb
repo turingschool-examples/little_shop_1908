@@ -6,7 +6,6 @@ class MerchantsController <ApplicationController
 
   def show
     @merchant = Merchant.find(params[:id])
-    # binding.pry
   end
 
   def new
