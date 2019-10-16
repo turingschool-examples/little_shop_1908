@@ -50,5 +50,24 @@ RSpec.describe "Create Merchant Items" do
       expect(page).to_not have_content(new_item.description)
       expect(page).to have_content("Inventory: #{new_item.inventory}")
     end
+
+    it 'I cannot add a new item if form is missing fields' do
+      visit "/merchants/#{@brian.id}/items"
+
+      click_on "Add New Item"
+
+      fill_in :name, with: ""
+      fill_in :price, with: 50
+      fill_in :description, with: "Wow"
+      fill_in :image, with: ""
+      fill_in :inventory, with: 10
+
+      click_button "Create Item"
+      expect(page).to have_content "Name can't be blank"
+      expect(page).to have_content "Image can't be blank"
+
+    end
   end
 end
+
+# When I am updating or creating a new item
