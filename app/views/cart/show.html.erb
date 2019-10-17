@@ -1,0 +1,29 @@
+<h1 class='mt-4 mb-3'>Cart Contents</h1>
+
+<% if @items.empty? %>
+  <h3>Your cart is empty</h3>
+<% else %>
+  <% @items.each do |item| %>
+    <section class='justify-content-center item-container card card-body bg-light m-3 p-4' id = 'item-<%= item.id %>'>
+      <article class='img-container'>
+        <img src= <%= item.image %>>
+      </article>
+
+      <article style="text-align:left" class='text-container'>
+        <p><%= item.name %></p>
+        <p><%= "Merchant: #{item.merchant.name}" %></p>
+        <p><%= "Price: #{number_to_currency(item.price)}" %></p>
+        <p><%= "Quantity: #{cart.count_of(item.id)}" %>
+        <%= link_to '+', "/cart/#{item.id}?quantity=increase", method: :patch, class: 'btn btn-success ml-3' %>
+        <%= link_to '-', "/cart/#{item.id}?quantity=decrease", method: :patch, class: 'btn btn-info ml-1' %></p>
+        <p><%= "Subtotal: #{number_to_currency(cart.subtotal(item.id))}" %></p>
+        <%= button_to 'Remove Item', "/cart/#{item.id}", method: :delete, class: 'btn btn-danger mt-3' %>
+      </article>
+    </section>
+  <% end %>
+  <h5 class='text-center m-3'>Grand Total: <%= number_to_currency(cart.grand_total) %></h5>
+  <section class='container-fluid justify-content-center d-flex'>
+    <p id='checkout'><%= link_to 'Checkout', '/orders/new', class: 'btn btn-success ml-2 mr-2' %></p>
+    <p><%= button_to 'Empty Cart', '/cart', method: :delete, class: 'btn btn-danger ml-2 mr-2' %></p>
+  </section>
+<% end %>

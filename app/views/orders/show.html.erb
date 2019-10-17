@@ -1,0 +1,45 @@
+<h1 class="mt-4 mb-3">Order Number: <%= @order_display.verification_code %></h1>
+
+<hr class='m-4'/>
+
+<h2 class='text-center'>Shipping Information</h2>
+
+<% if current_page?('/verified_order') %>
+  <%= render partial: 'partials/order_form', locals:
+    {
+      path: "/users/#{@order_display.user_id}",
+      method: :patch,
+      name: @order_display.user_name,
+      address: @order_display.user_address,
+      city: @order_display.user_city,
+      state: @order_display.user_state,
+      zip: @order_display.user_zip,
+      button_text: 'Update Shipping Info'
+    } %>
+<% else %>
+  <section id='shipping-info'>
+    <h6 class='text-center'><%= @order_display.user_name %><br />
+      <%= @order_display.user_address %><br />
+      <%= @order_display.user_city %>,
+      <%= @order_display.user_state %>
+      <%= @order_display.user_zip %></h6>
+  </section>
+<% end %>
+
+<hr class='mt-5'/>
+
+<%= render partial: 'partials/order_item_list', locals:
+  {
+    items: @order_display.items,
+    grand_total: @order_display.grand_total,
+    new_path: false
+  } %>
+
+<h5 class='text-center'>Order Date: <%= @order_display.order.created_at.strftime("%m/%d/%Y") %></h5>
+
+<section class='container-fluid justify-content-center d-flex mt-3'>
+  <% if current_page?('/verified_order') %>
+    <%= button_to 'Delete Order', "/orders/#{@order_display.order_id}", method: :delete, class: 'btn btn-danger mt-3' %>
+  <% end %>
+</section>
+<br>

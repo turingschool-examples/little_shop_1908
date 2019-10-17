@@ -1,23 +1,26 @@
 <% if @merchant %>
-  <h1><%= link_to @merchant.name, "/merchants/#{@merchant.id}"%><span> Items</span></h1>
-  <p align="center"><%= link_to "Add New Item", "/merchants/#{@merchant.id}/items/new" %></p>
+  <h1 class="mt-4 mb-2"><%= link_to @merchant.name, "/merchants/#{@merchant.id}"%><span> Items</span></h1>
 <% else %>
-  <h1>All Items</h1>
+  <h1 class="mt-4 mb-2">All Items</h1>
 <% end %>
-<section class="grid-container">
+<section class="container-fluid row justify-content-center">
   <% @items.each do |item| %>
-    <section class = "grid-item" id= 'item-<%=item.id%>'>
-      <h2> <%=link_to item.name, "/items/#{item.id}" %> </h2>
-      <p>Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
-      <img src= <%= item.image %>>
+    <section class="card card-body bg-light m-3 p-4 col-md-3" id='item-<%=item.id%>'>
+      <h2 class="text-center"> <%=link_to item.name, "/items/#{item.id}" %> </h2>
+      <h6 class="text-center mt-2">Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></h6>
+      <img class="center mt-4 mb-4" src= <%= item.image %>>
       <p> <%= item.description unless @merchant%> </p>
       <p>Price: <%= number_to_currency(item.price) %> </p>
       <p>Inventory: <%= item.inventory %> </p>
       <% if item.active? %>
-        <p>Active</p>
+        <p class="active">Active</p>
       <% else %>
-        <p>Inactive</p>
+        <p class="inactive">Inactive</p>
       <% end %>
     </section>
-    <% end %>
+  <% end %>
 </section>
+
+<% if @merchant %>
+  <p align="center"><%= link_to "Add New Item", "/merchants/#{@merchant.id}/items/new", class: 'btn btn-primary mt-3' %></p>
+<% end %>

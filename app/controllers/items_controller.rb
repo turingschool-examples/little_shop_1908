@@ -1,4 +1,4 @@
-class ItemsController<ApplicationController
+class ItemsController < ApplicationController
 
   def index
     if params[:merchant_id]
@@ -10,8 +10,12 @@ class ItemsController<ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
-  end
+    @item = Item.where(id: params[:id]).first
+    if !@item
+      flash[:error] = ['Item does not exist']
+      redirect_to '/items'
+    end
+   end
 
   def new
     @merchant = Merchant.find(params[:merchant_id])
@@ -19,8 +23,13 @@ class ItemsController<ApplicationController
 
   def create
     merchant = Merchant.find(params[:merchant_id])
-    merchant.items.create(item_params)
-    redirect_to "/merchants/#{merchant.id}/items"
+    item = merchant.items.create(item_params)
+    if item.save
+      redirect_to "/merchants/#{merchant.id}/items"
+    else
+      flash[:error] = item.errors.full_messages
+      redirect_to "/merchants/#{merchant.id}/items/new"
+    end
   end
 
   def edit
@@ -30,19 +39,29 @@ class ItemsController<ApplicationController
   def update
     item = Item.find(params[:id])
     item.update(item_params)
-    redirect_to "/items/#{item.id}"
+    if item.save
+      redirect_to "/items/#{item.id}"
+    else
+      flash[:error] = item.errors.full_messages
+      redirect_to "/items/#{item.id}/edit"
+    end
   end
 
   def destroy
-    item = Item.find(params[:id])
-    item.destroy
-    redirect_to "/items"
+    if ItemOrder.where(item_id: params[:id]).empty?
+      Review.delete(Review.where(item_id: params[:id]))
+      Item.destroy(params[:id])
+      redirect_to "/items"
+    else
+      flash[:error] = ['Item has been ordered and cannot be deleted']
+      redirect_to "/items/#{params[:id]}"
+    end
   end
 
   private
 
   def item_params
-    params.permit(:name,:description,:price,:inventory,:image)
+    params.permit(:name, :description, :price, :inventory, :image)
   end
 
 end

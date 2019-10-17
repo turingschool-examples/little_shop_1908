@@ -1,0 +1,26 @@
+<h1 class="mt-4 mb-3">New Order</h1>
+
+<hr class='mt-4 mb-0'>
+
+<%= render partial: 'partials/order_item_list', locals:
+  {
+    items: @items,
+    grand_total: cart.grand_total,
+    new_path: true
+  } %>
+
+<hr class='m-5'/>
+
+<h2 class='text-center'>Shipping Information</h2>
+
+<%= render partial: 'partials/order_form', locals:
+  {
+    path: '/orders',
+    method: :post,
+    name: nil,
+    address: nil,
+    city: nil,
+    state: nil,
+    zip: nil,
+    button_text: 'Create Order'
+  } %>
