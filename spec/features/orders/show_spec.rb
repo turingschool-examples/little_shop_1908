@@ -91,13 +91,6 @@ RSpec.describe 'order show page', type: :feature do
     end
   end
 
-  # I can use that verification code to search for an order through the nav bar.
-  # If an order is found, I am redirected to a verified order page ('/verified_order')
-  # On that verified order page, I can:
-  # - click a link to delete the order
-  # - update the shipping address for an order
-  # - remove items from the order
-
   describe 'verified order show page' do
     before :each do
       @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
@@ -169,7 +162,7 @@ RSpec.describe 'order show page', type: :feature do
       expect(@order_1.item_orders.find_by(item_id: @tire.id)).to eq(nil)
     end
 
-    it 'removing final item redirects to cart' do
+    it 'deletes order and redirects to items index by removing final item' do
       visit '/'
       fill_in 'Order Code/Number', with: '4856752493'
       click_button 'Search'
@@ -184,8 +177,9 @@ RSpec.describe 'order show page', type: :feature do
       within "#item-#{@pull_toy.id}" do
         click_button 'Remove Item'
       end
-
-      expect(current_path).to eq('/cart')
+      expect(current_path).to eq('/items')
+      expect(page).to have_content("Order Number 4856752493 has been deleted")
+      expect(Order.all).to eq([])
     end
   end
 end

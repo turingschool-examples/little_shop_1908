@@ -13,6 +13,11 @@ RSpec.describe 'site navigation' do
 
     within('nav') { click_link 'Cart (0)' }
     expect(current_path).to eq('/cart')
+
+    within('nav') do
+      expect(page).to have_field('Order Code/Number')
+      expect(page).to have_button('Search')
+    end
   end
 
 end
