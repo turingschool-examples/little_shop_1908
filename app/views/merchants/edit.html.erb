@@ -1,38 +1,13 @@
 <h1 class="mt-4 mb-2">Edit <%=link_to @merchant.name, "/merchants/#{@merchant.id}" %></h1>
 
-<%= form_tag "/merchants/#{@merchant.id}", method: :patch do %>
-  <section class='form-group form-width'>
-    <p>
-      <%= label_tag :name %>
-      <%= text_field_tag :name, @merchant.name, class: 'form-control' %>
-    </p>
-
-    <p>
-      <%= label_tag :address %>
-      <%= text_area_tag :address, @merchant.address, class: 'form-control' %>
-    </p>
-
-    <p>
-      <%= label_tag :city %>
-      <%= text_field_tag :city, @merchant.city, class: 'form-control' %>
-    </p>
-
-    <p>
-      <%= label_tag :state %>
-      <%= text_field_tag :state, @merchant.state, class: 'form-control' %>
-    </p>
-
-    <p>
-      <%= label_tag :zip %>
-      <%= text_field_tag :zip, @merchant.zip, class: 'form-control' %>
-    </p>
-
-    <br>
-
-    <p>
-      <%= submit_tag 'Update Merchant', class: 'btn btn-primary' %>
-    </p>
-  </section>
-<% end %>
-
-
+<%= render partial: 'partials/merchant_form', locals:
+  {
+    path: "/merchants/#{@merchant.id}",
+    method: :patch,
+    name: @merchant.name,
+    address: @merchant.address,
+    city: @merchant.city,
+    state: @merchant.state,
+    zip: @merchant.zip,
+    button_text: 'Update Merchant'
+  } %>
