@@ -1,55 +1,45 @@
-<h1 class="mt-4 mb-3">Order Number: <%= @item_orders.first.order.verification_code %></h1>
-<hr />
+<h1 class="mt-4 mb-3">Order Number: <%= @order_display.verification_code %></h1>
+
+<hr class='m-4'/>
+
 <h2 class='text-center'>Shipping Information</h2>
 
 <% if current_page?('/verified_order') %>
   <%= render partial: 'partials/order_form', locals:
     {
-      path: "/users/#{@item_orders.first.order.user_id}",
+      path: "/users/#{@order_display.user_id}",
       method: :patch,
-      name: @item_orders.first.order.user.name,
-      address: @item_orders.first.order.user.address,
-      city: @item_orders.first.order.user.city,
-      state: @item_orders.first.order.user.state,
-      zip: @item_orders.first.order.user.zip,
+      name: @order_display.user_name,
+      address: @order_display.user_address,
+      city: @order_display.user_city,
+      state: @order_display.user_state,
+      zip: @order_display.user_zip,
       button_text: 'Update Shipping Info'
     } %>
 <% else %>
   <section id='shipping-info'>
-    <h6 class='text-center'><%= @item_orders.first.order.user.name %><br />
-      <%= @item_orders.first.order.user.address %><br />
-      <%= @item_orders.first.order.user.city %>,
-      <%= @item_orders.first.order.user.state %>
-      <%= @item_orders.first.order.user.zip %></h6>
+    <h6 class='text-center'><%= @order_display.user_name %><br />
+      <%= @order_display.user_address %><br />
+      <%= @order_display.user_city %>,
+      <%= @order_display.user_state %>
+      <%= @order_display.user_zip %></h6>
   </section>
 <% end %>
 
-<section class='container-fluid row justify-content-center'>
-  <section class='card card-body bg-light m-3 p-4'>
-  <h3 class='text-center'>Items</h3>
-    <section class='container-fluid justify-content-center'>
-      <% @item_orders.each do |item_order| %>
-        <section class='card card-body bg-light m-3 p-4' id='item-<%= item_order.item_id %>'>
-          <h5><%= item_order.item.name %></h5>
-          <p><%= "Merchant: #{item_order.item.merchant.name}" %></p>
-          <p><%= "Price: #{number_to_currency(item_order.item.price)}" %></p>
-          <p><%= "Quantity: #{item_order.item_quantity}" %></p>
-          <p><%= "Subtotal: #{number_to_currency(item_order.subtotal)}" %></p>
-          <% if current_page?('/verified_order') %>
-            <%= button_to 'Remove Item', "/orders/#{@item_orders.first.order_id}/items/#{item_order.item_id}", method: :delete, class: 'btn btn-outline-danger' %>
-          <% end %>
-        </section>
-      <% end %>
-    </section>
-  </section>
-</section>
+<hr class='mt-5'/>
 
-<h5 class='text-center'>Grand Total: <%= number_to_currency(@item_orders.first.order.grand_total) %></h5>
-<h5 class='text-center'>Order Date: <%= @item_orders.first.order.created_at.strftime("%m/%d/%Y") %></h5>
+<%= render partial: 'partials/order_item_list', locals:
+  {
+    items: @order_display.items,
+    grand_total: @order_display.grand_total,
+    new_path: false
+  } %>
+
+<h5 class='text-center'>Order Date: <%= @order_display.order.created_at.strftime("%m/%d/%Y") %></h5>
 
 <section class='container-fluid justify-content-center d-flex mt-3'>
   <% if current_page?('/verified_order') %>
-    <%= button_to 'Delete Order', "/orders/#{@item_orders.first.order_id}", method: :delete, class: 'btn btn-danger mt-3' %>
+    <%= button_to 'Delete Order', "/orders/#{@order_display.order_id}", method: :delete, class: 'btn btn-danger mt-3' %>
   <% end %>
 </section>
 <br>

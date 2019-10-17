@@ -1,23 +1,13 @@
 <h1 class="mt-4 mb-3">New Order</h1>
 
-<section class='container-fluid row justify-content-center'>
-  <section class='card card-body bg-light m-3 p-4'>
-  <h3 class='text-center'>Items</h3>
-    <section class='container-fluid justify-content-center'>
-      <% @items.each do |item| %>
-        <section class='card card-body bg-light m-3 p-4' id='item-<%= item.id %>'>
-          <h5><%= item.name %></h5>
-          <p><%= "Merchant: #{item.merchant.name}" %></p>
-          <p><%= "Price: #{number_to_currency(item.price)}" %></p>
-          <p><%= "Quantity: #{cart.count_of(item.id)}" %></p>
-          <p><%= "Subtotal: #{number_to_currency(cart.subtotal(item.id))}" %></p>
-        </section>
-      <% end %>
-    </section>
-  </section>
-</section>
+<hr class='mt-4 mb-0'>
 
-<h5 class='text-center'>Grand Total: <%= number_to_currency(cart.grand_total) %></h5>
+<%= render partial: 'partials/order_item_list', locals:
+  {
+    items: @items,
+    grand_total: cart.grand_total,
+    new_path: true
+  } %>
 
 <hr class='m-5'/>
 
