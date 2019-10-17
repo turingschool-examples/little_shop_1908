@@ -1,24 +1,11 @@
 <h1 class="mt-4 mb-3">Create New Review for <%=link_to @item.name, "/items/#{@item.id}" %></h1>
 
-  <%= form_tag "/items/#{@item.id}/reviews", method: :post do %>
-    <section class='form-group form-width'>
-      <p>
-        <%= label_tag :title %>
-        <%= text_field_tag :title, nil, class: 'form-control' %>
-      </p>
-
-      <p>
-        <%= label_tag 'Review Content' %>
-        <%= text_area_tag :content, nil, class: 'form-control' %>
-      </p>
-
-      <p>
-        <%= label_tag :rating %>
-        <%= number_field_tag :rating, nil, class: 'form-control' %>
-      </p>
-
-      <p>
-        <%= submit_tag 'Create Review', class: 'btn btn-primary mt-3' %>
-      </p>
-    </section>
-  <% end %>
+<%= render partial: 'partials/review_form', locals:
+  {
+    path: "/items/#{@item.id}/reviews",
+    method: :post,
+    title: nil,
+    content: nil,
+    rating: nil,
+    button_text: 'Create Review'
+  } %>
