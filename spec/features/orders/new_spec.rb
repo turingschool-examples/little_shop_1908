@@ -115,4 +115,18 @@ RSpec.describe 'new order page', type: :feature do
       expect(page).to have_link('Cart (0)')
     end
   end
+
+  it 'displays a flash message with verification code on order creation' do
+    fill_in 'Name',    with: 'Joe Bob'
+    fill_in 'Address', with: '1331 17th Ave'
+    fill_in 'City',    with: 'Denver'
+    fill_in 'State',   with: 'Colorado'
+    fill_in 'zip',     with: '80202'
+
+    click_button 'Create Order'
+
+    verification_code = Order.last.verification_code
+    expect(verification_code.length).to eq(10)
+    expect(page).to have_content("Order Verification Code: #{verification_code}")
+  end
 end

@@ -1,13 +1,50 @@
-<h1 class="mt-4 mb-3">Order</h1>
+<h1 class="mt-4 mb-3">Order Number: <%= @item_orders.first.order.verification_code %></h1>
 <hr />
 <h2 class='text-center'>Shipping Information</h2>
-<section id='shipping-info'>
-  <h6 class='text-center'><%= @item_orders.first.order.user.name %><br />
-    <%= @item_orders.first.order.user.address %><br />
-    <%= @item_orders.first.order.user.city %>,
-    <%= @item_orders.first.order.user.state %>
-    <%= @item_orders.first.order.user.zip %></h6>
-</section>
+<% if current_page?('/verified_order') %>
+  <%= form_tag "/users/#{@item_orders.first.order.user_id}", method: :patch do %>
+    <section class='form-group form-width'>
+      <p>
+        <%= label_tag :name %>
+        <%= text_field_tag :name, @item_orders.first.order.user.name, class: 'form-control' %>
+      </p>
+
+      <p>
+        <%= label_tag :address %>
+        <%= text_area_tag :address, @item_orders.first.order.user.address, class: 'form-control' %>
+      </p>
+
+      <p>
+        <%= label_tag :city %>
+        <%= text_field_tag :city, @item_orders.first.order.user.city, class: 'form-control' %>
+      </p>
+
+      <p>
+        <%= label_tag :state %>
+        <%= text_field_tag :state, @item_orders.first.order.user.state, class: 'form-control' %>
+      </p>
+
+      <p>
+        <%= label_tag :zip %>
+        <%= text_field_tag :zip, @item_orders.first.order.user.zip, class: 'form-control' %>
+      </p>
+
+      <br>
+
+      <p>
+        <%= submit_tag 'Update Shipping Info', class: 'btn btn-primary' %>
+      </p>
+    </section>
+  <% end %>
+<% else %>
+  <section id='shipping-info'>
+    <h6 class='text-center'><%= @item_orders.first.order.user.name %><br />
+      <%= @item_orders.first.order.user.address %><br />
+      <%= @item_orders.first.order.user.city %>,
+      <%= @item_orders.first.order.user.state %>
+      <%= @item_orders.first.order.user.zip %></h6>
+  </section>
+<% end %>
 
 <section class='container-fluid row justify-content-center'>
   <section class='card card-body bg-light m-3 p-4'>
@@ -20,6 +57,9 @@
           <p><%= "Price: #{number_to_currency(item_order.item.price)}" %></p>
           <p><%= "Quantity: #{item_order.item_quantity}" %></p>
           <p><%= "Subtotal: #{number_to_currency(item_order.subtotal)}" %></p>
+          <% if current_page?('/verified_order') %>
+            <%= button_to 'Remove Item', "/orders/#{@item_orders.first.order_id}/items/#{item_order.item_id}", method: :delete, class: 'btn btn-outline-danger' %>
+          <% end %>
         </section>
       <% end %>
     </section>
@@ -28,3 +68,10 @@
 
 <h5 class='text-center'>Grand Total: <%= number_to_currency(@item_orders.first.order.grand_total) %></h5>
 <h5 class='text-center'>Order Date: <%= @item_orders.first.order.created_at.strftime("%m/%d/%Y") %></h5>
+
+<section class='container-fluid justify-content-center d-flex mt-3'>
+  <% if current_page?('/verified_order') %>
+    <%= button_to 'Delete Order', "/orders/#{@item_orders.first.order_id}", method: :delete, class: 'btn btn-danger mt-3' %>
+  <% end %>
+</section>
+<br>

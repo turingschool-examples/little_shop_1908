@@ -60,16 +60,16 @@ RSpec.describe 'merchant show page', type: :feature do
 
   it 'can show a list of distinct cities where their items have been ordered' do
     user_1 = User.create(name: 'Kyle Pine', address: '123 Main Street', city: 'Greenville', state: 'NC', zip: '29583')
-    order_1 = user_1.orders.create(grand_total: 100)
+    order_1 = user_1.orders.create(grand_total: 100, verification_code: '4856752493')
     order_1.item_orders.create(item_id: @tire.id, item_quantity: 2, subtotal: 50)
 
     user_2 = User.create(name: 'Steve Spruce', address: '456 2nd Street', city: 'Redville', state: 'SC', zip: '29444')
-    order_2 = user_2.orders.create(grand_total: 40)
+    order_2 = user_2.orders.create(grand_total: 40, verification_code: '6856758493')
     order_2.item_orders.create(item_id: @pull_toy.id, item_quantity: 2, subtotal: 20)
     order_2.item_orders.create(item_id: @dog_bone.id, item_quantity: 1, subtotal: 20)
 
     user_3 = User.create(name: 'Steve Spruce', address: '456 2nd Street', city: 'Redville', state: 'SC', zip: '29444')
-    order_3 = user_3.orders.create(grand_total: 40)
+    order_3 = user_3.orders.create(grand_total: 40, verification_code: '3156408493')
     order_3.item_orders.create(item_id: @pull_toy.id, item_quantity: 2, subtotal: 20)
     order_3.item_orders.create(item_id: @dog_bone.id, item_quantity: 1, subtotal: 20)
 
