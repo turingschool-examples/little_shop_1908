@@ -1,41 +1,19 @@
 <h1 class="mt-4 mb-3">Order Number: <%= @item_orders.first.order.verification_code %></h1>
 <hr />
 <h2 class='text-center'>Shipping Information</h2>
+
 <% if current_page?('/verified_order') %>
-  <%= form_tag "/users/#{@item_orders.first.order.user_id}", method: :patch do %>
-    <section class='form-group form-width'>
-      <p>
-        <%= label_tag :name %>
-        <%= text_field_tag :name, @item_orders.first.order.user.name, class: 'form-control' %>
-      </p>
-
-      <p>
-        <%= label_tag :address %>
-        <%= text_area_tag :address, @item_orders.first.order.user.address, class: 'form-control' %>
-      </p>
-
-      <p>
-        <%= label_tag :city %>
-        <%= text_field_tag :city, @item_orders.first.order.user.city, class: 'form-control' %>
-      </p>
-
-      <p>
-        <%= label_tag :state %>
-        <%= text_field_tag :state, @item_orders.first.order.user.state, class: 'form-control' %>
-      </p>
-
-      <p>
-        <%= label_tag :zip %>
-        <%= text_field_tag :zip, @item_orders.first.order.user.zip, class: 'form-control' %>
-      </p>
-
-      <br>
-
-      <p>
-        <%= submit_tag 'Update Shipping Info', class: 'btn btn-primary' %>
-      </p>
-    </section>
-  <% end %>
+  <%= render partial: 'partials/order_form', locals:
+    {
+      path: "/users/#{@item_orders.first.order.user_id}",
+      method: :patch,
+      name: @item_orders.first.order.user.name,
+      address: @item_orders.first.order.user.address,
+      city: @item_orders.first.order.user.city,
+      state: @item_orders.first.order.user.state,
+      zip: @item_orders.first.order.user.zip,
+      button_text: 'Update Shipping Info'
+    } %>
 <% else %>
   <section id='shipping-info'>
     <h6 class='text-center'><%= @item_orders.first.order.user.name %><br />
