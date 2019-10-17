@@ -7,15 +7,15 @@ class OrdersController < ApplicationController
   def show
     if params[:search]
       if order = Order.find_by(verification_code: params[:search])
-        @item_orders = order.item_orders
-        render :show
+        @order_display = OrderDisplay.new(order.id)
       else
         flash[:error] = ['Order does not exist!']
         redirect_to '/items'
       end
     else
-      @item_orders = ItemOrder.where(order_id: params[:id])
-      if @item_orders.empty?
+      if order = Order.find_by(id: params[:id])
+        @order_display = OrderDisplay.new(order.id)
+      else
         flash[:error] = ['Order does not exist!']
         redirect_to '/cart'
       end
@@ -34,8 +34,18 @@ class OrdersController < ApplicationController
 
   def destroy
     if params[:item_id]
-      ItemOrder.delete(ItemOrder.where(order_id: params[:order_id], item_id: params[:item_id]))
-      redirect_to "/orders/#{params[:order_id]}"
+      item_order = ItemOrder.find_by(order_id: params[:order_id], item_id: params[:item_id])
+      order = Order.find(params[:order_id])
+      order.update_attribute(:grand_total, order.grand_total - item_order.subtotal)
+
+      ItemOrder.delete(item_order)
+      if !order.item_orders.empty?
+        redirect_to "/orders/#{params[:order_id]}"
+      else
+        Order.delete(order)
+        flash[:error] = ["Order Number #{order.verification_code} has been deleted"]
+        redirect_to '/items'
+      end
     else
       ItemOrder.delete(ItemOrder.where(order_id: params[:id]))
       Order.destroy(params[:id])
