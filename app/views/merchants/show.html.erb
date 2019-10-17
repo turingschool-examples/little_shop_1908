@@ -7,10 +7,13 @@
 <ul><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete %>
 </ul>
 
-<section id = "merchant-stats">
+<hr>
+
+<center id = "merchant-stats">
+  <h2>Merchant Snapshot</h2>
   <p>Number of Items: <%= @merchant.number_of_items %></p>
   <p>Average Price: <%= number_to_currency(@merchant.avg_price) %></p>
   <p>
     Satisfied Customers In: <%= @merchant.all_cities.to_sentence %>
   </p>
-</section>
+</center>
