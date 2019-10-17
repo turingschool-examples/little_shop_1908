@@ -1,37 +1,13 @@
 <h1 class="mt-4 mb-2">Edit <%=link_to @item.name, "/items/#{@item.id}" %></h1>
 
-<%= form_tag "/items/#{@item.id}", method: :patch do %>
-  <section class='form-group form-width'>
-    <p>
-      <%= label_tag :name %>
-      <%= text_field_tag :name, @item.name, class: 'form-control' %>
-    </p>
-
-    <p>
-      <%= label_tag :description %>
-      <%= text_area_tag :description, @item.description, class: 'form-control' %>
-    </p>
-
-    <p>
-      <%= label_tag :price %>
-      <%= number_field_tag :price, @item.price, class: 'form-control', step: 0.01 %>
-    </p>
-
-    <p>
-      <%= label_tag :image %>
-      <%= text_field_tag :image, @item.image, class: 'form-control' %>
-    </p>
-
-    <p>
-      <%= label_tag :inventory %>
-      <%= number_field_tag :inventory, @item.inventory, class: 'form-control' %>
-    </p>
-
-    <br>
-
-    <p>
-      <%= submit_tag 'Update Item', class: 'btn btn-primary' %>
-    </p>
-  </section>
-<% end %>
-
+<%= render partial: 'partials/item_form', locals:
+  {
+    path: "/items/#{@item.id}",
+    method: :patch,
+    name: @item.name,
+    description: @item.description,
+    price: @item.price,
+    image: @item.image,
+    inventory: @item.inventory,
+    button_text: 'Update Item'
+  } %>
