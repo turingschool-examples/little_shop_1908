@@ -16,3 +16,7 @@ BE Mod 2 Week 2/3 Pair Project
 - Users can add reviews to items and sort them by highest/lowest reviews
 - Item and merchants display statistics about reviews (avg. review, etc.) and items carried by merchant (avg. review, etc.)
 - Forms can't be submitted unless all fields are filled
+
+## Version Info
+- Ruby 2.4.1
+- Rails 5.2.0
