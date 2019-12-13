@@ -1,4 +1,4 @@
-class CartController < ApplicationController
+class CartsController < ApplicationController
 
   def update
     item = Item.find(params[:item_id])
@@ -31,7 +31,7 @@ class CartController < ApplicationController
   def destroy
     if params[:item_id]
       cart.remove_item(params[:item_id])
-      session[:cart].delete(:item_id)
+      session[:cart].delete(:id)
     else
       cart.empty_contents
       session[:cart] = Hash.new(0)
